@@ -1,5 +1,6 @@
 #include <iostream>
-#include "glfw-3.3.2/include/GLFW/glfw3.h"
+#include "libs/glfw-3.3.2/include/GLFW/glfw3.h"
+#include <gl/gl.h>
 
 int main() {
     GLFWwindow* window;
@@ -23,13 +24,14 @@ int main() {
     while (!glfwWindowShouldClose(window))
     {
         /* Render here */
-        //glClear(GL_COLOR_BUFFER_BIT);
+        glClear(GL_COLOR_BUFFER_BIT);
 
         /* Swap front and back buffers */
         glfwSwapBuffers(window);
 
         /* Poll for and process events */
         glfwPollEvents();
+
     }
 
     glfwTerminate();
