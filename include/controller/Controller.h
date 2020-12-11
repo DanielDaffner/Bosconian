@@ -7,9 +7,12 @@
 
 class Controller{
 public:
+    int posxy[2];
+    int direction[2];
     Controller();
     View *view;
     int init();
     void update();
+
 };
 #endif //BOSCONIAN_CONTROLLER_H
