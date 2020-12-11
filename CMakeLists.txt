@@ -7,6 +7,6 @@ add_subdirectory(${PROJECT_SOURCE_DIR}/libs/glfw-3.3.2)
 find_package(OpenGL REQUIRED)
 include_directories(${OPENGL_INCLUDE_DIRS})
 
-add_executable(Bosconian main.cpp Test.cpp Test.h include/controller/Controller.h src/controller/Controller.cpp src/view/View.cpp include/view/View.h)
+add_executable(Bosconian main.cpp include/controller/Controller.h src/controller/Controller.cpp src/view/View.cpp include/view/View.h)
 
 target_link_libraries(Bosconian glfw ${OPENGL_LIBRARIES})
