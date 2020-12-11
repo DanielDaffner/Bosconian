@@ -20,7 +20,7 @@ int main() {
 
         /* Poll for and process events */
         glfwPollEvents();
-        _sleep(10);
+        _sleep(3);
     }
 
     glfwTerminate();
