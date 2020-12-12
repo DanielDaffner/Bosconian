@@ -20,10 +20,10 @@ int Controller::init() {
     viewportpos[1] = 0;
     viewportpos[2] = 1280;
     viewportpos[3] = 960;
-    printf("setcallback");
-    file = fopen("D:/Downloads/pink_enemy_7_64.bmp", "r");
+
+    file = fopen("../App_Data/pink_enemy_7_64.bmp", "r");
     if(file == nullptr) printf("fuck\n");
-    else printf("file nich nu ll\n");
+    else printf("file nich null\n");
     test = new GLubyte[12682];
     fread(test,sizeof(GLubyte),12682,file);
 
@@ -38,7 +38,6 @@ int Controller::init() {
         swap = test[i];
         test[i] = test[i+2];
         test[i+2] = swap;
-
     }
     return 0;
 }
