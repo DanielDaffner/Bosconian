@@ -27,7 +27,7 @@ int main() {
 
         controller->view->createMainWindow();
 
-    while (!inGame) {
+    while (controller->inGame) {
         /* Render here */
         controller->updateGameWindow();
         /* Swap front and back buffers */
