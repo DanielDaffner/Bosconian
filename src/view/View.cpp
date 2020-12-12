@@ -22,7 +22,7 @@ int View::createWindow(int width, int height) {
         glfwTerminate();
         return -1;
     }
-    //glViewport(0,0,width,height);
+    glViewport(0,0,width,height);
     /* Make the window's context current */
     glfwMakeContextCurrent(window);
 }

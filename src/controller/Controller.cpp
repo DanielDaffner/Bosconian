@@ -15,6 +15,10 @@ int Controller::init() {
     posxy[1] = 800;
     direction[0] = 0;
     direction[1] = 0;
+    viewportpos[0] = 0;
+    viewportpos[1] = 0;
+    viewportpos[2] = 1280;
+    viewportpos[3] = 960;
     printf("setcallback");
 
     return 0;
@@ -54,7 +58,11 @@ void Controller::update() {
 
     // Eine orthogonale Projektionsmatrix zum Stack
     // dazu multiplizieren.
-    glOrtho( 0, 1280, 960, 0, 0, 1 );
+    glViewport(0,0,1280,960);
+    //glViewport(viewportpos[0],viewportpos[1],viewportpos[2],viewportpos[3]);
+
+    //glOrtho( 0, 1280, 960, 0, 0, 1 );
+    glOrtho( viewportpos[0], viewportpos[2], viewportpos[3], viewportpos[1], -1, 1 );
 
     glBegin( GL_TRIANGLES ); // Wir wollen ein Dreieck zeichnen
     glColor3f(1,0,0);      // Ab jetzt werden alle gezeichneten Punkte rot
@@ -69,6 +77,11 @@ void Controller::update() {
     glVertex3f(posxy[0]+100,posxy[1]+100,0);  // Der dritte Eckpunkt ist 50 Pixel vom linken
     // und 100 Pixel vom unteren Rand entfernt
     glEnd();
-    posxy[0]+=direction[0];
-    posxy[1]+=direction[1];
+    //posxy[0]+=direction[0];
+    //posxy[1]+=direction[1];
+    viewportpos[0] +=direction[0];
+    viewportpos[1] +=direction[1];
+    viewportpos[2] +=direction[0];
+    viewportpos[3] +=direction[1];
+
 }
