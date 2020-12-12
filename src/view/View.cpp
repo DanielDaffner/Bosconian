@@ -10,8 +10,8 @@ View::View(){
 
 int View::createMainWindow() {
 
-    int width = 1920 ;
-    int height = 1080;
+    int width =  1280;
+    int height = 720;
     /* Initialize the library */
     if (!glfwInit())
         return -1;

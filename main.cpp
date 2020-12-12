@@ -14,7 +14,7 @@ int main() {
     while (!glfwWindowShouldClose(controller->view->window )) {
 
     /* Loop until the user closes the window */
-    while (!controller->inGame) {
+    while (!controller->inGame && !glfwWindowShouldClose(controller->view->window )) {
         /* Render here */
         controller->updateMainWindow();
         /* Swap front and back buffers */
@@ -25,9 +25,9 @@ int main() {
         _sleep(3);
     }
 
-        controller->view->createMainWindow();
+    //controller->view->createMainWindow();
 
-    while (controller->inGame) {
+    while (controller->inGame && !glfwWindowShouldClose(controller->view->window )) {
         /* Render here */
         controller->updateGameWindow();
         /* Swap front and back buffers */

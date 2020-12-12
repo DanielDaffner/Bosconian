@@ -20,8 +20,9 @@ int Controller::init() {
     viewportpos[0] = 0;
     viewportpos[1] = 0;
     viewportpos[2] = 1280;
-    viewportpos[3] = 960;
+    viewportpos[3] = 720;
 
+    view = new View();
     //open files
 
     printf("init controller done\n");
@@ -50,9 +51,8 @@ int Controller::init() {
 void Controller::updateMainWindow() {
 
 
-    int space = glfwGetKey(view->window, GLFW_KEY_SPACE);
-
-    if (space == GLFW_PRESS) {
+    int up = glfwGetKey(view->window, GLFW_KEY_UP);
+    if (up == GLFW_PRESS) {
     inGame = true;
     }
     glClear(GL_COLOR_BUFFER_BIT);
@@ -63,7 +63,7 @@ void Controller::updateMainWindow() {
 
     // Eine orthogonale Projektionsmatrix zum Stack
     // dazu multiplizieren.
-    glViewport(0,0,1920,1080);
+    glViewport(0,0,1280,720);
     //glViewport(viewportpos[0],viewportpos[1],viewportpos[2],viewportpos[3]);
 
     //glOrtho( 0, 1280, 960, 0, 0, 1 );
@@ -129,7 +129,7 @@ void Controller::updateGameWindow() {
 
     // Eine orthogonale Projektionsmatrix zum Stack
     // dazu multiplizieren.
-    glViewport(0,0,1280,960);
+    glViewport(0,0,1280,720);
     //glViewport(viewportpos[0],viewportpos[1],viewportpos[2],viewportpos[3]);
 
     //glOrtho( 0, 1280, 960, 0, 0, 1 );
