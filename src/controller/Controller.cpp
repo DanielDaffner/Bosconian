@@ -7,7 +7,8 @@
 Controller::Controller() {
 
 }
-
+FILE* file;
+GLubyte* test;
 int Controller::init() {
     view = new View();
     //view->createWindow(1280,960);
@@ -20,11 +21,17 @@ int Controller::init() {
     viewportpos[2] = 1280;
     viewportpos[3] = 960;
     printf("setcallback");
+    file = fopen("D:/Downloads/pink_enemy_7_64.bmp", "r");
+    if(file == nullptr) printf("fuck");
+    else printf("file nich nu ll");
+    test = new GLubyte[12288];
 
+    fread(test,sizeof(GLubyte),12288,file);
     return 0;
 }
 
 void Controller::update() {
+
     int up = glfwGetKey(view->window, GLFW_KEY_UP);
     int left = glfwGetKey(view->window, GLFW_KEY_LEFT);
     int right = glfwGetKey(view->window, GLFW_KEY_RIGHT);
@@ -38,6 +45,7 @@ void Controller::update() {
         direction[0] = -1;
         direction[1] = 0;
     }
+
     if (right == GLFW_PRESS) {
         direction[0] = 1;
         direction[1] = 0;
@@ -83,5 +91,7 @@ void Controller::update() {
     viewportpos[1] +=direction[1];
     viewportpos[2] +=direction[0];
     viewportpos[3] +=direction[1];
+    glBitmap(56,56,0,0,0,0,test+55);
+    glDrawPixels(56,56,GL_RGB,GL_UNSIGNED_BYTE,test);
 
 }
