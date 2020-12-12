@@ -156,6 +156,15 @@ void Controller::updateGameWindow() {
     viewportpos[3] +=direction[1];
     //glBitmap(56,56,0,0,0,0,test+55);
     //GLubyte* cmon = test+138;
+
+    printf("vp0 min x %d\n", viewportpos[0]);
+    printf("vp1 min y %d\n", viewportpos[1]);
+    printf("vp2 max x %d\n", viewportpos[2]);
+    printf("vp3 max y %d\n", viewportpos[3]);
+
+
+
+    glRasterPos2d(viewportpos[0]+640,viewportpos[1]+360);
     glDrawPixels(56,56,GL_RGBA,GL_UNSIGNED_BYTE,test+138);
 
 

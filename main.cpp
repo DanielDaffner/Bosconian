@@ -22,7 +22,7 @@ int main() {
 
         /* Poll for and process events */
         glfwPollEvents();
-        _sleep(3);
+        _sleep(300);
     }
 
     //controller->view->createMainWindow();
