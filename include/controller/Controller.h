@@ -16,5 +16,6 @@ public:
     int init();
     void updateMainWindow();
     void updateGameWindow();
+
 };
 #endif //BOSCONIAN_CONTROLLER_H

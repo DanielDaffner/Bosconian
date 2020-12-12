@@ -7,8 +7,13 @@
 Controller::Controller() {
 
 }
-FILE* file;
-GLubyte* test;
+
+FILE* file1;
+FILE* file2;
+FILE* file3;
+FILE* file4;
+GLubyte* ship[4];
+
 int Controller::init() {
     //init controller
     printf("init controller begin\n");
@@ -22,27 +27,59 @@ int Controller::init() {
     viewportpos[2] = 1280;
     viewportpos[3] = 720;
 
+
     view = new View();
     //open files
 
-    printf("init controller done\n");
-    file = fopen("../App_Data/pink_enemy_7_64.bmp", "r");
-    if(file == nullptr) printf("fuck\n");
-    else printf("file nich nu ll\n");
-    test = new GLubyte[12682];
-    fread(test,sizeof(GLubyte),12682,file);
 
-    printf(" %u\n",*((uint32_t*)(test+30)));
-    printf(" %u\n",*((uint32_t*)(test+14)));
-    printf(" %u\n",*((uint32_t*)(test+22)));
-    printf(" %u\n",*((uint16_t*)(test+28)));
-    printf(" %u\n",*((uint16_t*)(test+50)));
-    printf(" %u\n",*((uint16_t*)(test+10)));
+    //scam 1
+    printf("init controller done\n");
+    file1 = fopen("../App_Data/pink_enemy_7_64_up.bmp", "r");
+    if(file1 == nullptr) printf("fuck 1\n");
+    else printf("file 1 nich nu ll\n");
+    ship[0] = new GLubyte[12682];
+    fread(ship[0],sizeof(GLubyte),12682,file1);
+
+    //scam 2
+
+    file2 = fopen("../App_Data/pink_enemy_7_64_right.bmp", "r");
+    if(file2 == nullptr) printf("fuck 2\n");
+    else printf("file 2 nich nu ll\n");
+    ship[1] = new GLubyte[12682];
+    fread(ship[1],sizeof(GLubyte),12682,file2);
+
+    //scam 3
+
+    file3 = fopen("../App_Data/pink_enemy_7_64_down.bmp", "r");
+    if(file3 == nullptr) printf("fuck 3\n");
+    else printf("file 3 nich nu ll\n");
+    ship[2] = new GLubyte[12682];
+    fread(ship[2],sizeof(GLubyte),12682,file3);
+
+    //scam 4
+
+    file4 = fopen("../App_Data/pink_enemy_7_64_left.bmp", "r");
+    if(file4 == nullptr) printf("fuck 4\n");
+    else printf("file 4 nich nu ll\n");
+    ship[3] = new GLubyte[12682];
+    fread(ship[3],sizeof(GLubyte),12682,file4);
+
+
+
+
+    //print bitmap header
+    printf("printBitmapHeader");
+    printf(" %u\n",*((uint32_t*)(ship[0]+30)));
+    printf(" %u\n",*((uint32_t*)(ship[0]+14)));
+    printf(" %u\n",*((uint32_t*)(ship[0]+22)));
+    printf(" %u\n",*((uint16_t*)(ship[0]+28)));
+    printf(" %u\n",*((uint16_t*)(ship[0]+50)));
+    printf(" %u\n",*((uint16_t*)(ship[0]+10)));
     GLubyte swap=0;
     for(int i = 138; i < 12682; i+=4) {
-        swap = test[i];
-        test[i] = test[i+2];
-        test[i+2] = swap;
+        swap = ship[0][i];
+        ship[0][i] = ship[0][i+2];
+        ship[0][i+2] = swap;
 
     }
     return 0;
@@ -90,17 +127,19 @@ void Controller::updateMainWindow() {
     viewportpos[3] +=direction[1];
     //glBitmap(56,56,0,0,0,0,test+55);
     //GLubyte* cmon = test+138;
-    glDrawPixels(56,56,GL_RGBA,GL_UNSIGNED_BYTE,test+138);
+    glDrawPixels(56,56,GL_RGBA,GL_UNSIGNED_BYTE,ship[0]+138);
 
 
 }
 void Controller::updateGameWindow() {
-
+    // input
     int up = glfwGetKey(view->window, GLFW_KEY_UP);
     int left = glfwGetKey(view->window, GLFW_KEY_LEFT);
     int right = glfwGetKey(view->window, GLFW_KEY_RIGHT);
     int down = glfwGetKey(view->window, GLFW_KEY_DOWN);
     int space = glfwGetKey(view->window, GLFW_KEY_SPACE);
+
+    //set direction
     if (up == GLFW_PRESS) {
         direction[0] = 0;
         direction[1] = -1;
@@ -119,8 +158,10 @@ void Controller::updateGameWindow() {
         direction[1] = 1;
     }
     if (space == GLFW_PRESS) {
-       inGame = false;
+        inGame = false;
     }
+
+    //basti magic
     glClear(GL_COLOR_BUFFER_BIT);
 
     glMatrixMode( GL_PROJECTION ); // Stack für Projektionsmatrix als
@@ -150,12 +191,7 @@ void Controller::updateGameWindow() {
     glEnd();
     //posxy[0]+=direction[0];
     //posxy[1]+=direction[1];
-    viewportpos[0] +=direction[0];
-    viewportpos[1] +=direction[1];
-    viewportpos[2] +=direction[0];
-    viewportpos[3] +=direction[1];
-    //glBitmap(56,56,0,0,0,0,test+55);
-    //GLubyte* cmon = test+138;
+
 
     printf("vp0 min x %d\n", viewportpos[0]);
     printf("vp1 min y %d\n", viewportpos[1]);
@@ -163,9 +199,41 @@ void Controller::updateGameWindow() {
     printf("vp3 max y %d\n", viewportpos[3]);
 
 
-
+    //draw ship
     glRasterPos2d(viewportpos[0]+640,viewportpos[1]+360);
-    glDrawPixels(56,56,GL_RGBA,GL_UNSIGNED_BYTE,test+138);
+
+    if (up == GLFW_PRESS) {
+
+    }
+    if (left == GLFW_PRESS) {
+        glRotatef(180,0,0,1);
+    }
+
+    if (right == GLFW_PRESS) {
+        glRotatef(90,0,0,1);
+    }
+    if (down == GLFW_PRESS) {
+        glRotatef(45,0,0,1);
+    }
+    if (space == GLFW_PRESS) {
+        glRotatef(10,0,0,1);
+    }
+
+    glDrawPixels(56,56,GL_RGBA,GL_UNSIGNED_BYTE,ship[0]+138);
+    glMatrixMode( GL_PROJECTION );
+    //draw enemy
+
+    //flyWithShip
+    //glRasterPos2d(viewportpos[0]+position,viewportpos[1]+position);
+
+    //flyWorld
+    //glRasterPos2d(position,position);
+//    glDrawPixels(56,56,GL_RGBA,GL_UNSIGNED_BYTE,ship[0]+138);
 
 
+    //move viewport
+    viewportpos[0] +=direction[0];
+    viewportpos[1] +=direction[1];
+    viewportpos[2] +=direction[0];
+    viewportpos[3] +=direction[1];
 }
