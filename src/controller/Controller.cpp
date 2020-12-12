@@ -53,7 +53,7 @@ void Controller::updateMainWindow() {
     int space = glfwGetKey(view->window, GLFW_KEY_SPACE);
 
     if (space == GLFW_PRESS) {
-
+    inGame = true;
     }
     glClear(GL_COLOR_BUFFER_BIT);
 
@@ -119,8 +119,7 @@ void Controller::updateGameWindow() {
         direction[1] = 1;
     }
     if (space == GLFW_PRESS) {
-        direction[0] = 0;
-        direction[1] = 0;
+       inGame = false;
     }
     glClear(GL_COLOR_BUFFER_BIT);
 

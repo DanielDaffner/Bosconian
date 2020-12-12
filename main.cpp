@@ -10,12 +10,11 @@ int main() {
 
     Controller *controller = new Controller();
     controller->init();
-    bool inGame = false;
     controller->view->createMainWindow();
     while (!glfwWindowShouldClose(controller->view->window )) {
 
     /* Loop until the user closes the window */
-    while (!inGame) {
+    while (!controller->inGame) {
         /* Render here */
         controller->updateMainWindow();
         /* Swap front and back buffers */
@@ -25,6 +24,8 @@ int main() {
         glfwPollEvents();
         _sleep(3);
     }
+
+        controller->view->createMainWindow();
 
     while (!inGame) {
         /* Render here */
