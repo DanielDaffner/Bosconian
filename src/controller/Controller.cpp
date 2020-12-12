@@ -25,7 +25,7 @@ int Controller::init() {
     //open files
 
     printf("init controller done\n");
-    file = fopen("C:\\Users\\Daniel\\Documents\\GitHub\\Bosconian\\App_Data\\pink_enemy_7_64.bmp", "r");
+    file = fopen("../App_Data/pink_enemy_7_64.bmp", "r");
     if(file == nullptr) printf("fuck\n");
     else printf("file nich nu ll\n");
     test = new GLubyte[12682];
