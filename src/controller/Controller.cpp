@@ -24,8 +24,8 @@ int Controller::init() {
     file = fopen("D:/Downloads/pink_enemy_7_64.bmp", "r");
     if(file == nullptr) printf("fuck\n");
     else printf("file nich nu ll\n");
-    test = new GLubyte[9462];
-    fread(test,sizeof(GLubyte),9462,file);
+    test = new GLubyte[12682];
+    fread(test,sizeof(GLubyte),12682,file);
 
     printf(" %u\n",*((uint32_t*)(test+30)));
     printf(" %u\n",*((uint32_t*)(test+14)));
@@ -34,11 +34,11 @@ int Controller::init() {
     printf(" %u\n",*((uint16_t*)(test+50)));
     printf(" %u\n",*((uint16_t*)(test+10)));
     GLubyte swap=0;
-    for(int i = 54; i < 9408; i+=3) {
+    for(int i = 138; i < 12682; i+=4) {
         swap = test[i];
         test[i] = test[i+2];
         test[i+2] = swap;
-        printf("swapped \n");
+
     }
     return 0;
 }
@@ -105,8 +105,8 @@ void Controller::update() {
     viewportpos[2] +=direction[0];
     viewportpos[3] +=direction[1];
     //glBitmap(56,56,0,0,0,0,test+55);
-    GLubyte* cmon = test+54;
-    glDrawPixels(56,56,GL_RGB,GL_UNSIGNED_BYTE,cmon);
+    //GLubyte* cmon = test+138;
+    glDrawPixels(56,56,GL_RGBA,GL_UNSIGNED_BYTE,test+138);
 
 
 }
