@@ -10,6 +10,6 @@ class View{
 public:
     View();
     GLFWwindow* window;
-    int createWindow(int width, int height);
+    int createMainWindow();
 };
 #endif //BOSCONIAN_VIEW_H

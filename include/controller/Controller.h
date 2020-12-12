@@ -10,10 +10,11 @@ public:
     int posxy[2];
     int direction[2];
     int viewportpos[4];
+    bool inGame;
     Controller();
     View *view;
     int init();
-    void update();
-
+    void updateMainWindow();
+    void updateGameWindow();
 };
 #endif //BOSCONIAN_CONTROLLER_H

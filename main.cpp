@@ -5,16 +5,19 @@
 
 
 int main() {
+
+    //init controller
+
     Controller *controller = new Controller();
     controller->init();
-    controller->view->createWindow(1280,960);
-    //needed ?
+    bool inGame = false;
+    controller->view->createMainWindow();
+    while (!glfwWindowShouldClose(controller->view->window )) {
 
     /* Loop until the user closes the window */
-    while (!glfwWindowShouldClose(controller->view->window))
-    {
+    while (!inGame) {
         /* Render here */
-        controller->update();
+        controller->updateMainWindow();
         /* Swap front and back buffers */
         glfwSwapBuffers(controller->view->window);
 
@@ -23,7 +26,21 @@ int main() {
         _sleep(3);
     }
 
+    while (!inGame) {
+        /* Render here */
+        controller->updateGameWindow();
+        /* Swap front and back buffers */
+        glfwSwapBuffers(controller->view->window);
+
+        /* Poll for and process events */
+        glfwPollEvents();
+        _sleep(3);
+    }
+
+}
     glfwTerminate();
     return 0;
+
+
 }
 
