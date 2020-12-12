@@ -91,7 +91,7 @@ void Controller::update() {
     viewportpos[1] +=direction[1];
     viewportpos[2] +=direction[0];
     viewportpos[3] +=direction[1];
-    glBitmap(56,56,0,0,0,0,test+55);
-    glDrawPixels(56,56,GL_RGB,GL_UNSIGNED_BYTE,test);
+    //glBitmap(56,56,0,0,0,0,test+55);
+    glDrawPixels(56,56,GL_RGB,GL_UNSIGNED_BYTE,test+54);
 
 }
