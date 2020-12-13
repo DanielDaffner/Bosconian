@@ -154,25 +154,25 @@ void Controller::updateGameWindow() {
     glRasterPos2d(viewportpos[0]+640,viewportpos[1]+360);
     int wihi[2];
     if (up == GLFW_PRESS) {
+        shipRender = ship[0][0];
+        wihi[0] = *((uint32_t*)(ship[0][0]+18));
+        wihi[1] = *((uint32_t*)(ship[0][0]+22));
+    }
+    if (left == GLFW_PRESS) {
+        shipRender = ship[6][0];
+        wihi[0] = *((uint32_t*)(ship[6][0]+18));
+        wihi[1] = *((uint32_t*)(ship[6][0]+22));
+    }
+
+    if (right == GLFW_PRESS) {
         shipRender = ship[2][0];
         wihi[0] = *((uint32_t*)(ship[2][0]+18));
         wihi[1] = *((uint32_t*)(ship[2][0]+22));
     }
-    if (left == GLFW_PRESS) {
-        shipRender = ship[3][0];
-        wihi[0] = *((uint32_t*)(ship[3][0]+18));
-        wihi[1] = *((uint32_t*)(ship[3][0]+22));
-    }
-
-    if (right == GLFW_PRESS) {
-        shipRender = ship[1][0];
-        wihi[0] = *((uint32_t*)(ship[1][0]+18));
-        wihi[1] = *((uint32_t*)(ship[1][0]+22));
-    }
     if (down == GLFW_PRESS) {
-        shipRender = ship[0][0];
-        wihi[0] = *((uint32_t*)(ship[0][0]+18));
-        wihi[1] = *((uint32_t*)(ship[0][0]+22));
+        shipRender = ship[4][0];
+        wihi[0] = *((uint32_t*)(ship[4][0]+18));
+        wihi[1] = *((uint32_t*)(ship[4][0]+22));
     }
     if (space == GLFW_PRESS) {
         inGame=false;
