@@ -14,6 +14,7 @@ public:
     bool inGame;
     GLubyte* ship[8][2];
     GLubyte* shipRender;
+    int wihi[2];
     Controller();
     View *view;
     int init();
