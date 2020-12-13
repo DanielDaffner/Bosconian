@@ -13,6 +13,7 @@ FILE* file2;
 FILE* file3;
 FILE* file4;
 GLubyte* ship[4];
+GLubyte* shipRender;
 
 int Controller::init() {
     //init controller
@@ -34,7 +35,7 @@ int Controller::init() {
 
     //scam 1
     printf("init controller done\n");
-    file1 = fopen("../App_Data/pink_enemy_7_64_up.bmp", "r");
+    file1 = fopen("../App_Data/pink_enemy_7_64_down.bmp", "r");
     if(file1 == nullptr) printf("fuck 1\n");
     else printf("file 1 nich nu ll\n");
     ship[0] = new GLubyte[12682];
@@ -50,7 +51,7 @@ int Controller::init() {
 
     //scam 3
 
-    file3 = fopen("../App_Data/pink_enemy_7_64_down.bmp", "r");
+    file3 = fopen("../App_Data/pink_enemy_7_64_up.bmp", "r");
     if(file3 == nullptr) printf("fuck 3\n");
     else printf("file 3 nich nu ll\n");
     ship[2] = new GLubyte[12682];
@@ -203,24 +204,27 @@ void Controller::updateGameWindow() {
     glRasterPos2d(viewportpos[0]+640,viewportpos[1]+360);
 
     if (up == GLFW_PRESS) {
-
+        shipRender = ship[2];
     }
     if (left == GLFW_PRESS) {
-        glRotatef(180,0,0,1);
+        shipRender = ship[3];
+        
     }
 
     if (right == GLFW_PRESS) {
-        glRotatef(90,0,0,1);
+        shipRender = ship[1];
+
     }
     if (down == GLFW_PRESS) {
-        glRotatef(45,0,0,1);
+        shipRender = ship[0];
+
     }
     if (space == GLFW_PRESS) {
-        glRotatef(10,0,0,1);
+        inGame=false;
     }
+    glDrawPixels(56,56,GL_RGBA,GL_UNSIGNED_BYTE,shipRender+138);
 
-    glDrawPixels(56,56,GL_RGBA,GL_UNSIGNED_BYTE,ship[0]+138);
-    glMatrixMode( GL_PROJECTION );
+
     //draw enemy
 
     //flyWithShip
