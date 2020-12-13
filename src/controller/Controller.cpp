@@ -205,57 +205,58 @@ void Controller::loadBitmapsShip() {
 
     //need static list or something to get this from
     //scam
-    char* name0[2] = {
-            "ship_up_light_on.bmp" ,
-            "ship_up_light_off.bmp"
-    };
 
-    char* name1[2] = {
-            "ship_up_right_light_on.bmp" ,
-            "ship_up_right_light_off.bmp"
-    };
-    char* name2[2] = {
-            "ship_right_light_on.bmp" ,
-            "ship_right_light_off.bmp"
-    };
-    char* name3[2] = {
-            "ship_down_right_light_on.bmp" ,
-            "ship_down_right_light_off.bmp"
-    };
-    char* name4[2] = {
-            "ship_down_light_on.bmp" ,
-            "ship_down_light_off.bmp"
-    };
-    char* name5[2] = {
-            "ship_down_left_light_on.bmp" ,
-            "ship_down_left_light_off.bmp"
-    };
-    char* name6[2] = {
-            "ship_up_left_light_on.bmp" ,
-            "ship_up_left_light_off.bmp"
-    };
     printf("names\n");
-    char** names[7];
 
-    names[0] = name0;
-    names[1] = name1;
-    names[2] = name2;
-    names[3] = name3;
-    names[4] = name4;
-    names[5] = name5;
-    names[6] = name6;
+    char* names[8][2] = {
+            {
+                    "ship_up_light_on.bmp" ,
+                    "ship_up_light_off.bmp"
+            },
+            {
+                    "ship_up_right_light_on.bmp" ,
+                    "ship_up_right_light_off.bmp"
+            },
+            {
+                    "ship_right_light_on.bmp" ,
+                    "ship_right_light_off.bmp"
+            },
+            {
+                    "ship_down_right_light_on.bmp" ,
+                    "ship_down_right_light_off.bmp"
+            },
+            {
+                    "ship_down_light_on.bmp" ,
+                    "ship_down_light_off.bmp"
+            },
+            {
+                    "ship_down_left_light_on.bmp" ,
+                    "ship_down_left_light_off.bmp"
+            },
+            {
+                    "ship_left_light_on.bmp" ,
+                    "ship_left_light_off.bmp"
+            },
+            {
+                    "ship_up_left_light_on.bmp" ,
+                    "ship_up_left_light_off.bmp"
+            }
+    };
+
 
     //path
     char* basePath = "../App_Data/";
 
     //load all files
-    for (size_t x = 0; x < sizeof(*names); ++x) {
-        GLubyte* bitmaps[sizeof(*names[x])];
-        for (size_t y = 0; y < sizeof(*names[x]); ++y) {
+    for (size_t x = 0; x < sizeof(names)/sizeof(*names); ++x) {
+
+        GLubyte* bitmaps[sizeof(names[x])/sizeof(*names[x])];
+        printf("\n\n %d \n\n", sizeof(names)/sizeof(*names));
+        printf("\n\n %d \n\n", sizeof(names[x])/sizeof(*names[x]));
+        for (size_t y = 0; y < sizeof(names[x])/sizeof(*names[x]); ++y) {
             //getPath
-            char* nameList[sizeof(*names[x])];
-            *nameList = *names[x];
-            std::string path = std::string(basePath) + nameList[y];
+            std::string path = std::string(basePath) + names[x][y];
+            printf("%s", path.c_str());
             //loadFile
             FILE* file = fopen(path.c_str(), "r");
             if (file == nullptr) printf("file %s null\n", path.c_str());
@@ -263,11 +264,13 @@ void Controller::loadBitmapsShip() {
             int bmLength = getBitmapLength(file);
             printf("bmlength %d", bmLength);
             //set bitmap
-            bitmaps[y] = new GLubyte[bmLength];
+            GLubyte* scam = new GLubyte[bmLength];
             printf("check");
             //error peter
-            fread(bitmaps[y], sizeof(GLubyte), bmLength, file);
+            fread(scam, sizeof(GLubyte), bmLength, file);
+
             printf("check");
+            bitmaps[y] = scam;
         }
         ship[x] = bitmaps;
     }
