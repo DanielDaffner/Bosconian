@@ -153,7 +153,7 @@ void Controller::updateGameWindow() {
 
     //draw ship
     glRasterPos2d(viewportpos[0]+640,viewportpos[1]+360);
-    int wihi[2];
+
     if (up == GLFW_PRESS) {
         shipRender = ship[0][0];
         wihi[0] = *((uint32_t*)(ship[0][0]+18));
