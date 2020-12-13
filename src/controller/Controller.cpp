@@ -289,5 +289,6 @@ void Controller::loadBitmapsShip() {
 int Controller::getBitmapLength(FILE* tmp){
     fseek(tmp,0,SEEK_END);
     int result = ftell(tmp);
+    fseek(tmp,0,SEEK_SET);
     return result;
 }
