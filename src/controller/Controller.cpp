@@ -33,6 +33,7 @@ int Controller::init() {
     loadBitmapsShip();
     shipRender = ship[2][0];
 
+
     return 0;
 }
 
@@ -182,6 +183,19 @@ void Controller::updateGameWindow() {
     glEnable(GL_ALPHA_TEST);
     glAlphaFunc( GL_GREATER, 0.5 );
     glDrawPixels(wihi[0],wihi[1],GL_RGBA,GL_UNSIGNED_BYTE,shipRender+138);
+    unsigned char* meinPixel = new unsigned char[4];
+    meinPixel[0] = 255;
+    meinPixel[1] = 0;
+    meinPixel[2] = 0;
+    meinPixel[3] = 255;
+
+    for (int pixelcount = 50; pixelcount >=0; pixelcount--){
+        int x = (rand() % 1280);
+        int y = (rand() % 720);
+        printf("x %d y %d\n",x,y);
+        glRasterPos2d(viewportpos[0]+x,viewportpos[1]+y);
+        glDrawPixels(2,2,GL_RGBA,GL_UNSIGNED_BYTE, meinPixel );
+    }
 
 
     //draw enemy
