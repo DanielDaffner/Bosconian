@@ -152,27 +152,32 @@ void Controller::updateGameWindow() {
 
     //draw ship
     glRasterPos2d(viewportpos[0]+640,viewportpos[1]+360);
-
+    int wihi[2];
     if (up == GLFW_PRESS) {
         shipRender = ship[2][0];
+        wihi[0] = *((uint32_t*)(ship[2][0]+18));
+        wihi[1] = *((uint32_t*)(ship[2][0]+22));
     }
     if (left == GLFW_PRESS) {
         shipRender = ship[3][0];
-
+        wihi[0] = *((uint32_t*)(ship[3][0]+18));
+        wihi[1] = *((uint32_t*)(ship[3][0]+22));
     }
 
     if (right == GLFW_PRESS) {
         shipRender = ship[1][0];
-
+        wihi[0] = *((uint32_t*)(ship[1][0]+18));
+        wihi[1] = *((uint32_t*)(ship[1][0]+22));
     }
     if (down == GLFW_PRESS) {
         shipRender = ship[0][0];
-
+        wihi[0] = *((uint32_t*)(ship[0][0]+18));
+        wihi[1] = *((uint32_t*)(ship[0][0]+22));
     }
     if (space == GLFW_PRESS) {
         inGame=false;
     }
-    glDrawPixels(56,56,GL_RGBA,GL_UNSIGNED_BYTE,shipRender+138);
+    glDrawPixels(wihi[0],wihi[1],GL_RGBA,GL_UNSIGNED_BYTE,shipRender+138);
 
 
     //draw enemy
@@ -269,7 +274,8 @@ void Controller::loadBitmapsShip() {
             printf("printBitmapHeader");
             printf(" %u\n",*((uint32_t*)(scam+30)));
             printf(" %u\n",*((uint32_t*)(scam+14)));
-            printf(" %u\n",*((uint32_t*)(scam+22)));
+            printf("width  %u\n",*((uint32_t*)(scam+18)));
+            printf("height %u\n",*((uint32_t*)(scam+22)));
             printf(" %u\n",*((uint16_t*)(scam+28)));
             printf(" %u\n",*((uint16_t*)(scam+50)));
             printf(" %u\n",*((uint16_t*)(scam+10)));
