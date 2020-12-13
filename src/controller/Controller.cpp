@@ -31,15 +31,7 @@ int Controller::init() {
     //load files
 
     loadBitmapsShip();
-
-
-
-
-
-
-
-
-    printf(" %u\n",*((uint16_t*)(ship[0]+10)));
+    shipRender = ship[2][0];
 
     return 0;
 }
@@ -269,9 +261,25 @@ void Controller::loadBitmapsShip() {
             //error peter
             fread(scam, sizeof(GLubyte), bmLength, file);
 
-            printf("check");
+            printf("check\n");
             ship[x][y] = scam;
+            int intTMP = *((uint16_t*)(ship[x][y]+10));
 
+            //print bitmap header
+            printf("printBitmapHeader");
+            printf(" %u\n",*((uint32_t*)(ship[x][y]+30)));
+            printf(" %u\n",*((uint32_t*)(ship[x][y]+14)));
+            printf(" %u\n",*((uint32_t*)(ship[x][y]+22)));
+            printf(" %u\n",*((uint16_t*)(ship[x][y]+28)));
+            printf(" %u\n",*((uint16_t*)(ship[x][y]+50)));
+            printf(" %u\n",*((uint16_t*)(ship[x][y]+10)));
+
+            GLubyte swap=0;
+            for(int i = intTMP; i < bmLength; i+=4) {
+                swap = ship[x][y][i];
+                ship[x][y][i] = ship[x][y][i+2];
+                ship[x][y][i+2] = swap;
+            }
             fclose(file);
         }
 
