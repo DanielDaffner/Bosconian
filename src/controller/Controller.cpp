@@ -158,29 +158,29 @@ void Controller::updateGameWindow() {
     printf("vp3 max y %d\n", viewportpos[3]);
 
 
-//    //draw ship
-//    glRasterPos2d(viewportpos[0]+640,viewportpos[1]+360);
-//
-//    if (up == GLFW_PRESS) {
-//        shipRender = ship[2];
-//    }
-//    if (left == GLFW_PRESS) {
-//        shipRender = ship[3];
-//
-//    }
-//
-//    if (right == GLFW_PRESS) {
-//        shipRender = ship[1];
-//
-//    }
-//    if (down == GLFW_PRESS) {
-//        shipRender = ship[0];
-//
-//    }
-//    if (space == GLFW_PRESS) {
-//        inGame=false;
-//    }
-//    glDrawPixels(56,56,GL_RGBA,GL_UNSIGNED_BYTE,shipRender+138);
+    //draw ship
+    glRasterPos2d(viewportpos[0]+640,viewportpos[1]+360);
+
+    if (up == GLFW_PRESS) {
+        shipRender = ship[2][0];
+    }
+    if (left == GLFW_PRESS) {
+        shipRender = ship[3][0];
+
+    }
+
+    if (right == GLFW_PRESS) {
+        shipRender = ship[1][0];
+
+    }
+    if (down == GLFW_PRESS) {
+        shipRender = ship[0][0];
+
+    }
+    if (space == GLFW_PRESS) {
+        inGame=false;
+    }
+    glDrawPixels(56,56,GL_RGBA,GL_UNSIGNED_BYTE,shipRender+138);
 
 
     //draw enemy
@@ -250,7 +250,7 @@ void Controller::loadBitmapsShip() {
     //load all files
     for (size_t x = 0; x < sizeof(names)/sizeof(*names); ++x) {
 
-        GLubyte* bitmaps[sizeof(names[x])/sizeof(*names[x])];
+
         printf("\n\n %d \n\n", sizeof(names)/sizeof(*names));
         printf("\n\n %d \n\n", sizeof(names[x])/sizeof(*names[x]));
         for (size_t y = 0; y < sizeof(names[x])/sizeof(*names[x]); ++y) {
@@ -270,15 +270,16 @@ void Controller::loadBitmapsShip() {
             fread(scam, sizeof(GLubyte), bmLength, file);
 
             printf("check");
-            bitmaps[y] = scam;
+            ship[x][y] = scam;
+
+            fclose(file);
         }
-        ship[x] = bitmaps;
+
     }
 }
 
 int Controller::getBitmapLength(FILE* tmp){
     fseek(tmp,0,SEEK_END);
     int result = ftell(tmp);
-    fclose(tmp);
     return result;
 }

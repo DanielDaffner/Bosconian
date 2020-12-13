@@ -12,7 +12,7 @@ public:
     int direction[2];
     int viewportpos[4];
     bool inGame;
-    GLubyte** ship[8];
+    GLubyte* ship[8][2];
     GLubyte* shipRender;
     Controller();
     View *view;
