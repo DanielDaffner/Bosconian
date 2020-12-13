@@ -267,12 +267,12 @@ void Controller::loadBitmapsShip() {
 
             //print bitmap header
             printf("printBitmapHeader");
-            printf(" %u\n",*((uint32_t*)(ship[x][y]+30)));
-            printf(" %u\n",*((uint32_t*)(ship[x][y]+14)));
-            printf(" %u\n",*((uint32_t*)(ship[x][y]+22)));
-            printf(" %u\n",*((uint16_t*)(ship[x][y]+28)));
-            printf(" %u\n",*((uint16_t*)(ship[x][y]+50)));
-            printf(" %u\n",*((uint16_t*)(ship[x][y]+10)));
+            printf(" %u\n",*((uint32_t*)(scam+30)));
+            printf(" %u\n",*((uint32_t*)(scam+14)));
+            printf(" %u\n",*((uint32_t*)(scam+22)));
+            printf(" %u\n",*((uint16_t*)(scam+28)));
+            printf(" %u\n",*((uint16_t*)(scam+50)));
+            printf(" %u\n",*((uint16_t*)(scam+10)));
 
             GLubyte swap=0;
             for(int i = intTMP; i < bmLength; i+=4) {
