@@ -84,6 +84,7 @@ void Controller::updateMainWindow() {
 }
 void Controller::updateGameWindow() {
     // input
+
     int up = glfwGetKey(view->window, GLFW_KEY_UP);
     int left = glfwGetKey(view->window, GLFW_KEY_LEFT);
     int right = glfwGetKey(view->window, GLFW_KEY_RIGHT);
@@ -129,15 +130,15 @@ void Controller::updateGameWindow() {
 
     glBegin( GL_TRIANGLES ); // Wir wollen ein Dreieck zeichnen
     glColor3f(1,0,0);      // Ab jetzt werden alle gezeichneten Punkte rot
-    glVertex3f(posxy[0],posxy[1]-100,0); // Der erste Eckpunkt ist mittig und 100 Pixel
+    glVertex3f(posxy[0],posxy[1]-300,0); // Der erste Eckpunkt ist mittig und 100 Pixel
     // vom oberen Rand entfernt
 
     glColor3f(0,1,0);      // Ab jetzt werden alle gezeichneten Punkte grün
-    glVertex3f(posxy[0]-100,posxy[1]+100,0); // Der zweite Eckpunkt ist 50 Pixel vom rechten
+    glVertex3f(posxy[0]-300,posxy[1]+300,0); // Der zweite Eckpunkt ist 50 Pixel vom rechten
     // und 100 Pixel vom unteren Rand entfernt
 
     glColor3f(0,0,1);      // Ab jetzt werden alle gezeichneten Punkte blau
-    glVertex3f(posxy[0]+100,posxy[1]+100,0);  // Der dritte Eckpunkt ist 50 Pixel vom linken
+    glVertex3f(posxy[0]+300,posxy[1]+300,0);  // Der dritte Eckpunkt ist 50 Pixel vom linken
     // und 100 Pixel vom unteren Rand entfernt
     glEnd();
     //posxy[0]+=direction[0];
@@ -177,6 +178,9 @@ void Controller::updateGameWindow() {
     if (space == GLFW_PRESS) {
         inGame=false;
     }
+
+    glEnable(GL_ALPHA_TEST);
+    glAlphaFunc( GL_GREATER, 0.5 );
     glDrawPixels(wihi[0],wihi[1],GL_RGBA,GL_UNSIGNED_BYTE,shipRender+138);
 
 
