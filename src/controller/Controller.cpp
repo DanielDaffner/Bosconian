@@ -8,15 +8,13 @@ Controller::Controller() {
 
 }
 
-FILE* file1;
-FILE* file2;
-FILE* file3;
-FILE* file4;
-GLubyte* ship[4];
-GLubyte* shipRender;
+
+
 
 int Controller::init() {
+
     //init controller
+
     printf("init controller begin\n");
     inGame = false;
     posxy[0] = 630;
@@ -27,62 +25,22 @@ int Controller::init() {
     viewportpos[1] = 0;
     viewportpos[2] = 1280;
     viewportpos[3] = 720;
-
-
     view = new View();
-    //open files
-
-
-    //scam 1
     printf("init controller done\n");
-    file1 = fopen("../App_Data/pink_enemy_7_64_down.bmp", "r");
-    if(file1 == nullptr) printf("fuck 1\n");
-    else printf("file 1 nich nu ll\n");
-    ship[0] = new GLubyte[12682];
-    fread(ship[0],sizeof(GLubyte),12682,file1);
 
-    //scam 2
+    //load files
 
-    file2 = fopen("../App_Data/pink_enemy_7_64_right.bmp", "r");
-    if(file2 == nullptr) printf("fuck 2\n");
-    else printf("file 2 nich nu ll\n");
-    ship[1] = new GLubyte[12682];
-    fread(ship[1],sizeof(GLubyte),12682,file2);
-
-    //scam 3
-
-    file3 = fopen("../App_Data/pink_enemy_7_64_up.bmp", "r");
-    if(file3 == nullptr) printf("fuck 3\n");
-    else printf("file 3 nich nu ll\n");
-    ship[2] = new GLubyte[12682];
-    fread(ship[2],sizeof(GLubyte),12682,file3);
-
-    //scam 4
-
-    file4 = fopen("../App_Data/pink_enemy_7_64_left.bmp", "r");
-    if(file4 == nullptr) printf("fuck 4\n");
-    else printf("file 4 nich nu ll\n");
-    ship[3] = new GLubyte[12682];
-    fread(ship[3],sizeof(GLubyte),12682,file4);
+    loadBitmapsShip();
 
 
 
 
-    //print bitmap header
-    printf("printBitmapHeader");
-    printf(" %u\n",*((uint32_t*)(ship[0]+30)));
-    printf(" %u\n",*((uint32_t*)(ship[0]+14)));
-    printf(" %u\n",*((uint32_t*)(ship[0]+22)));
-    printf(" %u\n",*((uint16_t*)(ship[0]+28)));
-    printf(" %u\n",*((uint16_t*)(ship[0]+50)));
+
+
+
+
     printf(" %u\n",*((uint16_t*)(ship[0]+10)));
-    GLubyte swap=0;
-    for(int i = 138; i < 12682; i+=4) {
-        swap = ship[0][i];
-        ship[0][i] = ship[0][i+2];
-        ship[0][i+2] = swap;
 
-    }
     return 0;
 }
 
@@ -128,7 +86,7 @@ void Controller::updateMainWindow() {
     viewportpos[3] +=direction[1];
     //glBitmap(56,56,0,0,0,0,test+55);
     //GLubyte* cmon = test+138;
-    glDrawPixels(56,56,GL_RGBA,GL_UNSIGNED_BYTE,ship[0]+138);
+   // glDrawPixels(56,56,GL_RGBA,GL_UNSIGNED_BYTE,ship[0]+138);
 
 
 }
@@ -200,29 +158,29 @@ void Controller::updateGameWindow() {
     printf("vp3 max y %d\n", viewportpos[3]);
 
 
-    //draw ship
-    glRasterPos2d(viewportpos[0]+640,viewportpos[1]+360);
-
-    if (up == GLFW_PRESS) {
-        shipRender = ship[2];
-    }
-    if (left == GLFW_PRESS) {
-        shipRender = ship[3];
-        
-    }
-
-    if (right == GLFW_PRESS) {
-        shipRender = ship[1];
-
-    }
-    if (down == GLFW_PRESS) {
-        shipRender = ship[0];
-
-    }
-    if (space == GLFW_PRESS) {
-        inGame=false;
-    }
-    glDrawPixels(56,56,GL_RGBA,GL_UNSIGNED_BYTE,shipRender+138);
+//    //draw ship
+//    glRasterPos2d(viewportpos[0]+640,viewportpos[1]+360);
+//
+//    if (up == GLFW_PRESS) {
+//        shipRender = ship[2];
+//    }
+//    if (left == GLFW_PRESS) {
+//        shipRender = ship[3];
+//
+//    }
+//
+//    if (right == GLFW_PRESS) {
+//        shipRender = ship[1];
+//
+//    }
+//    if (down == GLFW_PRESS) {
+//        shipRender = ship[0];
+//
+//    }
+//    if (space == GLFW_PRESS) {
+//        inGame=false;
+//    }
+//    glDrawPixels(56,56,GL_RGBA,GL_UNSIGNED_BYTE,shipRender+138);
 
 
     //draw enemy
@@ -240,4 +198,84 @@ void Controller::updateGameWindow() {
     viewportpos[1] +=direction[1];
     viewportpos[2] +=direction[0];
     viewportpos[3] +=direction[1];
+}
+void Controller::loadBitmapsShip() {
+    //open files
+    printf("bitmapsShip begin\n");
+
+    //need static list or something to get this from
+    //scam
+    char* name0[2] = {
+            "ship_up_light_on.bmp" ,
+            "ship_up_light_off.bmp"
+    };
+
+    char* name1[2] = {
+            "ship_up_right_light_on.bmp" ,
+            "ship_up_right_light_off.bmp"
+    };
+    char* name2[2] = {
+            "ship_right_light_on.bmp" ,
+            "ship_right_light_off.bmp"
+    };
+    char* name3[2] = {
+            "ship_down_right_light_on.bmp" ,
+            "ship_down_right_light_off.bmp"
+    };
+    char* name4[2] = {
+            "ship_down_light_on.bmp" ,
+            "ship_down_light_off.bmp"
+    };
+    char* name5[2] = {
+            "ship_down_left_light_on.bmp" ,
+            "ship_down_left_light_off.bmp"
+    };
+    char* name6[2] = {
+            "ship_up_left_light_on.bmp" ,
+            "ship_up_left_light_off.bmp"
+    };
+    printf("names\n");
+    char** names[7];
+
+    names[0] = name0;
+    names[1] = name1;
+    names[2] = name2;
+    names[3] = name3;
+    names[4] = name4;
+    names[5] = name5;
+    names[6] = name6;
+
+    //path
+    char* basePath = "../App_Data/";
+
+    //load all files
+    for (size_t x = 0; x < sizeof(*names); ++x) {
+        GLubyte* bitmaps[sizeof(*names[x])];
+        for (size_t y = 0; y < sizeof(*names[x]); ++y) {
+            //getPath
+            char* nameList[sizeof(*names[x])];
+            *nameList = *names[x];
+            std::string path = std::string(basePath) + nameList[y];
+            //loadFile
+            FILE* file = fopen(path.c_str(), "r");
+            if (file == nullptr) printf("file %s null\n", path.c_str());
+            //check length
+            int bmLength = getBitmapLength(file);
+            printf("bmlength %d", bmLength);
+            //set bitmap
+            bitmaps[y] = new GLubyte[bmLength];
+            printf("check");
+            //error peter
+            fread(bitmaps[y], sizeof(GLubyte), bmLength, file);
+            printf("check");
+        }
+        ship[x] = bitmaps;
+    }
+}
+
+int Controller::getBitmapLength(FILE* tmp){
+    fseek(tmp,0,SEEK_END);
+    int result = ftell(tmp);
+    fclose(tmp);
+    return result;
 }
