@@ -64,21 +64,7 @@ void Controller::updateMainWindow() {
     //glOrtho( 0, 1280, 960, 0, 0, 1 );
     glOrtho( viewportpos[0], viewportpos[2], viewportpos[3], viewportpos[1], -1, 1 );
 
-//    glBegin( GL_TRIANGLES ); // Wir wollen ein Dreieck zeichnen
-//    glColor3f(1,0,0);      // Ab jetzt werden alle gezeichneten Punkte rot
-//    glVertex3f(posxy[0],posxy[1]-100,0); // Der erste Eckpunkt ist mittig und 100 Pixel
-//    // vom oberen Rand entfernt
-//
-//    glColor3f(0,1,0);      // Ab jetzt werden alle gezeichneten Punkte grün
-//    glVertex3f(posxy[0]-100,posxy[1]+100,0); // Der zweite Eckpunkt ist 50 Pixel vom rechten
-//    // und 100 Pixel vom unteren Rand entfernt
-//
-//    glColor3f(0,0,1);      // Ab jetzt werden alle gezeichneten Punkte blau
-//    glVertex3f(posxy[0]+100,posxy[1]+100,0);  // Der dritte Eckpunkt ist 50 Pixel vom linken
-//    // und 100 Pixel vom unteren Rand entfernt
-//    glEnd();
-    //posxy[0]+=direction[0];
-    //posxy[1]+=direction[1];
+
     viewportpos[0] +=direction[0];
     viewportpos[1] +=direction[1];
     viewportpos[2] +=direction[0];
