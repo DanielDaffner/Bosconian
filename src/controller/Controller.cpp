@@ -9,9 +9,6 @@ Controller::Controller() {
 
 }
 
-
-
-
 int Controller::init() {
 
     //init controller
@@ -34,7 +31,7 @@ int Controller::init() {
 
     //load files
 
-    loadBitmapsShip();
+    loadSprites();
     shipRender = ship[2][0];
 
 
@@ -154,13 +151,13 @@ void Controller::updateGameWindow() {
     printf("vp1 min y %d\n", viewportpos[1]);
     printf("vp2 max x %d\n", viewportpos[2]);
     printf("vp3 max y %d\n", viewportpos[3]);
-
+    printf("bishier %s\n",Player::sprites[0][0]);
 
     //draw ship
     glRasterPos2d(viewportpos[0]+640,viewportpos[1]+360);
 
     if (up == GLFW_PRESS) {
-        shipRender = myplayer->sprites[0][0];
+        shipRender = Player::sprites[0][0];
         wihi[0] = *((uint32_t*)(myplayer->sprites[0][0]+18));
         wihi[1] = *((uint32_t*)(myplayer->sprites[0][0]+22));
     }
@@ -218,105 +215,50 @@ void Controller::updateGameWindow() {
     viewportpos[2] +=direction[0];
     viewportpos[3] +=direction[1];
 }
-void Controller::loadBitmapsShip() {
-    //open files
-    printf("bitmapsShip begin\n");
+void Controller::loadSprites() {
 
-    //need static list or something to get this from
-    //scam
+    getSprite(Player::sprites[PlayerSprite::up][0],"../App_Data/ship_bmp/ship_up_light_off.bmp");
+    getSprite(Player::sprites[PlayerSprite::up][1],"../App_Data/ship_bmp/ship_up_light_on.bmp");
 
-    printf("names\n");
+    getSprite(Player::sprites[PlayerSprite::upright][1], "../App_Data/ship_bmp/ship_up_right_light_on.bmp");
+    getSprite(Player::sprites[PlayerSprite::upright][0], "../App_Data/ship_bmp/ship_up_right_light_off.bmp");
 
-    char* names[8][2] = {
-            {
-                    "ship_up_light_on.bmp" ,
-                    "ship_up_light_off.bmp"
-            },
-            {
-                    "ship_up_right_light_on.bmp" ,
-                    "ship_up_right_light_off.bmp"
-            },
-            {
-                    "ship_right_light_on.bmp" ,
-                    "ship_right_light_off.bmp"
-            },
-            {
-                    "ship_down_right_light_on.bmp" ,
-                    "ship_down_right_light_off.bmp"
-            },
-            {
-                    "ship_down_light_on.bmp" ,
-                    "ship_down_light_off.bmp"
-            },
-            {
-                    "ship_down_left_light_on.bmp" ,
-                    "ship_down_left_light_off.bmp"
-            },
-            {
-                    "ship_left_light_on.bmp" ,
-                    "ship_left_light_off.bmp"
-            },
-            {
-                    "ship_up_left_light_on.bmp" ,
-                    "ship_up_left_light_off.bmp"
-            }
-    };
+    getSprite(Player::sprites[PlayerSprite::right][1], "../App_Data/ship_bmp/ship_right_light_on.bmp");
+    getSprite(Player::sprites[PlayerSprite::right][0], "../App_Data/ship_bmp/ship_right_light_off.bmp");
 
+    getSprite(Player::sprites[PlayerSprite::downright][1], "../App_Data/ship_bmp/ship_down_right_light_on.bmp");
+    getSprite(Player::sprites[PlayerSprite::downright][0], "../App_Data/ship_bmp/ship_down_right_light_off.bmp");
 
-    //path
-    char* basePath = "../App_Data/";
+    getSprite(Player::sprites[PlayerSprite::down][1], "../App_Data/ship_bmp/ship_down_light_on.bmp");
+    getSprite(Player::sprites[PlayerSprite::down][0], "../App_Data/ship_bmp/ship_down_light_off.bmp");
 
-    //load all files
-    for (size_t x = 0; x < sizeof(names)/sizeof(*names); ++x) {
+    getSprite(Player::sprites[PlayerSprite::downleft][1], "../App_Data/ship_bmp/ship_down_left_light_on.bmp");
+    getSprite(Player::sprites[PlayerSprite::downleft][0], "../App_Data/ship_bmp/ship_down_left_light_off.bmp");
 
+    getSprite(Player::sprites[PlayerSprite::left][1], "../App_Data/ship_bmp/ship_left_light_on.bmp");
+    getSprite(Player::sprites[PlayerSprite::left][0], "../App_Data/ship_bmp/ship_left_light_off.bmp");
 
-        printf("\n\n %d \n\n", sizeof(names)/sizeof(*names));
-        printf("\n\n %d \n\n", sizeof(names[x])/sizeof(*names[x]));
-        for (size_t y = 0; y < sizeof(names[x])/sizeof(*names[x]); ++y) {
-            //getPath
-            std::string path = std::string(basePath) + names[x][y];
-            printf("%s", path.c_str());
-            //loadFile
-            FILE* file = fopen(path.c_str(), "r");
-            if (file == nullptr) printf("file %s null\n", path.c_str());
-            //check length
-            int bmLength = getBitmapLength(file);
-            printf("bmlength %d", bmLength);
-            //set bitmap
-            GLubyte* scam = new GLubyte[bmLength];
-            printf("check");
-            //error peter
-            fread(scam, sizeof(GLubyte), bmLength, file);
+    getSprite(Player::sprites[PlayerSprite::upleft][1], "../App_Data/ship_bmp/ship_up_left_light_on.bmp");
+    getSprite(Player::sprites[PlayerSprite::upleft][0], "../App_Data/ship_bmp/ship_up_left_light_off.bmp");
 
-            printf("check\n");
-            myplayer->sprites[x][y] = scam;
-            int intTMP = *((uint16_t*)(myplayer->sprites[x][y]+10));
+}
+int Controller::getSprite(GLubyte* &dst, char* filepath) {
+    int filesize;
+    int swap;
+    FILE* file = fopen(filepath, "r");
+    fseek(file,0,SEEK_END);
+    filesize = ftell(file);
+    fseek(file,0,SEEK_SET);
+    dst = new GLubyte[filesize];
+    fread(dst, sizeof(GLubyte), filesize, file);
 
-            //print bitmap header
-            printf("printBitmapHeader");
-            printf(" %u\n",*((uint32_t*)(scam+30)));
-            printf(" %u\n",*((uint32_t*)(scam+14)));
-            printf("width  %u\n",*((uint32_t*)(scam+18)));
-            printf("height %u\n",*((uint32_t*)(scam+22)));
-            printf(" %u\n",*((uint16_t*)(scam+28)));
-            printf(" %u\n",*((uint16_t*)(scam+50)));
-            printf(" %u\n",*((uint16_t*)(scam+10)));
-
-            GLubyte swap=0;
-            for(int i = intTMP; i < bmLength; i+=4) {
-                swap = myplayer->sprites[x][y][i];
-                myplayer->sprites[x][y][i] = myplayer->sprites[x][y][i+2];
-                myplayer->sprites[x][y][i+2] = swap;
-            }
-            fclose(file);
-        }
-
+    for(int i = *((uint16_t*)(dst+10)); i < filesize; i+=4) {
+        swap = dst[i];
+        dst[i] = dst[i+2];
+        dst[i+2] = swap;
     }
+
+    fclose(file);
+    return 0;
 }
 
-int Controller::getBitmapLength(FILE* tmp){
-    fseek(tmp,0,SEEK_END);
-    int result = ftell(tmp);
-    fseek(tmp,0,SEEK_SET);
-    return result;
-}

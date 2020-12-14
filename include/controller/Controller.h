@@ -22,7 +22,7 @@ public:
     int init();
     void updateMainWindow();
     void updateGameWindow();
-    void loadBitmapsShip();
-    int getBitmapLength(_iobuf *tmp);
+    void loadSprites();
+    int getSprite(GLubyte* &dst, char* filepath);
 };
 #endif //BOSCONIAN_CONTROLLER_H

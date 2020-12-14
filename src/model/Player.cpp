@@ -5,4 +5,4 @@
 #include <gl/GL.h>
 
 
-GLubyte* Player::sprites[9][2] = {{nullptr}};
+GLubyte* Player::sprites[9][2];
