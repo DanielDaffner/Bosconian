@@ -12,7 +12,13 @@ Controller::Controller() {
 int Controller::init() {
 
     //init controller
-
+    model = new Model();
+    model->mines.push_back(new Mine(10,10));
+    model->mines.push_back(new Mine(50,50));
+    model->mines.push_back(new Mine(100,100));
+    model->mines.push_back(new Mine(220,220));
+    model->mines.push_back(new Mine(330,330));
+    model->mines.push_back(new Mine(570,570));
     printf("init controller begin\n");
     inGame = false;
     posxy[0] = 630;
@@ -32,7 +38,6 @@ int Controller::init() {
     //load files
 
     loadSprites();
-    shipRender = ship[2][0];
 
 
     return 0;
@@ -84,6 +89,11 @@ void Controller::updateMainWindow() {
 
 
 }
+
+void onStart(){
+
+};
+
 void Controller::updateGameWindow() {
     // input
 
@@ -184,29 +194,25 @@ void Controller::updateGameWindow() {
     glEnable(GL_ALPHA_TEST);
     glAlphaFunc( GL_GREATER, 0.5 );
     glDrawPixels(wihi[0],wihi[1],GL_RGBA,GL_UNSIGNED_BYTE,shipRender+138);
+
+
     unsigned char* meinPixel = new unsigned char[4];
     meinPixel[0] = 255;
     meinPixel[1] = 0;
     meinPixel[2] = 0;
     meinPixel[3] = 255;
 
-    for (int pixelcount = 50; pixelcount >=0; pixelcount--){
-        int x = (rand() % 1280);
-        int y = (rand() % 720);
-        printf("x %d y %d\n",x,y);
-        glRasterPos2d(viewportpos[0]+x,viewportpos[1]+y);
-        glDrawPixels(2,2,GL_RGBA,GL_UNSIGNED_BYTE, meinPixel );
+//    for (int pixelcount = 50; pixelcount >=0; pixelcount--){
+//        int x = (rand() % 1280);
+//        int y = (rand() % 720);
+//        printf("x %d y %d\n",x,y);
+//        glRasterPos2d(viewportpos[0]+x,viewportpos[1]+y);
+//        glDrawPixels(64,64,GL_RGBA,GL_UNSIGNED_BYTE, Mine::sprites+138 );
+//    }
+    for(Mine* ele: model->mines) {
+        glRasterPos2d(ele->posX,ele->posY);
+        glDrawPixels(64,64,GL_RGBA,GL_UNSIGNED_BYTE, Mine::sprites+138 );
     }
-
-
-    //draw enemy
-
-    //flyWithShip
-    //glRasterPos2d(viewportpos[0]+position,viewportpos[1]+position);
-
-    //flyWorld
-    //glRasterPos2d(position,position);
-//    glDrawPixels(56,56,GL_RGBA,GL_UNSIGNED_BYTE,ship[0]+138);
 
 
     //move viewport
@@ -240,6 +246,12 @@ void Controller::loadSprites() {
 
     getSprite(Player::sprites[PlayerSprite::upleft][1], "../App_Data/ship_bmp/ship_up_left_light_on.bmp");
     getSprite(Player::sprites[PlayerSprite::upleft][0], "../App_Data/ship_bmp/ship_up_left_light_off.bmp");
+
+    getSprite(Mine::sprites, "../App_Data/mine_bmp/mine.bmp");
+    printf("machdochnichsidesn\n");
+    getSprite(Mine::spritesExplosion[0], "../App_Data/mine_explosion_bmp/mine_explosion_1.bmp");
+    getSprite(Mine::spritesExplosion[1], "../App_Data/mine_explosion_bmp/mine_explosion_1.bmp");
+    getSprite(Mine::spritesExplosion[2], "../App_Data/mine_explosion_bmp/mine_explosion_1.bmp");
 
 }
 int Controller::getSprite(GLubyte* &dst, char* filepath) {

@@ -3,7 +3,9 @@
 //
 #include <corecrt_wstdio.h>
 #include "../view/View.h"
+#include "../model/Model.h"
 #include "../../include/model/Player.h"
+#include "../../include/model/Mine.h"
 #ifndef BOSCONIAN_CONTROLLER_H
 #define BOSCONIAN_CONTROLLER_H
 
@@ -13,14 +15,15 @@ public:
     int direction[2];
     int viewportpos[4];
     bool inGame;
-    GLubyte* ship[8][2];
     GLubyte* shipRender;
     int wihi[2];
     Controller();
     Player* myplayer;
+    Model* model;
     View *view;
     int init();
     void updateMainWindow();
+    void onStart();
     void updateGameWindow();
     void loadSprites();
     int getSprite(GLubyte* &dst, char* filepath);
