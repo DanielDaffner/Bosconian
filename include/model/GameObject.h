@@ -12,7 +12,6 @@ public:
 
     int posX;
     int posY;
-    GLubyte*** Sprites;
 
 };
 #endif //BOSCONIAN_GAMEOBJECT_H

@@ -160,25 +160,25 @@ void Controller::updateGameWindow() {
     glRasterPos2d(viewportpos[0]+640,viewportpos[1]+360);
 
     if (up == GLFW_PRESS) {
-        shipRender = ship[0][0];
-        wihi[0] = *((uint32_t*)(ship[0][0]+18));
-        wihi[1] = *((uint32_t*)(ship[0][0]+22));
+        shipRender = myplayer->sprites[0][0];
+        wihi[0] = *((uint32_t*)(myplayer->sprites[0][0]+18));
+        wihi[1] = *((uint32_t*)(myplayer->sprites[0][0]+22));
     }
     if (left == GLFW_PRESS) {
-        shipRender = ship[6][0];
-        wihi[0] = *((uint32_t*)(ship[6][0]+18));
-        wihi[1] = *((uint32_t*)(ship[6][0]+22));
+        shipRender = myplayer->sprites[6][0];
+        wihi[0] = *((uint32_t*)(myplayer->sprites[6][0]+18));
+        wihi[1] = *((uint32_t*)(myplayer->sprites[6][0]+22));
     }
 
     if (right == GLFW_PRESS) {
-        shipRender = ship[2][0];
-        wihi[0] = *((uint32_t*)(ship[2][0]+18));
-        wihi[1] = *((uint32_t*)(ship[2][0]+22));
+        shipRender = myplayer->sprites[2][0];
+        wihi[0] = *((uint32_t*)(myplayer->sprites[2][0]+18));
+        wihi[1] = *((uint32_t*)(myplayer->sprites[2][0]+22));
     }
     if (down == GLFW_PRESS) {
-        shipRender = ship[4][0];
-        wihi[0] = *((uint32_t*)(ship[4][0]+18));
-        wihi[1] = *((uint32_t*)(ship[4][0]+22));
+        shipRender = myplayer->sprites[4][0];
+        wihi[0] = *((uint32_t*)(myplayer->sprites[4][0]+18));
+        wihi[1] = *((uint32_t*)(myplayer->sprites[4][0]+22));
     }
     if (space == GLFW_PRESS) {
         inGame=false;
@@ -289,8 +289,8 @@ void Controller::loadBitmapsShip() {
             fread(scam, sizeof(GLubyte), bmLength, file);
 
             printf("check\n");
-            ship[x][y] = scam;
-            int intTMP = *((uint16_t*)(ship[x][y]+10));
+            myplayer->sprites[x][y] = scam;
+            int intTMP = *((uint16_t*)(myplayer->sprites[x][y]+10));
 
             //print bitmap header
             printf("printBitmapHeader");
@@ -304,9 +304,9 @@ void Controller::loadBitmapsShip() {
 
             GLubyte swap=0;
             for(int i = intTMP; i < bmLength; i+=4) {
-                swap = ship[x][y][i];
-                ship[x][y][i] = ship[x][y][i+2];
-                ship[x][y][i+2] = swap;
+                swap = myplayer->sprites[x][y][i];
+                myplayer->sprites[x][y][i] = myplayer->sprites[x][y][i+2];
+                myplayer->sprites[x][y][i+2] = swap;
             }
             fclose(file);
         }

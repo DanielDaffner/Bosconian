@@ -6,6 +6,8 @@
 #ifndef BOSCONIAN_PLAYER_H
 #define BOSCONIAN_PLAYER_H
 class Player : public GameObject {
-
+public:
+    static GLubyte* sprites[9][2];
 };
+
 #endif //BOSCONIAN_PLAYER_H
