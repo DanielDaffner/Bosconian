@@ -12,13 +12,11 @@
 class Controller{
 public:
     int posxy[2];
-    int direction[2];
     int viewportpos[4];
     bool inGame;
     GLubyte* shipRender;
     int wihi[2];
     Controller();
-    Player* myplayer;
     Model* model;
     View *view;
     int init();

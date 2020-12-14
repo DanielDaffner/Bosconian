@@ -5,7 +5,7 @@
 
 GLubyte* Mine::sprites;
 GLubyte* Mine::spritesExplosion[3];
-Mine::Mine(int x, int y) {
-    posX = x;
-    posY = y;
+Mine::Mine(int x, int y) : GameObject() {
+    pos.x = x;
+    pos.y = y;
 }
