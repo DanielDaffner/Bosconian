@@ -11,12 +11,8 @@
 
 class Controller{
 public:
-    int posxy[2];
-    int viewportpos[4];
-    bool inGame;
-    GLubyte* shipRender;
-    int wihi[2];
     Controller();
+    bool inGame;
     Model* model;
     View *view;
     int init();

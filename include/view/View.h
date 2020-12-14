@@ -11,8 +11,8 @@ class View{
 public:
     View(Model* modl);
     Model* model;
-    GLFWwindow* window;
-    int viewportpos[4];
+    GLFWwindow* window{};
+    int viewportpos[4]{};
     int createMainWindow();
     void prepareFrame();
     void render(Position2D pos, GLubyte* bitmap);
