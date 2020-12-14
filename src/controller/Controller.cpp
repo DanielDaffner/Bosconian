@@ -2,6 +2,7 @@
 // Created by basti on 11.12.2020.
 //
 #include "../../include/controller/Controller.h"
+
 #include <iostream>
 
 Controller::Controller() {
@@ -27,7 +28,8 @@ int Controller::init() {
     viewportpos[1] = 0;
     viewportpos[2] = 1280;
     viewportpos[3] = 720;
-
+    myplayer = new Player();
+    myplayer->posX = 3;
 
     view = new View();
     //open files

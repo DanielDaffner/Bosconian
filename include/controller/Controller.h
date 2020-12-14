@@ -2,6 +2,7 @@
 // Created by basti on 11.12.2020.
 //
 #include "../view/View.h"
+#include "../../include/model/Player.h"
 #ifndef BOSCONIAN_CONTROLLER_H
 #define BOSCONIAN_CONTROLLER_H
 
@@ -12,6 +13,7 @@ public:
     int viewportpos[4];
     bool inGame;
     Controller();
+    Player* myplayer;
     View *view;
     int init();
     void updateMainWindow();
