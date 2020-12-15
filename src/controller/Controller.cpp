@@ -50,6 +50,7 @@ void Controller::onStart(){
     model->mines.push_back(new Mine(570,570));
 };
 bool move = false;
+int count = 0;
 void Controller::updateGameWindow() {
     // input
     int up = glfwGetKey(view->window, GLFW_KEY_UP);
@@ -97,16 +98,27 @@ void Controller::updateGameWindow() {
     model->player->pos.y += model->player->direction[1];
 
     view->prepareFrame();
-    for(int x = 0; x < 4; x++) {
-        for(BackgroundPixel* ele: model->pixelarr[x]) {
-            if(move){
+    
+    for(BackgroundPixel* ele: model->pixelarr[(count/120)]) {
+        if(move){
             ele->pos.x += model->player->direction[0];
             ele->pos.y += model->player->direction[1];
 
-            }
-            view->renderStars(ele->pos, ((BackgroundPixel::colors+ele->color)));
         }
+        view->renderStars(ele->pos, ((BackgroundPixel::colors+ele->color)));
     }
+    for(BackgroundPixel* ele: model->pixelarr[((count/120)+1)%3]) {
+        if(move){
+            ele->pos.x += model->player->direction[0];
+            ele->pos.y += model->player->direction[1];
+
+        }
+        view->renderStars(ele->pos, ((BackgroundPixel::colors+ele->color)));
+    }
+
+
+    count++;
+    count = count % 359;
     if(move){
         move=false;
     }
