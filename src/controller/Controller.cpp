@@ -49,7 +49,7 @@ void Controller::onStart(){
     model->mines.push_back(new Mine(330,330));
     model->mines.push_back(new Mine(570,570));
 };
-
+bool move = false;
 void Controller::updateGameWindow() {
     // input
     int up = glfwGetKey(view->window, GLFW_KEY_UP);
@@ -99,8 +99,19 @@ void Controller::updateGameWindow() {
     view->prepareFrame();
     for(int x = 0; x < 4; x++) {
         for(BackgroundPixel* ele: model->pixelarr[x]) {
+            if(move){
+            ele->pos.x += model->player->direction[0];
+            ele->pos.y += model->player->direction[1];
+
+            }
             view->renderStars(ele->pos, ((BackgroundPixel::colors+ele->color)));
         }
+    }
+    if(move){
+        move=false;
+    }
+    else{
+        move=true;
     }
     for(Mine* ele: model->mines) {
         view->render(ele->pos,ele->sprites);
