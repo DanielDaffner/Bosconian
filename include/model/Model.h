@@ -3,6 +3,7 @@
 //
 #include "Mine.h"
 #include "Player.h"
+#include "BackgroundPixel.h"
 #include <list>
 
 #ifndef BOSCONIAN_MODEL_H
@@ -13,5 +14,6 @@ public:
     Model();
     Player* player;
     std::list<Mine*> mines;
+    std::list<BackgroundPixel*> pixelarr[4];
 };
 #endif //BOSCONIAN_MODEL_H

@@ -97,7 +97,11 @@ void Controller::updateGameWindow() {
     model->player->pos.y += model->player->direction[1];
 
     view->prepareFrame();
-
+    for(int x = 0; x < 4; x++) {
+        for(BackgroundPixel* ele: model->pixelarr[x]) {
+            view->renderStars(ele->pos, (int*)ele->colors[ele->color]);
+        }
+    }
     for(Mine* ele: model->mines) {
         view->render(ele->pos,ele->sprites);
     }
