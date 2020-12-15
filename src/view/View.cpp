@@ -53,6 +53,6 @@ void View::render(Position2D pos, GLubyte *bitmap) {
 
 void View::renderStars(Position2D pos, int *bitmap) {
     glRasterPos2d(pos.x, pos.y);
-    glDrawPixels(2,2,GL_RGBA,GL_UNSIGNED_BYTE,bitmap);
+    glDrawPixels(2,2,GL_RGBA,GL_UNSIGNED_BYTE,(void*)bitmap);
 }
 
