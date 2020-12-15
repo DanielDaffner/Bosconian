@@ -16,6 +16,6 @@ public:
     int createMainWindow();
     void prepareFrame();
     void render(Position2D pos, GLubyte* bitmap);
-    void renderStars(Position2D pos, int *bitmap);
+    void renderStars(Position2D pos, GLubyte *bitmap);
 };
 #endif //BOSCONIAN_VIEW_H

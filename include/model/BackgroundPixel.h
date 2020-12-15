@@ -11,7 +11,7 @@
 class BackgroundPixel : public GameObject {
 public:
     BackgroundPixel();
-    static unsigned int colors[8][4];
+    static GLubyte colors[48];
     int color;
 };
 #endif //BOSCONIAN_BACKGROUNDPIXEL_H

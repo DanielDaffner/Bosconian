@@ -99,7 +99,8 @@ void Controller::updateGameWindow() {
     view->prepareFrame();
     for(int x = 0; x < 4; x++) {
         for(BackgroundPixel* ele: model->pixelarr[x]) {
-            view->renderStars(ele->pos, (int*)(BackgroundPixel::colors[ele->color]));
+            printf("%d  ", ele->color);
+            view->renderStars(ele->pos, ((BackgroundPixel::colors+ele->color)));
         }
     }
     for(Mine* ele: model->mines) {
