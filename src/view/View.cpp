@@ -54,9 +54,5 @@ void View::render(Position2D pos, GLubyte *bitmap) {
 void View::renderStars(Position2D pos, GLubyte *bitmap) {
     glRasterPos2d(pos.x, pos.y);
     glDrawPixels(2,2,GL_RGBA,GL_UNSIGNED_BYTE,bitmap);
-    for(int i = 0; i<16;i++) {
-        printf("%c ", *(((unsigned char*)(bitmap)+1)));
-    }
-    printf("\n");
 }
 
