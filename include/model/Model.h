@@ -5,6 +5,7 @@
 #include "Player.h"
 #include "BackgroundPixel.h"
 #include "ProjectilePlayer.h"
+#include "EnemyShip.h"
 #include <list>
 
 #ifndef BOSCONIAN_MODEL_H

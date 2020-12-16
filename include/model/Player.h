@@ -29,6 +29,7 @@ public:
     int playerspeed;
     int spriteDirection;
     int spriteLight;
+    void resetPosition();
 };
 
 #endif //BOSCONIAN_PLAYER_H

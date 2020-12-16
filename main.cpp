@@ -12,7 +12,6 @@ int main() {
     controller->init();
     controller->view->createMainWindow();
     while (!glfwWindowShouldClose(controller->view->window )) {
-
     /* Loop until the user closes the window */
     while (!controller->inGame && !glfwWindowShouldClose(controller->view->window )) {
         /* Render here */
@@ -22,7 +21,7 @@ int main() {
 
         /* Poll for and process events */
         glfwPollEvents();
-        _sleep(300);
+        _sleep(17);
     }
 
     //controller->view->createMainWindow();

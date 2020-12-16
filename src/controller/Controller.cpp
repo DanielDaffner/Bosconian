@@ -10,36 +10,71 @@ Controller::Controller() {
 
 }
 
+//öhm hat keiner gesehn o.O
+GLubyte* enemyPink;
+
 int Controller::init() {
 
     //init controller
     model = new Model();
-
     inGame = false;
-
     view = new View(model);
     printf("init controller done\n");
-
     loadSprites();
-
+    //psshhhtttt
+    getSprite(enemyPink,"../App_Data/enemy_pink_bmp/enemy-pink-16.bmp");
+    //o.O
     onStart();
     return 0;
 }
 
-void Controller::updateMainWindow() {
+bool move = false;
+int count = 0;
+int firecd = 0;
 
+//Testo e?
+Position2D enemyPos= {-300,100};
+
+void Controller::updateMainWindow() {
 
     int up = glfwGetKey(view->window, GLFW_KEY_UP);
     if (up == GLFW_PRESS) {
     inGame = true;
     }
+
     view->prepareFrame();
-    Position2D pos;
-    pos.x=200;
-    pos.y=300;
-    view->drawString(pos,"PETERZWEGATSEINPOINTER");
-    view->render(model->player->pos,model->player->sprites[0][0]);
-    printf("still in MainWindow");
+
+    Position2D posString1;
+    posString1.x=448;
+    posString1.y=500;
+    //scam, should have own var
+    if((count/60)%2==1)
+
+    view->drawString(posString1,"PRESS SPACE BAR");
+
+    Position2D posPlayer ={640,360};
+    view->render(posPlayer,model->player->sprites[0][0]);
+
+    //Background
+    for(BackgroundPixel* ele: model->pixelarr[(count/30)]) {
+        view->renderStars(ele->pos, ((BackgroundPixel::colors+ele->color)));
+    }
+    for(BackgroundPixel* ele: model->pixelarr[((count/30)+1)%3]) {
+        view->renderStars(ele->pos, ((BackgroundPixel::colors+ele->color)));
+    }
+    count++;
+    count = count % 119;
+    if(move){
+        move=false;
+    }
+    else{
+        move=true;
+    }
+
+    view->render(enemyPos,enemyPink);
+    enemyPos.x+=2;
+    enemyPos.y+=2;
+    if(enemyPos.y >=730) enemyPos = {-300,100};
 }
 
 void Controller::onStart(){
@@ -47,9 +82,7 @@ void Controller::onStart(){
         model->mines.push_back(new Mine(1280-(rand() % (1280*2)),760-(rand() % (760*2))));
     }
 };
-bool move = false;
-int count = 0;
-int firecd = 0;
+
 void Controller::updateGameWindow() {
     // input
     int up = glfwGetKey(view->window, GLFW_KEY_UP);
@@ -95,6 +128,9 @@ void Controller::updateGameWindow() {
     }
     if (escape == GLFW_PRESS) {
         inGame=false;
+        view->resetFrame();
+        model->player->resetPosition();
+        return;
     }
 
 //  calc player position
@@ -110,7 +146,7 @@ void Controller::updateGameWindow() {
     // move Frame
     view->moveFrame();
 //    render background
-    for(BackgroundPixel* ele: model->pixelarr[(count/120)]) {
+    for(BackgroundPixel* ele: model->pixelarr[(count/30)]) {
         if(move){
             ele->pos.x += model->player->direction[0];
             ele->pos.y += model->player->direction[1];
@@ -118,7 +154,7 @@ void Controller::updateGameWindow() {
         }
         view->renderStars(ele->pos, ((BackgroundPixel::colors+ele->color)));
     }
-    for(BackgroundPixel* ele: model->pixelarr[((count/120)+1)%3]) {
+    for(BackgroundPixel* ele: model->pixelarr[((count/30)+1)%3]) {
         if(move){
             ele->pos.x += model->player->direction[0];
             ele->pos.y += model->player->direction[1];
@@ -127,7 +163,7 @@ void Controller::updateGameWindow() {
         view->renderStars(ele->pos, ((BackgroundPixel::colors+ele->color)));
     }
     count++;
-    count = count % 359;
+    count = count % 119;
     if(move){
         move=false;
     }

@@ -16,3 +16,8 @@ Player::Player() : GameObject() {
 }
 
 GLubyte* Player::sprites[9][2];
+
+void Player::resetPosition() {
+    pos.x = 640;
+    pos.y = 360;
+}
