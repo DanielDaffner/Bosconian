@@ -33,13 +33,9 @@ void Controller::updateMainWindow() {
     if (up == GLFW_PRESS) {
     inGame = true;
     }
-
-    glClear(GL_COLOR_BUFFER_BIT);
-    glMatrixMode( GL_PROJECTION );
-    glLoadIdentity();
-    glViewport(0,0,1280,720);
+    view->prepareFrame();
     view->render(model->player->pos,model->player->sprites[0][0]);
-
+    printf("still in MainWindow");
 }
 
 void Controller::onStart(){
@@ -95,6 +91,8 @@ void Controller::updateGameWindow() {
     model->player->pos.y += model->player->direction[1] * model->player->playerspeed;
 //  prepare new frame
     view->prepareFrame();
+    // move Frame
+    view->moveFrame();
 //    render background
     for(BackgroundPixel* ele: model->pixelarr[(count/120)]) {
         if(move){

@@ -39,12 +39,18 @@ void View::prepareFrame() {
     glViewport(0,0,1280,720);
     glEnable(GL_ALPHA_TEST);
     glAlphaFunc( GL_GREATER, 0.5 );
+    glOrtho( viewportpos[0], viewportpos[2], viewportpos[3], viewportpos[1], -1, 1 );
+
+}
+
+void View::moveFrame() {
     viewportpos[0] +=model->player->direction[0] * model->player->playerspeed;
     viewportpos[1] +=model->player->direction[1] * model->player->playerspeed;
     viewportpos[2] +=model->player->direction[0] * model->player->playerspeed;
     viewportpos[3] +=model->player->direction[1] * model->player->playerspeed;
-    glOrtho( viewportpos[0], viewportpos[2], viewportpos[3], viewportpos[1], -1, 1 );
 }
+
+
 
 void View::render(Position2D pos, GLubyte *bitmap) {
     glRasterPos2d(pos.x, pos.y);
@@ -54,5 +60,23 @@ void View::render(Position2D pos, GLubyte *bitmap) {
 void View::renderStars(Position2D pos, GLubyte *bitmap) {
     glRasterPos2d(pos.x, pos.y);
     glDrawPixels(2,2,GL_RGBA,GL_UNSIGNED_BYTE,bitmap);
+}
+
+void View::drawString(Position2D pos,char *input, GLubyte *bitmap) {
+    int x = pos.x;
+    int y = pos.y;
+   while (*input!='\0'){
+       switch(*input){
+           case 'A':
+               glRasterPos2d(x, y);
+               glDrawPixels(64,64,GL_RGBA,GL_UNSIGNED_BYTE,bitmap);
+               break;
+           default :
+               break;
+       }
+       x +=8;
+       *input++;
+    }
+
 }
 
