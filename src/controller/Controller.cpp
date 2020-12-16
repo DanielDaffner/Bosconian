@@ -4,6 +4,7 @@
 #include "../../include/controller/Controller.h"
 
 #include <iostream>
+#include <cmath>
 
 Controller::Controller() {
 
@@ -42,12 +43,11 @@ void Controller::updateMainWindow() {
 }
 
 void Controller::onStart(){
-    model->mines.push_back(new Mine(10,10));
-    model->mines.push_back(new Mine(50,50));
-    model->mines.push_back(new Mine(100,100));
-    model->mines.push_back(new Mine(220,220));
-    model->mines.push_back(new Mine(330,330));
-    model->mines.push_back(new Mine(570,570));
+    for(int i = 0; i < 50;i++) {
+        model->mines.push_back(new Mine(1280-(rand() % (1280*2)),760-(rand() % (760*2))));
+    }
+
+
 };
 bool move = false;
 int count = 0;
@@ -115,7 +115,29 @@ void Controller::updateGameWindow() {
         }
         view->renderStars(ele->pos, ((BackgroundPixel::colors+ele->color)));
     }
-
+    double distance;
+    for(auto iterator = model->mines.begin(); iterator!= model->mines.end();) {
+        distance = sqrt(pow(iterator._Ptr->_Myval->pos.x - model->player->pos.x,2)+pow(iterator._Ptr->_Myval->pos.y - model->player->pos.y,2));
+        if(distance <= 32)  {
+            model->player->collision = true;
+            iterator._Ptr->_Myval->collision = true;
+            printf("collision");
+            model->minesExploding.push_back(iterator._Ptr->_Myval);
+            iterator._Ptr->_Myval->pos.x += -32;
+            iterator._Ptr->_Myval->pos.y += 32;
+            iterator = model->mines.erase(iterator);
+        } else
+            iterator++;
+    }
+    for(auto iterator = model->minesExploding.begin(); iterator!= model->minesExploding.end();) {
+        view->render(iterator._Ptr->_Myval->pos,Mine::spritesExplosion[iterator._Ptr->_Myval->explosionPhase/20]);
+        iterator._Ptr->_Myval->explosionPhase++;
+        if(iterator._Ptr->_Myval->explosionPhase >= 60) {
+            iterator._Ptr->_Myval->explosionPhase=0;
+            iterator = model->minesExploding.erase(iterator);
+        }else
+            iterator++;
+    }
 
     count++;
     count = count % 359;
@@ -159,8 +181,8 @@ void Controller::loadSprites() {
 
     getSprite(Mine::sprites, "../App_Data/mine_bmp/mine.bmp");
     getSprite(Mine::spritesExplosion[0], "../App_Data/mine_explosion_bmp/mine_explosion_1.bmp");
-    getSprite(Mine::spritesExplosion[1], "../App_Data/mine_explosion_bmp/mine_explosion_1.bmp");
-    getSprite(Mine::spritesExplosion[2], "../App_Data/mine_explosion_bmp/mine_explosion_1.bmp");
+    getSprite(Mine::spritesExplosion[1], "../App_Data/mine_explosion_bmp/mine_explosion_2.bmp");
+    getSprite(Mine::spritesExplosion[2], "../App_Data/mine_explosion_bmp/mine_explosion_3.bmp");
 
 }
 int Controller::getSprite(GLubyte* &dst, char* filepath) {

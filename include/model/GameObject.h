@@ -10,8 +10,10 @@
 
 class GameObject {
 public:
-
+    GameObject();
     Position2D pos;
+    bool collision;
+    int explosionPhase;
 
 };
 #endif //BOSCONIAN_GAMEOBJECT_H

@@ -14,6 +14,7 @@ public:
     Model();
     Player* player;
     std::list<Mine*> mines;
+    std::list<Mine*> minesExploding;
     std::list<BackgroundPixel*> pixelarr[4];
 };
 #endif //BOSCONIAN_MODEL_H
