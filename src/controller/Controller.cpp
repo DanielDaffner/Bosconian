@@ -252,6 +252,7 @@ void Controller::updateGameWindow() {
             } else
                 iterator++;
         } else {
+            delete (iterator._Ptr->_Myval);
             iterator = model->projectilesPlayer.erase(iterator);
         }
     }
