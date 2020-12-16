@@ -12,7 +12,7 @@ public:
     static GLubyte* sprites[4];
     static int projectileSpeed;
 
-    ProjectilePlayer(int posx, int posy, int dirx, int diry);
+    ProjectilePlayer(int posx, int posy, int dirx, int diry, int spritedir);
     Position2D direction;
     GLbyte* sprite;
 };

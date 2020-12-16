@@ -84,7 +84,7 @@ void Controller::updateGameWindow() {
         model->player->spriteDirection = SpriteDirection::down;
     }
     if (space == GLFW_PRESS) {
-        model->projectilesPlayer.push_back(new ProjectilePlayer(model->player->pos.x,model->player->pos.y,model->player->direction[0],model->player->direction[1]));
+        model->projectilesPlayer.push_back(new ProjectilePlayer(model->player->pos.x,model->player->pos.y,model->player->direction[0],model->player->direction[1],0));
     }
     if (escape == GLFW_PRESS) {
         inGame=false;
