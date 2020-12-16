@@ -14,6 +14,6 @@ public:
 
     ProjectilePlayer(int posx, int posy, int dirx, int diry, int spritedir);
     Position2D direction;
-    GLbyte* sprite;
+    GLubyte* sprite;
 };
 #endif //BOSCONIAN_PROJECTILEPLAYER_H
