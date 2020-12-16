@@ -42,7 +42,10 @@ int main() {
         end = std::chrono::system_clock::now();
         std::chrono::duration<double> elapsed_seconds = end-start;
         sleeptime = 17 - (int)(elapsed_seconds.count()*1000);
-        if(sleeptime < 0) sleeptime = 0;
+        if(sleeptime < 0) {
+            sleeptime = 0;
+            printf("givememoretime");
+        }
         _sleep(sleeptime);
     }
 

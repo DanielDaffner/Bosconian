@@ -56,7 +56,7 @@ void Controller::updateGameWindow() {
     int right = glfwGetKey(view->window, GLFW_KEY_RIGHT);
     int down = glfwGetKey(view->window, GLFW_KEY_DOWN);
     int space = glfwGetKey(view->window, GLFW_KEY_SPACE);
-
+    int escape = glfwGetKey(view->window, GLFW_KEY_ESCAPE);
     //set direction
     if (up == GLFW_PRESS) {
         model->player->direction[0] = 0;
@@ -84,19 +84,18 @@ void Controller::updateGameWindow() {
         model->player->spriteDirection = SpriteDirection::down;
     }
     if (space == GLFW_PRESS) {
-        inGame = false;
+        model->projectilesPlayer.push_back(new ProjectilePlayer(model->player->pos.x,model->player->pos.y,model->player->direction[0],model->player->direction[1]));
     }
-
-
-    if (space == GLFW_PRESS) {
+    if (escape == GLFW_PRESS) {
         inGame=false;
     }
 
+//  calc player position
     model->player->pos.x += model->player->direction[0] * model->player->playerspeed;
     model->player->pos.y += model->player->direction[1] * model->player->playerspeed;
-
+//  prepare new frame
     view->prepareFrame();
-    
+//    render background
     for(BackgroundPixel* ele: model->pixelarr[(count/120)]) {
         if(move){
             ele->pos.x += model->player->direction[0];
@@ -113,6 +112,16 @@ void Controller::updateGameWindow() {
         }
         view->renderStars(ele->pos, ((BackgroundPixel::colors+ele->color)));
     }
+    count++;
+    count = count % 359;
+    if(move){
+        move=false;
+    }
+    else{
+        move=true;
+    }
+
+//    detect mine Collosion
     double distance;
     for(auto iterator = model->mines.begin(); iterator!= model->mines.end();) {
         distance = sqrt(pow(iterator._Ptr->_Myval->pos.x - model->player->pos.x,2)+pow(iterator._Ptr->_Myval->pos.y - model->player->pos.y,2));
@@ -135,18 +144,16 @@ void Controller::updateGameWindow() {
         }else
             iterator++;
     }
-
-    count++;
-    count = count % 359;
-    if(move){
-        move=false;
-    }
-    else{
-        move=true;
-    }
+//    render mines
     for(Mine* ele: model->mines) {
         view->render(ele->pos,ele->sprites);
     }
+    for(ProjectilePlayer* ele: model->projectilesPlayer) {
+        ele->pos.x += ele->direction.x;
+        ele->pos.y += ele->direction.y;
+        view->render(ele->pos,model->player->sprites[model->player->spriteDirection][model->player->spriteLight]);
+    }
+//    render palyer
     view->render(model->player->pos,model->player->sprites[model->player->spriteDirection][model->player->spriteLight]);
 
 }

@@ -8,9 +8,10 @@
 #ifndef BOSCONIAN_BACKGROUNDPIXEL_H
 #define BOSCONIAN_BACKGROUNDPIXEL_H
 
-class BackgroundPixel : public GameObject {
+class BackgroundPixel {
 public:
     BackgroundPixel();
+    Position2D pos;
     static GLubyte colors[320];
     int color;
 };

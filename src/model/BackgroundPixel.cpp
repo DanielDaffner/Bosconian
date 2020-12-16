@@ -37,7 +37,7 @@ GLubyte BackgroundPixel::colors[320] = {
 0x8b,0x94,0x22,0xff,0x8b,0x94,0x22,0xff,0x8b,0x94,0x22,0xff,0x8b,0x94,0x22,0xff
 };
 
-BackgroundPixel::BackgroundPixel() : GameObject() {
+BackgroundPixel::BackgroundPixel() {
 //    color = rand() % 8;
     color = (rand() % 20)*16;
     pos.x = 1280 - rand() % (1280*2);
