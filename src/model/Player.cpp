@@ -12,6 +12,7 @@ Player::Player() : GameObject() {
     pos.y = 360;
     spriteDirection = SpriteDirection::up;
     spriteLight = SpriteLights::on;
+    playerspeed = 4;
 }
 
 GLubyte* Player::sprites[9][2];

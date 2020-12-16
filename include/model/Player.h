@@ -26,6 +26,7 @@ public:
     Player();
     static GLubyte* sprites[9][2];
     int direction[2]{};
+    int playerspeed;
     int spriteDirection;
     int spriteLight;
 };

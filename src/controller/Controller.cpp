@@ -92,8 +92,8 @@ void Controller::updateGameWindow() {
         inGame=false;
     }
 
-    model->player->pos.x += model->player->direction[0];
-    model->player->pos.y += model->player->direction[1];
+    model->player->pos.x += model->player->direction[0] * model->player->playerspeed;
+    model->player->pos.y += model->player->direction[1] * model->player->playerspeed;
 
     view->prepareFrame();
     
@@ -123,14 +123,13 @@ void Controller::updateGameWindow() {
             iterator._Ptr->_Myval->pos.x += -32;
             iterator._Ptr->_Myval->pos.y += 32;
             iterator = model->mines.erase(iterator);
-            printf("theris mine");
         } else
             iterator++;
     }
     for(auto iterator = model->minesExploding.begin(); iterator!= model->minesExploding.end();) {
-        view->render(iterator._Ptr->_Myval->pos,Mine::spritesExplosion[iterator._Ptr->_Myval->explosionPhase/20]);
+        view->render(iterator._Ptr->_Myval->pos,Mine::spritesExplosion[iterator._Ptr->_Myval->explosionPhase/10]);
         iterator._Ptr->_Myval->explosionPhase++;
-        if(iterator._Ptr->_Myval->explosionPhase >= 60) {
+        if(iterator._Ptr->_Myval->explosionPhase >= 30) {
             delete (iterator._Ptr->_Myval);
             iterator = model->minesExploding.erase(iterator);
         }else

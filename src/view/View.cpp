@@ -39,10 +39,10 @@ void View::prepareFrame() {
     glViewport(0,0,1280,720);
     glEnable(GL_ALPHA_TEST);
     glAlphaFunc( GL_GREATER, 0.5 );
-    viewportpos[0] +=model->player->direction[0];
-    viewportpos[1] +=model->player->direction[1];
-    viewportpos[2] +=model->player->direction[0];
-    viewportpos[3] +=model->player->direction[1];
+    viewportpos[0] +=model->player->direction[0] * model->player->playerspeed;
+    viewportpos[1] +=model->player->direction[1] * model->player->playerspeed;
+    viewportpos[2] +=model->player->direction[0] * model->player->playerspeed;
+    viewportpos[3] +=model->player->direction[1] * model->player->playerspeed;
     glOrtho( viewportpos[0], viewportpos[2], viewportpos[3], viewportpos[1], -1, 1 );
 }
 
