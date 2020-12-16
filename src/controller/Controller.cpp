@@ -183,8 +183,9 @@ void Controller::updateGameWindow() {
     model->player->pos.y += model->player->direction[1] * model->player->playerspeed;
 //  calc projectile position
     for(ProjectilePlayer* ele: model->projectilesPlayer) {
-        ele->pos.x += ele->direction.x * ProjectilePlayer::projectileSpeed;
-        ele->pos.y += ele->direction.y * ProjectilePlayer::projectileSpeed;
+        ele->pos.x = model->player->pos.x +32+ ( ProjectilePlayer::projectileSpeed * ele->traveled * ele->direction.x );
+        ele->pos.y = model->player->pos.y -32+ ( ProjectilePlayer::projectileSpeed * ele->traveled * ele->direction.y);
+        ele->traveled++;
     }
 //  prepare new frame
     view->prepareFrame();
@@ -231,25 +232,30 @@ void Controller::updateGameWindow() {
 //    detect projectile player
     bool hit = false;
     for(auto iterator = model->projectilesPlayer.begin(); iterator!= model->projectilesPlayer.end();) {
-        for(auto iterator2 = model->mines.begin(); iterator2 != model->mines.end();) {
-            distance = sqrt(pow(iterator._Ptr->_Myval->pos.x - iterator2._Ptr->_Myval->pos.x,2)+pow(iterator._Ptr->_Myval->pos.y - iterator2._Ptr->_Myval->pos.y,2));
-            if(distance <= 32)  {
-                iterator2._Ptr->_Myval->collision = true;
-                model->minesExploding.push_back(iterator2._Ptr->_Myval);
-                iterator2._Ptr->_Myval->pos.x += -32;
-                iterator2._Ptr->_Myval->pos.y += 32;
-                iterator2 = model->mines.erase(iterator2);
-                delete (iterator._Ptr->_Myval);
-                iterator = model->projectilesPlayer.erase(iterator);
-                hit = true;
-                break;
+        if(iterator._Ptr->_Myval->traveled <= 100) {
+            for (auto iterator2 = model->mines.begin(); iterator2 != model->mines.end();) {
+                distance = sqrt(pow(iterator._Ptr->_Myval->pos.x - iterator2._Ptr->_Myval->pos.x, 2) +
+                                pow(iterator._Ptr->_Myval->pos.y - iterator2._Ptr->_Myval->pos.y, 2));
+                if (distance <= 32) {
+                    iterator2._Ptr->_Myval->collision = true;
+                    model->minesExploding.push_back(iterator2._Ptr->_Myval);
+                    iterator2._Ptr->_Myval->pos.x += -32;
+                    iterator2._Ptr->_Myval->pos.y += 32;
+                    iterator2 = model->mines.erase(iterator2);
+                    delete (iterator._Ptr->_Myval);
+                    iterator = model->projectilesPlayer.erase(iterator);
+                    hit = true;
+                    break;
+                } else
+                    iterator2++;
+            }
+            if (hit) {
+                hit = false;
             } else
-                iterator2++;
+                iterator++;
+        } else {
+            iterator = model->projectilesPlayer.erase(iterator);
         }
-        if (hit) {
-            hit = false;
-        } else
-            iterator++;
     }
 
 //    render exploding mines
