@@ -19,7 +19,6 @@ int Controller::init() {
     model = new Model();
     inGame = false;
     view = new View(model);
-    printf("init controller done\n");
     loadSprites();
     //psshhhtttt
     getSprite(enemyPink,"../App_Data/enemy_pink_bmp/enemy-pink-16.bmp");
