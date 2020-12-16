@@ -49,6 +49,7 @@ void Controller::onStart(){
 };
 bool move = false;
 int count = 0;
+int firecd = 0;
 void Controller::updateGameWindow() {
     // input
     int up = glfwGetKey(view->window, GLFW_KEY_UP);
@@ -83,8 +84,14 @@ void Controller::updateGameWindow() {
 
         model->player->spriteDirection = SpriteDirection::down;
     }
+    firecd--;
     if (space == GLFW_PRESS) {
-        model->projectilesPlayer.push_back(new ProjectilePlayer(model->player->pos.x,model->player->pos.y,model->player->direction[0],model->player->direction[1],0));
+        if(firecd <= 0) {
+            model->projectilesPlayer.push_back(
+                    new ProjectilePlayer(model->player->pos.x, model->player->pos.y, model->player->direction[0],
+                                         model->player->direction[1], 0));
+            firecd = 10;
+        }
     }
     if (escape == GLFW_PRESS) {
         inGame=false;
@@ -93,6 +100,11 @@ void Controller::updateGameWindow() {
 //  calc player position
     model->player->pos.x += model->player->direction[0] * model->player->playerspeed;
     model->player->pos.y += model->player->direction[1] * model->player->playerspeed;
+//  calc projectile position
+    for(ProjectilePlayer* ele: model->projectilesPlayer) {
+        ele->pos.x += ele->direction.x * ProjectilePlayer::projectileSpeed;
+        ele->pos.y += ele->direction.y * ProjectilePlayer::projectileSpeed;
+    }
 //  prepare new frame
     view->prepareFrame();
 //    render background
@@ -135,6 +147,31 @@ void Controller::updateGameWindow() {
         } else
             iterator++;
     }
+//    detect projectile player
+    bool hit = false;
+    for(auto iterator = model->projectilesPlayer.begin(); iterator!= model->projectilesPlayer.end();) {
+        for(auto iterator2 = model->mines.begin(); iterator2 != model->mines.end();) {
+            distance = sqrt(pow(iterator._Ptr->_Myval->pos.x - iterator2._Ptr->_Myval->pos.x,2)+pow(iterator._Ptr->_Myval->pos.y - iterator2._Ptr->_Myval->pos.y,2));
+            if(distance <= 32)  {
+                iterator2._Ptr->_Myval->collision = true;
+                model->minesExploding.push_back(iterator2._Ptr->_Myval);
+                iterator2._Ptr->_Myval->pos.x += -32;
+                iterator2._Ptr->_Myval->pos.y += 32;
+                iterator2 = model->mines.erase(iterator2);
+                delete (iterator._Ptr->_Myval);
+                iterator = model->projectilesPlayer.erase(iterator);
+                hit = true;
+                break;
+            } else
+                iterator2++;
+        }
+        if (hit) {
+            hit = false;
+        } else
+            iterator++;
+    }
+
+//    render exploding mines
     for(auto iterator = model->minesExploding.begin(); iterator!= model->minesExploding.end();) {
         view->render(iterator._Ptr->_Myval->pos,Mine::spritesExplosion[iterator._Ptr->_Myval->explosionPhase/10]);
         iterator._Ptr->_Myval->explosionPhase++;
@@ -144,16 +181,17 @@ void Controller::updateGameWindow() {
         }else
             iterator++;
     }
+
+
 //    render mines
     for(Mine* ele: model->mines) {
         view->render(ele->pos,ele->sprites);
     }
+//    render projectiles from player
     for(ProjectilePlayer* ele: model->projectilesPlayer) {
-        ele->pos.x += ele->direction.x;
-        ele->pos.y += ele->direction.y;
-        view->render(ele->pos,model->player->sprites[model->player->spriteDirection][model->player->spriteLight]);
+        view->render(ele->pos,ele->sprite);
     }
-//    render palyer
+//    render player
     view->render(model->player->pos,model->player->sprites[model->player->spriteDirection][model->player->spriteLight]);
 
 }
