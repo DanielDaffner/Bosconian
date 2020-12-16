@@ -46,14 +46,6 @@ void Controller::onStart(){
     for(int i = 0; i < 50;i++) {
         model->mines.push_back(new Mine(1280-(rand() % (1280*2)),760-(rand() % (760*2))));
     }
-    for(auto iterator = model->mines.begin(); iterator!= model->mines.end();) {
-        printf("%d  %d\n",iterator._Ptr->_Myval->pos.x,iterator._Ptr->_Myval->pos.y);
-            iterator._Ptr->_Myval->pos.x += -32;
-            iterator._Ptr->_Myval->pos.y += 32;
-
-            iterator++;
-    }
-
 };
 bool move = false;
 int count = 0;
@@ -136,7 +128,6 @@ void Controller::updateGameWindow() {
             iterator++;
     }
     for(auto iterator = model->minesExploding.begin(); iterator!= model->minesExploding.end();) {
-        printf("testpleb");
         view->render(iterator._Ptr->_Myval->pos,Mine::spritesExplosion[iterator._Ptr->_Myval->explosionPhase/20]);
         iterator._Ptr->_Myval->explosionPhase++;
         if(iterator._Ptr->_Myval->explosionPhase >= 60) {
