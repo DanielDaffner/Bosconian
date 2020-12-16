@@ -85,44 +85,125 @@ void Controller::onStart(){
 
 void Controller::updateGameWindow() {
     // input
-    int up = glfwGetKey(view->window, GLFW_KEY_UP);
-    int left = glfwGetKey(view->window, GLFW_KEY_LEFT);
-    int right = glfwGetKey(view->window, GLFW_KEY_RIGHT);
-    int down = glfwGetKey(view->window, GLFW_KEY_DOWN);
+//    int up = glfwGetKey(view->window, GLFW_KEY_UP);
+//    int left = glfwGetKey(view->window, GLFW_KEY_LEFT);
+//    int right = glfwGetKey(view->window, GLFW_KEY_RIGHT);
+//    int down = glfwGetKey(view->window, GLFW_KEY_DOWN);
+//    int space = glfwGetKey(view->window, GLFW_KEY_SPACE);
+//    int escape = glfwGetKey(view->window, GLFW_KEY_ESCAPE);
+    //set direction
+//    if (up == GLFW_PRESS) {
+//        model->player->direction[0] = 0;
+//        model->player->direction[1] = -1;
+//        model->player->spriteDirection = SpriteDirection::up;
+//        model->player->playerspeed = 4;
+//    }
+//    if (left == GLFW_PRESS) {
+//        model->player->direction[0] = -1;
+//        model->player->direction[1] = 0;
+//        model->player->spriteDirection = SpriteDirection::left;
+//        model->player->playerspeed = 4;
+//    }
+//    if (right == GLFW_PRESS) {
+//        model->player->direction[0] = 1;
+//        model->player->direction[1] = 0;
+//        model->player->spriteDirection = SpriteDirection::right;
+//        model->player->playerspeed = 4;
+//    }
+//    if (down == GLFW_PRESS) {
+//        model->player->direction[0] = 0;
+//        model->player->direction[1] = 1;
+//        model->player->spriteDirection = SpriteDirection::down;
+//        model->player->playerspeed = 4;
+//    }
+//    if (up == GLFW_PRESS && left == GLFW_PRESS) {
+//        model->player->direction[0] = -1;
+//        model->player->direction[1] = -1;
+//        model->player->spriteDirection = SpriteDirection::upleft;
+//        model->player->playerspeed = 3;
+//    }
+//    if (up == GLFW_PRESS && right == GLFW_PRESS) {
+//        model->player->direction[0] = 1;
+//        model->player->direction[1] = -1;
+//        model->player->spriteDirection = SpriteDirection::upright;
+//        model->player->playerspeed = 3;
+//    }
+//    if (down == GLFW_PRESS && left == GLFW_PRESS) {
+//        model->player->direction[0] = -1;
+//        model->player->direction[1] = 1;
+//        model->player->spriteDirection = SpriteDirection::downleft;
+//        model->player->playerspeed = 3;
+//    }
+//    if (down == GLFW_PRESS && right == GLFW_PRESS) {
+//        model->player->direction[0] = 1;
+//        model->player->direction[1] = 1;
+//        model->player->spriteDirection = SpriteDirection::downright;
+//        model->player->playerspeed = 3;
+//    }
+    int up = glfwGetKey(view->window, GLFW_KEY_W);
+    int left = glfwGetKey(view->window, GLFW_KEY_A);
+    int right = glfwGetKey(view->window, GLFW_KEY_D);
+    int down = glfwGetKey(view->window, GLFW_KEY_S);
     int space = glfwGetKey(view->window, GLFW_KEY_SPACE);
     int escape = glfwGetKey(view->window, GLFW_KEY_ESCAPE);
-    //set direction
     if (up == GLFW_PRESS) {
         model->player->direction[0] = 0;
         model->player->direction[1] = -1;
-
         model->player->spriteDirection = SpriteDirection::up;
+        model->player->playerspeed = 4;
     }
     if (left == GLFW_PRESS) {
         model->player->direction[0] = -1;
         model->player->direction[1] = 0;
-
         model->player->spriteDirection = SpriteDirection::left;
+        model->player->playerspeed = 4;
     }
-
     if (right == GLFW_PRESS) {
         model->player->direction[0] = 1;
         model->player->direction[1] = 0;
-
         model->player->spriteDirection = SpriteDirection::right;
+        model->player->playerspeed = 4;
     }
     if (down == GLFW_PRESS) {
         model->player->direction[0] = 0;
         model->player->direction[1] = 1;
-
         model->player->spriteDirection = SpriteDirection::down;
+        model->player->playerspeed = 4;
     }
+    if (up == GLFW_PRESS && left == GLFW_PRESS) {
+        model->player->direction[0] = -1;
+        model->player->direction[1] = -1;
+        model->player->spriteDirection = SpriteDirection::upleft;
+        model->player->playerspeed = 3;
+    }
+    if (up == GLFW_PRESS && right == GLFW_PRESS) {
+        model->player->direction[0] = 1;
+        model->player->direction[1] = -1;
+        model->player->spriteDirection = SpriteDirection::upright;
+        model->player->playerspeed = 3;
+    }
+    if (down == GLFW_PRESS && left == GLFW_PRESS) {
+        model->player->direction[0] = -1;
+        model->player->direction[1] = 1;
+        model->player->spriteDirection = SpriteDirection::downleft;
+        model->player->playerspeed = 3;
+    }
+    if (down == GLFW_PRESS && right == GLFW_PRESS) {
+        model->player->direction[0] = 1;
+        model->player->direction[1] = 1;
+        model->player->spriteDirection = SpriteDirection::downright;
+        model->player->playerspeed = 3;
+    }
+
     firecd--;
     if (space == GLFW_PRESS) {
         if(firecd <= 0) {
             model->projectilesPlayer.push_back(
-                    new ProjectilePlayer(model->player->pos.x, model->player->pos.y, model->player->direction[0],
-                                         model->player->direction[1], 0));
+                    new ProjectilePlayer(model->player->pos.x+32, model->player->pos.y-32, model->player->direction[0],
+                                         model->player->direction[1], model->player->spriteDirection));
+            model->projectilesPlayer.push_back(
+                    new ProjectilePlayer(model->player->pos.x+32, model->player->pos.y-32, model->player->direction[0]*-1,
+                                         model->player->direction[1]*-1, model->player->spriteDirection));
             firecd = 10;
         }
     }
@@ -138,8 +219,9 @@ void Controller::updateGameWindow() {
     model->player->pos.y += model->player->direction[1] * model->player->playerspeed;
 //  calc projectile position
     for(ProjectilePlayer* ele: model->projectilesPlayer) {
-        ele->pos.x += ele->direction.x * ProjectilePlayer::projectileSpeed;
-        ele->pos.y += ele->direction.y * ProjectilePlayer::projectileSpeed;
+        ele->pos.x = model->player->pos.x +32+ ( ProjectilePlayer::projectileSpeed * ele->traveled * ele->direction.x );
+        ele->pos.y = model->player->pos.y -32+ ( ProjectilePlayer::projectileSpeed * ele->traveled * ele->direction.y);
+        ele->traveled++;
     }
 //  prepare new frame
     view->prepareFrame();
@@ -188,25 +270,30 @@ void Controller::updateGameWindow() {
 //    detect projectile player
     bool hit = false;
     for(auto iterator = model->projectilesPlayer.begin(); iterator!= model->projectilesPlayer.end();) {
-        for(auto iterator2 = model->mines.begin(); iterator2 != model->mines.end();) {
-            distance = sqrt(pow(iterator._Ptr->_Myval->pos.x - iterator2._Ptr->_Myval->pos.x,2)+pow(iterator._Ptr->_Myval->pos.y - iterator2._Ptr->_Myval->pos.y,2));
-            if(distance <= 32)  {
-                iterator2._Ptr->_Myval->collision = true;
-                model->minesExploding.push_back(iterator2._Ptr->_Myval);
-                iterator2._Ptr->_Myval->pos.x += -32;
-                iterator2._Ptr->_Myval->pos.y += 32;
-                iterator2 = model->mines.erase(iterator2);
-                delete (iterator._Ptr->_Myval);
-                iterator = model->projectilesPlayer.erase(iterator);
-                hit = true;
-                break;
+        if(iterator._Ptr->_Myval->traveled <= 100) {
+            for (auto iterator2 = model->mines.begin(); iterator2 != model->mines.end();) {
+                distance = sqrt(pow(iterator._Ptr->_Myval->pos.x - iterator2._Ptr->_Myval->pos.x, 2) +
+                                pow(iterator._Ptr->_Myval->pos.y - iterator2._Ptr->_Myval->pos.y, 2));
+                if (distance <= 32) {
+                    iterator2._Ptr->_Myval->collision = true;
+                    model->minesExploding.push_back(iterator2._Ptr->_Myval);
+                    iterator2._Ptr->_Myval->pos.x += -32;
+                    iterator2._Ptr->_Myval->pos.y += 32;
+                    iterator2 = model->mines.erase(iterator2);
+                    delete (iterator._Ptr->_Myval);
+                    iterator = model->projectilesPlayer.erase(iterator);
+                    hit = true;
+                    break;
+                } else
+                    iterator2++;
+            }
+            if (hit) {
+                hit = false;
             } else
-                iterator2++;
+                iterator++;
+        } else {
+            iterator = model->projectilesPlayer.erase(iterator);
         }
-        if (hit) {
-            hit = false;
-        } else
-            iterator++;
     }
 
 //    render exploding mines
@@ -264,10 +351,10 @@ void Controller::loadSprites() {
     getSprite(Mine::spritesExplosion[1], "../App_Data/mine_explosion_bmp/mine_explosion_2.bmp");
     getSprite(Mine::spritesExplosion[2], "../App_Data/mine_explosion_bmp/mine_explosion_3.bmp");
 
-    getSprite(ProjectilePlayer::sprites[0], "../App_Data/projectile_bmp/projectile-4.bmp");
-    getSprite(ProjectilePlayer::sprites[1], "../App_Data/projectile_bmp/projectile-3.bmp");
-    getSprite(ProjectilePlayer::sprites[2], "../App_Data/projectile_bmp/projectile-2.bmp");
-    getSprite(ProjectilePlayer::sprites[3], "../App_Data/projectile_bmp/projectile-1.bmp");
+    getSprite(ProjectilePlayer::sprites[0], "../App_Data/projectile_bmp/projectile-1.bmp");
+    getSprite(ProjectilePlayer::sprites[1], "../App_Data/projectile_bmp/projectile-4.bmp");
+    getSprite(ProjectilePlayer::sprites[2], "../App_Data/projectile_bmp/projectile-3.bmp");
+    getSprite(ProjectilePlayer::sprites[3], "../App_Data/projectile_bmp/projectile-2.bmp");
 
     //alphabet
 

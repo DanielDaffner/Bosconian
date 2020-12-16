@@ -4,7 +4,7 @@
 
 #include "../../include/model/ProjectilePlayer.h"
 
-int ProjectilePlayer::projectileSpeed = 8;
+int ProjectilePlayer::projectileSpeed = 16;
 GLubyte* ProjectilePlayer::sprites[4];
 
 ProjectilePlayer::ProjectilePlayer(int posx, int posy, int dirx, int diry, int spritedir) {
@@ -12,6 +12,7 @@ ProjectilePlayer::ProjectilePlayer(int posx, int posy, int dirx, int diry, int s
     pos.y = posy;
     direction.x = dirx;
     direction.y = diry;
-    sprite = ProjectilePlayer::sprites[spritedir/4];
+    sprite = ProjectilePlayer::sprites[spritedir%4];
+    traveled = 0;
 }
 
