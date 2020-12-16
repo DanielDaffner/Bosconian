@@ -37,8 +37,8 @@ Position2D enemyPos= {-300,100};
 
 void Controller::updateMainWindow() {
 
-    int up = glfwGetKey(view->window, GLFW_KEY_UP);
-    if (up == GLFW_PRESS) {
+    int space = glfwGetKey(view->window, GLFW_KEY_SPACE);
+    if (space == GLFW_PRESS) {
     inGame = true;
     }
 
