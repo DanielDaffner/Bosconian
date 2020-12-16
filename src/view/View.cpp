@@ -62,19 +62,119 @@ void View::renderStars(Position2D pos, GLubyte *bitmap) {
     glDrawPixels(2,2,GL_RGBA,GL_UNSIGNED_BYTE,bitmap);
 }
 
-void View::drawString(Position2D pos,char *input, GLubyte *bitmap) {
+void View::drawString(Position2D pos,char *input) {
     int x = pos.x;
     int y = pos.y;
    while (*input!='\0'){
        switch(*input){
            case 'A':
                glRasterPos2d(x, y);
-               glDrawPixels(64,64,GL_RGBA,GL_UNSIGNED_BYTE,bitmap);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[0]);
+               break;
+           case 'B':
+               glRasterPos2d(x, y);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[1]);
+               break;
+           case 'C':
+               glRasterPos2d(x, y);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[2]);
+               break;
+           case 'D':
+               glRasterPos2d(x, y);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[3]);
+               break;
+           case 'E':
+               glRasterPos2d(x, y);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[4]);
+               break;
+           case 'F':
+               glRasterPos2d(x, y);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[5]);
+               break;
+           case 'G':
+               glRasterPos2d(x, y);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[6]);
+               break;
+           case 'H':
+               glRasterPos2d(x, y);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[7]);
+               break;
+           case 'I':
+               glRasterPos2d(x, y);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[8]);
+               break;
+           case 'J':
+               glRasterPos2d(x, y);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[9]);
+               break;
+           case 'K':
+               glRasterPos2d(x, y);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[10]);
+               break;
+           case 'L':
+               glRasterPos2d(x, y);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[11]);
+               break;
+           case 'M':
+               glRasterPos2d(x, y);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[12]);
+               break;
+           case 'N':
+               glRasterPos2d(x, y);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[13]);
+               break;
+           case 'O':
+               glRasterPos2d(x, y);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[14]);
+               break;
+           case 'P':
+               glRasterPos2d(x, y);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[15]);
+               break;
+           case 'Q':
+               glRasterPos2d(x, y);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[16]);
+               break;
+           case 'R':
+               glRasterPos2d(x, y);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[17]);
+               break;
+           case 'S':
+               glRasterPos2d(x, y);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[18]);
+               break;
+           case 'T':
+               glRasterPos2d(x, y);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[19]);
+               break;
+           case 'U':
+               glRasterPos2d(x, y);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[20]);
+               break;
+           case 'V':
+               glRasterPos2d(x, y);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[21]);
+               break;
+           case 'W':
+               glRasterPos2d(x, y);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[22]);
+               break;
+           case 'X':
+               glRasterPos2d(x, y);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[23]);
+               break;
+           case 'Y':
+               glRasterPos2d(x, y);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[24]);
+               break;
+           case 'Z':
+               glRasterPos2d(x, y);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[25]);
                break;
            default :
                break;
        }
-       x +=8;
+       x +=32;
        *input++;
     }
 

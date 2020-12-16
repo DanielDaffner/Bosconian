@@ -13,6 +13,7 @@
 class Model {
 public:
     Model();
+    static GLubyte* alphabetWhite[29];
     Player* player;
     std::list<Mine*> mines;
     std::list<Mine*> minesExploding;

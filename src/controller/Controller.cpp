@@ -34,6 +34,10 @@ void Controller::updateMainWindow() {
     inGame = true;
     }
     view->prepareFrame();
+    Position2D pos;
+    pos.x=200;
+    pos.y=300;
+    view->drawString(pos,"PETERZWEGATSEINPOINTER");
     view->render(model->player->pos,model->player->sprites[0][0]);
     printf("still in MainWindow");
 }
@@ -228,6 +232,38 @@ void Controller::loadSprites() {
     getSprite(ProjectilePlayer::sprites[1], "../App_Data/projectile_bmp/projectile-3.bmp");
     getSprite(ProjectilePlayer::sprites[2], "../App_Data/projectile_bmp/projectile-2.bmp");
     getSprite(ProjectilePlayer::sprites[3], "../App_Data/projectile_bmp/projectile-1.bmp");
+
+    //alphabet
+
+    getSprite(Model::alphabetWhite[0],"../App_Data/alphabet_bmp/alphabet_white-1.bmp" );
+    getSprite(Model::alphabetWhite[1],"../App_Data/alphabet_bmp/alphabet_white-2.bmp" );
+    getSprite(Model::alphabetWhite[2],"../App_Data/alphabet_bmp/alphabet_white-3.bmp" );
+    getSprite(Model::alphabetWhite[3],"../App_Data/alphabet_bmp/alphabet_white-4.bmp" );
+    getSprite(Model::alphabetWhite[4],"../App_Data/alphabet_bmp/alphabet_white-5.bmp" );
+    getSprite(Model::alphabetWhite[5],"../App_Data/alphabet_bmp/alphabet_white-6.bmp" );
+    getSprite(Model::alphabetWhite[6],"../App_Data/alphabet_bmp/alphabet_white-7.bmp" );
+    getSprite(Model::alphabetWhite[7],"../App_Data/alphabet_bmp/alphabet_white-8.bmp" );
+    getSprite(Model::alphabetWhite[8],"../App_Data/alphabet_bmp/alphabet_white-9.bmp" );
+    getSprite(Model::alphabetWhite[9],"../App_Data/alphabet_bmp/alphabet_white-10.bmp" );
+    getSprite(Model::alphabetWhite[10],"../App_Data/alphabet_bmp/alphabet_white-11.bmp" );
+    getSprite(Model::alphabetWhite[11],"../App_Data/alphabet_bmp/alphabet_white-12.bmp" );
+    getSprite(Model::alphabetWhite[12],"../App_Data/alphabet_bmp/alphabet_white-13.bmp" );
+    getSprite(Model::alphabetWhite[13],"../App_Data/alphabet_bmp/alphabet_white-14.bmp" );
+    getSprite(Model::alphabetWhite[14],"../App_Data/alphabet_bmp/alphabet_white-15.bmp" );
+    getSprite(Model::alphabetWhite[15],"../App_Data/alphabet_bmp/alphabet_white-16.bmp" );
+    getSprite(Model::alphabetWhite[16],"../App_Data/alphabet_bmp/alphabet_white-17.bmp" );
+    getSprite(Model::alphabetWhite[17],"../App_Data/alphabet_bmp/alphabet_white-18.bmp" );
+    getSprite(Model::alphabetWhite[18],"../App_Data/alphabet_bmp/alphabet_white-19.bmp" );
+    getSprite(Model::alphabetWhite[19],"../App_Data/alphabet_bmp/alphabet_white-20.bmp" );
+    getSprite(Model::alphabetWhite[20],"../App_Data/alphabet_bmp/alphabet_white-21.bmp" );
+    getSprite(Model::alphabetWhite[21],"../App_Data/alphabet_bmp/alphabet_white-22.bmp" );
+    getSprite(Model::alphabetWhite[22],"../App_Data/alphabet_bmp/alphabet_white-23.bmp" );
+    getSprite(Model::alphabetWhite[23],"../App_Data/alphabet_bmp/alphabet_white-24.bmp" );
+    getSprite(Model::alphabetWhite[24],"../App_Data/alphabet_bmp/alphabet_white-25.bmp" );
+    getSprite(Model::alphabetWhite[25],"../App_Data/alphabet_bmp/alphabet_white-26.bmp" );
+    getSprite(Model::alphabetWhite[26],"../App_Data/alphabet_bmp/alphabet_white-27.bmp" );
+    getSprite(Model::alphabetWhite[27],"../App_Data/alphabet_bmp/alphabet_white-28.bmp" );
+    getSprite(Model::alphabetWhite[28],"../App_Data/alphabet_bmp/alphabet_white-29.bmp" );
 
 }
 int Controller::getSprite(GLubyte* &dst, char* filepath) {

@@ -12,3 +12,5 @@ Model::Model() {
         }
     }
 }
+
+GLubyte* Model::alphabetWhite[29];

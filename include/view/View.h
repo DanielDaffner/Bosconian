@@ -18,6 +18,6 @@ public:
     void moveFrame();
     void render(Position2D pos, GLubyte* bitmap);
     void renderStars(Position2D pos, GLubyte *bitmap);
-    void drawString(Position2D pos, char* input, GLubyte *bitmap);
+    void drawString(Position2D pos, char* input);
 };
 #endif //BOSCONIAN_VIEW_H
