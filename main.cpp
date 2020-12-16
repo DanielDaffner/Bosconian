@@ -44,7 +44,7 @@ int main() {
         sleeptime = 17 - (int)(elapsed_seconds.count()*1000);
         if(sleeptime < 0) {
             sleeptime = 0;
-            printf("givememoretime");
+            printf("givememoretime\n");
         }
         _sleep(sleeptime);
     }

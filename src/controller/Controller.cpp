@@ -188,6 +188,11 @@ void Controller::loadSprites() {
     getSprite(Mine::spritesExplosion[1], "../App_Data/mine_explosion_bmp/mine_explosion_2.bmp");
     getSprite(Mine::spritesExplosion[2], "../App_Data/mine_explosion_bmp/mine_explosion_3.bmp");
 
+    getSprite(ProjectilePlayer::sprites[0], "../App_Data/projectile_bmp/projectile-4.bmp");
+    getSprite(ProjectilePlayer::sprites[1], "../App_Data/projectile_bmp/projectile-3.bmp");
+    getSprite(ProjectilePlayer::sprites[2], "../App_Data/projectile_bmp/projectile-2.bmp");
+    getSprite(ProjectilePlayer::sprites[3], "../App_Data/projectile_bmp/projectile-1.bmp");
+
 }
 int Controller::getSprite(GLubyte* &dst, char* filepath) {
     int filesize;
