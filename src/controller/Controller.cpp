@@ -121,7 +121,6 @@ void Controller::updateGameWindow() {
         if(distance <= 32)  {
             model->player->collision = true;
             iterator._Ptr->_Myval->collision = true;
-            printf("collision");
             model->minesExploding.push_back(iterator._Ptr->_Myval);
             iterator._Ptr->_Myval->pos.x += -32;
             iterator._Ptr->_Myval->pos.y += 32;
