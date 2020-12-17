@@ -8,5 +8,11 @@
 struct Position2D{
     int x;
     int y;
+
+    Position2D operator+(const Position2D& a) const
+    {
+        return Position2D{x+a.x, y+a.y};
+    }
 };
+
 #endif //BOSCONIAN_UTILITY_H

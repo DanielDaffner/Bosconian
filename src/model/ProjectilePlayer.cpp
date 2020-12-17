@@ -6,8 +6,9 @@
 
 int ProjectilePlayer::projectileSpeed = 16;
 GLubyte* ProjectilePlayer::sprites[4];
+Position2D ProjectilePlayer::drawOffset = {-2,2};
 
-ProjectilePlayer::ProjectilePlayer(int posx, int posy, int dirx, int diry, int spritedir) {
+ProjectilePlayer::ProjectilePlayer(int posx, int posy, int dirx, int diry, int spritedir) : GameObject() {
     pos.x = posx;
     pos.y = posy;
     direction.x = dirx;

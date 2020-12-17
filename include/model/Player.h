@@ -25,6 +25,7 @@ class Player : public GameObject {
 public:
     Player();
     static GLubyte* sprites[9][2];
+    static Position2D drawOffset;
     int direction[2]{};
     int playerspeed;
     int spriteDirection;
