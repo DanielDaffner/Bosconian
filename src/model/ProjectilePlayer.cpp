@@ -4,9 +4,9 @@
 
 #include "../../include/model/ProjectilePlayer.h"
 
-int ProjectilePlayer::projectileSpeed = 16;
+int ProjectilePlayer::projectileSpeed = 24;
 GLubyte* ProjectilePlayer::sprites[4];
-Position2D ProjectilePlayer::drawOffset = {-2,2};
+Position2D ProjectilePlayer::drawOffset = {-4,4};
 
 ProjectilePlayer::ProjectilePlayer(int posx, int posy, int dirx, int diry, int spritedir) : GameObject() {
     pos.x = posx;

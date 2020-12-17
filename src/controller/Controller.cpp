@@ -269,7 +269,7 @@ void Controller::updateGameWindow() {
 //    detect projectile player
     bool hit = false;
     for(auto iterator = model->projectilesPlayer.begin(); iterator!= model->projectilesPlayer.end();) {
-        if(iterator._Ptr->_Myval->traveled <= 100) {
+        if(iterator._Ptr->_Myval->traveled <= 30) {
             for (auto iterator2 = model->mines.begin(); iterator2 != model->mines.end();) {
                 distance = sqrt(pow(iterator._Ptr->_Myval->pos.x - iterator2._Ptr->_Myval->pos.x, 2) +
                                 pow(iterator._Ptr->_Myval->pos.y - iterator2._Ptr->_Myval->pos.y, 2));
