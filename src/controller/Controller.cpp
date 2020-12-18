@@ -78,6 +78,7 @@ void Controller::updateMainWindow() {
 
 void Controller::onStart(){
     for(int i = 0; i < 50;i++) {
+
         model->mines.push_back(new Mine(1280-(rand() % (1280*2)),760-(rand() % (760*2))));
     }
 };
@@ -279,6 +280,7 @@ void Controller::updateGameWindow() {
                     iterator2._Ptr->_Myval->pos.x += -32;
                     iterator2._Ptr->_Myval->pos.y += 32;
                     iterator2 = model->mines.erase(iterator2);
+                    model->player->score += Mine::score;
                     delete (iterator._Ptr->_Myval);
                     iterator = model->projectilesPlayer.erase(iterator);
                     hit = true;
@@ -321,11 +323,22 @@ void Controller::updateGameWindow() {
         view->render(model->player->pos + Player::drawOffset,
                      Player::spritesExplosion[model->player->spriteLight/10]);
         if(model->player->spriteLight++ == 29) {
+            if(model->player->lifes == 0) {
+                view->drawString(model->player->pos+Position2D{-144,-40},"GAME OVER");
+                inGame=false;
+                model->player->collision = false;
+                glfwSwapBuffers(view->window);
+                view->resetFrame();
+                model->player->resetPosition();
+                _sleep(1000);
+                return;
+            }
             model->player->collision = false;
             model->player->spriteLight = 0;
             model->player->lifes--;
             view->resetFrame();
             model->player->resetPosition();
+            return;
         }
     } else {
         view->render(model->player->pos+Player::drawOffset,Player::sprites[model->player->spriteDirection][model->player->spriteLight]);
