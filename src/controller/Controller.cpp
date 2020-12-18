@@ -78,7 +78,6 @@ void Controller::updateMainWindow() {
 
 void Controller::onStart(){
     for(int i = 0; i < 50;i++) {
-
         model->mines.push_back(new Mine(1280-(rand() % (1280*2)),760-(rand() % (760*2))));
     }
 };
@@ -338,7 +337,6 @@ void Controller::updateGameWindow() {
             model->player->lifes--;
             view->resetFrame();
             model->player->resetPosition();
-            return;
         }
     } else {
         view->render(model->player->pos+Player::drawOffset,Player::sprites[model->player->spriteDirection][model->player->spriteLight]);
