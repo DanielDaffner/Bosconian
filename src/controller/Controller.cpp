@@ -77,8 +77,17 @@ void Controller::updateMainWindow() {
 }
 
 void Controller::onStart(){
-    for(int i = 0; i < 50;i++) {
-        model->mines.push_back(new Mine(1280-(rand() % (1280*2)),760-(rand() % (760*2))));
+    int x;
+    int y;
+    int distance;
+    for(int i = 0; i < 120;i++) {
+        x = 2560-(rand() % (1280*4));
+        y = 2560-(rand() % (760*4));
+        distance = sqrt(pow(x - model->player->pos.x,2)+pow(y - model->player->pos.y,2));
+
+        if(distance > 64 )
+        model->mines.push_back(new Mine(x,y));
+        else printf("protected\n");
     }
 };
 

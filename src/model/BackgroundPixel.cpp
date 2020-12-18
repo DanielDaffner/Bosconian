@@ -41,5 +41,5 @@ BackgroundPixel::BackgroundPixel() {
 //    color = rand() % 8;
     color = (rand() % 20)*16;
     pos.x = 2560 - (rand() % (1280*4));
-    pos.y = 1520 - (rand() % (760*4));
+    pos.y = 2560 - (rand() % (760*4));
 }
