@@ -25,11 +25,14 @@ class Player : public GameObject {
 public:
     Player();
     static GLubyte* sprites[9][2];
+    static GLubyte* spritesExplosion[3];
     static Position2D drawOffset;
     int direction[2]{};
     int playerspeed;
     int spriteDirection;
     int spriteLight;
+    int lifes;
+    int score;
     void resetPosition();
 };
 

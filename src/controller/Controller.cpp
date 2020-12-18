@@ -52,7 +52,7 @@ void Controller::updateMainWindow() {
     view->drawString(posString1,"PRESS SPACE BAR");
 
     Position2D posPlayer ={640,360};
-    view->render(posPlayer,model->player->sprites[0][0]);
+    view->render(posPlayer,Player::sprites[0][0]);
 
     //Background
     for(BackgroundPixel* ele: model->pixelarr[(count/30)]) {
@@ -222,10 +222,10 @@ void Controller::updateGameWindow() {
         ele->pos.y = model->player->pos.y + ( ProjectilePlayer::projectileSpeed * ele->traveled * ele->direction.y);
         ele->traveled++;
     }
+//  move Frame
+    view->moveFrame();
 //  prepare new frame
     view->prepareFrame();
-    // move Frame
-    view->moveFrame();
 //    render background
     for(BackgroundPixel* ele: model->pixelarr[(count/30)]) {
         if(move){
@@ -317,8 +317,29 @@ void Controller::updateGameWindow() {
         view->render(ele->pos+ProjectilePlayer::drawOffset,ele->sprite);
     }
 //    render player
-    view->render(model->player->pos+Player::drawOffset,Player::sprites[model->player->spriteDirection][model->player->spriteLight]);
-
+    if(model->player->collision) {
+        view->render(model->player->pos + Player::drawOffset,
+                     Player::spritesExplosion[model->player->spriteLight/10]);
+        if(model->player->spriteLight++ == 29) {
+            model->player->collision = false;
+            model->player->spriteLight = 0;
+            model->player->lifes--;
+            view->resetFrame();
+            model->player->resetPosition();
+        }
+    } else {
+        view->render(model->player->pos+Player::drawOffset,Player::sprites[model->player->spriteDirection][model->player->spriteLight]);
+        if(count%30 == 0) {
+            model->player->spriteLight = (model->player->spriteLight + 1) % 2;
+        }
+    }
+//    draw lifes
+    for(int i = 0; i < model->player->lifes; i++) {
+        view->render(Position2D{view->viewportpos[2]-((4-i)*64),view->viewportpos[3]-5},Player::sprites[SpriteDirection::up][SpriteLights::off]);
+    }
+//    draw highscore
+Position2D highscorePos = {view->viewportpos[2]-(9*32),view->viewportpos[1]+32};
+    view->drawString(highscorePos,"HIGHSCORE");
 }
 void Controller::loadSprites() {
 
@@ -345,6 +366,10 @@ void Controller::loadSprites() {
 
     getSprite(Player::sprites[SpriteDirection::upleft][1], "../App_Data/ship_bmp/ship_up_left_light_on.bmp");
     getSprite(Player::sprites[SpriteDirection::upleft][0], "../App_Data/ship_bmp/ship_up_left_light_off.bmp");
+
+    getSprite(Player::spritesExplosion[0], "../App_Data/ship_explosion_bmp/ship_explosion_1.bmp");
+    getSprite(Player::spritesExplosion[1], "../App_Data/ship_explosion_bmp/ship_explosion_2.bmp");
+    getSprite(Player::spritesExplosion[2], "../App_Data/ship_explosion_bmp/ship_explosion_3.bmp");
 
     getSprite(Mine::sprites, "../App_Data/mine_bmp/mine.bmp");
     getSprite(Mine::spritesExplosion[0], "../App_Data/mine_explosion_bmp/mine_explosion_1.bmp");

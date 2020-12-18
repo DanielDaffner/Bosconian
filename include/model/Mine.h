@@ -12,5 +12,6 @@ public:
     static GLubyte* sprites;
     static GLubyte* spritesExplosion[3];
     static Position2D drawOffset;
+    static int score;
 };
 #endif //BOSCONIAN_MINE_H
