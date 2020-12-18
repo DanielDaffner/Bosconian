@@ -41,11 +41,16 @@ int main() {
         end = std::chrono::system_clock::now();
         std::chrono::duration<double> elapsed_seconds = end-start;
         sleeptime = 17 - (int)(elapsed_seconds.count()*1000);
+        printf("time %d\n",sleeptime);
         if(sleeptime < 0) {
             sleeptime = 0;
             printf("givememoretime\n");
         }
+        start = std::chrono::system_clock::now();
         _sleep(sleeptime);
+        end = std::chrono::system_clock::now();
+        elapsed_seconds = end-start;
+        printf("actual %f\n",(elapsed_seconds.count()*1000));
     }
 
 }
