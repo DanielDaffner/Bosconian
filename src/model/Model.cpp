@@ -3,6 +3,7 @@
 //
 
 #include "../../include/model/Model.h"
+#include "../../include/Utility.h"
 
 Model::Model() {
     player = new Player();
@@ -14,3 +15,4 @@ Model::Model() {
 }
 
 GLubyte* Model::alphabetWhite[29];
+GLubyte* Model::map;

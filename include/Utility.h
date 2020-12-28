@@ -5,6 +5,26 @@
 #ifndef BOSCONIAN_UTILITY_H
 #define BOSCONIAN_UTILITY_H
 
+#define VIEW_WIDTH 1280
+#define VIEW_HEIGHT 960
+#define PADDING 4
+
+#define GAME_WIDTH (VIEW_WIDTH-PADDING-256)
+#define GAME_HEIGHT 960
+
+#define MAP_WIDTH 2560
+#define MAP_HEIGHT 5120
+
+#define ROUND_POS_X (VIEW_WIDTH-PADDING-256)
+#define ROUND_POS_Y (VIEW_HEIGHT-5)
+
+#define LIFES_POS_X (VIEW_WIDTH-PADDING-256)
+#define LIFES_POS_Y (VIEW_HEIGHT-74)
+
+#define MAP_POS_X (VIEW_WIDTH-PADDING-256)
+#define MAP_POS_Y (VIEW_HEIGHT-142)
+
+
 struct Position2D{
     int x;
     int y;

@@ -81,8 +81,8 @@ void Controller::onStart(){
     int y;
     int distance;
     for(int i = 0; i < 120;i++) {
-        x = 2560-(rand() % (1280*4));
-        y = 2560-(rand() % (760*4));
+        x = (rand() % (MAP_WIDTH));
+        y = (rand() % (MAP_HEIGHT));
         distance = sqrt(pow(x - model->player->pos.x,2)+pow(y - model->player->pos.y,2));
 
         if(distance > 64 )
@@ -336,16 +336,16 @@ void Controller::updateGameWindow() {
                 inGame=false;
                 model->player->collision = false;
                 glfwSwapBuffers(view->window);
-                view->resetFrame();
                 model->player->resetPosition();
+                view->resetFrame();
                 _sleep(1000);
                 return;
             }
             model->player->collision = false;
             model->player->spriteLight = 0;
             model->player->lifes--;
-            view->resetFrame();
             model->player->resetPosition();
+            view->resetFrame();
         }
     } else {
         view->render(model->player->pos+Player::drawOffset,Player::sprites[model->player->spriteDirection][model->player->spriteLight]);
@@ -355,11 +355,24 @@ void Controller::updateGameWindow() {
     }
 //    draw lifes
     for(int i = 0; i < model->player->lifes; i++) {
-        view->render(Position2D{view->viewportpos[2]-((4-i)*64),view->viewportpos[3]-5},Player::sprites[SpriteDirection::up][SpriteLights::off]);
+        view->renderGameInfos(Position2D{LIFES_POS_X+(i*64), LIFES_POS_Y}, Player::sprites[SpriteDirection::up][SpriteLights::off]);
     }
+
+//    draw map
+//    view->renderGameInfos(Position2D{1280-300,300},Model::map);
+    glRasterPos2d(MAP_POS_X,MAP_POS_Y);
+    glDrawPixels(256,400,GL_RGBA,GL_UNSIGNED_BYTE,Model::map);
+    int x = model->player->pos.x /10;
+    int y = model->player->pos.y /13;
+    GLubyte testpix[4] = {255,255,255,255};
+    glRasterPos2d(MAP_POS_X+x,MAP_POS_Y-400+y);
+    glDrawPixels(1,1,GL_RGBA,GL_UNSIGNED_BYTE,testpix);
+//    draw round
+    Position2D roundpos = {ROUND_POS_X,ROUND_POS_Y};
+    view->drawString(roundpos,"ROUND AB");
 //    draw highscore
-Position2D highscorePos = {view->viewportpos[2]-(9*32),view->viewportpos[1]+32};
-    view->drawString(highscorePos,"HIGHSCORE");
+    Position2D highscorePos = {VIEW_WIDTH-(8*32),0+8+32};
+    view->drawString(highscorePos,"HI SCORE");
 }
 void Controller::loadSprites() {
 
@@ -433,6 +446,13 @@ void Controller::loadSprites() {
     getSprite(Model::alphabetWhite[27],"../App_Data/alphabet_bmp/alphabet_white-28.bmp" );
     getSprite(Model::alphabetWhite[28],"../App_Data/alphabet_bmp/alphabet_white-29.bmp" );
 
+    Model::map = new GLubyte[256*400*4];
+    for(int x = 0; x < 256*400*4; x+=4) {
+            Model::map[x+0] = 125;
+            Model::map[x+1] = 0;
+            Model::map[x+2] = 125;
+            Model::map[x+3] = 255;
+    }
 }
 int Controller::getSprite(GLubyte* &dst, char* filepath) {
     int filesize;

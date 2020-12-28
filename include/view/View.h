@@ -7,6 +7,8 @@
 
 #ifndef BOSCONIAN_VIEW_H
 #define BOSCONIAN_VIEW_H
+
+
 class View{
 public:
     View(Model* modl);
@@ -17,6 +19,7 @@ public:
     void prepareFrame();
     void moveFrame();
     void render(Position2D pos, GLubyte* bitmap);
+    void renderGameInfos(Position2D pos, GLubyte *bitmap);
     void renderStars(Position2D pos, GLubyte *bitmap);
     void drawString(Position2D pos, char* input);
     void resetFrame();
