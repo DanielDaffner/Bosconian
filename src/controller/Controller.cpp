@@ -225,9 +225,13 @@ void Controller::updateGameWindow() {
 //  calc player position
     model->player->pos.x += model->player->direction[0] * model->player->playerspeed;
     model->player->pos.y += model->player->direction[1] * model->player->playerspeed;
+    if(model->player->pos.x < 0) model->player->pos.x += MAP_WIDTH;
+    if(model->player->pos.x >= MAP_WIDTH)model->player->pos.x -= MAP_WIDTH;
+    if(model->player->pos.y < 0)model->player->pos.y += MAP_HEIGHT;
+    if(model->player->pos.y >= MAP_HEIGHT)model->player->pos.y -= MAP_HEIGHT;
 //  calc projectile position
     for(ProjectilePlayer* ele: model->projectilesPlayer) {
-        ele->pos.x = model->player->pos.x + ( ProjectilePlayer::projectileSpeed * ele->traveled * ele->direction.x );
+        ele->pos.x = model->player->pos.x + ( ProjectilePlayer::projectileSpeed * ele->traveled * ele->direction.x);
         ele->pos.y = model->player->pos.y + ( ProjectilePlayer::projectileSpeed * ele->traveled * ele->direction.y);
         ele->traveled++;
     }
@@ -365,6 +369,24 @@ void Controller::updateGameWindow() {
     int x = model->player->pos.x /10;
     int y = model->player->pos.y /13;
     GLubyte testpix[4] = {255,255,255,255};
+    glRasterPos2d(MAP_POS_X+x,MAP_POS_Y-400+y);
+    glDrawPixels(1,1,GL_RGBA,GL_UNSIGNED_BYTE,testpix);
+
+//    testviewpos
+    x = view->viewportpos[0] /10;
+    y = view->viewportpos[1] /13;
+    glRasterPos2d(MAP_POS_X+x,MAP_POS_Y-400+y);
+    glDrawPixels(1,1,GL_RGBA,GL_UNSIGNED_BYTE,testpix);
+    x = view->viewportpos[2] /10;
+    y = view->viewportpos[1] /13;
+    glRasterPos2d(MAP_POS_X+x,MAP_POS_Y-400+y);
+    glDrawPixels(1,1,GL_RGBA,GL_UNSIGNED_BYTE,testpix);
+    x = view->viewportpos[0] /10;
+    y = view->viewportpos[3] /13;
+    glRasterPos2d(MAP_POS_X+x,MAP_POS_Y-400+y);
+    glDrawPixels(1,1,GL_RGBA,GL_UNSIGNED_BYTE,testpix);
+    x = view->viewportpos[2] /10;
+    y = view->viewportpos[3] /13;
     glRasterPos2d(MAP_POS_X+x,MAP_POS_Y-400+y);
     glDrawPixels(1,1,GL_RGBA,GL_UNSIGNED_BYTE,testpix);
 //    draw round

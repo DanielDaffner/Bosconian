@@ -47,6 +47,14 @@ void View::moveFrame() {
     viewportpos[1] +=model->player->direction[1] * model->player->playerspeed;
     viewportpos[2] +=model->player->direction[0] * model->player->playerspeed;
     viewportpos[3] +=model->player->direction[1] * model->player->playerspeed;
+    if(viewportpos[0] < 0) viewportpos[0] += MAP_WIDTH;
+    if(viewportpos[0] >= MAP_WIDTH)viewportpos[0] -= MAP_WIDTH;
+    if(viewportpos[1] < 0)viewportpos[1] += MAP_HEIGHT;
+    if(viewportpos[1] >= MAP_HEIGHT)viewportpos[1] -= MAP_HEIGHT;
+    if(viewportpos[2] < 0)viewportpos[2] += MAP_WIDTH;
+    if(viewportpos[2] >= MAP_WIDTH)viewportpos[2] -= MAP_WIDTH;
+    if(viewportpos[3] < 0)viewportpos[3] += MAP_HEIGHT;
+    if(viewportpos[3] >= MAP_HEIGHT)viewportpos[3] -= MAP_HEIGHT;
 }
 void View::resetFrame() {
 
@@ -57,11 +65,61 @@ void View::resetFrame() {
 }
 
 
+//void View::render(Position2D pos, GLubyte *bitmap) {
+//    int x = pos.x - viewportpos[0];
+//    int y = pos.y - viewportpos[1];
+//    glRasterPos2d(x, y);
+//    glDrawPixels(*((uint32_t*)(bitmap+18)),*((uint32_t*)(bitmap+22)),GL_RGBA,GL_UNSIGNED_BYTE,bitmap+*((uint32_t*)(bitmap+10)));
+//}
+
 void View::render(Position2D pos, GLubyte *bitmap) {
-    int x = pos.x - viewportpos[0];
-    int y = pos.y - viewportpos[1];
+    int x;
+    int y;
+    if(viewportpos[0] > viewportpos[2] || viewportpos[1] > viewportpos[3]) {
+        if(viewportpos[0] > viewportpos[2] && viewportpos[1] > viewportpos[3]) {
+            //4 teile
+            if(viewportpos[0] <= pos.x && viewportpos[1] <= pos.y) {
+                x = pos.x - viewportpos[0];
+                y = pos.y - viewportpos[1];
+            } else
+            if(viewportpos[0] <= pos.x && viewportpos[3] >= pos.y) {
+                x = pos.x - viewportpos[0];
+                y = pos.y - viewportpos[3] + GAME_HEIGHT;
+            } else
+            if(viewportpos[2] >= pos.x && viewportpos[1] <= pos.y) {
+                x = pos.x - viewportpos[2] + GAME_WIDTH;
+                y = pos.y - viewportpos[1];
+            } else
+            if(viewportpos[2] >= pos.x && viewportpos[3] >= pos.y) {
+                x = pos.x - viewportpos[2] + GAME_WIDTH;
+                y = pos.y - viewportpos[3] + GAME_HEIGHT;
+            } else return;
+        } else if(viewportpos[0] > viewportpos[2]) {
+            //2 teile links rechts
+            if(viewportpos[0] <= pos.x) {
+                x = pos.x - viewportpos[0];
+                y = pos.y - viewportpos[1];
+            } else if(viewportpos[2] >= pos.x ) {
+                x = pos.x - viewportpos[2] + GAME_WIDTH;
+                y = pos.y - viewportpos[1];
+            } else return;
+        } else {
+            //2 teile oben unten
+            if(viewportpos[1] <= pos.y) {
+                x = pos.x - viewportpos[0];
+                y = pos.y - viewportpos[1];
+            } else if(viewportpos[3] >= pos.y) {
+                x = pos.x - viewportpos[0];
+                y = pos.y - viewportpos[3] + GAME_HEIGHT;
+            } else return;
+        }
+    } else {
+        x = pos.x - viewportpos[0];
+        y = pos.y - viewportpos[1];
+    }
     glRasterPos2d(x, y);
-    glDrawPixels(*((uint32_t*)(bitmap+18)),*((uint32_t*)(bitmap+22)),GL_RGBA,GL_UNSIGNED_BYTE,bitmap+*((uint32_t*)(bitmap+10)));
+    glDrawPixels(*((uint32_t *) (bitmap + 18)), *((uint32_t *) (bitmap + 22)), GL_RGBA, GL_UNSIGNED_BYTE,
+                 bitmap + *((uint32_t *) (bitmap + 10)));
 }
 
 void View::renderGameInfos(Position2D pos, GLubyte *bitmap) {
