@@ -6,6 +6,7 @@
 #include "BackgroundPixel.h"
 #include "ProjectilePlayer.h"
 #include "EnemyShip.h"
+#include "EnemyBase.h"
 #include <list>
 
 #ifndef BOSCONIAN_MODEL_H
@@ -21,5 +22,6 @@ public:
     std::list<Mine*> minesExploding;
     std::list<BackgroundPixel*> pixelarr[4];
     std::list<ProjectilePlayer*> projectilesPlayer;
+    std::list<EnemyBase*> enemyBases;
 };
 #endif //BOSCONIAN_MODEL_H

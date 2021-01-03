@@ -117,7 +117,7 @@ void View::render(Position2D pos, GLubyte *bitmap) {
         x = pos.x - viewportpos[0];
         y = pos.y - viewportpos[1];
     }
-    glRasterPos2d(x, y);
+    glRasterPos2i(x,y);
     glDrawPixels(*((uint32_t *) (bitmap + 18)), *((uint32_t *) (bitmap + 22)), GL_RGBA, GL_UNSIGNED_BYTE,
                  bitmap + *((uint32_t *) (bitmap + 10)));
 }

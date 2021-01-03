@@ -89,6 +89,9 @@ void Controller::onStart(){
         model->mines.push_back(new Mine(x,y));
         else printf("protected\n");
     }
+
+    model->enemyBases.push_back(new EnemyBase(500,500));
+
 };
 
 void Controller::updateGameWindow() {
@@ -233,7 +236,25 @@ void Controller::updateGameWindow() {
     for(ProjectilePlayer* ele: model->projectilesPlayer) {
         ele->pos.x = model->player->pos.x + ( ProjectilePlayer::projectileSpeed * ele->traveled * ele->direction.x);
         ele->pos.y = model->player->pos.y + ( ProjectilePlayer::projectileSpeed * ele->traveled * ele->direction.y);
+        if(ele->pos.x < 0) ele->pos.x += MAP_WIDTH;
+        if(ele->pos.x >= MAP_WIDTH) ele->pos.x -= MAP_WIDTH;
+        if(ele->pos.y < 0) ele->pos.y += MAP_HEIGHT;
+        if(ele->pos.y >= MAP_HEIGHT )ele->pos.y -= MAP_HEIGHT;
         ele->traveled++;
+    }
+//  base open close
+    for(EnemyBase* ele: model->enemyBases) {
+        if(ele->isOpen) {
+            if(ele->timer++ >= 59) {
+                ele->isOpen = false;
+                ele->timer = 0;
+            }
+        } else {
+            if(ele->timer++ >= 59) {
+                ele->isOpen = true;
+                ele->timer = 0;
+            }
+        }
     }
 //  move Frame
     view->moveFrame();
@@ -282,7 +303,7 @@ void Controller::updateGameWindow() {
 //    detect projectile player
     bool hit = false;
     for(auto iterator = model->projectilesPlayer.begin(); iterator!= model->projectilesPlayer.end();) {
-        if(iterator._Ptr->_Myval->traveled <= 30) {
+        if(iterator._Ptr->_Myval->traveled <= 22) {
             for (auto iterator2 = model->mines.begin(); iterator2 != model->mines.end();) {
                 distance = sqrt(pow(iterator._Ptr->_Myval->pos.x - iterator2._Ptr->_Myval->pos.x, 2) +
                                 pow(iterator._Ptr->_Myval->pos.y - iterator2._Ptr->_Myval->pos.y, 2));
@@ -357,6 +378,18 @@ void Controller::updateGameWindow() {
             model->player->spriteLight = (model->player->spriteLight + 1) % 2;
         }
     }
+//    render Base
+    for(EnemyBase* ele: model->enemyBases) {
+        if(ele->isOpen) {
+            view->render(ele->pos + Player::drawOffset, Player::sprites[ele->timer/10+1][0]);
+        } else {
+            view->render(ele->pos + Player::drawOffset, Player::sprites[0][0]);
+        }
+        for(EnemyBasePart* ele2: ele->parts) {
+            view->render(ele2->pos+Player::drawOffset,Player::sprites[0][0]);
+        }
+    }
+
 //    draw lifes
     for(int i = 0; i < model->player->lifes; i++) {
         view->renderGameInfos(Position2D{LIFES_POS_X+(i*64), LIFES_POS_Y}, Player::sprites[SpriteDirection::up][SpriteLights::off]);
