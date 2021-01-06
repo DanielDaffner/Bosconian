@@ -207,7 +207,7 @@ void Controller::updateGameWindow() {
 
 
         int dir1=(ele->direction + 1)%8;
-        int dir2=(ele->direction - 1)%8;
+        int dir2=(ele->direction - 1);
         if(dir2<0)dir2=7;
         // set values
         //current dir
@@ -220,7 +220,7 @@ void Controller::updateGameWindow() {
         vx = model->player->pos.x - ele->pos.x;
         vy = model->player->pos.y - ele->pos.y;
         // calc degree
-        degO=     cos(((ux*vx)+(uy*vy))
+        degO=     acos(((ux*vx)+(uy*vy))
                   / (sqrt(pow(ux,2)+pow(uy,2))
                   *  sqrt(pow(vx,2)+pow(vy,2))))*180/ (2*acos(0.0));
 
@@ -233,7 +233,7 @@ void Controller::updateGameWindow() {
         printf("%f",ele->directions[dir1][0]);
         printf("%f\n",ele->directions[dir1][1]);
         // calc degree
-        degL=    cos( ((ux*vx)+(uy*vy))
+        degL=    acos( ((ux*vx)+(uy*vy))
                 / (sqrt(pow(ux,2)+pow(uy,2))
                 *  sqrt(pow(vx,2)+pow(vy,2)))) *180/ (2*acos(0.0));
 
@@ -246,7 +246,7 @@ void Controller::updateGameWindow() {
         printf("%f",ele->directions[dir2][0]);
         printf("%f\n",ele->directions[dir2][1]);
         // calc degree
-        degR=      cos( ((ux*vx)+(uy*vy))
+        degR=      acos( ((ux*vx)+(uy*vy))
                   / (sqrt(pow(ux,2)+pow(uy,2))
                   *  sqrt(pow(vx,2)+pow(vy,2)))) *180/ (2*acos(0.0));
 
@@ -259,7 +259,7 @@ void Controller::updateGameWindow() {
         if(degR < degL && degR < degO){
             ele->direction=dir2;
         }
-        if(degL < degO){
+        else if(degL < degO){
             ele->direction=dir1;
         }
 
