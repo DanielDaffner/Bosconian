@@ -9,11 +9,14 @@
 
 class EnemyShip : public GameObject {
 public:
-    EnemyShip();
+    EnemyShip(int posX,int posY, int dir);
     static GLubyte* sprites[24];
     static GLubyte* spritesExplosion[3];
     static Position2D drawOffset;
-    static int score;
+    static const int speed = 3;
+    int directions[8][2] = {{0,-1 },{-1,-1},{-1,0},{-1,1},{0,1}, { 1,1}, {0,1},{1,-1}};
+    int direction;
+    int turned = 3;
 };
 
 #endif //BOSCONIAN_ENEMYSHIP_H

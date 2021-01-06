@@ -20,6 +20,7 @@ public:
     Player* player;
     std::list<Mine*> mines;
     std::list<Mine*> minesExploding;
+    std::list<EnemyShip*> enemyShipsPink;
     std::list<BackgroundPixel*> pixelarr[4];
     std::list<ProjectilePlayer*> projectilesPlayer;
     std::list<EnemyBase*> enemyBases;

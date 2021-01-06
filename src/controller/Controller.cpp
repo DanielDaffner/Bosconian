@@ -13,6 +13,7 @@ Controller::Controller() {
 //öhm hat keiner gesehn o.O
 GLubyte* enemyPink;
 
+
 int Controller::init() {
 
     //init controller
@@ -90,6 +91,7 @@ void Controller::onStart(){
         else printf("protected\n");
     }
 
+    model->enemyShipsPink.push_back(new EnemyShip(MAP_WIDTH / 2,(MAP_HEIGHT / 4) * 3,1));
     model->enemyBases.push_back(new EnemyBase(500,500));
 
 };
@@ -170,7 +172,7 @@ void Controller::updateGameWindow() {
         return;
     }
 
-//  calc & move player position
+    //  calc & move player position
     model->player->pos.x += model->player->direction[0] * model->player->playerspeed;
     model->player->pos.y += model->player->direction[1] * model->player->playerspeed;
     if(model->player->pos.x < 0) model->player->pos.x += MAP_WIDTH;
@@ -178,7 +180,7 @@ void Controller::updateGameWindow() {
     if(model->player->pos.y < 0)model->player->pos.y += MAP_HEIGHT;
     if(model->player->pos.y >= MAP_HEIGHT)model->player->pos.y -= MAP_HEIGHT;
 
-//  calc & move projectile position
+    //  calc & move projectile position
     for(ProjectilePlayer* ele: model->projectilesPlayer) {
         ele->pos.x = model->player->pos.x + ( ProjectilePlayer::projectileSpeed * ele->traveled * ele->direction.x);
         ele->pos.y = model->player->pos.y + ( ProjectilePlayer::projectileSpeed * ele->traveled * ele->direction.y);
@@ -188,6 +190,65 @@ void Controller::updateGameWindow() {
         if(ele->pos.y >= MAP_HEIGHT )ele->pos.y -= MAP_HEIGHT;
         ele->traveled++;
     }
+
+
+    //  calc & move enemyPink position
+    // calc direction
+
+    for(EnemyShip* ele: model->enemyShipsPink) {
+        ele->turned--;
+        if(ele->turned>0)break;
+        ele->turned=3;
+
+        double degL;
+        double degR;
+
+        double ux,uy;
+        double vx,vy;
+
+        int dir1=(ele->direction + 1)%8;
+        int dir2=(ele->direction - 1)%8;
+        if(dir2<0)dir2=7;
+
+        // set values
+        //enemy
+        ux=ele->directions[dir1][0];
+        uy=ele->directions[dir1][1];
+        //player
+        vx = model->player->direction[0];
+        vy = model->player->direction[1];
+        // calc degree
+        degL=     ((ux*vx)+(uy*vy))
+                / (sqrt(pow(ux,2)+pow(uy,2))
+                *  sqrt(pow(vx,2)+pow(vy,2))) ;
+        // set values
+        // new double vx,vy;
+
+        ux=ele->directions[dir2][0];
+        uy=ele->directions[dir2][1];
+        // calc degree
+        degR=     ((ux*vx)+(uy*vy))
+                  / (sqrt(pow(ux,2)+pow(uy,2))
+                     *  sqrt(pow(vx,2)+pow(vy,2))) ;
+
+        // compare direction
+        degL < degR ? ele->direction = dir1 : ele->direction = dir2;
+        printf("%d",degL);
+        printf("%d",degR);
+        printf("%d",ele->direction);
+    }
+
+    // apply movement
+
+    for(EnemyShip* ele: model->enemyShipsPink) {
+        ele->pos.x += ele->directions[ele->direction][0] * ele->speed;
+        ele->pos.y += ele->directions[ele->direction][1] * ele->speed;
+        if(ele->pos.x < 0) ele->pos.x += MAP_WIDTH;
+        if(ele->pos.x >= MAP_WIDTH)ele->pos.x -= MAP_WIDTH;
+        if(ele->pos.y < 0)ele->pos.y += MAP_HEIGHT;
+        if(ele->pos.y >= MAP_HEIGHT)ele->pos.y -= MAP_HEIGHT;
+    }
+
 
 //  base open close
     for(EnemyBase* ele: model->enemyBases) {
@@ -303,6 +364,12 @@ void Controller::updateGameWindow() {
     for(ProjectilePlayer* ele: model->projectilesPlayer) {
         view->render(ele->pos+ProjectilePlayer::drawOffset,ele->sprite);
     }
+
+    //render enemy
+    for(EnemyShip* ele: model->enemyShipsPink) {
+        view->render(ele->pos+EnemyShip::drawOffset,ele->sprites[ele->direction]);
+    }
+
 
 //    render player
     if(model->player->collision) {
@@ -424,6 +491,16 @@ void Controller::loadSprites() {
     getSprite(ProjectilePlayer::sprites[1], "../App_Data/projectile_bmp/projectile-4.bmp");
     getSprite(ProjectilePlayer::sprites[2], "../App_Data/projectile_bmp/projectile-3.bmp");
     getSprite(ProjectilePlayer::sprites[3], "../App_Data/projectile_bmp/projectile-2.bmp");
+
+    //enemyPink
+    getSprite(EnemyShip::sprites[0], "../App_Data/enemy_pink_bmp/enemy-pink-1.bmp");
+    getSprite(EnemyShip::sprites[1], "../App_Data/enemy_pink_bmp/enemy-pink-4.bmp");
+    getSprite(EnemyShip::sprites[2], "../App_Data/enemy_pink_bmp/enemy-pink-7.bmp");
+    getSprite(EnemyShip::sprites[3], "../App_Data/enemy_pink_bmp/enemy-pink-10.bmp");
+    getSprite(EnemyShip::sprites[4], "../App_Data/enemy_pink_bmp/enemy-pink-13.bmp");
+    getSprite(EnemyShip::sprites[5], "../App_Data/enemy_pink_bmp/enemy-pink-16.bmp");
+    getSprite(EnemyShip::sprites[6], "../App_Data/enemy_pink_bmp/enemy-pink-20.bmp");
+    getSprite(EnemyShip::sprites[7], "../App_Data/enemy_pink_bmp/enemy-pink-23.bmp");
 
     //alphabet
 
