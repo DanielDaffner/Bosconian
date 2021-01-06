@@ -170,7 +170,7 @@ void Controller::updateGameWindow() {
         return;
     }
 
-//  calc player position
+//  calc & move player position
     model->player->pos.x += model->player->direction[0] * model->player->playerspeed;
     model->player->pos.y += model->player->direction[1] * model->player->playerspeed;
     if(model->player->pos.x < 0) model->player->pos.x += MAP_WIDTH;
@@ -178,7 +178,7 @@ void Controller::updateGameWindow() {
     if(model->player->pos.y < 0)model->player->pos.y += MAP_HEIGHT;
     if(model->player->pos.y >= MAP_HEIGHT)model->player->pos.y -= MAP_HEIGHT;
 
-//  calc projectile position
+//  calc & move projectile position
     for(ProjectilePlayer* ele: model->projectilesPlayer) {
         ele->pos.x = model->player->pos.x + ( ProjectilePlayer::projectileSpeed * ele->traveled * ele->direction.x);
         ele->pos.y = model->player->pos.y + ( ProjectilePlayer::projectileSpeed * ele->traveled * ele->direction.y);
