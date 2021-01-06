@@ -14,7 +14,7 @@ public:
     static GLubyte* spritesExplosion[3];
     static Position2D drawOffset;
     static const int speed = 3;
-    double directions[8][2] = {{0,-1 },{-1,-1},{-1,0},{-1,1},{0,1},{ 1,1},{0,1},{1,-1}};
+    double directions[8][2] = {{0,-1 },{-1,-1},{-1,0},{-1,1},{0,1},{ 1,1},{1 ,0},{1,-1}};
     int direction;
     int turned = 3;
 };

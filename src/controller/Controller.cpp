@@ -253,14 +253,14 @@ void Controller::updateGameWindow() {
         // compare direction
 
         if(degL < degR && degL < degO){
-            ele->direction=dir2;
+            ele->direction=dir1;
         }
 
         if(degR < degL && degR < degO){
-            ele->direction=dir1;
+            ele->direction=dir2;
         }
         if(degL < degO){
-            ele->direction=dir2;
+            ele->direction=dir1;
         }
 
         printf("New Frame\n");
