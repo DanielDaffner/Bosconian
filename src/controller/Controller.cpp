@@ -96,61 +96,6 @@ void Controller::onStart(){
 
 void Controller::updateGameWindow() {
     // input
-//    int up = glfwGetKey(view->window, GLFW_KEY_UP);
-//    int left = glfwGetKey(view->window, GLFW_KEY_LEFT);
-//    int right = glfwGetKey(view->window, GLFW_KEY_RIGHT);
-//    int down = glfwGetKey(view->window, GLFW_KEY_DOWN);
-//    int space = glfwGetKey(view->window, GLFW_KEY_SPACE);
-//    int escape = glfwGetKey(view->window, GLFW_KEY_ESCAPE);
-    //set direction
-//    if (up == GLFW_PRESS) {
-//        model->player->direction[0] = 0;
-//        model->player->direction[1] = -1;
-//        model->player->spriteDirection = SpriteDirection::up;
-//        model->player->playerspeed = 4;
-//    }
-//    if (left == GLFW_PRESS) {
-//        model->player->direction[0] = -1;
-//        model->player->direction[1] = 0;
-//        model->player->spriteDirection = SpriteDirection::left;
-//        model->player->playerspeed = 4;
-//    }
-//    if (right == GLFW_PRESS) {
-//        model->player->direction[0] = 1;
-//        model->player->direction[1] = 0;
-//        model->player->spriteDirection = SpriteDirection::right;
-//        model->player->playerspeed = 4;
-//    }
-//    if (down == GLFW_PRESS) {
-//        model->player->direction[0] = 0;
-//        model->player->direction[1] = 1;
-//        model->player->spriteDirection = SpriteDirection::down;
-//        model->player->playerspeed = 4;
-//    }
-//    if (up == GLFW_PRESS && left == GLFW_PRESS) {
-//        model->player->direction[0] = -1;
-//        model->player->direction[1] = -1;
-//        model->player->spriteDirection = SpriteDirection::upleft;
-//        model->player->playerspeed = 3;
-//    }
-//    if (up == GLFW_PRESS && right == GLFW_PRESS) {
-//        model->player->direction[0] = 1;
-//        model->player->direction[1] = -1;
-//        model->player->spriteDirection = SpriteDirection::upright;
-//        model->player->playerspeed = 3;
-//    }
-//    if (down == GLFW_PRESS && left == GLFW_PRESS) {
-//        model->player->direction[0] = -1;
-//        model->player->direction[1] = 1;
-//        model->player->spriteDirection = SpriteDirection::downleft;
-//        model->player->playerspeed = 3;
-//    }
-//    if (down == GLFW_PRESS && right == GLFW_PRESS) {
-//        model->player->direction[0] = 1;
-//        model->player->direction[1] = 1;
-//        model->player->spriteDirection = SpriteDirection::downright;
-//        model->player->playerspeed = 3;
-//    }
     int up = glfwGetKey(view->window, GLFW_KEY_W);
     int left = glfwGetKey(view->window, GLFW_KEY_A);
     int right = glfwGetKey(view->window, GLFW_KEY_D);
@@ -232,6 +177,7 @@ void Controller::updateGameWindow() {
     if(model->player->pos.x >= MAP_WIDTH)model->player->pos.x -= MAP_WIDTH;
     if(model->player->pos.y < 0)model->player->pos.y += MAP_HEIGHT;
     if(model->player->pos.y >= MAP_HEIGHT)model->player->pos.y -= MAP_HEIGHT;
+
 //  calc projectile position
     for(ProjectilePlayer* ele: model->projectilesPlayer) {
         ele->pos.x = model->player->pos.x + ( ProjectilePlayer::projectileSpeed * ele->traveled * ele->direction.x);
@@ -242,6 +188,7 @@ void Controller::updateGameWindow() {
         if(ele->pos.y >= MAP_HEIGHT )ele->pos.y -= MAP_HEIGHT;
         ele->traveled++;
     }
+
 //  base open close
     for(EnemyBase* ele: model->enemyBases) {
         if(ele->isOpen) {
@@ -256,10 +203,13 @@ void Controller::updateGameWindow() {
             }
         }
     }
+
 //  move Frame
     view->moveFrame();
+
 //  prepare new frame
     view->prepareFrame();
+
 //    render background
     for(BackgroundPixel* ele: model->pixelarr[(count/30)]) {
         if(move){
@@ -300,6 +250,7 @@ void Controller::updateGameWindow() {
         } else
             iterator++;
     }
+
 //    detect projectile player
     bool hit = false;
     for(auto iterator = model->projectilesPlayer.begin(); iterator!= model->projectilesPlayer.end();) {
@@ -347,13 +298,15 @@ void Controller::updateGameWindow() {
     for(Mine* ele: model->mines) {
         view->render(ele->pos+Mine::drawOffset,Mine::sprites);
     }
+
 //    render projectiles from player
     for(ProjectilePlayer* ele: model->projectilesPlayer) {
         view->render(ele->pos+ProjectilePlayer::drawOffset,ele->sprite);
     }
+
 //    render player
     if(model->player->collision) {
-        view->render(model->player->pos + Player::drawOffset,
+        view->render(model->player->pos + Player::drawOffset + Position2D{-32,32},
                      Player::spritesExplosion[model->player->spriteLight/10]);
         if(model->player->spriteLight++ == 29) {
             if(model->player->lifes == 0) {
@@ -378,6 +331,7 @@ void Controller::updateGameWindow() {
             model->player->spriteLight = (model->player->spriteLight + 1) % 2;
         }
     }
+
 //    render Base
     for(EnemyBase* ele: model->enemyBases) {
         if(ele->isOpen) {
@@ -405,7 +359,7 @@ void Controller::updateGameWindow() {
     glRasterPos2d(MAP_POS_X+x,MAP_POS_Y-400+y);
     glDrawPixels(1,1,GL_RGBA,GL_UNSIGNED_BYTE,testpix);
 
-//    testviewpos
+//    testviewpos todo
     x = view->viewportpos[0] /10;
     y = view->viewportpos[1] /13;
     glRasterPos2d(MAP_POS_X+x,MAP_POS_Y-400+y);
@@ -422,9 +376,11 @@ void Controller::updateGameWindow() {
     y = view->viewportpos[3] /13;
     glRasterPos2d(MAP_POS_X+x,MAP_POS_Y-400+y);
     glDrawPixels(1,1,GL_RGBA,GL_UNSIGNED_BYTE,testpix);
+
 //    draw round
     Position2D roundpos = {ROUND_POS_X,ROUND_POS_Y};
     view->drawString(roundpos,"ROUND AB");
+
 //    draw highscore
     Position2D highscorePos = {VIEW_WIDTH-(8*32),0+8+32};
     view->drawString(highscorePos,"HI SCORE");
