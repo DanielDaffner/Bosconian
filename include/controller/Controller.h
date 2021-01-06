@@ -20,6 +20,7 @@ public:
     void onStart();
     void updateGameWindow();
     void loadSprites();
+    void calcRelativPos(Position2D* pos, Position2D* retPos);
     int getSprite(GLubyte* &dst, char* filepath);
 };
 #endif //BOSCONIAN_CONTROLLER_H

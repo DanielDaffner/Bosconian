@@ -596,3 +596,48 @@ int Controller::getSprite(GLubyte* &dst, char* filepath) {
     return 0;
 }
 
+void Controller::calcRelativPos(Position2D* pos, Position2D* retPos) {
+
+    if(view->viewportpos[0] > view->viewportpos[2] || view->viewportpos[1] > view->viewportpos[3]) {
+        if(view->viewportpos[0] > view->viewportpos[2] && view->viewportpos[1] > view->viewportpos[3]) {
+            //4 teile
+            if(view->viewportpos[0] <= pos->x && view->viewportpos[1] <= pos->y) {
+                retPos->x = pos->x - view->viewportpos[0];
+                retPos->y = pos->y - view->viewportpos[1];
+            } else
+            if(view->viewportpos[0] <= pos->x && view->viewportpos[3] >= pos->y) {
+                retPos->x = pos->x - view->viewportpos[0];
+                retPos->y = pos->y - view->viewportpos[3] + GAME_HEIGHT;
+            } else
+            if(view->viewportpos[2] >= pos->x && view->viewportpos[1] <= pos->y) {
+                retPos->x = pos->x - view->viewportpos[2] + GAME_WIDTH;
+                retPos->y = pos->y - view->viewportpos[1];
+            } else
+            if(view->viewportpos[2] >= pos->x && view->viewportpos[3] >= pos->y) {
+                retPos->x = pos->x - view->viewportpos[2] + GAME_WIDTH;
+                retPos->y = pos->y - view->viewportpos[3] + GAME_HEIGHT;
+            } else return;
+        } else if(view->viewportpos[0] > view->viewportpos[2]) {
+            //2 teile links rechts
+            if(view->viewportpos[0] <= pos->x) {
+                retPos->x = pos->x - view->viewportpos[0];
+                retPos->y = pos->y - view->viewportpos[1];
+            } else if(view->viewportpos[2] >= pos->x ) {
+                retPos->x = pos->x - view->viewportpos[2] + GAME_WIDTH;
+                retPos->y = pos->y - view->viewportpos[1];
+            } else return;
+        } else {
+            //2 teile oben unten
+            if(view->viewportpos[1] <= pos->y) {
+                retPos->x = pos->x - view->viewportpos[0];
+                retPos->y = pos->y - view->viewportpos[1];
+            } else if(view->viewportpos[3] >= pos->y) {
+                retPos->x = pos->x - view->viewportpos[0];
+                retPos->y = pos->y - view->viewportpos[3] + GAME_HEIGHT;
+            } else return;
+        }
+    } else {
+        retPos->x = pos->x - view->viewportpos[0];
+        retPos->y = pos->y - view->viewportpos[1];
+    }
+}
