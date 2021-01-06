@@ -194,48 +194,82 @@ void Controller::updateGameWindow() {
 
     //  calc & move enemyPink position
     // calc direction
+    double degL, degR, degO;
+
+    double ux=2;
+    double uy=17;
+    double vx=0;double vy=0;
 
     for(EnemyShip* ele: model->enemyShipsPink) {
         ele->turned--;
         if(ele->turned>0)break;
         ele->turned=3;
 
-        double degL;
-        double degR;
-
-        double ux,uy;
-        double vx,vy;
 
         int dir1=(ele->direction + 1)%8;
         int dir2=(ele->direction - 1)%8;
         if(dir2<0)dir2=7;
+        // set values
+        //current dir
+        int peter = ele->direction;
+        ux = ele->directions[peter][0];
+        uy = ele->directions[peter][1];
+
+
+        //player
+        vx = model->player->pos.x - ele->pos.x;
+        vy = model->player->pos.y - ele->pos.y;
+        // calc degree
+        degO=     cos(((ux*vx)+(uy*vy))
+                  / (sqrt(pow(ux,2)+pow(uy,2))
+                  *  sqrt(pow(vx,2)+pow(vy,2))))*180/ (2*acos(0.0));
 
         // set values
         //enemy
         ux=ele->directions[dir1][0];
         uy=ele->directions[dir1][1];
-        //player
-        vx = model->player->direction[0];
-        vy = model->player->direction[1];
+        printf("%f",ux);
+        printf("%f\n",uy);
+        printf("%f",ele->directions[dir1][0]);
+        printf("%f\n",ele->directions[dir1][1]);
         // calc degree
-        degL=     ((ux*vx)+(uy*vy))
+        degL=    cos( ((ux*vx)+(uy*vy))
                 / (sqrt(pow(ux,2)+pow(uy,2))
-                *  sqrt(pow(vx,2)+pow(vy,2))) ;
+                *  sqrt(pow(vx,2)+pow(vy,2)))) *180/ (2*acos(0.0));
+
         // set values
         // new double vx,vy;
-
         ux=ele->directions[dir2][0];
         uy=ele->directions[dir2][1];
+        printf("%f",ux);
+        printf("%f\n",uy);
+        printf("%f",ele->directions[dir2][0]);
+        printf("%f\n",ele->directions[dir2][1]);
         // calc degree
-        degR=     ((ux*vx)+(uy*vy))
+        degR=      cos( ((ux*vx)+(uy*vy))
                   / (sqrt(pow(ux,2)+pow(uy,2))
-                     *  sqrt(pow(vx,2)+pow(vy,2))) ;
+                  *  sqrt(pow(vx,2)+pow(vy,2)))) *180/ (2*acos(0.0));
 
         // compare direction
-        degL < degR ? ele->direction = dir1 : ele->direction = dir2;
-        printf("%d",degL);
-        printf("%d",degR);
-        printf("%d",ele->direction);
+
+        if(degL < degR && degL < degO){
+            ele->direction=dir2;
+        }
+
+        if(degR < degL && degR < degO){
+            ele->direction=dir1;
+        }
+        if(degL < degO){
+            ele->direction=dir2;
+        }
+
+        printf("New Frame\n");
+        printf("dir1 %d\n",dir1);
+        printf("dir2 %d\n",dir2);
+        printf("degO %f\n",degO);
+        printf("degL %f\n",degL);
+        printf("degR %f\n",degR);
+        printf("new Direction %d\n\n",ele->direction);
     }
 
     // apply movement
@@ -499,8 +533,8 @@ void Controller::loadSprites() {
     getSprite(EnemyShip::sprites[3], "../App_Data/enemy_pink_bmp/enemy-pink-10.bmp");
     getSprite(EnemyShip::sprites[4], "../App_Data/enemy_pink_bmp/enemy-pink-13.bmp");
     getSprite(EnemyShip::sprites[5], "../App_Data/enemy_pink_bmp/enemy-pink-16.bmp");
-    getSprite(EnemyShip::sprites[6], "../App_Data/enemy_pink_bmp/enemy-pink-20.bmp");
-    getSprite(EnemyShip::sprites[7], "../App_Data/enemy_pink_bmp/enemy-pink-23.bmp");
+    getSprite(EnemyShip::sprites[6], "../App_Data/enemy_pink_bmp/enemy-pink-19.bmp");
+    getSprite(EnemyShip::sprites[7], "../App_Data/enemy_pink_bmp/enemy-pink-22.bmp");
 
     //alphabet
 
