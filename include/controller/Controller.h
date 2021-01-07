@@ -21,5 +21,6 @@ public:
     void updateGameWindow();
     void loadSprites();
     int getSprite(GLubyte* &dst, char* filepath);
+    int getSprite2(GLubyte* &dst, char* filepath);
 };
 #endif //BOSCONIAN_CONTROLLER_H

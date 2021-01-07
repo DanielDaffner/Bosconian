@@ -118,13 +118,13 @@ void View::render(Position2D pos, GLubyte *bitmap) {
         y = pos.y - viewportpos[1];
     }
     glRasterPos2i(x,y);
-    glDrawPixels(*((uint32_t *) (bitmap + 18)), *((uint32_t *) (bitmap + 22)), GL_RGBA, GL_UNSIGNED_BYTE,
-                 bitmap + *((uint32_t *) (bitmap + 10)));
+    glDrawPixels(*bitmap, *(bitmap + 1), GL_RGBA, GL_UNSIGNED_BYTE,
+                 bitmap + 2);
 }
 
 void View::renderGameInfos(Position2D pos, GLubyte *bitmap) {
     glRasterPos2d(pos.x, pos.y);
-    glDrawPixels(*((uint32_t*)(bitmap+18)),*((uint32_t*)(bitmap+22)),GL_RGBA,GL_UNSIGNED_BYTE,bitmap+*((uint32_t*)(bitmap+10)));
+    glDrawPixels(*((uint8_t*)(bitmap)),*((uint8_t*)(bitmap+1)),GL_RGBA,GL_UNSIGNED_BYTE,bitmap+2);
 }
 
 void View::renderStars(Position2D pos, GLubyte *bitmap) {
@@ -139,132 +139,132 @@ void View::drawString(Position2D pos,char *input) {
        switch(*input){
            case 'A':
                glRasterPos2d(x, y);
-               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[0]+138);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[0]+2);
                x +=32;
                break;
            case 'B':
                glRasterPos2d(x, y);
-               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[1]+138);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[1]+2);
                x +=32;
                break;
            case 'C':
                glRasterPos2d(x, y);
-               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[2]+138);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[2]+2);
                x +=32;
                break;
            case 'D':
                glRasterPos2d(x, y);
-               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[3]+138);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[3]+2);
                x +=32;
                break;
            case 'E':
                glRasterPos2d(x, y);
-               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[4]+138);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[4]+2);
                x +=32;
                break;
            case 'F':
                glRasterPos2d(x, y);
-               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[5]+138);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[5]+2);
                x +=32;
                break;
            case 'G':
                glRasterPos2d(x, y);
-               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[6]+138);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[6]+2);
                x +=32;
                break;
            case 'H':
                glRasterPos2d(x, y);
-               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[7]+138);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[7]+2);
                x +=32;
                break;
            case 'I':
                glRasterPos2d(x, y);
-               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[8]+138);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[8]+2);
                x +=32;
                break;
            case 'J':
                glRasterPos2d(x, y);
-               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[9]+138);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[9]+2);
                x +=32;
                break;
            case 'K':
                glRasterPos2d(x, y);
-               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[10]+138);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[10]+2);
                x +=32;
                break;
            case 'L':
                glRasterPos2d(x, y);
-               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[11]+138);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[11]+2);
                x +=32;
                break;
            case 'M':
                glRasterPos2d(x, y);
-               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[12]+138);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[12]+2);
                x +=32;
                break;
            case 'N':
                glRasterPos2d(x, y);
-               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[13]+138);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[13]+2);
                x +=32;
                break;
            case 'O':
                glRasterPos2d(x, y);
-               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[14]+138);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[14]+2);
                x +=32;
                break;
            case 'P':
                glRasterPos2d(x, y);
-               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[15]+138);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[15]+2);
                x +=32;
                break;
            case 'Q':
                glRasterPos2d(x, y);
-               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[16]+138);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[16]+2);
                x +=32;
                break;
            case 'R':
                glRasterPos2d(x, y);
-               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[17]+138);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[17]+2);
                x +=32;
                break;
            case 'S':
                glRasterPos2d(x, y);
-               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[18]+138);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[18]+2);
                x +=32;
                break;
            case 'T':
                glRasterPos2d(x, y);
-               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[19]+138);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[19]+2);
                x +=32;
                break;
            case 'U':
                glRasterPos2d(x, y);
-               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[20]+138);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[20]+2);
                x +=32;
                break;
            case 'V':
                glRasterPos2d(x, y);
-               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[21]+138);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[21]+2);
                x +=32;
                break;
            case 'W':
                glRasterPos2d(x, y);
-               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[22]+138);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[22]+2);
                x +=32;
                break;
            case 'X':
                glRasterPos2d(x, y);
-               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[23]+138);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[23]+2);
                x +=32;
                break;
            case 'Y':
                glRasterPos2d(x, y);
-               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[24]+138);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[24]+2);
                x +=32;
                break;
            case 'Z':
                glRasterPos2d(x, y);
-               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[25]+138);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[25]+2);
                x +=32;
                break;
            default :
