@@ -108,49 +108,41 @@ void Controller::updateGameWindow() {
         model->player->direction[0] = 0;
         model->player->direction[1] = -1;
         model->player->spriteDirection = SpriteDirection::up;
-        model->player->playerspeed = 4;
     }
     if (left == GLFW_PRESS) {
         model->player->direction[0] = -1;
         model->player->direction[1] = 0;
         model->player->spriteDirection = SpriteDirection::left;
-        model->player->playerspeed = 4;
     }
     if (right == GLFW_PRESS) {
         model->player->direction[0] = 1;
         model->player->direction[1] = 0;
         model->player->spriteDirection = SpriteDirection::right;
-        model->player->playerspeed = 4;
     }
     if (down == GLFW_PRESS) {
         model->player->direction[0] = 0;
         model->player->direction[1] = 1;
         model->player->spriteDirection = SpriteDirection::down;
-        model->player->playerspeed = 4;
     }
     if (up == GLFW_PRESS && left == GLFW_PRESS) {
         model->player->direction[0] = -1;
         model->player->direction[1] = -1;
         model->player->spriteDirection = SpriteDirection::upleft;
-        model->player->playerspeed = 3;
     }
     if (up == GLFW_PRESS && right == GLFW_PRESS) {
         model->player->direction[0] = 1;
         model->player->direction[1] = -1;
         model->player->spriteDirection = SpriteDirection::upright;
-        model->player->playerspeed = 3;
     }
     if (down == GLFW_PRESS && left == GLFW_PRESS) {
         model->player->direction[0] = -1;
         model->player->direction[1] = 1;
         model->player->spriteDirection = SpriteDirection::downleft;
-        model->player->playerspeed = 3;
     }
     if (down == GLFW_PRESS && right == GLFW_PRESS) {
         model->player->direction[0] = 1;
         model->player->direction[1] = 1;
         model->player->spriteDirection = SpriteDirection::downright;
-        model->player->playerspeed = 3;
     }
 
     firecd--;
@@ -173,8 +165,9 @@ void Controller::updateGameWindow() {
     }
 
     //  calc & move player position
-    model->player->pos.x += model->player->direction[0] * model->player->playerspeed;
-    model->player->pos.y += model->player->direction[1] * model->player->playerspeed;
+    double playerDirectionVectorLenght = sqrt((pow(model->player->direction[0],2)+pow(model->player->direction[1],2)));
+    model->player->pos.x += (model->player->direction[0] / playerDirectionVectorLenght) * model->player->playerspeed;
+    model->player->pos.y += (model->player->direction[1] / playerDirectionVectorLenght) * model->player->playerspeed;
     if(model->player->pos.x < 0) model->player->pos.x += MAP_WIDTH;
     if(model->player->pos.x >= MAP_WIDTH)model->player->pos.x -= MAP_WIDTH;
     if(model->player->pos.y < 0)model->player->pos.y += MAP_HEIGHT;
@@ -206,9 +199,9 @@ void Controller::updateGameWindow() {
         ele->turned=3;
 
 
-        int dir1=(ele->direction + 1)%8;
+        int dir1=(ele->direction + 1)%24;
         int dir2=(ele->direction - 1);
-        if(dir2<0)dir2=7;
+        if(dir2<0)dir2=24;
         // set values
         //current dir
         int peter = ele->direction;
@@ -273,10 +266,11 @@ void Controller::updateGameWindow() {
     }
 
     // apply movement
-
+    double normalize = 1;
     for(EnemyShip* ele: model->enemyShipsPink) {
-        ele->pos.x += ele->directions[ele->direction][0] * ele->speed;
-        ele->pos.y += ele->directions[ele->direction][1] * ele->speed;
+        normalize = sqrt((pow(ele->directions[ele->direction][0],2)+pow(ele->directions[ele->direction][1],2)));
+        ele->pos.x += (ele->directions[ele->direction][0] / normalize) * ele->speed;
+        ele->pos.y += (ele->directions[ele->direction][1] / normalize) * ele->speed;
         if(ele->pos.x < 0) ele->pos.x += MAP_WIDTH;
         if(ele->pos.x >= MAP_WIDTH)ele->pos.x -= MAP_WIDTH;
         if(ele->pos.y < 0)ele->pos.y += MAP_HEIGHT;
@@ -531,13 +525,29 @@ void Controller::loadSprites() {
 
     //enemyPink
     getSprite(EnemyShip::sprites[0], "../App_Data/enemy_pink_final/enemy-pink-1.bmp");
-    getSprite(EnemyShip::sprites[1], "../App_Data/enemy_pink_final/enemy-pink-4.bmp");
-    getSprite(EnemyShip::sprites[2], "../App_Data/enemy_pink_final/enemy-pink-7.bmp");
-    getSprite(EnemyShip::sprites[3], "../App_Data/enemy_pink_final/enemy-pink-10.bmp");
-    getSprite(EnemyShip::sprites[4], "../App_Data/enemy_pink_final/enemy-pink-13.bmp");
-    getSprite(EnemyShip::sprites[5], "../App_Data/enemy_pink_final/enemy-pink-16.bmp");
-    getSprite(EnemyShip::sprites[6], "../App_Data/enemy_pink_final/enemy-pink-19.bmp");
-    getSprite(EnemyShip::sprites[7], "../App_Data/enemy_pink_final/enemy-pink-22.bmp");
+    getSprite(EnemyShip::sprites[1], "../App_Data/enemy_pink_final/enemy-pink-2.bmp");
+    getSprite(EnemyShip::sprites[2], "../App_Data/enemy_pink_final/enemy-pink-3.bmp");
+    getSprite(EnemyShip::sprites[3], "../App_Data/enemy_pink_final/enemy-pink-4.bmp");
+    getSprite(EnemyShip::sprites[4], "../App_Data/enemy_pink_final/enemy-pink-5.bmp");
+    getSprite(EnemyShip::sprites[5], "../App_Data/enemy_pink_final/enemy-pink-6.bmp");
+    getSprite(EnemyShip::sprites[6], "../App_Data/enemy_pink_final/enemy-pink-7.bmp");
+    getSprite(EnemyShip::sprites[7], "../App_Data/enemy_pink_final/enemy-pink-8.bmp");
+    getSprite(EnemyShip::sprites[8], "../App_Data/enemy_pink_final/enemy-pink-9.bmp");
+    getSprite(EnemyShip::sprites[9], "../App_Data/enemy_pink_final/enemy-pink-10.bmp");
+    getSprite(EnemyShip::sprites[10], "../App_Data/enemy_pink_final/enemy-pink-11.bmp");
+    getSprite(EnemyShip::sprites[11], "../App_Data/enemy_pink_final/enemy-pink-12.bmp");
+    getSprite(EnemyShip::sprites[12], "../App_Data/enemy_pink_final/enemy-pink-13.bmp");
+    getSprite(EnemyShip::sprites[13], "../App_Data/enemy_pink_final/enemy-pink-14.bmp");
+    getSprite(EnemyShip::sprites[14], "../App_Data/enemy_pink_final/enemy-pink-15.bmp");
+    getSprite(EnemyShip::sprites[15], "../App_Data/enemy_pink_final/enemy-pink-16.bmp");
+    getSprite(EnemyShip::sprites[16], "../App_Data/enemy_pink_final/enemy-pink-17.bmp");
+    getSprite(EnemyShip::sprites[17], "../App_Data/enemy_pink_final/enemy-pink-18.bmp");
+    getSprite(EnemyShip::sprites[18], "../App_Data/enemy_pink_final/enemy-pink-19.bmp");
+    getSprite(EnemyShip::sprites[19], "../App_Data/enemy_pink_final/enemy-pink-20.bmp");
+    getSprite(EnemyShip::sprites[20], "../App_Data/enemy_pink_final/enemy-pink-21.bmp");
+    getSprite(EnemyShip::sprites[21], "../App_Data/enemy_pink_final/enemy-pink-22.bmp");
+    getSprite(EnemyShip::sprites[22], "../App_Data/enemy_pink_final/enemy-pink-23.bmp");
+    getSprite(EnemyShip::sprites[23], "../App_Data/enemy_pink_final/enemy-pink-24.bmp");
 
     //alphabet
 

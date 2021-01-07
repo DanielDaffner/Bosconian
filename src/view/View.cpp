@@ -43,10 +43,14 @@ void View::prepareFrame() {
 }
 
 void View::moveFrame() {
-    viewportpos[0] +=model->player->direction[0] * model->player->playerspeed;
-    viewportpos[1] +=model->player->direction[1] * model->player->playerspeed;
-    viewportpos[2] +=model->player->direction[0] * model->player->playerspeed;
-    viewportpos[3] +=model->player->direction[1] * model->player->playerspeed;
+//    viewportpos[0] +=model->player->direction[0] * model->player->playerspeed;
+//    viewportpos[1] +=model->player->direction[1] * model->player->playerspeed;
+//    viewportpos[2] +=model->player->direction[0] * model->player->playerspeed;
+//    viewportpos[3] +=model->player->direction[1] * model->player->playerspeed;
+    viewportpos[0] = model->player->pos.x - (GAME_WIDTH/2);
+    viewportpos[1] = model->player->pos.y - (GAME_HEIGHT/2);
+    viewportpos[2] = model->player->pos.x + (GAME_WIDTH/2);
+    viewportpos[3] = model->player->pos.y + (GAME_HEIGHT/2);
     if(viewportpos[0] < 0) viewportpos[0] += MAP_WIDTH;
     if(viewportpos[0] >= MAP_WIDTH)viewportpos[0] -= MAP_WIDTH;
     if(viewportpos[1] < 0)viewportpos[1] += MAP_HEIGHT;
