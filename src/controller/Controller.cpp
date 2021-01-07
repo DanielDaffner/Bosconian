@@ -175,6 +175,8 @@ void Controller::updateGameWindow() {
     //  calc & move player position
     model->player->pos.x += model->player->direction[0] * model->player->playerspeed;
     model->player->pos.y += model->player->direction[1] * model->player->playerspeed;
+
+    // here
     if(model->player->pos.x < 0) model->player->pos.x += MAP_WIDTH;
     if(model->player->pos.x >= MAP_WIDTH)model->player->pos.x -= MAP_WIDTH;
     if(model->player->pos.y < 0)model->player->pos.y += MAP_HEIGHT;
@@ -193,83 +195,147 @@ void Controller::updateGameWindow() {
 
 
     //  calc & move enemyPink position
-    // calc direction
+    //  calc direction
     double degL, degR, degO;
 
-    double ux=2;
-    double uy=17;
-    double vx=0;double vy=0;
+    double ux[3] = {};
+    double uy[3] = {};
+    double vx = {};
+    double vy = {};
 
     for(EnemyShip* ele: model->enemyShipsPink) {
+
+        //turn every 3 ticks
+
         ele->turned--;
         if(ele->turned>0)break;
         ele->turned=3;
 
+        //possible directions for enemyShip
 
+        int dir0=ele->direction;
         int dir1=(ele->direction + 1)%8;
         int dir2=(ele->direction - 1);
+
         if(dir2<0)dir2=7;
+
+        int dir[3] = {dir0,dir1,dir2};
+
         // set values
-        //current dir
-        int peter = ele->direction;
-        ux = ele->directions[peter][0];
-        uy = ele->directions[peter][1];
+        //enemy dir
+        for(int i = 0; i<3;i++){
+        ux[i]= ele->directions[dir[i]][0];
+        uy[i]= ele->directions[dir[i]][1];
+        }
 
 
-        //player
-        vx = model->player->pos.x - ele->pos.x;
-        vy = model->player->pos.y - ele->pos.y;
+        //get map quarter
+        int qX=0;
+        int qY=0;
+
+        if(ele->pos.x>MAP_WIDTH/2){
+            qX=1;
+        }
+        if(ele->pos.y>MAP_HEIGHT/2){
+            qY=1;
+        }
+        //4 virtual ships
+        int offsets[4][3][2] = { {{-MAP_WIDTH,-MAP_HEIGHT},{0,-MAP_HEIGHT},{-MAP_WIDTH,0}},
+                                 {{0,-MAP_HEIGHT},{MAP_WIDTH,-MAP_HEIGHT},{MAP_WIDTH,0}},
+                                 {{-MAP_WIDTH,0},{-MAP_WIDTH,MAP_HEIGHT},{0,MAP_HEIGHT}},
+                                 {{MAP_WIDTH,0},{MAP_WIDTH,MAP_HEIGHT},{0,MAP_HEIGHT}}};
+
+        vx = (model->player->pos.x) - ele->pos.x;
+        vy = (model->player->pos.y) - ele->pos.y;
+
+        if(qX==0&&qY==0){
+           // printf("quarter 1\n");
+            for(int i = 1; i <4;i++) {
+
+
+                double tmpX =  (model->player->pos.x + offsets[0][i-1][0]) - ele->pos.x;
+                double tmpY = (model->player->pos.y + offsets[0][i-1][1]) - ele->pos.y;
+
+                double vecOld = ele->pos.x*vx+ele->pos.y*vy;
+                double vecNew = ele->pos.x*tmpX+ele->pos.y*tmpY;
+
+                if(abs(vecNew)<abs(vecOld) ) {
+                    vx = tmpX;
+                    vy = tmpY;
+                   // printf("ship %d\n",i);
+                }
+
+            }
+        }
+        if(qX==1&&qY==0){
+
+            for(int i = 1; i <4;i++) {
+                double tmpX =  (model->player->pos.x + offsets[1][i-1][0]) - ele->pos.x;
+                double tmpY = (model->player->pos.y + offsets[1][i-1][1]) - ele->pos.y;
+                double vecOld = ele->pos.x*vx+ele->pos.y*vy;
+                double vecNew = ele->pos.x*tmpX+ele->pos.y*tmpY;
+
+                if(abs(vecNew)<abs(vecOld) ) {
+                    vx = tmpX;
+                    vy = tmpY;
+                 //   printf("ship %d\n",i);
+                }
+
+            }
+        }
+        if(qX==0&&qY==1){
+
+            for(int i = 1; i <4;i++) {
+                double tmpX =  (model->player->pos.x + offsets[2][i-1][0]) - ele->pos.x;
+                double tmpY =(model->player->pos.y + offsets[2][i-1][1]) - ele->pos.y;
+                double vecOld = ele->pos.x*vx+ele->pos.y*vy;
+                double vecNew = ele->pos.x*tmpX+ele->pos.y*tmpY;
+
+                if(abs(vecNew)<abs(vecOld) ) {
+                    vx = tmpX;
+                    vy = tmpY;
+
+                }
+
+            }
+        }
+        if(qX==1&&qY==1){
+           // printf("quarter 4\n");
+            for(int i = 1; i <4;i++) {
+
+                double tmpX = (model->player->pos.x + offsets[3][i-1][0]) - ele->pos.x;
+                double tmpY = (model->player->pos.y + offsets[3][i-1][1]) - ele->pos.y;
+                double vecOld = ele->pos.x*vx+ele->pos.y*vy;
+                double vecNew = ele->pos.x*tmpX+ele->pos.y*tmpY;
+
+                if(abs(vecNew)<abs(vecOld) ) {
+                vx = tmpX;
+                vy = tmpY;
+                  //  printf("ship %d\n",i);
+                }
+
+            }
+        }
+
         // calc degree
-        degO=     acos(((ux*vx)+(uy*vy))
-                  / (sqrt(pow(ux,2)+pow(uy,2))
+        double deg[3];
+        for(int j= 0; j < 3; j++){
+
+        deg[j]=     acos(((ux[j]*vx)+(uy[j]*vy))
+                  / (sqrt(pow(ux[j],2)+pow(uy[j],2))
                   *  sqrt(pow(vx,2)+pow(vy,2))))*180/ (2*acos(0.0));
+        }
 
-        // set values
-        //enemy
-        ux=ele->directions[dir1][0];
-        uy=ele->directions[dir1][1];
-        printf("%f",ux);
-        printf("%f\n",uy);
-        printf("%f",ele->directions[dir1][0]);
-        printf("%f\n",ele->directions[dir1][1]);
-        // calc degree
-        degL=    acos( ((ux*vx)+(uy*vy))
-                / (sqrt(pow(ux,2)+pow(uy,2))
-                *  sqrt(pow(vx,2)+pow(vy,2)))) *180/ (2*acos(0.0));
-
-        // set values
-        // new double vx,vy;
-        ux=ele->directions[dir2][0];
-        uy=ele->directions[dir2][1];
-        printf("%f",ux);
-        printf("%f\n",uy);
-        printf("%f",ele->directions[dir2][0]);
-        printf("%f\n",ele->directions[dir2][1]);
-        // calc degree
-        degR=      acos( ((ux*vx)+(uy*vy))
-                  / (sqrt(pow(ux,2)+pow(uy,2))
-                  *  sqrt(pow(vx,2)+pow(vy,2)))) *180/ (2*acos(0.0));
-
-        // compare direction
-
-        if(degL < degR && degL < degO){
+        if(deg[1] < deg[2] && deg[1] < deg[0]){
             ele->direction=dir1;
         }
 
-        if(degR < degL && degR < degO){
+        if(deg[2] < deg[1] && deg[2] < deg[0]){
             ele->direction=dir2;
         }
-        else if(degL < degO){
+        else if(deg[1] < deg[0]){
             ele->direction=dir1;
         }
-
-        printf("New Frame\n");
-        printf("dir1 %d\n",dir1);
-        printf("dir2 %d\n",dir2);
-        printf("degO %f\n",degO);
-        printf("degL %f\n",degL);
-        printf("degR %f\n",degR);
-        printf("new Direction %d\n\n",ele->direction);
     }
 
     // apply movement
