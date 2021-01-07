@@ -256,10 +256,10 @@ void Controller::updateGameWindow() {
                 double tmpX =  (model->player->pos.x + offsets[0][i-1][0]) - ele->pos.x;
                 double tmpY = (model->player->pos.y + offsets[0][i-1][1]) - ele->pos.y;
 
-                double vecOld = ele->pos.x*vx+ele->pos.y*vy;
-                double vecNew = ele->pos.x*tmpX+ele->pos.y*tmpY;
+                double vecOld = sqrt(pow(vx,2)+pow(vy,2));
+                double vecNew = sqrt(pow(tmpX,2)+pow(tmpY,2));
 
-                if(abs(vecNew)<abs(vecOld) ) {
+                if(vecNew<vecOld ) {
                     vx = tmpX;
                     vy = tmpY;
                    // printf("ship %d\n",i);
@@ -272,8 +272,8 @@ void Controller::updateGameWindow() {
             for(int i = 1; i <4;i++) {
                 double tmpX =  (model->player->pos.x + offsets[1][i-1][0]) - ele->pos.x;
                 double tmpY = (model->player->pos.y + offsets[1][i-1][1]) - ele->pos.y;
-                double vecOld = ele->pos.x*vx+ele->pos.y*vy;
-                double vecNew = ele->pos.x*tmpX+ele->pos.y*tmpY;
+                double vecOld = sqrt(pow(vx,2)+pow(vy,2));
+                double vecNew = sqrt(pow(tmpX,2)+pow(tmpY,2));
 
                 if(abs(vecNew)<abs(vecOld) ) {
                     vx = tmpX;
@@ -288,8 +288,8 @@ void Controller::updateGameWindow() {
             for(int i = 1; i <4;i++) {
                 double tmpX =  (model->player->pos.x + offsets[2][i-1][0]) - ele->pos.x;
                 double tmpY =(model->player->pos.y + offsets[2][i-1][1]) - ele->pos.y;
-                double vecOld = ele->pos.x*vx+ele->pos.y*vy;
-                double vecNew = ele->pos.x*tmpX+ele->pos.y*tmpY;
+                double vecOld = sqrt(pow(vx,2)+pow(vy,2));
+                double vecNew = sqrt(pow(tmpX,2)+pow(tmpY,2));
 
                 if(abs(vecNew)<abs(vecOld) ) {
                     vx = tmpX;
@@ -305,8 +305,8 @@ void Controller::updateGameWindow() {
 
                 double tmpX = (model->player->pos.x + offsets[3][i-1][0]) - ele->pos.x;
                 double tmpY = (model->player->pos.y + offsets[3][i-1][1]) - ele->pos.y;
-                double vecOld = ele->pos.x*vx+ele->pos.y*vy;
-                double vecNew = ele->pos.x*tmpX+ele->pos.y*tmpY;
+                double vecOld = sqrt(pow(vx,2)+pow(vy,2));
+                double vecNew = sqrt(pow(tmpX,2)+pow(tmpY,2));
 
                 if(abs(vecNew)<abs(vecOld) ) {
                 vx = tmpX;
@@ -594,14 +594,22 @@ void Controller::loadSprites() {
 
     //enemyPink
     getSprite(EnemyShip::sprites[0], "../App_Data/enemy_pink_bmp/enemy-pink-1.bmp");
-    getSprite(EnemyShip::sprites[1], "../App_Data/enemy_pink_bmp/enemy-pink-4.bmp");
-    getSprite(EnemyShip::sprites[2], "../App_Data/enemy_pink_bmp/enemy-pink-7.bmp");
-    getSprite(EnemyShip::sprites[3], "../App_Data/enemy_pink_bmp/enemy-pink-10.bmp");
-    getSprite(EnemyShip::sprites[4], "../App_Data/enemy_pink_bmp/enemy-pink-13.bmp");
-    getSprite(EnemyShip::sprites[5], "../App_Data/enemy_pink_bmp/enemy-pink-16.bmp");
-    getSprite(EnemyShip::sprites[6], "../App_Data/enemy_pink_bmp/enemy-pink-19.bmp");
-    getSprite(EnemyShip::sprites[7], "../App_Data/enemy_pink_bmp/enemy-pink-22.bmp");
 
+    getSprite(EnemyShip::sprites[1], "../App_Data/enemy_pink_bmp/enemy-pink-4.bmp");
+
+    getSprite(EnemyShip::sprites[2], "../App_Data/enemy_pink_bmp/enemy-pink-7.bmp");
+
+
+    getSprite(EnemyShip::sprites[3], "../App_Data/enemy_pink_bmp/enemy-pink-10.bmp");
+
+    getSprite(EnemyShip::sprites[4], "../App_Data/enemy_pink_bmp/enemy-pink-13.bmp");
+
+    getSprite(EnemyShip::sprites[5], "../App_Data/enemy_pink_bmp/enemy-pink-16.bmp");
+
+    getSprite(EnemyShip::sprites[6], "../App_Data/enemy_pink_bmp/enemy-pink-19.bmp");
+
+    getSprite(EnemyShip::sprites[7], "../App_Data/enemy_pink_bmp/enemy-pink-22.bmp");
+    
     //alphabet
 
     getSprite(Model::alphabetWhite[0],"../App_Data/alphabet_bmp/alphabet_white-1.bmp" );
