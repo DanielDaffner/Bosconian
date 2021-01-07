@@ -200,20 +200,20 @@ void Controller::updateGameWindow() {
     playerPos.x = model->player->pos.x;
     playerPos.y = model->player->pos.y;
     int playerQuadrant = 0;
-    if(model->player->pos.x > (MAP_WIDTH/2) ) {
-        if (model->player->pos.y > (MAP_HEIGHT/2) ) {
+    if(model->player->pos.x >= (MAP_WIDTH/2) ) {
+        if (model->player->pos.y >= (MAP_HEIGHT/2) ) {
             playerQuadrant = 4;
         } else {
             playerQuadrant = 2;
         }
     } else {
-        if (model->player->pos.y > (MAP_HEIGHT/2) ) {
+        if (model->player->pos.y >= (MAP_HEIGHT/2) ) {
             playerQuadrant = 3;
         } else {
             playerQuadrant = 1;
         }
     }
-    printf("playerquad: %d\n",playerQuadrant);
+
     for(EnemyShip* ele: model->enemyShipsPink) {
         ele->turned--;
         if(ele->turned>0)break;
