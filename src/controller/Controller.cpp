@@ -166,7 +166,7 @@ void Controller::updateGameWindow() {
 
     //  calc & move player position
     double playerDirectionVectorLenght = sqrt((pow(model->player->direction[0],2)+pow(model->player->direction[1],2)));
-    model->player->pos.x += (model->player->direction[0] / playerDirectionVectorLenght) * model->player->playerspeed;
+    model->player->pos.x += ((model->player->direction[0]) / playerDirectionVectorLenght) * model->player->playerspeed;
     model->player->pos.y += (model->player->direction[1] / playerDirectionVectorLenght) * model->player->playerspeed;
     if(model->player->pos.x < 0) model->player->pos.x += MAP_WIDTH;
     if(model->player->pos.x >= MAP_WIDTH)model->player->pos.x -= MAP_WIDTH;
@@ -189,9 +189,10 @@ void Controller::updateGameWindow() {
     // calc direction
     double degL, degR, degO;
 
-    double ux=2;
-    double uy=17;
-    double vx=0;double vy=0;
+    double ux = 0;
+    double uy = 0;
+    double vx = 0;
+    double vy = 0;
 
     for(EnemyShip* ele: model->enemyShipsPink) {
         ele->turned--;
@@ -199,9 +200,9 @@ void Controller::updateGameWindow() {
         ele->turned=3;
 
 
-        int dir1=(ele->direction + 1)%24;
-        int dir2=(ele->direction - 1);
-        if(dir2<0)dir2=24;
+        int dir1 = (ele->direction + 1) % 24;
+        int dir2 = (ele->direction - 1);
+        if(dir2 < 0) dir2 = 23;
         // set values
         //current dir
         int peter = ele->direction;
@@ -221,10 +222,10 @@ void Controller::updateGameWindow() {
         //enemy
         ux=ele->directions[dir1][0];
         uy=ele->directions[dir1][1];
-        printf("%f",ux);
-        printf("%f\n",uy);
-        printf("%f",ele->directions[dir1][0]);
-        printf("%f\n",ele->directions[dir1][1]);
+//        printf("%f",ux);
+//        printf("%f\n",uy);
+//        printf("%f",ele->directions[dir1][0]);
+//        printf("%f\n",ele->directions[dir1][1]);
         // calc degree
         degL=    acos( ((ux*vx)+(uy*vy))
                 / (sqrt(pow(ux,2)+pow(uy,2))
@@ -234,10 +235,10 @@ void Controller::updateGameWindow() {
         // new double vx,vy;
         ux=ele->directions[dir2][0];
         uy=ele->directions[dir2][1];
-        printf("%f",ux);
-        printf("%f\n",uy);
-        printf("%f",ele->directions[dir2][0]);
-        printf("%f\n",ele->directions[dir2][1]);
+//        printf("%f",ux);
+//        printf("%f\n",uy);
+//        printf("%f",ele->directions[dir2][0]);
+//        printf("%f\n",ele->directions[dir2][1]);
         // calc degree
         degR=      acos( ((ux*vx)+(uy*vy))
                   / (sqrt(pow(ux,2)+pow(uy,2))
@@ -256,13 +257,13 @@ void Controller::updateGameWindow() {
             ele->direction=dir1;
         }
 
-        printf("New Frame\n");
-        printf("dir1 %d\n",dir1);
-        printf("dir2 %d\n",dir2);
-        printf("degO %f\n",degO);
-        printf("degL %f\n",degL);
-        printf("degR %f\n",degR);
-        printf("new Direction %d\n\n",ele->direction);
+//        printf("New Frame\n");
+//        printf("dir1 %d\n",dir1);
+//        printf("dir2 %d\n",dir2);
+//        printf("degO %f\n",degO);
+//        printf("degL %f\n",degL);
+//        printf("degR %f\n",degR);
+//        printf("new Direction %d\n\n",ele->direction);
     }
 
     // apply movement
@@ -441,7 +442,7 @@ void Controller::updateGameWindow() {
 
 //    draw lifes
     for(int i = 0; i < model->player->lifes; i++) {
-        view->renderGameInfos(Position2D{LIFES_POS_X+(i*64), LIFES_POS_Y}, Player::sprites[SpriteDirection::up][SpriteLights::off]);
+        view->renderGameInfos(Position2D{(double)LIFES_POS_X + (i * 64), LIFES_POS_Y}, Player::sprites[SpriteDirection::up][SpriteLights::off]);
     }
 
 //    draw map

@@ -26,8 +26,8 @@
 
 
 struct Position2D{
-    int x;
-    int y;
+    double x;
+    double y;
 
     Position2D operator+(const Position2D& a) const
     {
