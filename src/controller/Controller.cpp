@@ -193,7 +193,27 @@ void Controller::updateGameWindow() {
     double uy = 0;
     double vx = 0;
     double vy = 0;
-
+    double minDistance = 0;
+    double testDistance = 0;
+//    Player
+    Position2D playerPos{};
+    playerPos.x = model->player->pos.x;
+    playerPos.y = model->player->pos.y;
+    int playerQuadrant = 0;
+    if(model->player->pos.x > (MAP_WIDTH/2) ) {
+        if (model->player->pos.y > (MAP_HEIGHT/2) ) {
+            playerQuadrant = 4;
+        } else {
+            playerQuadrant = 2;
+        }
+    } else {
+        if (model->player->pos.y > (MAP_HEIGHT/2) ) {
+            playerQuadrant = 3;
+        } else {
+            playerQuadrant = 1;
+        }
+    }
+    printf("playerquad: %d\n",playerQuadrant);
     for(EnemyShip* ele: model->enemyShipsPink) {
         ele->turned--;
         if(ele->turned>0)break;
@@ -211,8 +231,98 @@ void Controller::updateGameWindow() {
 
 
         //player
-        vx = model->player->pos.x - ele->pos.x;
-        vy = model->player->pos.y - ele->pos.y;
+
+        switch (playerQuadrant) {
+            case 1:
+                minDistance = sqrt(pow( (model->player->pos.x - ele->pos.x), 2) + pow( (model->player->pos.y - ele->pos.y), 2) );
+                testDistance = sqrt(pow( (model->player->pos.x + MAP_WIDTH - ele->pos.x), 2) + pow( (model->player->pos.y - ele->pos.y), 2) );
+                if ( testDistance < minDistance ) {
+                    minDistance = testDistance;
+                    playerPos.x = model->player->pos.x + MAP_WIDTH;
+                    playerPos.y = model->player->pos.y;
+                }
+                testDistance = sqrt(pow( (model->player->pos.x - ele->pos.x), 2) + pow( (model->player->pos.y + MAP_HEIGHT - ele->pos.y), 2) );
+                if ( testDistance < minDistance ) {
+                    minDistance = testDistance;
+                    playerPos.x = model->player->pos.x;
+                    playerPos.y = model->player->pos.y + MAP_HEIGHT;
+                }
+                testDistance = sqrt(pow( (model->player->pos.x + MAP_WIDTH - ele->pos.x), 2) + pow( (model->player->pos.y + MAP_HEIGHT - ele->pos.y), 2) );
+                if ( testDistance < minDistance ) {
+                    minDistance = testDistance;
+                    playerPos.x = model->player->pos.x + MAP_WIDTH;
+                    playerPos.y = model->player->pos.y + MAP_HEIGHT;
+                }
+                break;
+            case 2:
+                minDistance = sqrt(pow( (model->player->pos.x - ele->pos.x), 2) + pow( (model->player->pos.y - ele->pos.y), 2) );
+                testDistance = sqrt(pow( (model->player->pos.x - MAP_WIDTH - ele->pos.x), 2) + pow( (model->player->pos.y - ele->pos.y), 2) );
+                if ( testDistance < minDistance ) {
+                    minDistance = testDistance;
+                    playerPos.x = model->player->pos.x - MAP_WIDTH;
+                    playerPos.y = model->player->pos.y;
+                }
+                testDistance = sqrt(pow( (model->player->pos.x - ele->pos.x), 2) + pow( (model->player->pos.y + MAP_HEIGHT - ele->pos.y), 2) );
+                if ( testDistance < minDistance ) {
+                    minDistance = testDistance;
+                    playerPos.x = model->player->pos.x;
+                    playerPos.y = model->player->pos.y + MAP_HEIGHT;
+                }
+                testDistance = sqrt(pow( (model->player->pos.x - MAP_WIDTH - ele->pos.x), 2) + pow( (model->player->pos.y + MAP_HEIGHT - ele->pos.y), 2) );
+                if ( testDistance < minDistance ) {
+                    minDistance = testDistance;
+                    playerPos.x = model->player->pos.x - MAP_WIDTH;
+                    playerPos.y = model->player->pos.y + MAP_HEIGHT;
+                }
+                break;
+            case 3:
+                minDistance = sqrt(pow( (model->player->pos.x - ele->pos.x), 2) + pow( (model->player->pos.y - ele->pos.y), 2) );
+                testDistance = sqrt(pow( (model->player->pos.x + MAP_WIDTH - ele->pos.x), 2) + pow( (model->player->pos.y - ele->pos.y), 2) );
+                if ( testDistance < minDistance ) {
+                    minDistance = testDistance;
+                    playerPos.x = model->player->pos.x + MAP_WIDTH;
+                    playerPos.y = model->player->pos.y;
+                }
+                testDistance = sqrt(pow( (model->player->pos.x - ele->pos.x), 2) + pow( (model->player->pos.y - MAP_HEIGHT - ele->pos.y), 2) );
+                if ( testDistance < minDistance ) {
+                    minDistance = testDistance;
+                    playerPos.x = model->player->pos.x;
+                    playerPos.y = model->player->pos.y - MAP_HEIGHT;
+                }
+                testDistance = sqrt(pow( (model->player->pos.x + MAP_WIDTH - ele->pos.x), 2) + pow( (model->player->pos.y - MAP_HEIGHT - ele->pos.y), 2) );
+                if ( testDistance < minDistance ) {
+                    minDistance = testDistance;
+                    playerPos.x = model->player->pos.x + MAP_WIDTH;
+                    playerPos.y = model->player->pos.y - MAP_HEIGHT;
+                }
+                break;
+            case 4:
+                minDistance = sqrt(pow( (model->player->pos.x - ele->pos.x), 2) + pow( (model->player->pos.y - ele->pos.y), 2) );
+                testDistance = sqrt(pow( (model->player->pos.x - MAP_WIDTH - ele->pos.x), 2) + pow( (model->player->pos.y - ele->pos.y), 2) );
+                if ( testDistance < minDistance ) {
+                    minDistance = testDistance;
+                    playerPos.x = model->player->pos.x - MAP_WIDTH;
+                    playerPos.y = model->player->pos.y;
+                }
+                testDistance = sqrt(pow( (model->player->pos.x - ele->pos.x), 2) + pow( (model->player->pos.y - MAP_HEIGHT - ele->pos.y), 2) );
+                if ( testDistance < minDistance ) {
+                    minDistance = testDistance;
+                    playerPos.x = model->player->pos.x;
+                    playerPos.y = model->player->pos.y - MAP_HEIGHT;
+                }
+                testDistance = sqrt(pow( (model->player->pos.x - MAP_WIDTH - ele->pos.x), 2) + pow( (model->player->pos.y - MAP_HEIGHT - ele->pos.y), 2) );
+                if ( testDistance < minDistance ) {
+                    minDistance = testDistance;
+                    playerPos.x = model->player->pos.x - MAP_WIDTH;
+                    playerPos.y = model->player->pos.y - MAP_HEIGHT;
+                }
+                break;
+            default:
+                printf("ERROR in var PlayerQuadrant\n");
+        }
+        vx = playerPos.x - ele->pos.x;
+        vy = playerPos.y - ele->pos.y;
+
         // calc degree
         degO=     acos(((ux*vx)+(uy*vy))
                   / (sqrt(pow(ux,2)+pow(uy,2))
