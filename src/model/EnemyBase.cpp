@@ -6,7 +6,7 @@
 
 GLubyte* EnemyBase::sprites;
 Position2D EnemyBase::drawOffset;
-int EnemyBase::score = 2000;
+int EnemyBase::score = 1500;
 
 EnemyBase::EnemyBase(int x, int y) : GameObject() {
     pos.x = x;

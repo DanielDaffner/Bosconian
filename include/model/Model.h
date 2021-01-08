@@ -30,8 +30,13 @@ public:
     std::list<Asteroid*> asteroidsExplosion;
     std::list<iTypeMissile*> iTypeMissiles;
     std::list<iTypeMissile*> iTypeMissilesExploding;
+    std::list<iTypeMissile*> pTypeMissiles;
+    std::list<iTypeMissile*> pTypeMissilesExploding;
+    std::list<iTypeMissile*> eTypeMissiles;
+    std::list<iTypeMissile*> eTypeMissilesExploding;
     std::list<BackgroundPixel*> pixelarr[4];
     std::list<ProjectilePlayer*> projectilesPlayer;
     std::list<EnemyBase*> enemyBases;
+    std::list<ProjectilePlayer*> projectileEnemyBases;
 };
 #endif //BOSCONIAN_MODEL_H

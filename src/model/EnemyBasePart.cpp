@@ -4,6 +4,8 @@
 
 #include "../../include/model/EnemyBasePart.h"
 
+int EnemyBasePart::score = 200;
+
 EnemyBasePart::EnemyBasePart(int x, int y) : GameObject() {
     pos.x = x;
     pos.y = y;

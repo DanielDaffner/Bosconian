@@ -11,7 +11,7 @@ class eTypeMissile : public EnemyShip {
 public:
     eTypeMissile(int posX, int posY, int dir);
     static GLubyte* sprites[24];
-
+    static int score;
 };
 
 #endif //BOSCONIAN_ETYPEMISSILE_H
