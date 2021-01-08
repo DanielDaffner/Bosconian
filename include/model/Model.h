@@ -21,6 +21,7 @@ public:
     std::list<Mine*> mines;
     std::list<Mine*> minesExploding;
     std::list<EnemyShip*> enemyShipsPink;
+    std::list<EnemyShip*> enemyShipsPinkExploding;
     std::list<BackgroundPixel*> pixelarr[4];
     std::list<ProjectilePlayer*> projectilesPlayer;
     std::list<EnemyBase*> enemyBases;
