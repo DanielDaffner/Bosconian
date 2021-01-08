@@ -4,8 +4,9 @@
 
 #include "../../include/model/EnemyBase.h"
 
-GLubyte* EnemyBase::sprites;
-Position2D EnemyBase::drawOffset;
+GLubyte* EnemyBase::sprites[16];
+GLubyte* EnemyBase::spritesExplosion[3];
+Position2D EnemyBase::drawOffset{-144,144};
 int EnemyBase::score = 1500;
 
 EnemyBase::EnemyBase(int x, int y) : GameObject() {

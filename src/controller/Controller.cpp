@@ -587,13 +587,16 @@ void Controller::updateGameWindow() {
 
 //    render Base
     for(EnemyBase* ele: model->enemyBases) {
+
+        glDrawPixels(288,288,GL_RGBA,GL_UNSIGNED_BYTE,EnemyBase::sprites[0]+2);
         if(ele->isOpen) {
-            view->render(ele->pos + Player::drawOffset, Player::sprites[ele->timer/10+1][0]);
+//            view->render(ele->pos + EnemyBase::drawOffset, EnemyBase::sprites[0]);
+
         } else {
-            view->render(ele->pos + Player::drawOffset, Player::sprites[0][0]);
+//            view->render(ele->pos + EnemyBase::drawOffset, EnemyBase::sprites[0]);
         }
         for(EnemyBasePart* ele2: ele->parts) {
-            view->render(ele2->pos+Player::drawOffset,Player::sprites[0][0]);
+//            view->render(ele2->pos+Player::drawOffset,EnemyBase::sprites[0]);
         }
     }
 
@@ -735,6 +738,29 @@ void Controller::loadSprites() {
     getSprite(ITypeMissile::sprites[22], "../App_Data/enemy_pink_final/enemy-pink-23.bmp");
     getSprite(ITypeMissile::sprites[23], "../App_Data/enemy_pink_final/enemy-pink-24.bmp");
     
+//    base
+    getSprite(EnemyBase::sprites[0], "../App_Data/base_final/base-1.bmp");
+    getSprite(EnemyBase::sprites[1], "../App_Data/base_final/base-2.bmp");
+    getSprite(EnemyBase::sprites[2], "../App_Data/base_final/base-3.bmp");
+    getSprite(EnemyBase::sprites[3], "../App_Data/base_final/base-4.bmp");
+    getSprite(EnemyBase::sprites[4], "../App_Data/base_final/baseDoor-H-1.bmp");
+    getSprite(EnemyBase::sprites[5], "../App_Data/base_final/baseDoor-H-2.bmp");
+    getSprite(EnemyBase::sprites[6], "../App_Data/base_final/baseDoor-H-3.bmp");
+    getSprite(EnemyBase::sprites[7], "../App_Data/base_final/baseDoor-H-4.bmp");
+    getSprite(EnemyBase::sprites[8], "../App_Data/base_final/baseDoor-H-5.bmp");
+    getSprite(EnemyBase::sprites[9], "../App_Data/base_final/baseDoor-H-6.bmp");
+    getSprite(EnemyBase::sprites[10], "../App_Data/base_final/baseDoor-V-1.bmp");
+    getSprite(EnemyBase::sprites[11], "../App_Data/base_final/baseDoor-V-2.bmp");
+    getSprite(EnemyBase::sprites[12], "../App_Data/base_final/baseDoor-V-3.bmp");
+    getSprite(EnemyBase::sprites[13], "../App_Data/base_final/baseDoor-V-4.bmp");
+    getSprite(EnemyBase::sprites[14], "../App_Data/base_final/baseDoor-V-5.bmp");
+    getSprite(EnemyBase::sprites[15], "../App_Data/base_final/baseDoor-V-6.bmp");
+
+//    base explo
+    getSprite(EnemyBase::spritesExplosion[0], "../App_Data/base_explosion_final/base-explosion-1.bmp");
+    getSprite(EnemyBase::spritesExplosion[1], "../App_Data/base_explosion_final/base-explosion-2.bmp");
+    getSprite(EnemyBase::spritesExplosion[2], "../App_Data/base_explosion_final/base-explosion-3.bmp");
+
 //      enemyGreen
 //    getSprite(EnemyShip::sprites[0], "../App_Data/enemy_green_final/enemy-green-1.bmp");
 //    getSprite(EnemyShip::sprites[1], "../App_Data/enemy_green_final/enemy-green-2.bmp");
