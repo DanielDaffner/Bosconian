@@ -435,16 +435,16 @@ void Controller::updateGameWindow() {
 //    render background
     for(BackgroundPixel* ele: model->pixelarr[(count/30)]) {
         if(move){
-            ele->pos.x -= model->player->direction[0] / playerDirectionVectorLenght * 4;
-            ele->pos.y -= model->player->direction[1] / playerDirectionVectorLenght * 4;
+            ele->pos.x -= (model->player->direction[0] / playerDirectionVectorLenght) * 4;
+            ele->pos.y -= (model->player->direction[1] / playerDirectionVectorLenght) * 4;
 
         }
         view->renderStars(ele->pos, ((BackgroundPixel::colors+ele->color)));
     }
     for(BackgroundPixel* ele: model->pixelarr[((count/30)+1)%3]) {
         if(move){
-            ele->pos.x -= model->player->direction[0] / playerDirectionVectorLenght * 4;
-            ele->pos.y -= model->player->direction[1] / playerDirectionVectorLenght * 4;
+            ele->pos.x -= (model->player->direction[0] / playerDirectionVectorLenght) * 4;
+            ele->pos.y -= (model->player->direction[1] / playerDirectionVectorLenght) * 4;
 
         }
         view->renderStars(ele->pos, ((BackgroundPixel::colors+ele->color)));
