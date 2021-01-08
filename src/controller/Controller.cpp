@@ -91,9 +91,16 @@ void Controller::onStart(){
         else printf("protected\n");
     }
 
-    model->enemyShipsPink.push_back(new EnemyShip(MAP_WIDTH / 2,(MAP_HEIGHT / 4) * 3,1));
-    model->enemyBases.push_back(new EnemyBase(500,500));
 
+    for(int i = 0; i < 20;i++) {
+        x = (rand() % (MAP_WIDTH));
+        y = (rand() % (MAP_HEIGHT));
+        distance = sqrt(pow(x - model->player->pos.x,2)+pow(y - model->player->pos.y,2));
+
+        if(distance > 64 )
+            model->enemyShipsPink.push_back(new EnemyShip(x,y,1));
+        else printf("protected\n");
+    }
 };
 
 void Controller::updateGameWindow() {
@@ -202,15 +209,15 @@ void Controller::updateGameWindow() {
     double uy[3] = {};
     double vx = {};
     double vy = {};
-
+    printf("new frame");
+    printf("%d",model->enemyShipsPink.size());
     for(EnemyShip* ele: model->enemyShipsPink) {
-
+        printf("ship");
         //turn every 3 ticks
-
         ele->turned--;
-        if(ele->turned>0)break;
-        ele->turned=3;
-
+        if(ele->turned==0) {
+            ele->turned = 3;
+        }else{
         //possible directions for enemyShip
 
         int dir0=ele->direction;
@@ -336,7 +343,7 @@ void Controller::updateGameWindow() {
         else if(deg[1] < deg[0]){
             ele->direction=dir1;
         }
-    }
+    }}
 
     // apply movement
 
