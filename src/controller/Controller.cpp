@@ -587,7 +587,6 @@ void Controller::updateGameWindow() {
 
 //    render Base
     for(EnemyBase* ele: model->enemyBases) {
-
         glDrawPixels(288,288,GL_RGBA,GL_UNSIGNED_BYTE,EnemyBase::sprites[0]+2);
         if(ele->isOpen) {
 //            view->render(ele->pos + EnemyBase::drawOffset, EnemyBase::sprites[0]);
