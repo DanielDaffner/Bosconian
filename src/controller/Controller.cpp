@@ -762,30 +762,30 @@ void Controller::loadSprites() {
 //    getSprite(EnemyShip::sprites[23], "../App_Data/enemy_green_final/enemy-green-24.bmp");
 
 //    enemyBlue
-    getSprite(pTypeMissile::sprites[0], "../App_Data/enemy_blue_final/enemy-blue-1.bmp");
-    getSprite(pTypeMissile::sprites[1], "../App_Data/enemy_blue_final/enemy-blue-2.bmp");
-    getSprite(pTypeMissile::sprites[2], "../App_Data/enemy_blue_final/enemy-blue-3.bmp");
-    getSprite(pTypeMissile::sprites[3], "../App_Data/enemy_blue_final/enemy-blue-4.bmp");
-    getSprite(pTypeMissile::sprites[4], "../App_Data/enemy_blue_final/enemy-blue-5.bmp");
-    getSprite(pTypeMissile::sprites[5], "../App_Data/enemy_blue_final/enemy-blue-6.bmp");
-    getSprite(pTypeMissile::sprites[6], "../App_Data/enemy_blue_final/enemy-blue-7.bmp");
-    getSprite(pTypeMissile::sprites[7], "../App_Data/enemy_blue_final/enemy-blue-8.bmp");
-    getSprite(pTypeMissile::sprites[8], "../App_Data/enemy_blue_final/enemy-blue-9.bmp");
-    getSprite(pTypeMissile::sprites[9], "../App_Data/enemy_blue_final/enemy-blue-10.bmp");
-    getSprite(pTypeMissile::sprites[10], "../App_Data/enemy_blue_final/enemy-blue-11.bmp");
-    getSprite(pTypeMissile::sprites[11], "../App_Data/enemy_blue_final/enemy-blue-12.bmp");
-    getSprite(pTypeMissile::sprites[12], "../App_Data/enemy_blue_final/enemy-blue-13.bmp");
-    getSprite(pTypeMissile::sprites[13], "../App_Data/enemy_blue_final/enemy-blue-14.bmp");
-    getSprite(pTypeMissile::sprites[14], "../App_Data/enemy_blue_final/enemy-blue-15.bmp");
-    getSprite(pTypeMissile::sprites[15], "../App_Data/enemy_blue_final/enemy-blue-16.bmp");
-    getSprite(pTypeMissile::sprites[16], "../App_Data/enemy_blue_final/enemy-blue-17.bmp");
-    getSprite(pTypeMissile::sprites[17], "../App_Data/enemy_blue_final/enemy-blue-18.bmp");
-    getSprite(pTypeMissile::sprites[18], "../App_Data/enemy_blue_final/enemy-blue-19.bmp");
-    getSprite(pTypeMissile::sprites[19], "../App_Data/enemy_blue_final/enemy-blue-20.bmp");
-    getSprite(pTypeMissile::sprites[20], "../App_Data/enemy_blue_final/enemy-blue-21.bmp");
-    getSprite(pTypeMissile::sprites[21], "../App_Data/enemy_blue_final/enemy-blue-22.bmp");
-    getSprite(pTypeMissile::sprites[22], "../App_Data/enemy_blue_final/enemy-blue-23.bmp");
-    getSprite(pTypeMissile::sprites[23], "../App_Data/enemy_blue_final/enemy-blue-24.bmp");
+    getSprite(PTypeMissile::sprites[0], "../App_Data/enemy_blue_final/enemy-blue-1.bmp");
+    getSprite(PTypeMissile::sprites[1], "../App_Data/enemy_blue_final/enemy-blue-2.bmp");
+    getSprite(PTypeMissile::sprites[2], "../App_Data/enemy_blue_final/enemy-blue-3.bmp");
+    getSprite(PTypeMissile::sprites[3], "../App_Data/enemy_blue_final/enemy-blue-4.bmp");
+    getSprite(PTypeMissile::sprites[4], "../App_Data/enemy_blue_final/enemy-blue-5.bmp");
+    getSprite(PTypeMissile::sprites[5], "../App_Data/enemy_blue_final/enemy-blue-6.bmp");
+    getSprite(PTypeMissile::sprites[6], "../App_Data/enemy_blue_final/enemy-blue-7.bmp");
+    getSprite(PTypeMissile::sprites[7], "../App_Data/enemy_blue_final/enemy-blue-8.bmp");
+    getSprite(PTypeMissile::sprites[8], "../App_Data/enemy_blue_final/enemy-blue-9.bmp");
+    getSprite(PTypeMissile::sprites[9], "../App_Data/enemy_blue_final/enemy-blue-10.bmp");
+    getSprite(PTypeMissile::sprites[10], "../App_Data/enemy_blue_final/enemy-blue-11.bmp");
+    getSprite(PTypeMissile::sprites[11], "../App_Data/enemy_blue_final/enemy-blue-12.bmp");
+    getSprite(PTypeMissile::sprites[12], "../App_Data/enemy_blue_final/enemy-blue-13.bmp");
+    getSprite(PTypeMissile::sprites[13], "../App_Data/enemy_blue_final/enemy-blue-14.bmp");
+    getSprite(PTypeMissile::sprites[14], "../App_Data/enemy_blue_final/enemy-blue-15.bmp");
+    getSprite(PTypeMissile::sprites[15], "../App_Data/enemy_blue_final/enemy-blue-16.bmp");
+    getSprite(PTypeMissile::sprites[16], "../App_Data/enemy_blue_final/enemy-blue-17.bmp");
+    getSprite(PTypeMissile::sprites[17], "../App_Data/enemy_blue_final/enemy-blue-18.bmp");
+    getSprite(PTypeMissile::sprites[18], "../App_Data/enemy_blue_final/enemy-blue-19.bmp");
+    getSprite(PTypeMissile::sprites[19], "../App_Data/enemy_blue_final/enemy-blue-20.bmp");
+    getSprite(PTypeMissile::sprites[20], "../App_Data/enemy_blue_final/enemy-blue-21.bmp");
+    getSprite(PTypeMissile::sprites[21], "../App_Data/enemy_blue_final/enemy-blue-22.bmp");
+    getSprite(PTypeMissile::sprites[22], "../App_Data/enemy_blue_final/enemy-blue-23.bmp");
+    getSprite(PTypeMissile::sprites[23], "../App_Data/enemy_blue_final/enemy-blue-24.bmp");
 
 //    enemyOrange
 //    getSprite(EnemyShip::sprites[0], "../App_Data/enemy_orange_final/enemy-orange-1.bmp");

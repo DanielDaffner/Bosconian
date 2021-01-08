@@ -8,7 +8,7 @@
 #include "EnemyShip.h"
 #include "iTypeMissile.h"
 #include "eTypeMissile.h"
-#include "pTypeMissile.h"
+#include "PTypeMissile.h"
 #include "EnemyBase.h"
 #include "Asteroid.h"
 #include <list>
