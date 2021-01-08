@@ -7,9 +7,9 @@
 
 #include "EnemyShip.h"
 
-class iTypeMissile : public EnemyShip {
+class ITypeMissile : public EnemyShip {
 public:
-    iTypeMissile(int posX, int posY, int dir);
+    ITypeMissile(int posX, int posY, int dir);
     static GLubyte* sprites[24];
     static int score;
 };

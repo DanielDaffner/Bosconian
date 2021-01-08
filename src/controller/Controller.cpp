@@ -66,7 +66,7 @@ void Controller::updateMainWindow() {
         move=true;
     }
 
-    view->render(enemyPos,iTypeMissile::sprites[15]);
+    view->render(enemyPos, ITypeMissile::sprites[15]);
     enemyPos.x+=2;
     enemyPos.y+=2;
     if(enemyPos.y >=730) enemyPos = {-300,100};
@@ -91,10 +91,10 @@ void Controller::onStart(){
         distance = sqrt(pow(x - model->player->pos.x,2)+pow(y - model->player->pos.y,2));
 
         if(distance > 64 )
-            model->iTypeMissiles.push_back(new iTypeMissile(x,y,1));
+            model->iTypeMissiles.push_back(new ITypeMissile(x, y, 1));
         else printf("protected\n");
     }
-//    model->enemyShipsPink.push_back(new iTypeMissile(MAP_WIDTH / 2,(MAP_HEIGHT / 4) * 3,1));
+//    model->enemyShipsPink.push_back(new ITypeMissile(MAP_WIDTH / 2,(MAP_HEIGHT / 4) * 3,1));
     model->enemyBases.push_back(new EnemyBase(500,500));
 
 };
@@ -215,7 +215,7 @@ void Controller::updateGameWindow() {
         }
     }
 
-    for(iTypeMissile* ele: model->iTypeMissiles) {
+    for(ITypeMissile* ele: model->iTypeMissiles) {
         playerPos.x = model->player->pos.x;
         playerPos.y = model->player->pos.y;
         if (ele->turned != 0) {
@@ -395,7 +395,7 @@ void Controller::updateGameWindow() {
     }
     // apply movement
     double normalize = 1;
-    for(iTypeMissile* ele: model->iTypeMissiles) {
+    for(ITypeMissile* ele: model->iTypeMissiles) {
         normalize = sqrt((pow(ele->directions[ele->direction][0],2)+pow(ele->directions[ele->direction][1],2)));
         ele->pos.x += (ele->directions[ele->direction][0] / normalize) * ele->speed;
         ele->pos.y += (ele->directions[ele->direction][1] / normalize) * ele->speed;
@@ -552,8 +552,8 @@ void Controller::updateGameWindow() {
     }
 
     //render enemy
-    for(iTypeMissile* ele: model->iTypeMissiles) {
-        view->render(ele->pos+iTypeMissile::drawOffset,ele->sprites[ele->direction]);
+    for(ITypeMissile* ele: model->iTypeMissiles) {
+        view->render(ele->pos + ITypeMissile::drawOffset, ele->sprites[ele->direction]);
     }
 
 
@@ -611,7 +611,7 @@ void Controller::updateGameWindow() {
     GLubyte testpix[4] = {255,255,255,255};
     glRasterPos2d(MAP_POS_X+x,MAP_POS_Y-400+y);
     glDrawPixels(1,1,GL_RGBA,GL_UNSIGNED_BYTE,testpix);
-    for(iTypeMissile* ele: model->iTypeMissiles) {
+    for(ITypeMissile* ele: model->iTypeMissiles) {
         x = ele->pos.x /10;
         y = ele->pos.y /12.8;
         glRasterPos2d(MAP_POS_X+x,MAP_POS_Y-400+y);
@@ -710,30 +710,30 @@ void Controller::loadSprites() {
     getSprite(EnemyShip::spritesExplosion[2], "../App_Data/enemy_explosion_final/enemy-explosion-3.bmp");
     
 //    enemyPink
-    getSprite(iTypeMissile::sprites[0], "../App_Data/enemy_pink_final/enemy-pink-1.bmp");
-    getSprite(iTypeMissile::sprites[1], "../App_Data/enemy_pink_final/enemy-pink-2.bmp");
-    getSprite(iTypeMissile::sprites[2], "../App_Data/enemy_pink_final/enemy-pink-3.bmp");
-    getSprite(iTypeMissile::sprites[3], "../App_Data/enemy_pink_final/enemy-pink-4.bmp");
-    getSprite(iTypeMissile::sprites[4], "../App_Data/enemy_pink_final/enemy-pink-5.bmp");
-    getSprite(iTypeMissile::sprites[5], "../App_Data/enemy_pink_final/enemy-pink-6.bmp");
-    getSprite(iTypeMissile::sprites[6], "../App_Data/enemy_pink_final/enemy-pink-7.bmp");
-    getSprite(iTypeMissile::sprites[7], "../App_Data/enemy_pink_final/enemy-pink-8.bmp");
-    getSprite(iTypeMissile::sprites[8], "../App_Data/enemy_pink_final/enemy-pink-9.bmp");
-    getSprite(iTypeMissile::sprites[9], "../App_Data/enemy_pink_final/enemy-pink-10.bmp");
-    getSprite(iTypeMissile::sprites[10], "../App_Data/enemy_pink_final/enemy-pink-11.bmp");
-    getSprite(iTypeMissile::sprites[11], "../App_Data/enemy_pink_final/enemy-pink-12.bmp");
-    getSprite(iTypeMissile::sprites[12], "../App_Data/enemy_pink_final/enemy-pink-13.bmp");
-    getSprite(iTypeMissile::sprites[13], "../App_Data/enemy_pink_final/enemy-pink-14.bmp");
-    getSprite(iTypeMissile::sprites[14], "../App_Data/enemy_pink_final/enemy-pink-15.bmp");
-    getSprite(iTypeMissile::sprites[15], "../App_Data/enemy_pink_final/enemy-pink-16.bmp");
-    getSprite(iTypeMissile::sprites[16], "../App_Data/enemy_pink_final/enemy-pink-17.bmp");
-    getSprite(iTypeMissile::sprites[17], "../App_Data/enemy_pink_final/enemy-pink-18.bmp");
-    getSprite(iTypeMissile::sprites[18], "../App_Data/enemy_pink_final/enemy-pink-19.bmp");
-    getSprite(iTypeMissile::sprites[19], "../App_Data/enemy_pink_final/enemy-pink-20.bmp");
-    getSprite(iTypeMissile::sprites[20], "../App_Data/enemy_pink_final/enemy-pink-21.bmp");
-    getSprite(iTypeMissile::sprites[21], "../App_Data/enemy_pink_final/enemy-pink-22.bmp");
-    getSprite(iTypeMissile::sprites[22], "../App_Data/enemy_pink_final/enemy-pink-23.bmp");
-    getSprite(iTypeMissile::sprites[23], "../App_Data/enemy_pink_final/enemy-pink-24.bmp");
+    getSprite(ITypeMissile::sprites[0], "../App_Data/enemy_pink_final/enemy-pink-1.bmp");
+    getSprite(ITypeMissile::sprites[1], "../App_Data/enemy_pink_final/enemy-pink-2.bmp");
+    getSprite(ITypeMissile::sprites[2], "../App_Data/enemy_pink_final/enemy-pink-3.bmp");
+    getSprite(ITypeMissile::sprites[3], "../App_Data/enemy_pink_final/enemy-pink-4.bmp");
+    getSprite(ITypeMissile::sprites[4], "../App_Data/enemy_pink_final/enemy-pink-5.bmp");
+    getSprite(ITypeMissile::sprites[5], "../App_Data/enemy_pink_final/enemy-pink-6.bmp");
+    getSprite(ITypeMissile::sprites[6], "../App_Data/enemy_pink_final/enemy-pink-7.bmp");
+    getSprite(ITypeMissile::sprites[7], "../App_Data/enemy_pink_final/enemy-pink-8.bmp");
+    getSprite(ITypeMissile::sprites[8], "../App_Data/enemy_pink_final/enemy-pink-9.bmp");
+    getSprite(ITypeMissile::sprites[9], "../App_Data/enemy_pink_final/enemy-pink-10.bmp");
+    getSprite(ITypeMissile::sprites[10], "../App_Data/enemy_pink_final/enemy-pink-11.bmp");
+    getSprite(ITypeMissile::sprites[11], "../App_Data/enemy_pink_final/enemy-pink-12.bmp");
+    getSprite(ITypeMissile::sprites[12], "../App_Data/enemy_pink_final/enemy-pink-13.bmp");
+    getSprite(ITypeMissile::sprites[13], "../App_Data/enemy_pink_final/enemy-pink-14.bmp");
+    getSprite(ITypeMissile::sprites[14], "../App_Data/enemy_pink_final/enemy-pink-15.bmp");
+    getSprite(ITypeMissile::sprites[15], "../App_Data/enemy_pink_final/enemy-pink-16.bmp");
+    getSprite(ITypeMissile::sprites[16], "../App_Data/enemy_pink_final/enemy-pink-17.bmp");
+    getSprite(ITypeMissile::sprites[17], "../App_Data/enemy_pink_final/enemy-pink-18.bmp");
+    getSprite(ITypeMissile::sprites[18], "../App_Data/enemy_pink_final/enemy-pink-19.bmp");
+    getSprite(ITypeMissile::sprites[19], "../App_Data/enemy_pink_final/enemy-pink-20.bmp");
+    getSprite(ITypeMissile::sprites[20], "../App_Data/enemy_pink_final/enemy-pink-21.bmp");
+    getSprite(ITypeMissile::sprites[21], "../App_Data/enemy_pink_final/enemy-pink-22.bmp");
+    getSprite(ITypeMissile::sprites[22], "../App_Data/enemy_pink_final/enemy-pink-23.bmp");
+    getSprite(ITypeMissile::sprites[23], "../App_Data/enemy_pink_final/enemy-pink-24.bmp");
     
 //      enemyGreen
 //    getSprite(EnemyShip::sprites[0], "../App_Data/enemy_green_final/enemy-green-1.bmp");

@@ -6,7 +6,7 @@
 #include "BackgroundPixel.h"
 #include "ProjectilePlayer.h"
 #include "EnemyShip.h"
-#include "iTypeMissile.h"
+#include "ITypeMissile.h"
 #include "eTypeMissile.h"
 #include "PTypeMissile.h"
 #include "EnemyBase.h"
@@ -28,12 +28,12 @@ public:
     std::list<Mine*> minesExploding;
     std::list<Asteroid*> asteroids;
     std::list<Asteroid*> asteroidsExplosion;
-    std::list<iTypeMissile*> iTypeMissiles;
-    std::list<iTypeMissile*> iTypeMissilesExploding;
-    std::list<iTypeMissile*> pTypeMissiles;
-    std::list<iTypeMissile*> pTypeMissilesExploding;
-    std::list<iTypeMissile*> eTypeMissiles;
-    std::list<iTypeMissile*> eTypeMissilesExploding;
+    std::list<ITypeMissile*> iTypeMissiles;
+    std::list<ITypeMissile*> iTypeMissilesExploding;
+    std::list<ITypeMissile*> pTypeMissiles;
+    std::list<ITypeMissile*> pTypeMissilesExploding;
+    std::list<ITypeMissile*> eTypeMissiles;
+    std::list<ITypeMissile*> eTypeMissilesExploding;
     std::list<BackgroundPixel*> pixelarr[4];
     std::list<ProjectilePlayer*> projectilesPlayer;
     std::list<EnemyBase*> enemyBases;
