@@ -10,10 +10,6 @@ Controller::Controller() {
 
 }
 
-//öhm hat keiner gesehn o.O
-GLubyte* enemyPink;
-
-
 int Controller::init() {
 
     //init controller
@@ -22,7 +18,6 @@ int Controller::init() {
     view = new View(model);
     loadSprites();
     //psshhhtttt
-    getSprite(enemyPink,"../App_Data/enemy_pink_final/enemy-pink-16.bmp");
     //o.O
     onStart();
     return 0;
@@ -52,7 +47,7 @@ void Controller::updateMainWindow() {
 
     view->drawString(posString1,"PRESS SPACE BAR");
 
-    Position2D posPlayer ={640,360};
+    Position2D posPlayer = {640,360};
     view->render(posPlayer,Player::sprites[0][0]);
 
     //Background
@@ -71,7 +66,7 @@ void Controller::updateMainWindow() {
         move=true;
     }
 
-    view->render(enemyPos,enemyPink);
+    view->render(enemyPos,iTypeMissile::sprites[15]);
     enemyPos.x+=2;
     enemyPos.y+=2;
     if(enemyPos.y >=730) enemyPos = {-300,100};
@@ -96,10 +91,10 @@ void Controller::onStart(){
         distance = sqrt(pow(x - model->player->pos.x,2)+pow(y - model->player->pos.y,2));
 
         if(distance > 64 )
-            model->enemyShipsPink.push_back(new EnemyShip(x,y,1));
+            model->iTypeMissiles.push_back(new iTypeMissile(x,y,1));
         else printf("protected\n");
     }
-//    model->enemyShipsPink.push_back(new EnemyShip(MAP_WIDTH / 2,(MAP_HEIGHT / 4) * 3,1));
+//    model->enemyShipsPink.push_back(new iTypeMissile(MAP_WIDTH / 2,(MAP_HEIGHT / 4) * 3,1));
     model->enemyBases.push_back(new EnemyBase(500,500));
 
 };
@@ -220,7 +215,7 @@ void Controller::updateGameWindow() {
         }
     }
 
-    for(EnemyShip* ele: model->enemyShipsPink) {
+    for(iTypeMissile* ele: model->iTypeMissiles) {
         playerPos.x = model->player->pos.x;
         playerPos.y = model->player->pos.y;
         if (ele->turned != 0) {
@@ -400,7 +395,7 @@ void Controller::updateGameWindow() {
     }
     // apply movement
     double normalize = 1;
-    for(EnemyShip* ele: model->enemyShipsPink) {
+    for(iTypeMissile* ele: model->iTypeMissiles) {
         normalize = sqrt((pow(ele->directions[ele->direction][0],2)+pow(ele->directions[ele->direction][1],2)));
         ele->pos.x += (ele->directions[ele->direction][0] / normalize) * ele->speed;
         ele->pos.y += (ele->directions[ele->direction][1] / normalize) * ele->speed;
@@ -496,15 +491,15 @@ void Controller::updateGameWindow() {
             }
 
             if(!hit) {
-                for (auto iterator2 = model->enemyShipsPink.begin(); iterator2 != model->enemyShipsPink.end();) {
+                for (auto iterator2 = model->iTypeMissiles.begin(); iterator2 != model->iTypeMissiles.end();) {
                     distance = sqrt(pow(iterator._Ptr->_Myval->pos.x - iterator2._Ptr->_Myval->pos.x, 2) +
                                     pow(iterator._Ptr->_Myval->pos.y - iterator2._Ptr->_Myval->pos.y, 2));
                     if (distance <= 32) {
                         iterator2._Ptr->_Myval->collision = true;
-                        model->enemyShipsPinkExploding.push_back(iterator2._Ptr->_Myval);
+                        model->iTypeMissilesExploding.push_back(iterator2._Ptr->_Myval);
                         iterator2._Ptr->_Myval->pos.x += -32;
                         iterator2._Ptr->_Myval->pos.y += 32;
-                        iterator2 = model->enemyShipsPink.erase(iterator2);
+                        iterator2 = model->iTypeMissiles.erase(iterator2);
                         delete (iterator._Ptr->_Myval);
                         iterator = model->projectilesPlayer.erase(iterator);
                         hit = true;
@@ -534,7 +529,7 @@ void Controller::updateGameWindow() {
             iterator++;
     }
 
-//    render exploding EnemyShipPink
+//    render exploding iTypeMissilePink
 //    for(auto iterator = model->enemyShipsPinkExploding.begin(); iterator!= model->enemyShipsPinkExploding.end();) {
 //        view->render(iterator._Ptr->_Myval->pos+Mine::drawOffset,Player::spritesExplosion[iterator._Ptr->_Myval->explosionPhase/10]);
 //        iterator._Ptr->_Myval->explosionPhase++;
@@ -557,8 +552,8 @@ void Controller::updateGameWindow() {
     }
 
     //render enemy
-    for(EnemyShip* ele: model->enemyShipsPink) {
-        view->render(ele->pos+EnemyShip::drawOffset,ele->sprites[ele->direction]);
+    for(iTypeMissile* ele: model->iTypeMissiles) {
+        view->render(ele->pos+iTypeMissile::drawOffset,ele->sprites[ele->direction]);
     }
 
 
@@ -616,7 +611,7 @@ void Controller::updateGameWindow() {
     GLubyte testpix[4] = {255,255,255,255};
     glRasterPos2d(MAP_POS_X+x,MAP_POS_Y-400+y);
     glDrawPixels(1,1,GL_RGBA,GL_UNSIGNED_BYTE,testpix);
-    for(EnemyShip* ele: model->enemyShipsPink) {
+    for(iTypeMissile* ele: model->iTypeMissiles) {
         x = ele->pos.x /10;
         y = ele->pos.y /12.8;
         glRasterPos2d(MAP_POS_X+x,MAP_POS_Y-400+y);
@@ -660,8 +655,8 @@ void Controller::calcCollision(GameObject* ele, std::list<GameObject*> list, boo
 
 void Controller::loadSprites() {
 
+//    Player
     getSprite(Player::sprites[SpriteDirection::up][0],"../App_Data/ship_final/ship_up_light_off.bmp");
-
     getSprite(Player::sprites[SpriteDirection::up][1],"../App_Data/ship_final/ship_up_light_on.bmp");
 
     getSprite(Player::sprites[SpriteDirection::upright][1], "../App_Data/ship_final/ship_up_right_light_on.bmp");
@@ -685,48 +680,205 @@ void Controller::loadSprites() {
     getSprite(Player::sprites[SpriteDirection::upleft][1], "../App_Data/ship_final/ship_up_left_light_on.bmp");
     getSprite(Player::sprites[SpriteDirection::upleft][0], "../App_Data/ship_final/ship_up_left_light_off.bmp");
 
+//    Player explosion
     getSprite(Player::spritesExplosion[0], "../App_Data/ship_explosion_final/ship_explosion_1.bmp");
     getSprite(Player::spritesExplosion[1], "../App_Data/ship_explosion_final/ship_explosion_2.bmp");
     getSprite(Player::spritesExplosion[2], "../App_Data/ship_explosion_final/ship_explosion_3.bmp");
 
+//    Mine and explosion
     getSprite(Mine::sprites, "../App_Data/mine_final/mine.bmp");
     getSprite(Mine::spritesExplosion[0], "../App_Data/mine_explosion_final/mine_explosion_1.bmp");
     getSprite(Mine::spritesExplosion[1], "../App_Data/mine_explosion_final/mine_explosion_2.bmp");
     getSprite(Mine::spritesExplosion[2], "../App_Data/mine_explosion_final/mine_explosion_3.bmp");
-
+    
+//    asteriods and explosion
+    getSprite(Asteroid::sprites[0], "../App_Data/asteroid_final/asteroid_1.bmp");
+    getSprite(Asteroid::sprites[1], "../App_Data/asteroid_final/asteroid_2.bmp");
+    getSprite(Asteroid::sprites[2], "../App_Data/asteroid_final/asteroid_3.bmp");
+    getSprite(Asteroid::spritesExplosion[0], "../App_Data/asteroid_explosion_final/asteroid_explosion_1.bmp");
+    getSprite(Asteroid::spritesExplosion[1], "../App_Data/asteroid_explosion_final/asteroid_explosion_2.bmp");
+    getSprite(Asteroid::spritesExplosion[2], "../App_Data/asteroid_explosion_final/asteroid_explosion_3.bmp");
+//    Projectile
     getSprite(ProjectilePlayer::sprites[0], "../App_Data/projectile_final/projectile-1.bmp");
     getSprite(ProjectilePlayer::sprites[1], "../App_Data/projectile_final/projectile-4.bmp");
     getSprite(ProjectilePlayer::sprites[2], "../App_Data/projectile_final/projectile-3.bmp");
     getSprite(ProjectilePlayer::sprites[3], "../App_Data/projectile_final/projectile-2.bmp");
+    
+//    enemy Explosion
+    getSprite(EnemyShip::spritesExplosion[0], "../App_Data/enemy_explosion_final/enemy-explosion-1.bmp");
+    getSprite(EnemyShip::spritesExplosion[1], "../App_Data/enemy_explosion_final/enemy-explosion-2.bmp");
+    getSprite(EnemyShip::spritesExplosion[2], "../App_Data/enemy_explosion_final/enemy-explosion-3.bmp");
+    
+//    enemyPink
+    getSprite(iTypeMissile::sprites[0], "../App_Data/enemy_pink_final/enemy-pink-1.bmp");
+    getSprite(iTypeMissile::sprites[1], "../App_Data/enemy_pink_final/enemy-pink-2.bmp");
+    getSprite(iTypeMissile::sprites[2], "../App_Data/enemy_pink_final/enemy-pink-3.bmp");
+    getSprite(iTypeMissile::sprites[3], "../App_Data/enemy_pink_final/enemy-pink-4.bmp");
+    getSprite(iTypeMissile::sprites[4], "../App_Data/enemy_pink_final/enemy-pink-5.bmp");
+    getSprite(iTypeMissile::sprites[5], "../App_Data/enemy_pink_final/enemy-pink-6.bmp");
+    getSprite(iTypeMissile::sprites[6], "../App_Data/enemy_pink_final/enemy-pink-7.bmp");
+    getSprite(iTypeMissile::sprites[7], "../App_Data/enemy_pink_final/enemy-pink-8.bmp");
+    getSprite(iTypeMissile::sprites[8], "../App_Data/enemy_pink_final/enemy-pink-9.bmp");
+    getSprite(iTypeMissile::sprites[9], "../App_Data/enemy_pink_final/enemy-pink-10.bmp");
+    getSprite(iTypeMissile::sprites[10], "../App_Data/enemy_pink_final/enemy-pink-11.bmp");
+    getSprite(iTypeMissile::sprites[11], "../App_Data/enemy_pink_final/enemy-pink-12.bmp");
+    getSprite(iTypeMissile::sprites[12], "../App_Data/enemy_pink_final/enemy-pink-13.bmp");
+    getSprite(iTypeMissile::sprites[13], "../App_Data/enemy_pink_final/enemy-pink-14.bmp");
+    getSprite(iTypeMissile::sprites[14], "../App_Data/enemy_pink_final/enemy-pink-15.bmp");
+    getSprite(iTypeMissile::sprites[15], "../App_Data/enemy_pink_final/enemy-pink-16.bmp");
+    getSprite(iTypeMissile::sprites[16], "../App_Data/enemy_pink_final/enemy-pink-17.bmp");
+    getSprite(iTypeMissile::sprites[17], "../App_Data/enemy_pink_final/enemy-pink-18.bmp");
+    getSprite(iTypeMissile::sprites[18], "../App_Data/enemy_pink_final/enemy-pink-19.bmp");
+    getSprite(iTypeMissile::sprites[19], "../App_Data/enemy_pink_final/enemy-pink-20.bmp");
+    getSprite(iTypeMissile::sprites[20], "../App_Data/enemy_pink_final/enemy-pink-21.bmp");
+    getSprite(iTypeMissile::sprites[21], "../App_Data/enemy_pink_final/enemy-pink-22.bmp");
+    getSprite(iTypeMissile::sprites[22], "../App_Data/enemy_pink_final/enemy-pink-23.bmp");
+    getSprite(iTypeMissile::sprites[23], "../App_Data/enemy_pink_final/enemy-pink-24.bmp");
+    
+//      enemyGreen
+//    getSprite(EnemyShip::sprites[0], "../App_Data/enemy_green_final/enemy-green-1.bmp");
+//    getSprite(EnemyShip::sprites[1], "../App_Data/enemy_green_final/enemy-green-2.bmp");
+//    getSprite(EnemyShip::sprites[2], "../App_Data/enemy_green_final/enemy-green-3.bmp");
+//    getSprite(EnemyShip::sprites[3], "../App_Data/enemy_green_final/enemy-green-4.bmp");
+//    getSprite(EnemyShip::sprites[4], "../App_Data/enemy_green_final/enemy-green-5.bmp");
+//    getSprite(EnemyShip::sprites[5], "../App_Data/enemy_green_final/enemy-green-6.bmp");
+//    getSprite(EnemyShip::sprites[6], "../App_Data/enemy_green_final/enemy-green-7.bmp");
+//    getSprite(EnemyShip::sprites[7], "../App_Data/enemy_green_final/enemy-green-8.bmp");
+//    getSprite(EnemyShip::sprites[8], "../App_Data/enemy_green_final/enemy-green-9.bmp");
+//    getSprite(EnemyShip::sprites[9], "../App_Data/enemy_green_final/enemy-green-10.bmp");
+//    getSprite(EnemyShip::sprites[10], "../App_Data/enemy_green_final/enemy-green-11.bmp");
+//    getSprite(EnemyShip::sprites[11], "../App_Data/enemy_green_final/enemy-green-12.bmp");
+//    getSprite(EnemyShip::sprites[12], "../App_Data/enemy_green_final/enemy-green-13.bmp");
+//    getSprite(EnemyShip::sprites[13], "../App_Data/enemy_green_final/enemy-green-14.bmp");
+//    getSprite(EnemyShip::sprites[14], "../App_Data/enemy_green_final/enemy-green-15.bmp");
+//    getSprite(EnemyShip::sprites[15], "../App_Data/enemy_green_final/enemy-green-16.bmp");
+//    getSprite(EnemyShip::sprites[16], "../App_Data/enemy_green_final/enemy-green-17.bmp");
+//    getSprite(EnemyShip::sprites[17], "../App_Data/enemy_green_final/enemy-green-18.bmp");
+//    getSprite(EnemyShip::sprites[18], "../App_Data/enemy_green_final/enemy-green-19.bmp");
+//    getSprite(EnemyShip::sprites[19], "../App_Data/enemy_green_final/enemy-green-20.bmp");
+//    getSprite(EnemyShip::sprites[20], "../App_Data/enemy_green_final/enemy-green-21.bmp");
+//    getSprite(EnemyShip::sprites[21], "../App_Data/enemy_green_final/enemy-green-22.bmp");
+//    getSprite(EnemyShip::sprites[22], "../App_Data/enemy_green_final/enemy-green-23.bmp");
+//    getSprite(EnemyShip::sprites[23], "../App_Data/enemy_green_final/enemy-green-24.bmp");
 
-    //enemyPink
-    getSprite(EnemyShip::sprites[0], "../App_Data/enemy_pink_final/enemy-pink-1.bmp");
-    getSprite(EnemyShip::sprites[1], "../App_Data/enemy_pink_final/enemy-pink-2.bmp");
-    getSprite(EnemyShip::sprites[2], "../App_Data/enemy_pink_final/enemy-pink-3.bmp");
-    getSprite(EnemyShip::sprites[3], "../App_Data/enemy_pink_final/enemy-pink-4.bmp");
-    getSprite(EnemyShip::sprites[4], "../App_Data/enemy_pink_final/enemy-pink-5.bmp");
-    getSprite(EnemyShip::sprites[5], "../App_Data/enemy_pink_final/enemy-pink-6.bmp");
-    getSprite(EnemyShip::sprites[6], "../App_Data/enemy_pink_final/enemy-pink-7.bmp");
-    getSprite(EnemyShip::sprites[7], "../App_Data/enemy_pink_final/enemy-pink-8.bmp");
-    getSprite(EnemyShip::sprites[8], "../App_Data/enemy_pink_final/enemy-pink-9.bmp");
-    getSprite(EnemyShip::sprites[9], "../App_Data/enemy_pink_final/enemy-pink-10.bmp");
-    getSprite(EnemyShip::sprites[10], "../App_Data/enemy_pink_final/enemy-pink-11.bmp");
-    getSprite(EnemyShip::sprites[11], "../App_Data/enemy_pink_final/enemy-pink-12.bmp");
-    getSprite(EnemyShip::sprites[12], "../App_Data/enemy_pink_final/enemy-pink-13.bmp");
-    getSprite(EnemyShip::sprites[13], "../App_Data/enemy_pink_final/enemy-pink-14.bmp");
-    getSprite(EnemyShip::sprites[14], "../App_Data/enemy_pink_final/enemy-pink-15.bmp");
-    getSprite(EnemyShip::sprites[15], "../App_Data/enemy_pink_final/enemy-pink-16.bmp");
-    getSprite(EnemyShip::sprites[16], "../App_Data/enemy_pink_final/enemy-pink-17.bmp");
-    getSprite(EnemyShip::sprites[17], "../App_Data/enemy_pink_final/enemy-pink-18.bmp");
-    getSprite(EnemyShip::sprites[18], "../App_Data/enemy_pink_final/enemy-pink-19.bmp");
-    getSprite(EnemyShip::sprites[19], "../App_Data/enemy_pink_final/enemy-pink-20.bmp");
-    getSprite(EnemyShip::sprites[20], "../App_Data/enemy_pink_final/enemy-pink-21.bmp");
-    getSprite(EnemyShip::sprites[21], "../App_Data/enemy_pink_final/enemy-pink-22.bmp");
-    getSprite(EnemyShip::sprites[22], "../App_Data/enemy_pink_final/enemy-pink-23.bmp");
-    getSprite(EnemyShip::sprites[23], "../App_Data/enemy_pink_final/enemy-pink-24.bmp");
+//    enemyBlue
+    getSprite(pTypeMissile::sprites[0], "../App_Data/enemy_blue_final/enemy-blue-1.bmp");
+    getSprite(pTypeMissile::sprites[1], "../App_Data/enemy_blue_final/enemy-blue-2.bmp");
+    getSprite(pTypeMissile::sprites[2], "../App_Data/enemy_blue_final/enemy-blue-3.bmp");
+    getSprite(pTypeMissile::sprites[3], "../App_Data/enemy_blue_final/enemy-blue-4.bmp");
+    getSprite(pTypeMissile::sprites[4], "../App_Data/enemy_blue_final/enemy-blue-5.bmp");
+    getSprite(pTypeMissile::sprites[5], "../App_Data/enemy_blue_final/enemy-blue-6.bmp");
+    getSprite(pTypeMissile::sprites[6], "../App_Data/enemy_blue_final/enemy-blue-7.bmp");
+    getSprite(pTypeMissile::sprites[7], "../App_Data/enemy_blue_final/enemy-blue-8.bmp");
+    getSprite(pTypeMissile::sprites[8], "../App_Data/enemy_blue_final/enemy-blue-9.bmp");
+    getSprite(pTypeMissile::sprites[9], "../App_Data/enemy_blue_final/enemy-blue-10.bmp");
+    getSprite(pTypeMissile::sprites[10], "../App_Data/enemy_blue_final/enemy-blue-11.bmp");
+    getSprite(pTypeMissile::sprites[11], "../App_Data/enemy_blue_final/enemy-blue-12.bmp");
+    getSprite(pTypeMissile::sprites[12], "../App_Data/enemy_blue_final/enemy-blue-13.bmp");
+    getSprite(pTypeMissile::sprites[13], "../App_Data/enemy_blue_final/enemy-blue-14.bmp");
+    getSprite(pTypeMissile::sprites[14], "../App_Data/enemy_blue_final/enemy-blue-15.bmp");
+    getSprite(pTypeMissile::sprites[15], "../App_Data/enemy_blue_final/enemy-blue-16.bmp");
+    getSprite(pTypeMissile::sprites[16], "../App_Data/enemy_blue_final/enemy-blue-17.bmp");
+    getSprite(pTypeMissile::sprites[17], "../App_Data/enemy_blue_final/enemy-blue-18.bmp");
+    getSprite(pTypeMissile::sprites[18], "../App_Data/enemy_blue_final/enemy-blue-19.bmp");
+    getSprite(pTypeMissile::sprites[19], "../App_Data/enemy_blue_final/enemy-blue-20.bmp");
+    getSprite(pTypeMissile::sprites[20], "../App_Data/enemy_blue_final/enemy-blue-21.bmp");
+    getSprite(pTypeMissile::sprites[21], "../App_Data/enemy_blue_final/enemy-blue-22.bmp");
+    getSprite(pTypeMissile::sprites[22], "../App_Data/enemy_blue_final/enemy-blue-23.bmp");
+    getSprite(pTypeMissile::sprites[23], "../App_Data/enemy_blue_final/enemy-blue-24.bmp");
 
-    //alphabet
+//    enemyOrange
+//    getSprite(EnemyShip::sprites[0], "../App_Data/enemy_orange_final/enemy-orange-1.bmp");
+//    getSprite(EnemyShip::sprites[1], "../App_Data/enemy_orange_final/enemy-orange-2.bmp");
+//    getSprite(EnemyShip::sprites[2], "../App_Data/enemy_orange_final/enemy-orange-3.bmp");
+//    getSprite(EnemyShip::sprites[3], "../App_Data/enemy_orange_final/enemy-orange-4.bmp");
+//    getSprite(EnemyShip::sprites[4], "../App_Data/enemy_orange_final/enemy-orange-5.bmp");
+//    getSprite(EnemyShip::sprites[5], "../App_Data/enemy_orange_final/enemy-orange-6.bmp");
+//    getSprite(EnemyShip::sprites[6], "../App_Data/enemy_orange_final/enemy-orange-7.bmp");
+//    getSprite(EnemyShip::sprites[7], "../App_Data/enemy_orange_final/enemy-orange-8.bmp");
+//    getSprite(EnemyShip::sprites[8], "../App_Data/enemy_orange_final/enemy-orange-9.bmp");
+//    getSprite(EnemyShip::sprites[9], "../App_Data/enemy_orange_final/enemy-orange-10.bmp");
+//    getSprite(EnemyShip::sprites[10], "../App_Data/enemy_orange_final/enemy-orange-11.bmp");
+//    getSprite(EnemyShip::sprites[11], "../App_Data/enemy_orange_final/enemy-orange-12.bmp");
+//    getSprite(EnemyShip::sprites[12], "../App_Data/enemy_orange_final/enemy-orange-13.bmp");
+//    getSprite(EnemyShip::sprites[13], "../App_Data/enemy_orange_final/enemy-orange-14.bmp");
+//    getSprite(EnemyShip::sprites[14], "../App_Data/enemy_orange_final/enemy-orange-15.bmp");
+//    getSprite(EnemyShip::sprites[15], "../App_Data/enemy_orange_final/enemy-orange-16.bmp");
+//    getSprite(EnemyShip::sprites[16], "../App_Data/enemy_orange_final/enemy-orange-17.bmp");
+//    getSprite(EnemyShip::sprites[17], "../App_Data/enemy_orange_final/enemy-orange-18.bmp");
+//    getSprite(EnemyShip::sprites[18], "../App_Data/enemy_orange_final/enemy-orange-19.bmp");
+//    getSprite(EnemyShip::sprites[19], "../App_Data/enemy_orange_final/enemy-orange-20.bmp");
+//    getSprite(EnemyShip::sprites[20], "../App_Data/enemy_orange_final/enemy-orange-21.bmp");
+//    getSprite(EnemyShip::sprites[21], "../App_Data/enemy_orange_final/enemy-orange-22.bmp");
+//    getSprite(EnemyShip::sprites[22], "../App_Data/enemy_orange_final/enemy-orange-23.bmp");
+//    getSprite(EnemyShip::sprites[23], "../App_Data/enemy_orange_final/enemy-orange-24.bmp");
 
+//    bomb_orange
+    getSprite(eTypeMissile::sprites[0], "../App_Data/bomb_orange_final/bomb-orange-1.bmp");
+    getSprite(eTypeMissile::sprites[1], "../App_Data/bomb_orange_final/bomb-orange-2.bmp");
+    getSprite(eTypeMissile::sprites[2], "../App_Data/bomb_orange_final/bomb-orange-3.bmp");
+    getSprite(eTypeMissile::sprites[3], "../App_Data/bomb_orange_final/bomb-orange-4.bmp");
+    getSprite(eTypeMissile::sprites[4], "../App_Data/bomb_orange_final/bomb-orange-5.bmp");
+    getSprite(eTypeMissile::sprites[5], "../App_Data/bomb_orange_final/bomb-orange-6.bmp");
+    getSprite(eTypeMissile::sprites[6], "../App_Data/bomb_orange_final/bomb-orange-7.bmp");
+    getSprite(eTypeMissile::sprites[7], "../App_Data/bomb_orange_final/bomb-orange-8.bmp");
+    getSprite(eTypeMissile::sprites[8], "../App_Data/bomb_orange_final/bomb-orange-9.bmp");
+    getSprite(eTypeMissile::sprites[9], "../App_Data/bomb_orange_final/bomb-orange-10.bmp");
+    getSprite(eTypeMissile::sprites[10], "../App_Data/bomb_orange_final/bomb-orange-11.bmp");
+    getSprite(eTypeMissile::sprites[11], "../App_Data/bomb_orange_final/bomb-orange-12.bmp");
+    getSprite(eTypeMissile::sprites[12], "../App_Data/bomb_orange_final/bomb-orange-13.bmp");
+    getSprite(eTypeMissile::sprites[13], "../App_Data/bomb_orange_final/bomb-orange-14.bmp");
+    getSprite(eTypeMissile::sprites[14], "../App_Data/bomb_orange_final/bomb-orange-15.bmp");
+    getSprite(eTypeMissile::sprites[15], "../App_Data/bomb_orange_final/bomb-orange-16.bmp");
+    getSprite(eTypeMissile::sprites[16], "../App_Data/bomb_orange_final/bomb-orange-17.bmp");
+    getSprite(eTypeMissile::sprites[17], "../App_Data/bomb_orange_final/bomb-orange-18.bmp");
+    getSprite(eTypeMissile::sprites[18], "../App_Data/bomb_orange_final/bomb-orange-19.bmp");
+    getSprite(eTypeMissile::sprites[19], "../App_Data/bomb_orange_final/bomb-orange-20.bmp");
+    getSprite(eTypeMissile::sprites[20], "../App_Data/bomb_orange_final/bomb-orange-21.bmp");
+    getSprite(eTypeMissile::sprites[21], "../App_Data/bomb_orange_final/bomb-orange-22.bmp");
+    getSprite(eTypeMissile::sprites[22], "../App_Data/bomb_orange_final/bomb-orange-23.bmp");
+    getSprite(eTypeMissile::sprites[23], "../App_Data/bomb_orange_final/bomb-orange-24.bmp");
+
+//    bomb_green
+//    getSprite(EnemyShip::sprites[0], "../App_Data/bomb_green_final/bomb-green-1.bmp");
+//    getSprite(EnemyShip::sprites[1], "../App_Data/bomb_green_final/bomb-green-2.bmp");
+//    getSprite(EnemyShip::sprites[2], "../App_Data/bomb_green_final/bomb-green-3.bmp");
+//    getSprite(EnemyShip::sprites[3], "../App_Data/bomb_green_final/bomb-green-4.bmp");
+//    getSprite(EnemyShip::sprites[4], "../App_Data/bomb_green_final/bomb-green-5.bmp");
+//    getSprite(EnemyShip::sprites[5], "../App_Data/bomb_green_final/bomb-green-6.bmp");
+//    getSprite(EnemyShip::sprites[6], "../App_Data/bomb_green_final/bomb-green-7.bmp");
+//    getSprite(EnemyShip::sprites[7], "../App_Data/bomb_green_final/bomb-green-8.bmp");
+//    getSprite(EnemyShip::sprites[8], "../App_Data/bomb_green_final/bomb-green-9.bmp");
+//    getSprite(EnemyShip::sprites[9], "../App_Data/bomb_green_final/bomb-green-10.bmp");
+//    getSprite(EnemyShip::sprites[10], "../App_Data/bomb_green_final/bomb-green-11.bmp");
+//    getSprite(EnemyShip::sprites[11], "../App_Data/bomb_green_final/bomb-green-12.bmp");
+//    getSprite(EnemyShip::sprites[12], "../App_Data/bomb_green_final/bomb-green-13.bmp");
+//    getSprite(EnemyShip::sprites[13], "../App_Data/bomb_green_final/bomb-green-14.bmp");
+//    getSprite(EnemyShip::sprites[14], "../App_Data/bomb_green_final/bomb-green-15.bmp");
+//    getSprite(EnemyShip::sprites[15], "../App_Data/bomb_green_final/bomb-green-16.bmp");
+//    getSprite(EnemyShip::sprites[16], "../App_Data/bomb_green_final/bomb-green-17.bmp");
+//    getSprite(EnemyShip::sprites[17], "../App_Data/bomb_green_final/bomb-green-18.bmp");
+//    getSprite(EnemyShip::sprites[18], "../App_Data/bomb_green_final/bomb-green-19.bmp");
+//    getSprite(EnemyShip::sprites[19], "../App_Data/bomb_green_final/bomb-green-20.bmp");
+//    getSprite(EnemyShip::sprites[20], "../App_Data/bomb_green_final/bomb-green-21.bmp");
+//    getSprite(EnemyShip::sprites[21], "../App_Data/bomb_green_final/bomb-green-22.bmp");
+//    getSprite(EnemyShip::sprites[22], "../App_Data/bomb_green_final/bomb-green-23.bmp");
+//    getSprite(EnemyShip::sprites[23], "../App_Data/bomb_green_final/bomb-green-24.bmp");
+
+//    numbers
+    getSprite(Model::numbers[0],"../App_Data/numbers_final/Numbers-0.bmp" );
+    getSprite(Model::numbers[1],"../App_Data/numbers_final/Numbers-1.bmp" );
+    getSprite(Model::numbers[2],"../App_Data/numbers_final/Numbers-2.bmp" );
+    getSprite(Model::numbers[3],"../App_Data/numbers_final/Numbers-3.bmp" );
+    getSprite(Model::numbers[4],"../App_Data/numbers_final/Numbers-4.bmp" );
+    getSprite(Model::numbers[5],"../App_Data/numbers_final/Numbers-5.bmp" );
+    getSprite(Model::numbers[6],"../App_Data/numbers_final/Numbers-6.bmp" );
+    getSprite(Model::numbers[7],"../App_Data/numbers_final/Numbers-7.bmp" );
+    getSprite(Model::numbers[8],"../App_Data/numbers_final/Numbers-8.bmp" );
+    getSprite(Model::numbers[9],"../App_Data/numbers_final/Numbers-9.bmp" );
+
+
+//    alphabet white
     getSprite(Model::alphabetWhite[0],"../App_Data/alphabet_white_final/alphabet_white-1.bmp" );
     getSprite(Model::alphabetWhite[1],"../App_Data/alphabet_white_final/alphabet_white-2.bmp" );
     getSprite(Model::alphabetWhite[2],"../App_Data/alphabet_white_final/alphabet_white-3.bmp" );
@@ -756,6 +908,37 @@ void Controller::loadSprites() {
     getSprite(Model::alphabetWhite[26],"../App_Data/alphabet_white_final/alphabet_white-27.bmp" );
     getSprite(Model::alphabetWhite[27],"../App_Data/alphabet_white_final/alphabet_white-28.bmp" );
     getSprite(Model::alphabetWhite[28],"../App_Data/alphabet_white_final/alphabet_white-29.bmp" );
+
+//    alphabet black
+    getSprite(Model::alphabetBlack[0],"../App_Data/alphabet_black_final/alphabet_black-1.bmp" );
+    getSprite(Model::alphabetBlack[1],"../App_Data/alphabet_black_final/alphabet_black-2.bmp" );
+    getSprite(Model::alphabetBlack[2],"../App_Data/alphabet_black_final/alphabet_black-3.bmp" );
+    getSprite(Model::alphabetBlack[3],"../App_Data/alphabet_black_final/alphabet_black-4.bmp" );
+    getSprite(Model::alphabetBlack[4],"../App_Data/alphabet_black_final/alphabet_black-5.bmp" );
+    getSprite(Model::alphabetBlack[5],"../App_Data/alphabet_black_final/alphabet_black-6.bmp" );
+    getSprite(Model::alphabetBlack[6],"../App_Data/alphabet_black_final/alphabet_black-7.bmp" );
+    getSprite(Model::alphabetBlack[7],"../App_Data/alphabet_black_final/alphabet_black-8.bmp" );
+    getSprite(Model::alphabetBlack[8],"../App_Data/alphabet_black_final/alphabet_black-9.bmp" );
+    getSprite(Model::alphabetBlack[9],"../App_Data/alphabet_black_final/alphabet_black-10.bmp" );
+    getSprite(Model::alphabetBlack[10],"../App_Data/alphabet_black_final/alphabet_black-11.bmp" );
+    getSprite(Model::alphabetBlack[11],"../App_Data/alphabet_black_final/alphabet_black-12.bmp" );
+    getSprite(Model::alphabetBlack[12],"../App_Data/alphabet_black_final/alphabet_black-13.bmp" );
+    getSprite(Model::alphabetBlack[13],"../App_Data/alphabet_black_final/alphabet_black-14.bmp" );
+    getSprite(Model::alphabetBlack[14],"../App_Data/alphabet_black_final/alphabet_black-15.bmp" );
+    getSprite(Model::alphabetBlack[15],"../App_Data/alphabet_black_final/alphabet_black-16.bmp" );
+    getSprite(Model::alphabetBlack[16],"../App_Data/alphabet_black_final/alphabet_black-17.bmp" );
+    getSprite(Model::alphabetBlack[17],"../App_Data/alphabet_black_final/alphabet_black-18.bmp" );
+    getSprite(Model::alphabetBlack[18],"../App_Data/alphabet_black_final/alphabet_black-19.bmp" );
+    getSprite(Model::alphabetBlack[19],"../App_Data/alphabet_black_final/alphabet_black-20.bmp" );
+    getSprite(Model::alphabetBlack[20],"../App_Data/alphabet_black_final/alphabet_black-21.bmp" );
+    getSprite(Model::alphabetBlack[21],"../App_Data/alphabet_black_final/alphabet_black-22.bmp" );
+    getSprite(Model::alphabetBlack[22],"../App_Data/alphabet_black_final/alphabet_black-23.bmp" );
+    getSprite(Model::alphabetBlack[23],"../App_Data/alphabet_black_final/alphabet_black-24.bmp" );
+    getSprite(Model::alphabetBlack[24],"../App_Data/alphabet_black_final/alphabet_black-25.bmp" );
+    getSprite(Model::alphabetBlack[25],"../App_Data/alphabet_black_final/alphabet_black-26.bmp" );
+    getSprite(Model::alphabetBlack[26],"../App_Data/alphabet_black_final/alphabet_black-27.bmp" );
+    getSprite(Model::alphabetBlack[27],"../App_Data/alphabet_black_final/alphabet_black-28.bmp" );
+    getSprite(Model::alphabetBlack[28],"../App_Data/alphabet_black_final/alphabet_black-29.bmp" );
 
     Model::map = new GLubyte[256*400*4];
     for(int x = 0; x < 256*400*4; x+=4) {
