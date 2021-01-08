@@ -814,30 +814,30 @@ void Controller::loadSprites() {
 //    getSprite(EnemyShip::sprites[23], "../App_Data/enemy_orange_final/enemy-orange-24.bmp");
 
 //    bomb_orange
-    getSprite(eTypeMissile::sprites[0], "../App_Data/bomb_orange_final/bomb-orange-1.bmp");
-    getSprite(eTypeMissile::sprites[1], "../App_Data/bomb_orange_final/bomb-orange-2.bmp");
-    getSprite(eTypeMissile::sprites[2], "../App_Data/bomb_orange_final/bomb-orange-3.bmp");
-    getSprite(eTypeMissile::sprites[3], "../App_Data/bomb_orange_final/bomb-orange-4.bmp");
-    getSprite(eTypeMissile::sprites[4], "../App_Data/bomb_orange_final/bomb-orange-5.bmp");
-    getSprite(eTypeMissile::sprites[5], "../App_Data/bomb_orange_final/bomb-orange-6.bmp");
-    getSprite(eTypeMissile::sprites[6], "../App_Data/bomb_orange_final/bomb-orange-7.bmp");
-    getSprite(eTypeMissile::sprites[7], "../App_Data/bomb_orange_final/bomb-orange-8.bmp");
-    getSprite(eTypeMissile::sprites[8], "../App_Data/bomb_orange_final/bomb-orange-9.bmp");
-    getSprite(eTypeMissile::sprites[9], "../App_Data/bomb_orange_final/bomb-orange-10.bmp");
-    getSprite(eTypeMissile::sprites[10], "../App_Data/bomb_orange_final/bomb-orange-11.bmp");
-    getSprite(eTypeMissile::sprites[11], "../App_Data/bomb_orange_final/bomb-orange-12.bmp");
-    getSprite(eTypeMissile::sprites[12], "../App_Data/bomb_orange_final/bomb-orange-13.bmp");
-    getSprite(eTypeMissile::sprites[13], "../App_Data/bomb_orange_final/bomb-orange-14.bmp");
-    getSprite(eTypeMissile::sprites[14], "../App_Data/bomb_orange_final/bomb-orange-15.bmp");
-    getSprite(eTypeMissile::sprites[15], "../App_Data/bomb_orange_final/bomb-orange-16.bmp");
-    getSprite(eTypeMissile::sprites[16], "../App_Data/bomb_orange_final/bomb-orange-17.bmp");
-    getSprite(eTypeMissile::sprites[17], "../App_Data/bomb_orange_final/bomb-orange-18.bmp");
-    getSprite(eTypeMissile::sprites[18], "../App_Data/bomb_orange_final/bomb-orange-19.bmp");
-    getSprite(eTypeMissile::sprites[19], "../App_Data/bomb_orange_final/bomb-orange-20.bmp");
-    getSprite(eTypeMissile::sprites[20], "../App_Data/bomb_orange_final/bomb-orange-21.bmp");
-    getSprite(eTypeMissile::sprites[21], "../App_Data/bomb_orange_final/bomb-orange-22.bmp");
-    getSprite(eTypeMissile::sprites[22], "../App_Data/bomb_orange_final/bomb-orange-23.bmp");
-    getSprite(eTypeMissile::sprites[23], "../App_Data/bomb_orange_final/bomb-orange-24.bmp");
+    getSprite(ETypeMissile::sprites[0], "../App_Data/bomb_orange_final/bomb-orange-1.bmp");
+    getSprite(ETypeMissile::sprites[1], "../App_Data/bomb_orange_final/bomb-orange-2.bmp");
+    getSprite(ETypeMissile::sprites[2], "../App_Data/bomb_orange_final/bomb-orange-3.bmp");
+    getSprite(ETypeMissile::sprites[3], "../App_Data/bomb_orange_final/bomb-orange-4.bmp");
+    getSprite(ETypeMissile::sprites[4], "../App_Data/bomb_orange_final/bomb-orange-5.bmp");
+    getSprite(ETypeMissile::sprites[5], "../App_Data/bomb_orange_final/bomb-orange-6.bmp");
+    getSprite(ETypeMissile::sprites[6], "../App_Data/bomb_orange_final/bomb-orange-7.bmp");
+    getSprite(ETypeMissile::sprites[7], "../App_Data/bomb_orange_final/bomb-orange-8.bmp");
+    getSprite(ETypeMissile::sprites[8], "../App_Data/bomb_orange_final/bomb-orange-9.bmp");
+    getSprite(ETypeMissile::sprites[9], "../App_Data/bomb_orange_final/bomb-orange-10.bmp");
+    getSprite(ETypeMissile::sprites[10], "../App_Data/bomb_orange_final/bomb-orange-11.bmp");
+    getSprite(ETypeMissile::sprites[11], "../App_Data/bomb_orange_final/bomb-orange-12.bmp");
+    getSprite(ETypeMissile::sprites[12], "../App_Data/bomb_orange_final/bomb-orange-13.bmp");
+    getSprite(ETypeMissile::sprites[13], "../App_Data/bomb_orange_final/bomb-orange-14.bmp");
+    getSprite(ETypeMissile::sprites[14], "../App_Data/bomb_orange_final/bomb-orange-15.bmp");
+    getSprite(ETypeMissile::sprites[15], "../App_Data/bomb_orange_final/bomb-orange-16.bmp");
+    getSprite(ETypeMissile::sprites[16], "../App_Data/bomb_orange_final/bomb-orange-17.bmp");
+    getSprite(ETypeMissile::sprites[17], "../App_Data/bomb_orange_final/bomb-orange-18.bmp");
+    getSprite(ETypeMissile::sprites[18], "../App_Data/bomb_orange_final/bomb-orange-19.bmp");
+    getSprite(ETypeMissile::sprites[19], "../App_Data/bomb_orange_final/bomb-orange-20.bmp");
+    getSprite(ETypeMissile::sprites[20], "../App_Data/bomb_orange_final/bomb-orange-21.bmp");
+    getSprite(ETypeMissile::sprites[21], "../App_Data/bomb_orange_final/bomb-orange-22.bmp");
+    getSprite(ETypeMissile::sprites[22], "../App_Data/bomb_orange_final/bomb-orange-23.bmp");
+    getSprite(ETypeMissile::sprites[23], "../App_Data/bomb_orange_final/bomb-orange-24.bmp");
 
 //    bomb_green
 //    getSprite(EnemyShip::sprites[0], "../App_Data/bomb_green_final/bomb-green-1.bmp");

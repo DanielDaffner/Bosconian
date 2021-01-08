@@ -7,7 +7,7 @@
 #include "ProjectilePlayer.h"
 #include "EnemyShip.h"
 #include "ITypeMissile.h"
-#include "eTypeMissile.h"
+#include "ETypeMissile.h"
 #include "PTypeMissile.h"
 #include "EnemyBase.h"
 #include "Asteroid.h"
