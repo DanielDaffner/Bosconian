@@ -12,7 +12,7 @@ Player::Player() : GameObject() {
     direction[0] = 0;
     direction[1] = -1;
     pos.x = MAP_WIDTH / 2;
-    pos.y = (MAP_HEIGHT / 4) * 3;
+    pos.y = (MAP_HEIGHT / 4) * 3 ;
     spriteDirection = SpriteDirection::up;
     spriteLight = SpriteLights::on;
     playerspeed = 4;

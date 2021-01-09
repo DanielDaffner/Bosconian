@@ -14,7 +14,7 @@ public:
     View(Model* modl);
     Model* model;
     GLFWwindow* window{};
-    int viewportpos[4]{};
+    double viewportpos[4]{};
     int createMainWindow();
     void prepareFrame();
     void moveFrame();

@@ -77,7 +77,7 @@ void Controller::onStart(){
     int x;
     int y;
     int distance;
-    for(int i = 0; i < 20;i++) {
+    for(int i = 0; i < 120;i++) {
         x = (rand() % (MAP_WIDTH));
         y = (rand() % (MAP_HEIGHT));
         distance = sqrt(pow(x - model->player->pos.x,2)+pow(y - model->player->pos.y,2));
@@ -86,7 +86,7 @@ void Controller::onStart(){
         model->mines.push_back(new Mine(x,y));
         else printf("protected\n");
     }
-    for(int i = 0; i < 40;i++) {
+    for(int i = 0; i < 50;i++) {
         x = (rand() % (MAP_WIDTH));
         y = (rand() % (MAP_HEIGHT));
         distance = sqrt(pow(x - model->player->pos.x,2)+pow(y - model->player->pos.y,2));
@@ -394,7 +394,7 @@ void Controller::updateGameWindow() {
 //        printf("new Direction %d\n\n",ele->direction);
         }
     }
-    // apply movement
+//     apply movement
     double normalize = 1;
     for(ITypeMissile* ele: model->iTypeMissiles) {
         normalize = sqrt((pow(ele->directions[ele->direction][0],2)+pow(ele->directions[ele->direction][1],2)));
@@ -454,7 +454,7 @@ void Controller::updateGameWindow() {
         move=true;
     }
 
-//    detect mine Collosion
+//    detect mine Collosion player
     double distance;
     for(auto iterator = model->mines.begin(); iterator!= model->mines.end();) {
         distance = sqrt(pow(iterator._Ptr->_Myval->pos.x - model->player->pos.x,2)+pow(iterator._Ptr->_Myval->pos.y - model->player->pos.y,2));
@@ -465,6 +465,48 @@ void Controller::updateGameWindow() {
             iterator._Ptr->_Myval->pos.x += -32;
             iterator._Ptr->_Myval->pos.y += 32;
             iterator = model->mines.erase(iterator);
+        } else
+            iterator++;
+    }
+    //    detect mine Collosion iTypeMissiles
+    for(auto iteratoriTypeMissiles = model->iTypeMissiles.begin(); iteratoriTypeMissiles!= model->iTypeMissiles.end();) {
+
+    for(auto iterator = model->mines.begin(); iterator!= model->mines.end();) {
+
+        distance = sqrt(pow(iterator._Ptr->_Myval->pos.x - iteratoriTypeMissiles._Ptr->_Myval->pos.x,2)+pow(iterator._Ptr->_Myval->pos.y - iteratoriTypeMissiles._Ptr->_Myval->pos.y,2));
+        if(distance <= 64)  {
+            iteratoriTypeMissiles._Ptr->_Myval->collision = true;
+            iterator._Ptr->_Myval->collision = true;
+            model->minesExploding.push_back(iterator._Ptr->_Myval);
+            model->iTypeMissilesExploding.push_back(iteratoriTypeMissiles._Ptr->_Myval);
+            iterator._Ptr->_Myval->pos.x += -32;
+            iterator._Ptr->_Myval->pos.y += 32;
+            iterator = model->mines.erase(iterator);
+
+
+            break;
+        } else
+            iterator++;
+        }
+    if(iteratoriTypeMissiles._Ptr->_Myval->collision){
+        iteratoriTypeMissiles  = model->iTypeMissiles.erase(iteratoriTypeMissiles);
+    }
+    else{
+        iteratoriTypeMissiles++;
+    }
+
+    }
+    //    detect iTypeMissiles Collosion
+
+    for(auto iterator = model->iTypeMissiles.begin(); iterator!= model->iTypeMissiles.end();) {
+        distance = sqrt(pow(iterator._Ptr->_Myval->pos.x - model->player->pos.x,2)+pow(iterator._Ptr->_Myval->pos.y - model->player->pos.y,2));
+        if(distance <= 64)  {
+            model->player->collision = true;
+            iterator._Ptr->_Myval->collision = true;
+            model->iTypeMissilesExploding.push_back(iterator._Ptr->_Myval);
+            iterator._Ptr->_Myval->pos.x += -32;
+            iterator._Ptr->_Myval->pos.y += 32;
+            iterator = model->iTypeMissiles.erase(iterator);
         } else
             iterator++;
     }
@@ -486,7 +528,7 @@ void Controller::updateGameWindow() {
                     delete (iterator._Ptr->_Myval);
                     iterator = model->projectilesPlayer.erase(iterator);
                     hit = true;
-                    model->player->score+=Mine::score;
+
                     break;
                 } else
                     iterator2++;
@@ -499,13 +541,11 @@ void Controller::updateGameWindow() {
                     if (distance <= 32) {
                         iterator2._Ptr->_Myval->collision = true;
                         model->iTypeMissilesExploding.push_back(iterator2._Ptr->_Myval);
-                        iterator2._Ptr->_Myval->pos.x += -32;
-                        iterator2._Ptr->_Myval->pos.y += 32;
                         iterator2 = model->iTypeMissiles.erase(iterator2);
                         delete (iterator._Ptr->_Myval);
                         iterator = model->projectilesPlayer.erase(iterator);
                         hit = true;
-                        model->player->score+=ITypeMissile::score;
+
                         break;
                     } else
                         iterator2++;
@@ -528,20 +568,24 @@ void Controller::updateGameWindow() {
         if(iterator._Ptr->_Myval->explosionPhase >= 30) {
             delete (iterator._Ptr->_Myval);
             iterator = model->minesExploding.erase(iterator);
+            model->player->score+=Mine::score;
         }else
             iterator++;
     }
 
-//    render exploding iTypeMissilePink
-//    for(auto iterator = model->enemyShipsPinkExploding.begin(); iterator!= model->enemyShipsPinkExploding.end();) {
-//        view->render(iterator._Ptr->_Myval->pos+Mine::drawOffset,Player::spritesExplosion[iterator._Ptr->_Myval->explosionPhase/10]);
-//        iterator._Ptr->_Myval->explosionPhase++;
-//        if(iterator._Ptr->_Myval->explosionPhase >= 30) {
-//            delete (iterator._Ptr->_Myval);
-//            iterator = model->enemyShipsPinkExploding.erase(iterator);
-//        }else
-//            iterator++;
-//    }
+
+
+    //render exploding iTypeMissile
+    for(auto iterator = model->iTypeMissilesExploding.begin(); iterator!= model->iTypeMissilesExploding.end();) {
+        view->render(iterator._Ptr->_Myval->pos+EnemyShip::drawOffset,ITypeMissile::spritesExplosion[iterator._Ptr->_Myval->explosionPhase/10]);
+        iterator._Ptr->_Myval->explosionPhase++;
+        if(iterator._Ptr->_Myval->explosionPhase >= 30) {
+            delete (iterator._Ptr->_Myval);
+            iterator = model->iTypeMissilesExploding.erase(iterator);
+            model->player->score+=ITypeMissile::score;
+        }else
+            iterator++;
+    }
 
 
 //    render mines
@@ -556,7 +600,7 @@ void Controller::updateGameWindow() {
 
     //render enemy
     for(ITypeMissile* ele: model->iTypeMissiles) {
-        view->render(ele->pos + ITypeMissile::drawOffset, ele->sprites[ele->direction]);
+        view->render(ele->pos + EnemyShip::drawOffset, ele->sprites[ele->direction]);
     }
 
 
@@ -588,19 +632,19 @@ void Controller::updateGameWindow() {
         }
     }
 
-//    render Base
-    for(EnemyBase* ele: model->enemyBases) {
-        glDrawPixels(288,288,GL_RGBA,GL_UNSIGNED_BYTE,EnemyBase::sprites[0]+2);
-        if(ele->isOpen) {
-//            view->render(ele->pos + EnemyBase::drawOffset, EnemyBase::sprites[0]);
-
-        } else {
-//            view->render(ele->pos + EnemyBase::drawOffset, EnemyBase::sprites[0]);
-        }
-        for(EnemyBasePart* ele2: ele->parts) {
-//            view->render(ele2->pos+Player::drawOffset,EnemyBase::sprites[0]);
-        }
-    }
+////    render Base
+//    for(EnemyBase* ele: model->enemyBases) {
+//        glDrawPixels(288,288,GL_RGBA,GL_UNSIGNED_BYTE,EnemyBase::sprites[0]+2);
+//        if(ele->isOpen) {
+////            view->render(ele->pos + EnemyBase::drawOffset, EnemyBase::sprites[0]);
+//
+//        } else {
+////            view->render(ele->pos + EnemyBase::drawOffset, EnemyBase::sprites[0]);
+//        }
+//        for(EnemyBasePart* ele2: ele->parts) {
+////            view->render(ele2->pos+Player::drawOffset,EnemyBase::sprites[0]);
+//        }
+//    }
 
 //    draw lifes
     for(int i = 0; i < model->player->lifes; i++) {
@@ -647,9 +691,15 @@ void Controller::updateGameWindow() {
 
 //    draw highscore
     Position2D highscorePos = {VIEW_WIDTH-(8*32),0+8+32};
-    view->drawString(highscorePos,"HI SCORE");
-    Position2D scorePos = {VIEW_WIDTH-16-32,0+8+32+32};
+    view->drawString(highscorePos,"HI-SCORE");
+    Position2D scorePos = {VIEW_WIDTH-32,0+8+32+32};
     view->drawNumber(scorePos,model->player->score);
+    Position2D conditionPos = {VIEW_WIDTH-9*32,0+8+32+32+7*32};
+    view->drawString(conditionPos,"CONDITION");
+    glColor3f(0, 1, 0);
+    glRectd(VIEW_WIDTH-8*32,0+8+32+32+7*32+16,VIEW_WIDTH,0+8+32+32+7*32+16+32+16);
+    Position2D conditionTypePos = {VIEW_WIDTH-6*32-16,0+8+32+32+7*32+16+32+8};
+    view->drawString(conditionTypePos,"GREEN");
     glRasterPos2d(400,400);
 
 }
@@ -938,6 +988,37 @@ void Controller::loadSprites() {
     getSprite(Model::alphabetWhite[26],"../App_Data/alphabet_white_final/alphabet_white-27.bmp" );
     getSprite(Model::alphabetWhite[27],"../App_Data/alphabet_white_final/alphabet_white-28.bmp" );
     getSprite(Model::alphabetWhite[28],"../App_Data/alphabet_white_final/alphabet_white-29.bmp" );
+
+    //    alphabet white
+//    getSprite(Model::alphabetBlackNoBorder[0],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-1.bmp" );
+//    getSprite(Model::alphabetBlackNoBorder[1],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-2.bmp" );
+//    getSprite(Model::alphabetBlackNoBorder[2],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-3.bmp" );
+//    getSprite(Model::alphabetBlackNoBorder[3],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-4.bmp" );
+//    getSprite(Model::alphabetBlackNoBorder[4],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-5.bmp" );
+//    getSprite(Model::alphabetBlackNoBorder[5],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-6.bmp" );
+//    getSprite(Model::alphabetBlackNoBorder[6],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-7.bmp" );
+//    getSprite(Model::alphabetBlackNoBorder[7],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-8.bmp" );
+//    getSprite(Model::alphabetBlackNoBorder[8],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-9.bmp" );
+//    getSprite(Model::alphabetBlackNoBorder[9],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-10.bmp" );
+//    getSprite(Model::alphabetBlackNoBorder[10],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-11.bmp" );
+//    getSprite(Model::alphabetBlackNoBorder[11],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-12.bmp" );
+//    getSprite(Model::alphabetBlackNoBorder[12],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-13.bmp" );
+//    getSprite(Model::alphabetBlackNoBorder[13],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-14.bmp" );
+//    getSprite(Model::alphabetBlackNoBorder[14],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-15.bmp" );
+//    getSprite(Model::alphabetBlackNoBorder[15],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-16.bmp" );
+//    getSprite(Model::alphabetBlackNoBorder[16],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-17.bmp" );
+//    getSprite(Model::alphabetBlackNoBorder[17],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-18.bmp" );
+//    getSprite(Model::alphabetBlackNoBorder[18],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-19.bmp" );
+//    getSprite(Model::alphabetBlackNoBorder[19],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-20.bmp" );
+//    getSprite(Model::alphabetBlackNoBorder[20],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-21.bmp" );
+//    getSprite(Model::alphabetBlackNoBorder[21],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-22.bmp" );
+//    getSprite(Model::alphabetBlackNoBorder[22],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-23.bmp" );
+//    getSprite(Model::alphabetBlackNoBorder[23],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-24.bmp" );
+//    getSprite(Model::alphabetBlackNoBorder[24],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-25.bmp" );
+//    getSprite(Model::alphabetBlackNoBorder[25],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-26.bmp" );
+//    getSprite(Model::alphabetBlackNoBorder[26],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-27.bmp" );
+//    getSprite(Model::alphabetBlackNoBorder[27],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-28.bmp" );
+//    getSprite(Model::alphabetBlackNoBorder[28],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-29.bmp" );
 
 //    alphabet black
     getSprite(Model::alphabetBlack[0],"../App_Data/alphabet_black_final/alphabet_black-1.bmp" );

@@ -8,9 +8,9 @@
 View::View(Model* modl){
     model = modl;
     viewportpos[0] = model->player->pos.x - (GAME_WIDTH/2);
-    viewportpos[1] = model->player->pos.y - (GAME_HEIGHT/2);
+    viewportpos[1] = model->player->pos.y - (GAME_HEIGHT/2)-64;
     viewportpos[2] = model->player->pos.x + (GAME_WIDTH/2);
-    viewportpos[3] = model->player->pos.y + (GAME_HEIGHT/2);
+    viewportpos[3] = model->player->pos.y + (GAME_HEIGHT/2)-64;
 }
 
 int View::createMainWindow() {
@@ -44,14 +44,16 @@ void View::prepareFrame() {
 }
 
 void View::moveFrame() {
-//    viewportpos[0] +=model->player->direction[0] * model->player->playerspeed;
-//    viewportpos[1] +=model->player->direction[1] * model->player->playerspeed;
-//    viewportpos[2] +=model->player->direction[0] * model->player->playerspeed;
-//    viewportpos[3] +=model->player->direction[1] * model->player->playerspeed;
-    viewportpos[0] = model->player->pos.x - (GAME_WIDTH/2);
-    viewportpos[1] = model->player->pos.y - (GAME_HEIGHT/2);
-    viewportpos[2] = model->player->pos.x + (GAME_WIDTH/2);
-    viewportpos[3] = model->player->pos.y + (GAME_HEIGHT/2);
+   double normalize = sqrt(pow(model->player->direction[0],2)+pow(model->player->direction[1],2));
+
+    viewportpos[0] +=(model->player->direction[0] /normalize)* model->player->playerspeed;
+    viewportpos[1] +=(model->player->direction[1]  /normalize)* model->player->playerspeed;
+    viewportpos[2] +=(model->player->direction[0]  /normalize)* model->player->playerspeed;
+    viewportpos[3] +=(model->player->direction[1]  /normalize)* model->player->playerspeed;
+//    viewportpos[0] = model->player->pos.x - (GAME_WIDTH/2);
+//    viewportpos[1] = model->player->pos.y - (GAME_HEIGHT/2);
+//    viewportpos[2] = model->player->pos.x + (GAME_WIDTH/2);
+//    viewportpos[3] = model->player->pos.y + (GAME_HEIGHT/2);
     if(viewportpos[0] < 0) viewportpos[0] += MAP_WIDTH;
     if(viewportpos[0] >= MAP_WIDTH)viewportpos[0] -= MAP_WIDTH;
     if(viewportpos[1] < 0)viewportpos[1] += MAP_HEIGHT;
@@ -64,9 +66,9 @@ void View::moveFrame() {
 void View::resetFrame() {
 
     viewportpos[0] = model->player->pos.x - (GAME_WIDTH/2);
-    viewportpos[1] = model->player->pos.y - (GAME_HEIGHT/2);
+    viewportpos[1] = model->player->pos.y - (GAME_HEIGHT/2)-64;
     viewportpos[2] = model->player->pos.x + (GAME_WIDTH/2);
-    viewportpos[3] = model->player->pos.y + (GAME_HEIGHT/2);
+    viewportpos[3] = model->player->pos.y + (GAME_HEIGHT/2)-64;
 }
 
 
@@ -141,184 +143,190 @@ void View::drawString(Position2D pos,char *input) {
     int x = pos.x;
     int y = pos.y;
    while (*input!='\0'){
+       glRasterPos2d(x, y);
        switch(*input){
            case 'A':
-               glRasterPos2d(x, y);
+
                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[0]+2);
                x +=32;
                break;
            case 'B':
-               glRasterPos2d(x, y);
+
                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[1]+2);
                x +=32;
                break;
            case 'C':
-               glRasterPos2d(x, y);
+
                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[2]+2);
                x +=32;
                break;
            case 'D':
-               glRasterPos2d(x, y);
+
                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[3]+2);
                x +=32;
                break;
            case 'E':
-               glRasterPos2d(x, y);
+
                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[4]+2);
                x +=32;
                break;
            case 'F':
-               glRasterPos2d(x, y);
+
                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[5]+2);
                x +=32;
                break;
            case 'G':
-               glRasterPos2d(x, y);
+
                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[6]+2);
                x +=32;
                break;
            case 'H':
-               glRasterPos2d(x, y);
+
                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[7]+2);
                x +=32;
                break;
            case 'I':
-               glRasterPos2d(x, y);
+
                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[8]+2);
                x +=32;
                break;
            case 'J':
-               glRasterPos2d(x, y);
+
                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[9]+2);
                x +=32;
                break;
            case 'K':
-               glRasterPos2d(x, y);
+
                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[10]+2);
                x +=32;
                break;
            case 'L':
-               glRasterPos2d(x, y);
+
                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[11]+2);
                x +=32;
                break;
            case 'M':
-               glRasterPos2d(x, y);
+
                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[12]+2);
                x +=32;
                break;
            case 'N':
-               glRasterPos2d(x, y);
+
                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[13]+2);
                x +=32;
                break;
            case 'O':
-               glRasterPos2d(x, y);
+
                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[14]+2);
                x +=32;
                break;
            case 'P':
-               glRasterPos2d(x, y);
+
                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[15]+2);
                x +=32;
                break;
            case 'Q':
-               glRasterPos2d(x, y);
+
                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[16]+2);
                x +=32;
                break;
            case 'R':
-               glRasterPos2d(x, y);
+
                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[17]+2);
                x +=32;
                break;
            case 'S':
-               glRasterPos2d(x, y);
+
                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[18]+2);
                x +=32;
                break;
            case 'T':
-               glRasterPos2d(x, y);
+
                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[19]+2);
                x +=32;
                break;
            case 'U':
-               glRasterPos2d(x, y);
+
                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[20]+2);
                x +=32;
                break;
            case 'V':
-               glRasterPos2d(x, y);
+
                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[21]+2);
                x +=32;
                break;
            case 'W':
-               glRasterPos2d(x, y);
+
                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[22]+2);
                x +=32;
                break;
            case 'X':
-               glRasterPos2d(x, y);
+
                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[23]+2);
                x +=32;
                break;
            case 'Y':
-               glRasterPos2d(x, y);
+
                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[24]+2);
                x +=32;
                break;
            case 'Z':
-               glRasterPos2d(x, y);
+
                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[25]+2);
                x +=32;
                break;
+           case '-':
+
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[28]+2);
+               x +=32;
+               break;
            case '0':
-               glRasterPos2d(x, y);
+
                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::numbers[0]+2);
                x +=32;
                break;
            case '1':
-               glRasterPos2d(x, y);
+
                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::numbers[1]+2);
                x +=32;
                break;
            case '2':
-               glRasterPos2d(x, y);
+
                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::numbers[2]+2);
                x +=32;
                break;
            case '3':
-               glRasterPos2d(x, y);
+
                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::numbers[3]+2);
                x +=32;
                break;
            case '4':
-               glRasterPos2d(x, y);
+
                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::numbers[4]+2);
                x +=32;
                break;
            case '5':
-               glRasterPos2d(x, y);
+
                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::numbers[5]+2);
                x +=32;
                break;
            case '6':
-               glRasterPos2d(x, y);
+
                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::numbers[6]+2);
                x +=32;
                break;
            case '7':
-               glRasterPos2d(x, y);
+
                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::numbers[7]+2);
                x +=32;
                break;
            case '8':
-               glRasterPos2d(x, y);
+
                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::numbers[8]+2);
                x +=32;
                break;
            case '9':
-               glRasterPos2d(x, y);
+
                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::numbers[0]+2);
                x +=32;
                break;
@@ -331,13 +339,209 @@ void View::drawString(Position2D pos,char *input) {
 
 }
 
-void View::drawNumber(Position2D pos,int number) {
+//void View::drawStringBlackNoBorder(Position2D pos,char *input) {
+//    int x = pos.x;
+//    int y = pos.y;
+//    while (*input!='\0'){
+//        glRasterPos2d(x, y);
+//        switch(*input){
+//            case 'A':
+//
+//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetBlackNoBorder[0]+2);
+//                x +=32;
+//                break;
+//            case 'B':
+//
+//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetBlackNoBorder[1]+2);
+//                x +=32;
+//                break;
+//            case 'C':
+//
+//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetBlackNoBorder[2]+2);
+//                x +=32;
+//                break;
+//            case 'D':
+//
+//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetBlackNoBorder[3]+2);
+//                x +=32;
+//                break;
+//            case 'E':
+//
+//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetBlackNoBorder[4]+2);
+//                x +=32;
+//                break;
+//            case 'F':
+//
+//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetBlackNoBorder[5]+2);
+//                x +=32;
+//                break;
+//            case 'G':
+//
+//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetBlackNoBorder[6]+2);
+//                x +=32;
+//                break;
+//            case 'H':
+//
+//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetBlackNoBorder[7]+2);
+//                x +=32;
+//                break;
+//            case 'I':
+//
+//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetBlackNoBorder[8]+2);
+//                x +=32;
+//                break;
+//            case 'J':
+//
+//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetBlackNoBorder[9]+2);
+//                x +=32;
+//                break;
+//            case 'K':
+//
+//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetBlackNoBorder[10]+2);
+//                x +=32;
+//                break;
+//            case 'L':
+//
+//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetBlackNoBorder[11]+2);
+//                x +=32;
+//                break;
+//            case 'M':
+//
+//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetBlackNoBorder[12]+2);
+//                x +=32;
+//                break;
+//            case 'N':
+//
+//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetBlackNoBorder[13]+2);
+//                x +=32;
+//                break;
+//            case 'O':
+//
+//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetBlackNoBorder[14]+2);
+//                x +=32;
+//                break;
+//            case 'P':
+//
+//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetBlackNoBorder[15]+2);
+//                x +=32;
+//                break;
+//            case 'Q':
+//
+//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetBlackNoBorder[16]+2);
+//                x +=32;
+//                break;
+//            case 'R':
+//
+//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetBlackNoBorder[17]+2);
+//                x +=32;
+//                break;
+//            case 'S':
+//
+//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetBlackNoBorder[18]+2);
+//                x +=32;
+//                break;
+//            case 'T':
+//
+//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetBlackNoBorder[19]+2);
+//                x +=32;
+//                break;
+//            case 'U':
+//
+//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetBlackNoBorder[20]+2);
+//                x +=32;
+//                break;
+//            case 'V':
+//
+//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetBlackNoBorder[21]+2);
+//                x +=32;
+//                break;
+//            case 'W':
+//
+//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetBlackNoBorder[22]+2);
+//                x +=32;
+//                break;
+//            case 'X':
+//
+//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetBlackNoBorder[23]+2);
+//                x +=32;
+//                break;
+//            case 'Y':
+//
+//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetBlackNoBorder[24]+2);
+//                x +=32;
+//                break;
+//            case 'Z':
+//
+//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetBlackNoBorder[25]+2);
+//                x +=32;
+//                break;
+//            case '-':
+//
+//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetBlackNoBorder[28]+2);
+//                x +=32;
+//                break;
+//            case '0':
+//
+//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetBlackNoBorder[0]+2);
+//                x +=32;
+//                break;
+//            case '1':
+//
+//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetBlackNoBorder[1]+2);
+//                x +=32;
+//                break;
+//            case '2':
+//
+//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetBlackNoBorder[2]+2);
+//                x +=32;
+//                break;
+//            case '3':
+//
+//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetBlackNoBorder[3]+2);
+//                x +=32;
+//                break;
+//            case '4':
+//
+//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetBlackNoBorder[4]+2);
+//                x +=32;
+//                break;
+//            case '5':
+//
+//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetBlackNoBorder[5]+2);
+//                x +=32;
+//                break;
+//            case '6':
+//
+//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetBlackNoBorder[6]+2);
+//                x +=32;
+//                break;
+//            case '7':
+//
+//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetBlackNoBorder[7]+2);
+//                x +=32;
+//                break;
+//            case '8':
+//
+//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetBlackNoBorder[8]+2);
+//                x +=32;
+//                break;
+//            case '9':
+//
+//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetBlackNoBorder[0]+2);
+//                x +=32;
+//                break;
+//            default :
+//                x +=16;
+//                break;
+//        }
+//        *input++;
+//    }
+//
+//}
 
-    printf("%d", number);
+void View::drawNumber(Position2D pos,int number) {
     char* input = new char[std::to_string(number).length()];
     strcpy(input , std::to_string(number).c_str());
-
-    printf("%s",input);
     int x = pos.x- 32*(std::to_string(number).length()-1) ;
     int y = pos.y;
     while (*input!='\0'){
