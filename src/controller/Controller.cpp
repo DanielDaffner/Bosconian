@@ -632,19 +632,20 @@ void Controller::updateGameWindow() {
         }
     }
 
-////    render Base
-//    for(EnemyBase* ele: model->enemyBases) {
-//        glDrawPixels(288,288,GL_RGBA,GL_UNSIGNED_BYTE,EnemyBase::sprites[0]+2);
-//        if(ele->isOpen) {
-////            view->render(ele->pos + EnemyBase::drawOffset, EnemyBase::sprites[0]);
-//
-//        } else {
-////            view->render(ele->pos + EnemyBase::drawOffset, EnemyBase::sprites[0]);
-//        }
-//        for(EnemyBasePart* ele2: ele->parts) {
-////            view->render(ele2->pos+Player::drawOffset,EnemyBase::sprites[0]);
-//        }
-//    }
+//    render Base
+    for(EnemyBase* ele: model->enemyBases) {
+//        glDrawPixels(*EnemyBase::sprites[0],*(EnemyBase::sprites[0]+4),GL_RGBA,GL_UNSIGNED_BYTE,EnemyBase::sprites[0]+8);
+//        glDrawPixels(*((uint32_t *)(EnemyBase::sprites[0])),*((uint32_t *)(EnemyBase::sprites[0]+4)),GL_RGBA,GL_UNSIGNED_BYTE,EnemyBase::sprites[0]+8);
+        if(ele->isOpen) {
+//            view->render(ele->pos + EnemyBase::drawOffset, EnemyBase::sprites[0]);
+
+        } else {
+//            view->render(ele->pos + EnemyBase::drawOffset, EnemyBase::sprites[0]);
+        }
+        for(EnemyBasePart* ele2: ele->parts) {
+//            view->render(ele2->pos+Player::drawOffset,EnemyBase::sprites[0]);
+        }
+    }
 
 //    draw lifes
     for(int i = 0; i < model->player->lifes; i++) {
@@ -667,7 +668,7 @@ void Controller::updateGameWindow() {
         glDrawPixels(1,1,GL_RGBA,GL_UNSIGNED_BYTE,testpix);
     }
 
-//    testviewpos todo
+//    testviewpos
 //    x = view->viewportpos[0] /10;
 //    y = view->viewportpos[1] /13;
 //    glRasterPos2d(MAP_POS_X+x,MAP_POS_Y-400+y);
@@ -747,7 +748,7 @@ void Controller::loadSprites() {
     getSprite(Mine::spritesExplosion[0], "../App_Data/mine_explosion_final/mine_explosion_1.bmp");
     getSprite(Mine::spritesExplosion[1], "../App_Data/mine_explosion_final/mine_explosion_2.bmp");
     getSprite(Mine::spritesExplosion[2], "../App_Data/mine_explosion_final/mine_explosion_3.bmp");
-    
+
 //    asteriods and explosion
     getSprite(Asteroid::sprites[0], "../App_Data/asteroid_final/asteroid_1.bmp");
     getSprite(Asteroid::sprites[1], "../App_Data/asteroid_final/asteroid_2.bmp");
@@ -760,12 +761,12 @@ void Controller::loadSprites() {
     getSprite(ProjectilePlayer::sprites[1], "../App_Data/projectile_final/projectile-4.bmp");
     getSprite(ProjectilePlayer::sprites[2], "../App_Data/projectile_final/projectile-3.bmp");
     getSprite(ProjectilePlayer::sprites[3], "../App_Data/projectile_final/projectile-2.bmp");
-    
+
 //    enemy Explosion
     getSprite(EnemyShip::spritesExplosion[0], "../App_Data/enemy_explosion_final/enemy-explosion-1.bmp");
     getSprite(EnemyShip::spritesExplosion[1], "../App_Data/enemy_explosion_final/enemy-explosion-2.bmp");
     getSprite(EnemyShip::spritesExplosion[2], "../App_Data/enemy_explosion_final/enemy-explosion-3.bmp");
-    
+
 //    enemyPink
     getSprite(ITypeMissile::sprites[0], "../App_Data/enemy_pink_final/enemy-pink-1.bmp");
     getSprite(ITypeMissile::sprites[1], "../App_Data/enemy_pink_final/enemy-pink-2.bmp");
@@ -791,7 +792,7 @@ void Controller::loadSprites() {
     getSprite(ITypeMissile::sprites[21], "../App_Data/enemy_pink_final/enemy-pink-22.bmp");
     getSprite(ITypeMissile::sprites[22], "../App_Data/enemy_pink_final/enemy-pink-23.bmp");
     getSprite(ITypeMissile::sprites[23], "../App_Data/enemy_pink_final/enemy-pink-24.bmp");
-    
+
 //    base
     getSprite(EnemyBase::sprites[0], "../App_Data/base_final/base-1.bmp");
     getSprite(EnemyBase::sprites[1], "../App_Data/base_final/base-2.bmp");
@@ -1069,7 +1070,7 @@ int Controller::getSprite(GLubyte* &dst, char* filepath) {
     dst = new GLubyte[filesize];
     fread(dst, sizeof(GLubyte), filesize, file);
 
-    for(int i = 2; i < filesize; i+=4) {
+    for(int i = 8; i < filesize; i+=4) {
         swap = dst[i];
         dst[i] = dst[i+2];
         dst[i+2] = swap;
@@ -1078,4 +1079,3 @@ int Controller::getSprite(GLubyte* &dst, char* filepath) {
     fclose(file);
     return 0;
 }
-
