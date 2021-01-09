@@ -40,7 +40,7 @@ int main() {
 
         end = std::chrono::system_clock::now();
         std::chrono::duration<double> elapsed_seconds = end-start;
-        sleeptime = 17 - (int)(elapsed_seconds.count()*1000);
+        sleeptime = 8 - (int)(elapsed_seconds.count()*1000);
 //        printf("time %d\n",sleeptime);
         if(sleeptime < 0) {
             sleeptime = 0;

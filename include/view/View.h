@@ -22,6 +22,7 @@ public:
     void renderGameInfos(Position2D pos, GLubyte *bitmap);
     void renderStars(Position2D pos, GLubyte *bitmap);
     void drawString(Position2D pos, char* input);
+    void drawNumber(Position2D pos,int number);
     void resetFrame();
 };
 #endif //BOSCONIAN_VIEW_H

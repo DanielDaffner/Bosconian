@@ -5,6 +5,7 @@
 
 #include <iostream>
 #include <cmath>
+#include <string>
 
 Controller::Controller() {
 
@@ -485,6 +486,7 @@ void Controller::updateGameWindow() {
                     delete (iterator._Ptr->_Myval);
                     iterator = model->projectilesPlayer.erase(iterator);
                     hit = true;
+                    model->player->score+=Mine::score;
                     break;
                 } else
                     iterator2++;
@@ -503,6 +505,7 @@ void Controller::updateGameWindow() {
                         delete (iterator._Ptr->_Myval);
                         iterator = model->projectilesPlayer.erase(iterator);
                         hit = true;
+                        model->player->score+=ITypeMissile::score;
                         break;
                     } else
                         iterator2++;
@@ -638,11 +641,13 @@ void Controller::updateGameWindow() {
 
 //    draw round
     Position2D roundpos = {ROUND_POS_X,ROUND_POS_Y};
-    view->drawString(roundpos,"ROUND AB");
+    view->drawString(roundpos,"ROUND 1");
 
 //    draw highscore
     Position2D highscorePos = {VIEW_WIDTH-(8*32),0+8+32};
     view->drawString(highscorePos,"HI SCORE");
+    Position2D scorePos = {VIEW_WIDTH-16-32,0+8+32+32};
+    view->drawNumber(scorePos,model->player->score);
     glRasterPos2d(400,400);
 
 }

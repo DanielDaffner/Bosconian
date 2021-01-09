@@ -2,6 +2,7 @@
 // Created by basti on 11.12.2020.
 //
 #include "../../include/view/View.h"
+#include <string>
 
 
 View::View(Model* modl){
@@ -271,6 +272,56 @@ void View::drawString(Position2D pos,char *input) {
                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[25]+2);
                x +=32;
                break;
+           case '0':
+               glRasterPos2d(x, y);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::numbers[0]+2);
+               x +=32;
+               break;
+           case '1':
+               glRasterPos2d(x, y);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::numbers[1]+2);
+               x +=32;
+               break;
+           case '2':
+               glRasterPos2d(x, y);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::numbers[2]+2);
+               x +=32;
+               break;
+           case '3':
+               glRasterPos2d(x, y);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::numbers[3]+2);
+               x +=32;
+               break;
+           case '4':
+               glRasterPos2d(x, y);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::numbers[4]+2);
+               x +=32;
+               break;
+           case '5':
+               glRasterPos2d(x, y);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::numbers[5]+2);
+               x +=32;
+               break;
+           case '6':
+               glRasterPos2d(x, y);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::numbers[6]+2);
+               x +=32;
+               break;
+           case '7':
+               glRasterPos2d(x, y);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::numbers[7]+2);
+               x +=32;
+               break;
+           case '8':
+               glRasterPos2d(x, y);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::numbers[8]+2);
+               x +=32;
+               break;
+           case '9':
+               glRasterPos2d(x, y);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::numbers[0]+2);
+               x +=32;
+               break;
            default :
                x +=16;
                break;
@@ -280,3 +331,72 @@ void View::drawString(Position2D pos,char *input) {
 
 }
 
+void View::drawNumber(Position2D pos,int number) {
+
+    printf("%d", number);
+    char* input = new char[std::to_string(number).length()];
+    strcpy(input , std::to_string(number).c_str());
+
+    printf("%s",input);
+    int x = pos.x- 32*(std::to_string(number).length()-1) ;
+    int y = pos.y;
+    while (*input!='\0'){
+        switch(*input){
+            case '0':
+                glRasterPos2d(x, y);
+                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::numbers[0]+2);
+                x +=32;
+                break;
+            case '1':
+                glRasterPos2d(x, y);
+                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::numbers[1]+2);
+                x +=32;
+                break;
+            case '2':
+                glRasterPos2d(x, y);
+                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::numbers[2]+2);
+                x +=32;
+                break;
+            case '3':
+                glRasterPos2d(x, y);
+                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::numbers[3]+2);
+                x +=32;
+                break;
+            case '4':
+                glRasterPos2d(x, y);
+                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::numbers[4]+2);
+                x +=32;
+                break;
+            case '5':
+                glRasterPos2d(x, y);
+                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::numbers[5]+2);
+                x +=32;
+                break;
+            case '6':
+                glRasterPos2d(x, y);
+                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::numbers[6]+2);
+                x +=32;
+                break;
+            case '7':
+                glRasterPos2d(x, y);
+                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::numbers[7]+2);
+                x +=32;
+                break;
+            case '8':
+                glRasterPos2d(x, y);
+                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::numbers[8]+2);
+                x +=32;
+                break;
+            case '9':
+                glRasterPos2d(x, y);
+                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::numbers[9]+2);
+                x +=32;
+                break;
+            default :
+                x +=16;
+                break;
+        }
+        *input++;
+    }
+
+}
