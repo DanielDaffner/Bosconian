@@ -588,7 +588,7 @@ void Controller::updateGameWindow() {
 //    render Base
     for(EnemyBase* ele: model->enemyBases) {
 //        glDrawPixels(*EnemyBase::sprites[0],*(EnemyBase::sprites[0]+4),GL_RGBA,GL_UNSIGNED_BYTE,EnemyBase::sprites[0]+8);
-        glDrawPixels(*((uint32_t *)(EnemyBase::sprites[0])),*((uint32_t *)(EnemyBase::sprites[0]+4)),GL_RGBA,GL_UNSIGNED_BYTE,EnemyBase::sprites[0]+8);
+//        glDrawPixels(*((uint32_t *)(EnemyBase::sprites[0])),*((uint32_t *)(EnemyBase::sprites[0]+4)),GL_RGBA,GL_UNSIGNED_BYTE,EnemyBase::sprites[0]+8);
         if(ele->isOpen) {
 //            view->render(ele->pos + EnemyBase::drawOffset, EnemyBase::sprites[0]);
 
@@ -621,7 +621,7 @@ void Controller::updateGameWindow() {
         glDrawPixels(1,1,GL_RGBA,GL_UNSIGNED_BYTE,testpix);
     }
 
-//    testviewpos todo
+//    testviewpos
 //    x = view->viewportpos[0] /10;
 //    y = view->viewportpos[1] /13;
 //    glRasterPos2d(MAP_POS_X+x,MAP_POS_Y-400+y);
