@@ -525,7 +525,7 @@ void Controller::updateGameWindow() {
         if(iterator._Ptr->_Myval->explosionPhase >= 30) {
             delete (iterator._Ptr->_Myval);
             iterator = model->minesExploding.erase(iterator);
-        }else
+        } else
             iterator++;
     }
 
@@ -587,7 +587,8 @@ void Controller::updateGameWindow() {
 
 //    render Base
     for(EnemyBase* ele: model->enemyBases) {
-        glDrawPixels(288,288,GL_RGBA,GL_UNSIGNED_BYTE,EnemyBase::sprites[0]+2);
+//        glDrawPixels(*EnemyBase::sprites[0],*(EnemyBase::sprites[0]+4),GL_RGBA,GL_UNSIGNED_BYTE,EnemyBase::sprites[0]+8);
+        glDrawPixels(*((uint32_t *)(EnemyBase::sprites[0])),*((uint32_t *)(EnemyBase::sprites[0]+4)),GL_RGBA,GL_UNSIGNED_BYTE,EnemyBase::sprites[0]+8);
         if(ele->isOpen) {
 //            view->render(ele->pos + EnemyBase::drawOffset, EnemyBase::sprites[0]);
 
@@ -983,7 +984,7 @@ int Controller::getSprite(GLubyte* &dst, char* filepath) {
     dst = new GLubyte[filesize];
     fread(dst, sizeof(GLubyte), filesize, file);
 
-    for(int i = 2; i < filesize; i+=4) {
+    for(int i = 8; i < filesize; i+=4) {
         swap = dst[i];
         dst[i] = dst[i+2];
         dst[i+2] = swap;
