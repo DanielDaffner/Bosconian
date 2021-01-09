@@ -12,7 +12,8 @@
 class EnemyBase : public GameObject {
 public:
     EnemyBase(int x, int y);
-    static GLubyte* sprites;
+    static GLubyte* sprites[16];
+    static GLubyte* spritesExplosion[3];
     static Position2D drawOffset;
     std::list<EnemyBasePart*> parts;
     static int score;
