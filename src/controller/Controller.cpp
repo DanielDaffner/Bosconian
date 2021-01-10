@@ -20,7 +20,7 @@ int Controller::init() {
     loadSprites();
     //psshhhtttt
     //o.O
-    onStart();
+
     return 0;
 }
 
@@ -74,6 +74,11 @@ void Controller::updateMainWindow() {
 }
 
 void Controller::onStart(){
+    model->mines.clear();
+    model->iTypeMissiles.clear();
+    model->minesExploding.clear();
+    model->iTypeMissilesExploding.clear();
+    
     int x;
     int y;
     int distance;
@@ -165,6 +170,7 @@ void Controller::updateGameWindow() {
         inGame=false;
         view->resetFrame();
         model->player->resetPosition();
+        onStart();
         return;
     }
 

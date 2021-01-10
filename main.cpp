@@ -28,6 +28,7 @@ int main() {
     auto start = std::chrono::system_clock::now();
     auto end = std::chrono::system_clock::now();
     int sleeptime = 0;
+    controller->onStart();
     while (controller->inGame && !glfwWindowShouldClose(controller->view->window )) {
         /* Render here */
         start = std::chrono::system_clock::now();
