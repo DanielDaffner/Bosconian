@@ -86,7 +86,7 @@ void Controller::onStart(){
         model->mines.push_back(new Mine(x,y));
         else printf("protected\n");
     }
-    for(int i = 0; i < 50;i++) {
+    for(int i = 0; i < 100;i++) {
         x = (rand() % (MAP_WIDTH));
         y = (rand() % (MAP_HEIGHT));
         distance = sqrt(pow(x - model->player->pos.x,2)+pow(y - model->player->pos.y,2));
@@ -577,6 +577,15 @@ void Controller::updateGameWindow() {
 
     //render exploding iTypeMissile
     for(auto iterator = model->iTypeMissilesExploding.begin(); iterator!= model->iTypeMissilesExploding.end();) {
+        if( iterator._Ptr->_Myval->explosionPhase++!=0){
+        normalize = sqrt((pow(iterator._Ptr->_Myval->directions[iterator._Ptr->_Myval->direction][0],2)+pow(iterator._Ptr->_Myval->directions[iterator._Ptr->_Myval->direction][1],2)));
+        iterator._Ptr->_Myval->pos.x += (iterator._Ptr->_Myval->directions[iterator._Ptr->_Myval->direction][0] / normalize) * iterator._Ptr->_Myval->speed;
+        iterator._Ptr->_Myval->pos.y += (iterator._Ptr->_Myval->directions[iterator._Ptr->_Myval->direction][1] / normalize) * iterator._Ptr->_Myval->speed;
+        if(iterator._Ptr->_Myval->pos.x < 0) iterator._Ptr->_Myval->pos.x += MAP_WIDTH;
+        if(iterator._Ptr->_Myval->pos.x >= MAP_WIDTH)iterator._Ptr->_Myval->pos.x -= MAP_WIDTH;
+        if(iterator._Ptr->_Myval->pos.y < 0)iterator._Ptr->_Myval->pos.y += MAP_HEIGHT;
+        if(iterator._Ptr->_Myval->pos.y >= MAP_HEIGHT)iterator._Ptr->_Myval->pos.y -= MAP_HEIGHT;
+        }
         view->render(iterator._Ptr->_Myval->pos+EnemyShip::drawOffset,ITypeMissile::spritesExplosion[iterator._Ptr->_Myval->explosionPhase/10]);
         iterator._Ptr->_Myval->explosionPhase++;
         if(iterator._Ptr->_Myval->explosionPhase >= 30) {
