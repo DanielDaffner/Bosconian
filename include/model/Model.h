@@ -24,6 +24,7 @@ public:
 //    static GLubyte* alphabetBlackNoBorder[29];
     static GLubyte* numbers[10];
     static GLubyte* map;
+    static GLubyte* lifes;
     Player* player;
     std::list<Mine*> mines;
     std::list<Mine*> minesExploding;
@@ -39,5 +40,7 @@ public:
     std::list<ProjectilePlayer*> projectilesPlayer;
     std::list<EnemyBase*> enemyBases;
     std::list<ProjectilePlayer*> projectileEnemyBases;
+    //evt später als array aus datei geladen
+    int highScore=0;
 };
 #endif //BOSCONIAN_MODEL_H

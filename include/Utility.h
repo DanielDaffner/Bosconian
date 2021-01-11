@@ -7,9 +7,9 @@
 
 #define VIEW_WIDTH 1280
 #define VIEW_HEIGHT 960
-#define PADDING 4
+#define PADDING 0
 
-#define GAME_WIDTH (VIEW_WIDTH-PADDING-256)
+#define GAME_WIDTH (VIEW_WIDTH-8*32)
 #define GAME_HEIGHT 960
 
 #define MAP_WIDTH 2560

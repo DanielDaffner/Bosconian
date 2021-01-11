@@ -74,11 +74,15 @@ void Controller::updateMainWindow() {
 }
 
 void Controller::onStart(){
+
     model->mines.clear();
     model->iTypeMissiles.clear();
     model->minesExploding.clear();
     model->iTypeMissilesExploding.clear();
-    
+    model->player->lifes=4;
+    model->player->score=0;
+    model->player->resetPosition();
+    view->resetFrame();
     int x;
     int y;
     int distance;
@@ -87,7 +91,7 @@ void Controller::onStart(){
         y = (rand() % (MAP_HEIGHT));
         distance = sqrt(pow(x - model->player->pos.x,2)+pow(y - model->player->pos.y,2));
 
-        if(distance > 64 )
+        if(distance > 255 )
         model->mines.push_back(new Mine(x,y));
         else printf("protected\n");
     }
@@ -96,7 +100,7 @@ void Controller::onStart(){
         y = (rand() % (MAP_HEIGHT));
         distance = sqrt(pow(x - model->player->pos.x,2)+pow(y - model->player->pos.y,2));
 
-        if(distance > 64 )
+        if(distance > 255 )
             model->iTypeMissiles.push_back(new ITypeMissile(x, y, 1));
         else printf("protected\n");
     }
@@ -625,13 +629,15 @@ void Controller::updateGameWindow() {
                      Player::spritesExplosion[model->player->spriteLight/10]);
         if(model->player->spriteLight++ == 29) {
             if(model->player->lifes == 0) {
-                view->drawString(model->player->pos+Position2D{-144,-40},"GAME OVER");
+                view->drawString(Position2D{VIEW_WIDTH/2-(4*32+8),GAME_HEIGHT/2-32},"GAME OVER");
                 inGame=false;
                 model->player->collision = false;
                 glfwSwapBuffers(view->window);
                 model->player->resetPosition();
                 view->resetFrame();
-                _sleep(1000);
+                _sleep(3000);
+
+                glClear(GL_COLOR_BUFFER_BIT);
                 return;
             }
             model->player->collision = false;
@@ -662,12 +668,17 @@ void Controller::updateGameWindow() {
         }
     }
 
-//    draw lifes
-    for(int i = 0; i < model->player->lifes; i++) {
-        view->renderGameInfos(Position2D{(double)LIFES_POS_X + (i * 64), LIFES_POS_Y}, Player::sprites[SpriteDirection::up][SpriteLights::off]);
-    }
 
-//    draw map
+
+
+
+
+//    draw background right side
+
+    glColor3f(0, 0, 0);
+    glRectd(VIEW_WIDTH-8*32,0,VIEW_WIDTH,VIEW_HEIGHT);
+
+    //    draw map
 //    view->renderGameInfos(Position2D{1280-300,300},Model::map);
     glRasterPos2d(MAP_POS_X,MAP_POS_Y);
     glDrawPixels(256,400,GL_RGBA,GL_UNSIGNED_BYTE,Model::map);
@@ -682,33 +693,44 @@ void Controller::updateGameWindow() {
         glRasterPos2d(MAP_POS_X+x,MAP_POS_Y-400+y);
         glDrawPixels(1,1,GL_RGBA,GL_UNSIGNED_BYTE,testpix);
     }
+//    draw lifes
+    for(int i = 0; i < model->player->lifes; i++) {
+        view->renderGameInfos(Position2D{(double)LIFES_POS_X + (i * 64), LIFES_POS_Y}, Player::sprites[SpriteDirection::up][SpriteLights::off]);
+    }
+
 
 //    testviewpos
-//    x = view->viewportpos[0] /10;
-//    y = view->viewportpos[1] /13;
-//    glRasterPos2d(MAP_POS_X+x,MAP_POS_Y-400+y);
-//    glDrawPixels(1,1,GL_RGBA,GL_UNSIGNED_BYTE,testpix);
-//    x = view->viewportpos[2] /10;
-//    y = view->viewportpos[1] /13;
-//    glRasterPos2d(MAP_POS_X+x,MAP_POS_Y-400+y);
-//    glDrawPixels(1,1,GL_RGBA,GL_UNSIGNED_BYTE,testpix);
-//    x = view->viewportpos[0] /10;
-//    y = view->viewportpos[3] /13;
-//    glRasterPos2d(MAP_POS_X+x,MAP_POS_Y-400+y);
-//    glDrawPixels(1,1,GL_RGBA,GL_UNSIGNED_BYTE,testpix);
-//    x = view->viewportpos[2] /10;
-//    y = view->viewportpos[3] /13;
-//    glRasterPos2d(MAP_POS_X+x,MAP_POS_Y-400+y);
-//    glDrawPixels(1,1,GL_RGBA,GL_UNSIGNED_BYTE,testpix);
+    x = view->viewportpos[0] /10;
+    y = view->viewportpos[1] /13;
+    glRasterPos2d(MAP_POS_X+x,MAP_POS_Y-400+y);
+    glDrawPixels(1,1,GL_RGBA,GL_UNSIGNED_BYTE,testpix);
+    x = view->viewportpos[2] /10;
+    y = view->viewportpos[1] /13;
+    glRasterPos2d(MAP_POS_X+x,MAP_POS_Y-400+y);
+    glDrawPixels(1,1,GL_RGBA,GL_UNSIGNED_BYTE,testpix);
+    x = view->viewportpos[0] /10;
+    y = view->viewportpos[3] /13;
+    glRasterPos2d(MAP_POS_X+x,MAP_POS_Y-400+y);
+    glDrawPixels(1,1,GL_RGBA,GL_UNSIGNED_BYTE,testpix);
+    x = view->viewportpos[2] /10;
+    y = view->viewportpos[3] /13;
+    glRasterPos2d(MAP_POS_X+x,MAP_POS_Y-400+y);
+    glDrawPixels(1,1,GL_RGBA,GL_UNSIGNED_BYTE,testpix);
 
 //    draw round
     Position2D roundpos = {ROUND_POS_X,ROUND_POS_Y};
     view->drawString(roundpos,"ROUND 1");
-
+//    set highscore
+    if(model->highScore<model->player->score)
+        model->highScore = model->player->score;
 //    draw highscore
     Position2D highscorePos = {VIEW_WIDTH-(8*32),0+8+32};
     view->drawString(highscorePos,"HI-SCORE");
-    Position2D scorePos = {VIEW_WIDTH-32,0+8+32+32};
+    Position2D highScorePos = {VIEW_WIDTH-32,0+8+32+32};
+    view->drawNumber(highScorePos,model->highScore);
+    Position2D oneUp = {VIEW_WIDTH-(6*32),0+8+32+32+32};
+    view->drawString(oneUp,"1UP");
+    Position2D scorePos = {VIEW_WIDTH-32,0+8+32+32+64};
     view->drawNumber(scorePos,model->player->score);
     Position2D conditionPos = {VIEW_WIDTH-9*32,0+8+32+32+7*32};
     view->drawString(conditionPos,"CONDITION");
@@ -717,6 +739,8 @@ void Controller::updateGameWindow() {
     Position2D conditionTypePos = {VIEW_WIDTH-6*32-16,0+8+32+32+7*32+16+32+8};
     view->drawString(conditionTypePos,"GREEN");
     glRasterPos2d(400,400);
+
+
 
 }
 
@@ -727,6 +751,10 @@ void Controller::calcCollision(GameObject* ele, std::list<GameObject*> list, boo
 
 
 void Controller::loadSprites() {
+
+//    Lifes
+  // getSprite(Model::lifes,"../App_Data/lifes_final/lifes.bmp");
+
 
 //    Player
     getSprite(Player::sprites[SpriteDirection::up][0],"../App_Data/ship_final/ship_up_light_off.bmp");
