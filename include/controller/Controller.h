@@ -22,5 +22,6 @@ public:
     void loadSprites();
     int getSprite(GLubyte* &dst, char* filepath);
     void calcCollision(GameObject* ele, std::list<GameObject*> list, bool *isHit);
+    void spawnEnemys();
 };
 #endif //BOSCONIAN_CONTROLLER_H

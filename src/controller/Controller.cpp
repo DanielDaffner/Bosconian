@@ -18,8 +18,7 @@ int Controller::init() {
     inGame = false;
     view = new View(model);
     loadSprites();
-    //psshhhtttt
-    //o.O
+
 
     return 0;
 }
@@ -95,7 +94,7 @@ void Controller::onStart(){
         model->mines.push_back(new Mine(x,y));
         else printf("protected\n");
     }
-    for(int i = 0; i < 100;i++) {
+    for(int i = 0; i < 20;i++) {
         x = (rand() % (MAP_WIDTH));
         y = (rand() % (MAP_HEIGHT));
         distance = sqrt(pow(x - model->player->pos.x,2)+pow(y - model->player->pos.y,2));
@@ -107,8 +106,26 @@ void Controller::onStart(){
 //    model->enemyShipsPink.push_back(new ITypeMissile(MAP_WIDTH / 2,(MAP_HEIGHT / 4) * 3,1));
     model->enemyBases.push_back(new EnemyBase(500,500));
 
-};
+}
 
+
+void Controller::spawnEnemys(){
+    if(model->iTypeMissiles.size()<10){
+        int x;
+        int y;
+        int distance;
+        for(int i = 0; i < 10;i++) {
+            x = (rand() % (MAP_WIDTH));
+            y = (rand() % (MAP_HEIGHT));
+            distance = sqrt(pow(x - model->player->pos.x,2)+pow(y - model->player->pos.y,2));
+
+            if(distance > 255 )
+                model->iTypeMissiles.push_back(new ITypeMissile(x, y, 1));
+            else printf("protected\n");
+        }
+    }
+
+}
 void Controller::updateGameWindow() {
     // input
     int up = glfwGetKey(view->window, GLFW_KEY_W);
@@ -177,6 +194,9 @@ void Controller::updateGameWindow() {
         onStart();
         return;
     }
+
+    //spawn new enemys
+    spawnEnemys();
 
     //  calc & move player position
     double playerDirectionVectorLenght = sqrt((pow(model->player->direction[0],2)+pow(model->player->direction[1],2)));
@@ -635,7 +655,7 @@ void Controller::updateGameWindow() {
                 glfwSwapBuffers(view->window);
                 model->player->resetPosition();
                 view->resetFrame();
-                _sleep(3000);
+                _sleep(2000);
 
                 glClear(GL_COLOR_BUFFER_BIT);
                 return;
@@ -695,7 +715,7 @@ void Controller::updateGameWindow() {
     }
 //    draw lifes
     for(int i = 0; i < model->player->lifes; i++) {
-        view->renderGameInfos(Position2D{(double)LIFES_POS_X + (i * 64), LIFES_POS_Y}, Player::sprites[SpriteDirection::up][SpriteLights::off]);
+        view->renderGameInfos(Position2D{(double)LIFES_POS_X + (i * 64), LIFES_POS_Y}, Player::sprites[0][0]);
     }
 
 
@@ -753,7 +773,7 @@ void Controller::calcCollision(GameObject* ele, std::list<GameObject*> list, boo
 void Controller::loadSprites() {
 
 //    Lifes
-  // getSprite(Model::lifes,"../App_Data/lifes_final/lifes.bmp");
+   //getSprite(Model::lifes,"../App_Data/ship_final/life.bmp");
 
 
 //    Player
@@ -1113,7 +1133,7 @@ int Controller::getSprite(GLubyte* &dst, char* filepath) {
     dst = new GLubyte[filesize];
     fread(dst, sizeof(GLubyte), filesize, file);
 
-    for(int i = 8; i < filesize; i+=4) {
+    for(int i = 2; i < filesize; i+=4) {
         swap = dst[i];
         dst[i] = dst[i+2];
         dst[i+2] = swap;
