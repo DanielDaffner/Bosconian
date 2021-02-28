@@ -802,9 +802,9 @@ void Controller::loadSprites() {
     getSprite(Player::sprites[SpriteDirection::upleft][0], "../App_Data/ship_final/ship_up_left_light_off.bmp");
 
 //    Player explosion
-    getSprite(Player::spritesExplosion[0], "../App_Data/ship_explosion_final/ship_explosion_1.bmp");
-    getSprite(Player::spritesExplosion[1], "../App_Data/ship_explosion_final/ship_explosion_2.bmp");
-    getSprite(Player::spritesExplosion[2], "../App_Data/ship_explosion_final/ship_explosion_3.bmp");
+    getSprite(Player::spritesExplosion[0], "../App_Data/ship_explosion_final/ship-explosion-1.bmp");
+    getSprite(Player::spritesExplosion[1], "../App_Data/ship_explosion_final/ship-explosion-2.bmp");
+    getSprite(Player::spritesExplosion[2], "../App_Data/ship_explosion_final/ship-explosion-3.bmp");
 
 //    Mine and explosion
     getSprite(Mine::sprites, "../App_Data/mine_final/mine.bmp");
@@ -861,18 +861,16 @@ void Controller::loadSprites() {
     getSprite(EnemyBase::sprites[1], "../App_Data/base_final/base-2.bmp");
     getSprite(EnemyBase::sprites[2], "../App_Data/base_final/base-3.bmp");
     getSprite(EnemyBase::sprites[3], "../App_Data/base_final/base-4.bmp");
-    getSprite(EnemyBase::sprites[4], "../App_Data/base_final/baseDoor-H-1.bmp");
-    getSprite(EnemyBase::sprites[5], "../App_Data/base_final/baseDoor-H-2.bmp");
-    getSprite(EnemyBase::sprites[6], "../App_Data/base_final/baseDoor-H-3.bmp");
-    getSprite(EnemyBase::sprites[7], "../App_Data/base_final/baseDoor-H-4.bmp");
-    getSprite(EnemyBase::sprites[8], "../App_Data/base_final/baseDoor-H-5.bmp");
-    getSprite(EnemyBase::sprites[9], "../App_Data/base_final/baseDoor-H-6.bmp");
-    getSprite(EnemyBase::sprites[10], "../App_Data/base_final/baseDoor-V-1.bmp");
-    getSprite(EnemyBase::sprites[11], "../App_Data/base_final/baseDoor-V-2.bmp");
-    getSprite(EnemyBase::sprites[12], "../App_Data/base_final/baseDoor-V-3.bmp");
-    getSprite(EnemyBase::sprites[13], "../App_Data/base_final/baseDoor-V-4.bmp");
-    getSprite(EnemyBase::sprites[14], "../App_Data/base_final/baseDoor-V-5.bmp");
-    getSprite(EnemyBase::sprites[15], "../App_Data/base_final/baseDoor-V-6.bmp");
+    getSprite(EnemyBase::sprites[4], "../App_Data/base_final/baseDoor-1.bmp");
+    getSprite(EnemyBase::sprites[5], "../App_Data/base_final/baseDoor-2.bmp");
+    getSprite(EnemyBase::sprites[6], "../App_Data/base_final/baseDoor-3.bmp");
+    getSprite(EnemyBase::sprites[7], "../App_Data/base_final/baseDoor-4.bmp");
+    getSprite(EnemyBase::sprites[8], "../App_Data/base_final/baseDoor-5.bmp");
+    getSprite(EnemyBase::sprites[10], "../App_Data/base_final/baseDoor-1.bmp");
+    getSprite(EnemyBase::sprites[11], "../App_Data/base_final/baseDoor-2.bmp");
+    getSprite(EnemyBase::sprites[12], "../App_Data/base_final/baseDoor-3.bmp");
+    getSprite(EnemyBase::sprites[13], "../App_Data/base_final/baseDoor-4.bmp");
+    getSprite(EnemyBase::sprites[14], "../App_Data/base_final/baseDoor-5.bmp");
 
 //    base explo
     getSprite(EnemyBase::spritesExplosion[0], "../App_Data/base_explosion_final/base-explosion-1.bmp");
@@ -1133,7 +1131,7 @@ int Controller::getSprite(GLubyte* &dst, char* filepath) {
     dst = new GLubyte[filesize];
     fread(dst, sizeof(GLubyte), filesize, file);
 
-    for(int i = 2; i < filesize; i+=4) {
+    for(int i = 8; i < filesize; i+=4) {
         swap = dst[i];
         dst[i] = dst[i+2];
         dst[i+2] = swap;

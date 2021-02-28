@@ -125,13 +125,13 @@ void View::render(Position2D pos, GLubyte *bitmap) {
         y = pos.y - viewportpos[1];
     }
     glRasterPos2i(x,y);
-    glDrawPixels(*bitmap, *(bitmap + 1), GL_RGBA, GL_UNSIGNED_BYTE,
-                 bitmap + 2);
+    glDrawPixels(*((uint32_t*)(bitmap)),*((uint32_t*)(bitmap+4)), GL_RGBA, GL_UNSIGNED_BYTE,
+                 bitmap + 8);
 }
 
 void View::renderGameInfos(Position2D pos, GLubyte *bitmap) {
     glRasterPos2d(pos.x, pos.y);
-    glDrawPixels(*((uint8_t*)(bitmap)),*((uint8_t*)(bitmap+1)),GL_RGBA,GL_UNSIGNED_BYTE,bitmap+2);
+    glDrawPixels(*((uint32_t*)(bitmap)),*((uint32_t*)(bitmap+4)),GL_RGBA,GL_UNSIGNED_BYTE,bitmap+8);
 }
 
 void View::renderStars(Position2D pos, GLubyte *bitmap) {
