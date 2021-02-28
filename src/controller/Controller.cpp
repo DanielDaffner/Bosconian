@@ -645,7 +645,7 @@ void Controller::updateGameWindow() {
 
 //    render player
     if(model->player->collision) {
-        view->render(model->player->pos + Player::drawOffset + Position2D{-32,32},
+        view->render(model->player->pos + Player::drawOffset,
                      Player::spritesExplosion[model->player->spriteLight/10]);
         if(model->player->spriteLight++ == 29) {
             if(model->player->lifes == 0) {
