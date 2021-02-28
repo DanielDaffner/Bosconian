@@ -6,7 +6,7 @@
 
 GLubyte* Player::sprites[9][2];
 GLubyte* Player::spritesExplosion[3];
-Position2D Player::drawOffset = {-16,16};
+Position2D Player::drawOffset = {-32,32};
 
 Player::Player() : GameObject() {
     direction[0] = 0;
