@@ -2,8 +2,8 @@
 // Created by basti on 11.12.2020.
 //
 #include "../../include/controller/Controller.h"
-#include <AL/al.h>
-#include <AL/alc.h>
+//#include <AL/al.h>
+//#include <AL/alc.h>
 #include <iostream>
 #include <cmath>
 #include <string>
