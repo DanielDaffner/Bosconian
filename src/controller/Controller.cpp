@@ -26,7 +26,10 @@ void Controller::run() {
 
     while (!glfwWindowShouldClose(view->window )) {
         /* Loop until the user closes the window */
-        if(glfwWindowShouldClose(view->window)) return;
+        if(glfwWindowShouldClose(view->window)) {
+            glfwTerminate();
+            return;
+        }
 
         if (!inGame) {
             /* Render here */
@@ -159,7 +162,6 @@ void Controller::onStart() {
     loadLevel();
 }
 
-
 void Controller::spawnEnemys(){
     if(model->iTypeMissiles.size()<10){
         int x;
@@ -175,8 +177,8 @@ void Controller::spawnEnemys(){
             else printf("protected\n");
         }
     }
-
 }
+
 void Controller::updateGameWindow() {
     // input
     int up = glfwGetKey(view->window, GLFW_KEY_W);
@@ -268,7 +270,6 @@ void Controller::updateGameWindow() {
         if(ele->pos.y >= MAP_HEIGHT )ele->pos.y -= MAP_HEIGHT;
         ele->traveled++;
     }
-
 
     //  calc & move enemyPink position
     // calc direction
@@ -528,11 +529,11 @@ void Controller::updateGameWindow() {
     }
     count++;
     count = count % 119;
-    if(move){
-        move=false;
+    if(move) {
+        move = false;
     }
-    else{
-        move=true;
+    else {
+        move = true;
     }
 
 //    detect mine Collosion player
@@ -549,36 +550,33 @@ void Controller::updateGameWindow() {
         } else
             iterator++;
     }
+
     //    detect mine Collosion iTypeMissiles
     for(auto iteratoriTypeMissiles = model->iTypeMissiles.begin(); iteratoriTypeMissiles!= model->iTypeMissiles.end();) {
-
-    for(auto iterator = model->mines.begin(); iterator!= model->mines.end();) {
-
-        distance = sqrt(pow(iterator._Ptr->_Myval->pos.x - iteratoriTypeMissiles._Ptr->_Myval->pos.x,2)+pow(iterator._Ptr->_Myval->pos.y - iteratoriTypeMissiles._Ptr->_Myval->pos.y,2));
-        if(distance <= 64)  {
-            iteratoriTypeMissiles._Ptr->_Myval->collision = true;
-            iterator._Ptr->_Myval->collision = true;
-            model->minesExploding.push_back(iterator._Ptr->_Myval);
-            model->iTypeMissilesExploding.push_back(iteratoriTypeMissiles._Ptr->_Myval);
-            iterator._Ptr->_Myval->pos.x += -32;
-            iterator._Ptr->_Myval->pos.y += 32;
-            iterator = model->mines.erase(iterator);
-
-
+        for(auto iterator = model->mines.begin(); iterator!= model->mines.end();) {
+            distance = sqrt(pow(iterator._Ptr->_Myval->pos.x - iteratoriTypeMissiles._Ptr->_Myval->pos.x,2)+pow(iterator._Ptr->_Myval->pos.y - iteratoriTypeMissiles._Ptr->_Myval->pos.y,2));
+            if(distance <= 64)  {
+                iteratoriTypeMissiles._Ptr->_Myval->collision = true;
+                iterator._Ptr->_Myval->collision = true;
+                model->minesExploding.push_back(iterator._Ptr->_Myval);
+                model->iTypeMissilesExploding.push_back(iteratoriTypeMissiles._Ptr->_Myval);
+                iterator._Ptr->_Myval->pos.x += -32;
+                iterator._Ptr->_Myval->pos.y += 32;
+                iterator = model->mines.erase(iterator);
             break;
-        } else
-            iterator++;
+            } else {
+                iterator++;
+            }
         }
-    if(iteratoriTypeMissiles._Ptr->_Myval->collision){
-        iteratoriTypeMissiles  = model->iTypeMissiles.erase(iteratoriTypeMissiles);
-    }
-    else{
-        iteratoriTypeMissiles++;
+        if(iteratoriTypeMissiles._Ptr->_Myval->collision){
+            iteratoriTypeMissiles  = model->iTypeMissiles.erase(iteratoriTypeMissiles);
+        }
+        else {
+            iteratoriTypeMissiles++;
+        }
     }
 
-    }
     //    detect iTypeMissiles Collosion
-
     for(auto iterator = model->iTypeMissiles.begin(); iterator!= model->iTypeMissiles.end();) {
         distance = sqrt(pow(iterator._Ptr->_Myval->pos.x - model->player->pos.x,2)+pow(iterator._Ptr->_Myval->pos.y - model->player->pos.y,2));
         if(distance <= 64)  {
@@ -588,8 +586,9 @@ void Controller::updateGameWindow() {
             iterator._Ptr->_Myval->pos.x += -32;
             iterator._Ptr->_Myval->pos.y += 32;
             iterator = model->iTypeMissiles.erase(iterator);
-        } else
+        } else {
             iterator++;
+        }
     }
 
 //    detect projectile player
@@ -643,242 +642,9 @@ void Controller::updateGameWindow() {
     }
 
     view->update(inGame,count);
-////    render exploding mines
-//    for(auto iterator = model->minesExploding.begin(); iterator!= model->minesExploding.end();) {
-//        view->render(iterator._Ptr->_Myval->pos+Mine::drawOffset,Mine::spritesExplosion[iterator._Ptr->_Myval->explosionPhase/10]);
-//        iterator._Ptr->_Myval->explosionPhase++;
-//        if(iterator._Ptr->_Myval->explosionPhase >= 30) {
-//            delete (iterator._Ptr->_Myval);
-//            iterator = model->minesExploding.erase(iterator);
-//            model->player->score+=Mine::score;
-//        }else
-//            iterator++;
-//    }
-//
-//
-//
-//    //render exploding iTypeMissile
-//    for(auto iterator = model->iTypeMissilesExploding.begin(); iterator!= model->iTypeMissilesExploding.end();) {
-//        if( iterator._Ptr->_Myval->explosionPhase++!=0){
-//        normalize = sqrt((pow(iterator._Ptr->_Myval->directions[iterator._Ptr->_Myval->direction][0],2)+pow(iterator._Ptr->_Myval->directions[iterator._Ptr->_Myval->direction][1],2)));
-//        iterator._Ptr->_Myval->pos.x += (iterator._Ptr->_Myval->directions[iterator._Ptr->_Myval->direction][0] / normalize) * iterator._Ptr->_Myval->speed;
-//        iterator._Ptr->_Myval->pos.y += (iterator._Ptr->_Myval->directions[iterator._Ptr->_Myval->direction][1] / normalize) * iterator._Ptr->_Myval->speed;
-//        if(iterator._Ptr->_Myval->pos.x < 0) iterator._Ptr->_Myval->pos.x += MAP_WIDTH;
-//        if(iterator._Ptr->_Myval->pos.x >= MAP_WIDTH)iterator._Ptr->_Myval->pos.x -= MAP_WIDTH;
-//        if(iterator._Ptr->_Myval->pos.y < 0)iterator._Ptr->_Myval->pos.y += MAP_HEIGHT;
-//        if(iterator._Ptr->_Myval->pos.y >= MAP_HEIGHT)iterator._Ptr->_Myval->pos.y -= MAP_HEIGHT;
-//        }
-//        view->render(iterator._Ptr->_Myval->pos+EnemyShip::drawOffset,ITypeMissile::spritesExplosion[iterator._Ptr->_Myval->explosionPhase/10]);
-//        iterator._Ptr->_Myval->explosionPhase++;
-//        if(iterator._Ptr->_Myval->explosionPhase >= 30) {
-//            delete (iterator._Ptr->_Myval);
-//            iterator = model->iTypeMissilesExploding.erase(iterator);
-//            model->player->score+=ITypeMissile::score;
-//        }else
-//            iterator++;
-//    }
-//
-//
-////    render mines
-//    for(Mine* ele: model->mines) {
-//        view->render(ele->pos+Mine::drawOffset,Mine::sprites);
-//    }
-//
-////    render projectiles from player
-//    for(ProjectilePlayer* ele: model->projectilesPlayer) {
-//        view->render(ele->pos+ProjectilePlayer::drawOffset,ele->sprite);
-//    }
-//
-//    //render enemy
-//    for(ITypeMissile* ele: model->iTypeMissiles) {
-//        view->render(ele->pos + EnemyShip::drawOffset, ele->sprites[ele->direction]);
-//    }
-//
-//
-////    render player
-//    if(model->player->collision) {
-//        view->render(model->player->pos + Player::drawOffset,
-//                     Player::spritesExplosion[model->player->spriteLight/10]);
-//        if(model->player->spriteLight++ == 29) {
-//            if(model->player->lifes == 0) {
-//                view->drawString(Position2D{VIEW_WIDTH/2-(4*32+8),GAME_HEIGHT/2-32},"GAME OVER");
-//                inGame=false;
-//                model->player->collision = false;
-//                glfwSwapBuffers(view->window);
-//                model->player->resetPosition();
-//                view->resetFrame();
-//                _sleep(2000);
-//
-//                glClear(GL_COLOR_BUFFER_BIT);
-//                return;
-//            }
-//            model->player->collision = false;
-//            model->player->spriteLight = 0;
-//            model->player->lifes--;
-//            model->player->resetPosition();
-//            view->resetFrame();
-//        }
-//    } else {
-//        view->render(model->player->pos+Player::drawOffset,Player::sprites[model->player->spriteDirection][model->player->spriteLight]);
-//        if(count%30 == 0) {
-//            model->player->spriteLight = (model->player->spriteLight + 1) % 2;
-//        }
-//    }
-//
-////    render Base
-//    for(EnemyBase* ele: model->enemyBases) {
-////        glDrawPixels(*EnemyBase::sprites[0],*(EnemyBase::sprites[0]+4),GL_RGBA,GL_UNSIGNED_BYTE,EnemyBase::sprites[0]+8);
-////        glDrawPixels(*((uint32_t *)(EnemyBase::sprites[0])),*((uint32_t *)(EnemyBase::sprites[0]+4)),GL_RGBA,GL_UNSIGNED_BYTE,EnemyBase::sprites[0]+8);
-//        if(ele->isOpen) {
-////            view->render(ele->pos + EnemyBase::drawOffset, EnemyBase::sprites[0]);
-//
-//        } else {
-////            view->render(ele->pos + EnemyBase::drawOffset, EnemyBase::sprites[0]);
-//        }
-//        for(EnemyBasePart* ele2: ele->parts) {
-////            view->render(ele2->pos+Player::drawOffset,EnemyBase::sprites[0]);
-//        }
-//        printf("%f %f\n",ele->pos.x,ele->pos.y);
-//    }
-//
-////    move Formation
-//    for(Formation* ele: model->formations) {
-//       ele->pos = ele->pos + Position2D{5,0};
-//        if(ele->pos.x < 0) ele->pos.x += MAP_WIDTH;
-//        if(ele->pos.x >= MAP_WIDTH)ele->pos.x -= MAP_WIDTH;
-//        if(ele->pos.y < 0)ele->pos.y += MAP_HEIGHT;
-//        if(ele->pos.y >= MAP_HEIGHT)ele->pos.y -= MAP_HEIGHT;
-//        int i = 0;
-//       for(GameObject* ele2: ele->follower) {
-//           ele2->pos = ele->pos + (ele->formationOffset[ele->formationType][i++] * 64);
-//           if(ele2->pos.x < 0) ele2->pos.x += MAP_WIDTH;
-//           if(ele2->pos.x >= MAP_WIDTH)ele2->pos.x -= MAP_WIDTH;
-//           if(ele2->pos.y < 0)ele2->pos.y += MAP_HEIGHT;
-//           if(ele2->pos.y >= MAP_HEIGHT)ele2->pos.y -= MAP_HEIGHT;
-//       }
-//    }
-////  render Formation
-//    for(Formation* ele: model->formations) {
-//        view->render(ele->pos,ele->sprites[ele->formationMissile][ele->dir]);
-//        for(GameObject* ele2: ele->follower) {
-//            view->render(ele2->pos,ele->sprites[ele->formationMissile][ele->dir]);
-//        }
-//    }
-//
-//
-//
-////    draw background right side
-//
-//    glColor3f(0, 0, 0);
-//    glRectd(VIEW_WIDTH-8*32,0,VIEW_WIDTH,VIEW_HEIGHT);
-//
-//    //    draw map
-////    view->renderGameInfos(Position2D{1280-300,300},Model::map);
-//    glRasterPos2d(MAP_POS_X,MAP_POS_Y);
-//    glDrawPixels(256,400,GL_RGBA,GL_UNSIGNED_BYTE,Model::map);
-//    double x = model->player->pos.x /10;
-//    double y = model->player->pos.y /12.8;
-//    GLubyte testpix[4] = {255,255,255,255};
-//    glRasterPos2d(MAP_POS_X+x,MAP_POS_Y-400+y);
-//    glDrawPixels(1,1,GL_RGBA,GL_UNSIGNED_BYTE,testpix);
-//    for(ITypeMissile* ele: model->iTypeMissiles) {
-//        x = ele->pos.x /10;
-//        y = ele->pos.y /12.8;
-//        glRasterPos2d(MAP_POS_X+x,MAP_POS_Y-400+y);
-//        glDrawPixels(1,1,GL_RGBA,GL_UNSIGNED_BYTE,testpix);
-//    }
-////    draw lifes
-//    for(int i = 0; i < model->player->lifes; i++) {
-//        view->renderGameInfos(Position2D{(double)LIFES_POS_X + (i * 64), LIFES_POS_Y}, Player::sprites[0][0]);
-//    }
-//
-////    bases in map
-//    GLubyte* greenpix = new GLubyte(4);
-//    greenpix[0] = 0;
-//    greenpix[0] = 255;
-//    greenpix[0] = 0;
-//    greenpix[0] = 0;
-//    for(EnemyBase* ele: model->enemyBases) {
-//        x = ele->pos.x /10;
-//        y = ele->pos.y /12.8;
-//        glRasterPos2d(MAP_POS_X+x,MAP_POS_Y-400+y);
-//        glDrawPixels(1,1,GL_RGBA,GL_UNSIGNED_BYTE,greenpix);
-//        glRasterPos2d(MAP_POS_X+x+1,MAP_POS_Y-400+y);
-//        glDrawPixels(1,1,GL_RGBA,GL_UNSIGNED_BYTE,greenpix);
-//        glRasterPos2d(MAP_POS_X+x,MAP_POS_Y-400+y+1);
-//        glDrawPixels(1,1,GL_RGBA,GL_UNSIGNED_BYTE,greenpix);
-//        glRasterPos2d(MAP_POS_X+x+1,MAP_POS_Y-400+y+1);
-//        glDrawPixels(1,1,GL_RGBA,GL_UNSIGNED_BYTE,greenpix);
-//    }
-//    for(Formation* ele: model->formations) {
-//        x = ele->pos.x /10;
-//        y = ele->pos.y /12.8;
-//        glRasterPos2d(MAP_POS_X+x,MAP_POS_Y-400+y);
-//        glDrawPixels(1,1,GL_RGBA,GL_UNSIGNED_BYTE,greenpix);
-//        glRasterPos2d(MAP_POS_X+x+1,MAP_POS_Y-400+y);
-//        glDrawPixels(1,1,GL_RGBA,GL_UNSIGNED_BYTE,greenpix);
-//        glRasterPos2d(MAP_POS_X+x,MAP_POS_Y-400+y+1);
-//        glDrawPixels(1,1,GL_RGBA,GL_UNSIGNED_BYTE,greenpix);
-//        glRasterPos2d(MAP_POS_X+x+1,MAP_POS_Y-400+y+1);
-//        glDrawPixels(1,1,GL_RGBA,GL_UNSIGNED_BYTE,greenpix);
-//    }
-//
-////    testviewpos
-//    x = view->viewportpos[0] /10;
-//    y = view->viewportpos[1] /13;
-//    glRasterPos2d(MAP_POS_X+x,MAP_POS_Y-400+y);
-//    glDrawPixels(1,1,GL_RGBA,GL_UNSIGNED_BYTE,testpix);
-//    x = view->viewportpos[2] /10;
-//    y = view->viewportpos[1] /13;
-//    glRasterPos2d(MAP_POS_X+x,MAP_POS_Y-400+y);
-//    glDrawPixels(1,1,GL_RGBA,GL_UNSIGNED_BYTE,testpix);
-//    x = view->viewportpos[0] /10;
-//    y = view->viewportpos[3] /13;
-//    glRasterPos2d(MAP_POS_X+x,MAP_POS_Y-400+y);
-//    glDrawPixels(1,1,GL_RGBA,GL_UNSIGNED_BYTE,testpix);
-//    x = view->viewportpos[2] /10;
-//    y = view->viewportpos[3] /13;
-//    glRasterPos2d(MAP_POS_X+x,MAP_POS_Y-400+y);
-//    glDrawPixels(1,1,GL_RGBA,GL_UNSIGNED_BYTE,testpix);
-//
-////    draw round
-//    Position2D roundpos = {ROUND_POS_X,ROUND_POS_Y};
-//    view->drawString(roundpos,"ROUND 1");
-////    set highscore
-//    if(model->highScore<model->player->score)
-//        model->highScore = model->player->score;
-////    draw highscore
-//    Position2D highscorePos = {VIEW_WIDTH-(8*32),0+8+32};
-//    view->drawString(highscorePos,"HI-SCORE");
-//    Position2D highScorePos = {VIEW_WIDTH-32,0+8+32+32};
-//    view->drawNumber(highScorePos,model->highScore);
-//    Position2D oneUp = {VIEW_WIDTH-(6*32),0+8+32+32+32};
-//    view->drawString(oneUp,"1UP");
-//    Position2D scorePos = {VIEW_WIDTH-32,0+8+32+32+64};
-//    view->drawNumber(scorePos,model->player->score);
-//    Position2D conditionPos = {VIEW_WIDTH-9*32,0+8+32+32+7*32};
-//    view->drawString(conditionPos,"CONDITION");
-//    glColor3f(0, 1, 0);
-//    glRectd(VIEW_WIDTH-8*32,0+8+32+32+7*32+16,VIEW_WIDTH,0+8+32+32+7*32+16+32+16);
-//    Position2D conditionTypePos = {VIEW_WIDTH-6*32-16,0+8+32+32+7*32+16+32+8};
-//    view->drawString(conditionTypePos,"GREEN");
-//    glRasterPos2d(400,400);
-
-
-
 }
-
-void Controller::calcCollision(GameObject* ele, std::list<GameObject*> list, bool *isHit) {
-
-}
-
-
 
 void Controller::loadSprites() {
-
-//    Lifes
-   //getSprite(Model::lifes,"../App_Data/ship_final/life.bmp");
-
 
 //    Player
     getSprite(Player::sprites[SpriteDirection::up][0],"../App_Data/ship_final/ship_up_light_off.bmp");
@@ -923,6 +689,7 @@ void Controller::loadSprites() {
     getSprite(Asteroid::spritesExplosion[0], "../App_Data/asteroid_explosion_final/asteroid_explosion_1.bmp");
     getSprite(Asteroid::spritesExplosion[1], "../App_Data/asteroid_explosion_final/asteroid_explosion_2.bmp");
     getSprite(Asteroid::spritesExplosion[2], "../App_Data/asteroid_explosion_final/asteroid_explosion_3.bmp");
+
 //    Projectile
     getSprite(ProjectilePlayer::sprites[0], "../App_Data/projectile_final/projectile-1.bmp");
     getSprite(ProjectilePlayer::sprites[1], "../App_Data/projectile_final/projectile-4.bmp");
@@ -1122,7 +889,6 @@ void Controller::loadSprites() {
     getSprite(Model::numbers[7],"../App_Data/numbers_final/Numbers-7.bmp" );
     getSprite(Model::numbers[8],"../App_Data/numbers_final/Numbers-8.bmp" );
     getSprite(Model::numbers[9],"../App_Data/numbers_final/Numbers-9.bmp" );
-
 
 //    alphabet white
     getSprite(Model::alphabetWhite[0],"../App_Data/alphabet_white_final/alphabet_white-1.bmp" );
