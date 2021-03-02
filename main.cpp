@@ -2,7 +2,7 @@
 #include "include/controller/Controller.h"
 #include "include/view/View.h"
 #include <chrono>
-
+#include "libs/openal-soft/include/AL/al.h"
 
 int main() {
 
