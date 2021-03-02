@@ -9,7 +9,7 @@
 
 class EnemyBasePart : public GameObject {
 public:
-    EnemyBasePart(int x, int y);
+    EnemyBasePart(double x, double y);
     static GLubyte* sprites;
     static Position2D drawOffset;
     static int score;

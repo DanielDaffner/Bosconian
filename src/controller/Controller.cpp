@@ -18,6 +18,7 @@ int Controller::init() {
     model = new Model();
     inGame = false;
     view = new View(model);
+    level = 1;
     loadSprites();
 
 
@@ -106,7 +107,7 @@ void Controller::onStart(){
     }
 //    model->enemyShipsPink.push_back(new ITypeMissile(MAP_WIDTH / 2,(MAP_HEIGHT / 4) * 3,1));
     model->enemyBases.push_back(new EnemyBase(500,500));
-
+    loadLevel();
 }
 
 
@@ -687,6 +688,7 @@ void Controller::updateGameWindow() {
         for(EnemyBasePart* ele2: ele->parts) {
 //            view->render(ele2->pos+Player::drawOffset,EnemyBase::sprites[0]);
         }
+        printf("%f %f\n",ele->pos.x,ele->pos.y);
     }
 
 
@@ -719,6 +721,24 @@ void Controller::updateGameWindow() {
         view->renderGameInfos(Position2D{(double)LIFES_POS_X + (i * 64), LIFES_POS_Y}, Player::sprites[0][0]);
     }
 
+//    bases in map
+    GLubyte* greenpix = new GLubyte(4);
+    greenpix[0] = 0;
+    greenpix[0] = 255;
+    greenpix[0] = 0;
+    greenpix[0] = 0;
+    for(EnemyBase* ele: model->enemyBases) {
+        x = ele->pos.x /10;
+        y = ele->pos.y /12.8;
+        glRasterPos2d(MAP_POS_X+x,MAP_POS_Y-400+y);
+        glDrawPixels(1,1,GL_RGBA,GL_UNSIGNED_BYTE,greenpix);
+        glRasterPos2d(MAP_POS_X+x+1,MAP_POS_Y-400+y);
+        glDrawPixels(1,1,GL_RGBA,GL_UNSIGNED_BYTE,greenpix);
+        glRasterPos2d(MAP_POS_X+x,MAP_POS_Y-400+y+1);
+        glDrawPixels(1,1,GL_RGBA,GL_UNSIGNED_BYTE,greenpix);
+        glRasterPos2d(MAP_POS_X+x+1,MAP_POS_Y-400+y+1);
+        glDrawPixels(1,1,GL_RGBA,GL_UNSIGNED_BYTE,greenpix);
+    }
 
 //    testviewpos
     x = view->viewportpos[0] /10;
@@ -1139,5 +1159,23 @@ int Controller::getSprite(GLubyte* &dst, char* filepath) {
     }
 
     fclose(file);
+    return 0;
+}
+
+int Controller::loadLevel() {
+    std::string path = "../App_Data/levels/level";
+    int filesize;
+    path.append(std::to_string(level));
+    FILE* file = fopen(path.c_str(), "r");
+    fseek(file,0,SEEK_END);
+    filesize = ftell(file);
+    fseek(file,0,SEEK_SET);
+    char* buf = new char[filesize];
+    fread(buf, sizeof(GLubyte), filesize, file);
+    for(int i = 0; i < filesize/10; i++) {
+        int x = (*((uint8_t*)(buf+(i*10)))-'0') * 1000 + (*((uint8_t*)(buf+1+(i*10)))-'0') * 100 + (*((uint8_t*)(buf+2+(i*10)))-'0') * 10 + *((uint8_t*)(buf+3+(i*10)))-'0';
+        int y = (*((uint8_t*)(buf+5+(i*10)))-'0') * 1000 + (*((uint8_t*)(buf+6+(i*10)))-'0') * 100 + (*((uint8_t*)(buf+7+(i*10)))-'0') * 10 + *((uint8_t*)(buf+8+(i*10)))-'0';
+        model->enemyBases.push_back(new EnemyBase(x,y));
+    }
     return 0;
 }

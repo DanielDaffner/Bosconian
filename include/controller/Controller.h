@@ -13,6 +13,7 @@ class Controller{
 public:
     Controller();
     bool inGame;
+    int level;
     Model* model;
     View *view;
     int init();
@@ -21,6 +22,7 @@ public:
     void updateGameWindow();
     void loadSprites();
     int getSprite(GLubyte* &dst, char* filepath);
+    int loadLevel();
     void calcCollision(GameObject* ele, std::list<GameObject*> list, bool *isHit);
     void spawnEnemys();
 };
