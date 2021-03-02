@@ -15,10 +15,14 @@ public:
     Model* model;
     GLFWwindow* window{};
     double viewportpos[4]{};
+    bool backgroundmove;
+    Position2D enemyPos= {-300,100};
+    int count = 0;
     int createMainWindow();
     void prepareFrame();
     void moveFrame();
-    void update(bool &inGame, int count);
+    void update(bool &inGame);
+    void updateMainwindow();
     void loadSprites();
     void loadSprite(GLubyte* &dst, char* filepath);
     void render(Position2D pos, GLubyte* bitmap);
@@ -27,5 +31,24 @@ public:
     void drawString(Position2D pos, char* input);
     void drawNumber(Position2D pos,int number);
     void resetFrame();
+
+    GLubyte* asteroidsSprites[3];
+    GLubyte* asteroidsSpritesExplosion[3];
+    GLubyte* enemyBaseSprites[16];
+    GLubyte* enemyBaseSpritesExplosion[3];
+    GLubyte* enemyShipSpritesExplosion[3];
+    GLubyte* enemyShipSprites[3][24];
+    GLubyte* enemyShipLeaderSprites[3][24];
+    GLubyte* minesSprite;
+    GLubyte* mineSpritesExplosion[3];
+    GLubyte* playerSprites[9][2];
+    GLubyte* playerSpritesExplosion[3];
+    GLubyte* playerProjectileSprites[4];
+    GLubyte* spyshipSprites[24];
+    GLubyte* alphabetWhite[29];
+    GLubyte* alphabetBlack[29];
+    GLubyte* numbers[10];
+    GLubyte* map;
+    GLubyte* lives;
 };
 #endif //BOSCONIAN_VIEW_H
