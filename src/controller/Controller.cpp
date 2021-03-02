@@ -107,6 +107,7 @@ void Controller::onStart(){
         else printf("protected\n");
     }
 //    model->enemyShipsPink.push_back(new ITypeMissile(MAP_WIDTH / 2,(MAP_HEIGHT / 4) * 3,1));
+    model->formations.push_back(new Formation(1500,3500));
     model->enemyBases.push_back(new EnemyBase(500,500));
     loadLevel();
 }
@@ -692,8 +693,29 @@ void Controller::updateGameWindow() {
         printf("%f %f\n",ele->pos.x,ele->pos.y);
     }
 
-
-
+//    move Formation
+    for(Formation* ele: model->formations) {
+       ele->pos = ele->pos + Position2D{5,0};
+        if(ele->pos.x < 0) ele->pos.x += MAP_WIDTH;
+        if(ele->pos.x >= MAP_WIDTH)ele->pos.x -= MAP_WIDTH;
+        if(ele->pos.y < 0)ele->pos.y += MAP_HEIGHT;
+        if(ele->pos.y >= MAP_HEIGHT)ele->pos.y -= MAP_HEIGHT;
+        int i = 0;
+       for(GameObject* ele2: ele->follower) {
+           ele2->pos = ele->pos + (ele->formationOffset[ele->formationType][i++] * 64);
+           if(ele2->pos.x < 0) ele2->pos.x += MAP_WIDTH;
+           if(ele2->pos.x >= MAP_WIDTH)ele2->pos.x -= MAP_WIDTH;
+           if(ele2->pos.y < 0)ele2->pos.y += MAP_HEIGHT;
+           if(ele2->pos.y >= MAP_HEIGHT)ele2->pos.y -= MAP_HEIGHT;
+       }
+    }
+//  render Formation
+    for(Formation* ele: model->formations) {
+        view->render(ele->pos,ele->sprites[ele->formationMissile][ele->dir]);
+        for(GameObject* ele2: ele->follower) {
+            view->render(ele2->pos,ele->sprites[ele->formationMissile][ele->dir]);
+        }
+    }
 
 
 
@@ -729,6 +751,18 @@ void Controller::updateGameWindow() {
     greenpix[0] = 0;
     greenpix[0] = 0;
     for(EnemyBase* ele: model->enemyBases) {
+        x = ele->pos.x /10;
+        y = ele->pos.y /12.8;
+        glRasterPos2d(MAP_POS_X+x,MAP_POS_Y-400+y);
+        glDrawPixels(1,1,GL_RGBA,GL_UNSIGNED_BYTE,greenpix);
+        glRasterPos2d(MAP_POS_X+x+1,MAP_POS_Y-400+y);
+        glDrawPixels(1,1,GL_RGBA,GL_UNSIGNED_BYTE,greenpix);
+        glRasterPos2d(MAP_POS_X+x,MAP_POS_Y-400+y+1);
+        glDrawPixels(1,1,GL_RGBA,GL_UNSIGNED_BYTE,greenpix);
+        glRasterPos2d(MAP_POS_X+x+1,MAP_POS_Y-400+y+1);
+        glDrawPixels(1,1,GL_RGBA,GL_UNSIGNED_BYTE,greenpix);
+    }
+    for(Formation* ele: model->formations) {
         x = ele->pos.x /10;
         y = ele->pos.y /12.8;
         glRasterPos2d(MAP_POS_X+x,MAP_POS_Y-400+y);

@@ -11,6 +11,7 @@
 #include "PTypeMissile.h"
 #include "EnemyBase.h"
 #include "Asteroid.h"
+#include "Formation.h"
 #include <list>
 
 #ifndef BOSCONIAN_MODEL_H
@@ -40,6 +41,7 @@ public:
     std::list<ProjectilePlayer*> projectilesPlayer;
     std::list<EnemyBase*> enemyBases;
     std::list<ProjectilePlayer*> projectileEnemyBases;
+    std::list<Formation*> formations;
     //evt später als array aus datei geladen
     int highScore=0;
 };

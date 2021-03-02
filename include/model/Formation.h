@@ -17,6 +17,7 @@ public:
     std::list<GameObject*> follower;
     int formationType;
     int formationMissile;
+    int dir;
     static Position2D formationOffset[4][4];
     static int score;
 
