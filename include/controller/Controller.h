@@ -17,6 +17,7 @@ public:
     Model* model;
     View *view;
     int init();
+    void run();
     void updateMainWindow();
     void onStart();
     void updateGameWindow();

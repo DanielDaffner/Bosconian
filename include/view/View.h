@@ -18,6 +18,9 @@ public:
     int createMainWindow();
     void prepareFrame();
     void moveFrame();
+    void update(bool &inGame, int count);
+    void loadSprites();
+    void loadSprite(GLubyte* &dst, char* filepath);
     void render(Position2D pos, GLubyte* bitmap);
     void renderGameInfos(Position2D pos, GLubyte* bitmap);
     void renderStars(Position2D pos, GLubyte* bitmap);
