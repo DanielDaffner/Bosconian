@@ -8,16 +8,18 @@
 #include <list>
 #include "GameObject.h"
 
-class EnemyBase : public GameObject {
+class Formation : public GameObject {
 public:
-    EnemyBase(int x, int y);
-    static GLubyte* sprites[16];
+    Formation(int x, int y);
+    static GLubyte* sprites[3][24];
     static GLubyte* spritesExplosion[3];
     static Position2D drawOffset;
-    std::list<EnemyBasePart*> parts;
+    std::list<GameObject*> follower;
+    int formationType;
+    int formationMissile;
+    static Position2D formationOffset[4][4];
     static int score;
-    bool isOpen;
-    int timer;
+
 };
 
 #endif //BOSCONIAN_FORMATION_H
