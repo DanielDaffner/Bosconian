@@ -97,7 +97,7 @@ void Controller::onStart(){
         model->mines.push_back(new Mine(x,y));
         else printf("protected\n");
     }
-    for(int i = 0; i < 20;i++) {
+    for(int i = 0; i < 5;i++) {
         x = (rand() % (MAP_WIDTH));
         y = (rand() % (MAP_HEIGHT));
         distance = sqrt(pow(x - model->player->pos.x,2)+pow(y - model->player->pos.y,2));
@@ -199,7 +199,7 @@ void Controller::updateGameWindow() {
     }
 
     //spawn new enemys
-    spawnEnemys();
+    //spawnEnemys();
 
     //  calc & move player position
     double playerDirectionVectorLenght = sqrt((pow(model->player->direction[0],2)+pow(model->player->direction[1],2)));
