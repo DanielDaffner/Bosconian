@@ -4,8 +4,6 @@
 
 #include "../../include/model/Player.h"
 
-GLubyte* Player::sprites[9][2];
-GLubyte* Player::spritesExplosion[3];
 Position2D Player::drawOffset = {-32,32};
 
 Player::Player() : GameObject() {

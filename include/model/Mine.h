@@ -9,8 +9,6 @@
 class Mine : public GameObject {
 public:
     Mine(int x, int y);
-    static GLubyte* sprites;
-    static GLubyte* spritesExplosion[3];
     static Position2D drawOffset;
     static int score;
 };

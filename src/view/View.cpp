@@ -726,7 +726,6 @@ void View::update(bool &inGame)  {
         for(EnemyBasePart* ele2: ele->parts) {
 //            view->render(ele2->pos+Player::drawOffset,EnemyBase::sprites[0]);
         }
-        printf("%f %f\n",ele->pos.x,ele->pos.y);
     }
 
 //    move Formation

@@ -94,7 +94,6 @@ void Controller::onStart() {
 
         if(distance > 255 )
         model->mines.push_back(new Mine(x,y));
-        else printf("protected\n");
     }
     for(int i = 0; i < 5;i++) {
         x = (rand() % (MAP_WIDTH));
@@ -103,7 +102,6 @@ void Controller::onStart() {
 
         if(distance > 255 )
             model->iTypeMissiles.push_back(new ITypeMissile(x, y, 1));
-        else printf("protected\n");
     }
 //    model->enemyShipsPink.push_back(new ITypeMissile(MAP_WIDTH / 2,(MAP_HEIGHT / 4) * 3,1));
     model->formations.push_back(new Formation(1500,3500));
@@ -123,7 +121,6 @@ void Controller::spawnEnemys(){
 
             if(distance > 255 )
                 model->iTypeMissiles.push_back(new ITypeMissile(x, y, 1));
-            else printf("protected\n");
         }
     }
 }

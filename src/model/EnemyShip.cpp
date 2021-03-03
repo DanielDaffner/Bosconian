@@ -4,8 +4,6 @@
 
 #include "../../include/model/EnemyShip.h"
 
-//GLubyte* EnemyShip::sprites[24];
-GLubyte* EnemyShip::spritesExplosion[3];
 Position2D EnemyShip::drawOffset = {-32,32};
 double EnemyShip::directions[24][2] = {{0,-1 },{-1,-3},{-2,-3},
                                    {-1,-1},{-3,-2},{-3,-1},

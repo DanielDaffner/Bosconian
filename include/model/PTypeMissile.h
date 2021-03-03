@@ -10,7 +10,6 @@
 class PTypeMissile : public EnemyShip {
 public:
     PTypeMissile(int posX, int posY, int dir);
-    static GLubyte* sprites[24];
     static int score;
 };
 

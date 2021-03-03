@@ -5,8 +5,6 @@
 #include "../../include/model/Formation.h"
 #include "../../include/model/ITypeMissile.h"
 
-GLubyte* Formation::sprites[3][24];
-GLubyte* Formation::spritesExplosion[3];
 Position2D Formation::drawOffset = {-144,144};
 int Formation::score = 1500;
 Position2D Formation::formationOffset[4][4] = { { Position2D{0,1},Position2D{0,2},Position2D{0,3},Position2D{0,4} },

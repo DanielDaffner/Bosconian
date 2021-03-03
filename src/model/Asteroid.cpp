@@ -4,8 +4,6 @@
 
 #include "../../include/model/Asteroid.h"
 
-GLubyte* Asteroid::sprites[3];
-GLubyte* Asteroid::spritesExplosion[3];
 Position2D Asteroid::drawOffset = {-32,32};
 int Asteroid::score = 10;
 

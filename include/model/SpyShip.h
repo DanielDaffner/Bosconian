@@ -10,7 +10,6 @@
 class SpyShip : public EnemyShip {
 public:
     SpyShip(int posX, int posY, int dir);
-    static GLubyte* sprites[24];
     static int score;
 };
 

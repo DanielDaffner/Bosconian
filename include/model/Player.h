@@ -24,8 +24,6 @@ enum SpriteLights{
 class Player : public GameObject {
 public:
     Player();
-    static GLubyte* sprites[9][2];
-    static GLubyte* spritesExplosion[3];
     static Position2D drawOffset;
     bool hasLost;
     int direction[2]{};

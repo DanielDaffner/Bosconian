@@ -11,8 +11,6 @@
 class Formation : public GameObject {
 public:
     Formation(int x, int y);
-    static GLubyte* sprites[3][24];
-    static GLubyte* spritesExplosion[3];
     static Position2D drawOffset;
     std::list<GameObject*> follower;
     int formationType;
