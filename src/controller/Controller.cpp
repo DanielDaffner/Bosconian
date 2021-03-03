@@ -76,6 +76,7 @@ void Controller::onStart() {
     model->minesExploding.clear();
     model->iTypeMissilesExploding.clear();
     model->formations.clear();
+    model->enemyBases.clear();
     model->player->lifes=4;
     model->player->score=0;
     model->player->resetPosition();
