@@ -16,7 +16,7 @@ public:
     GLFWwindow* window{};
     double viewportpos[4]{};
     bool backgroundmove;
-    Position2D enemyPos= {-300,100};
+    Position2D enemyPos;
     int count = 0;
     int createMainWindow();
     void prepareFrame();

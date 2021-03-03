@@ -9,6 +9,7 @@ View::View(Model* modl){
     model = modl;
     backgroundmove = false;
     loadSprites();
+    enemyPos= {0,600};
     viewportpos[0] = model->player->pos.x - (GAME_WIDTH/2);
     viewportpos[1] = model->player->pos.y - (GAME_HEIGHT/2)-64;
     viewportpos[2] = model->player->pos.x + (GAME_WIDTH/2);
@@ -853,17 +854,14 @@ void View::update(bool &inGame)  {
 void View::updateMainwindow() {
     prepareFrame();
 
-    Position2D posString1{};
-    posString1.x=448;
-    posString1.y=500;
-    //scam, should have own var
+    //draw press space bar in startscreen
     if((count/60)%2==1)
-        drawString(posString1,"PRESS SPACE BAR");
+        drawString(Position2D{420,500},"PRESS SPACE BAR");
 
-    Position2D posPlayer = {MAP_WIDTH/2,3*(MAP_WIDTH/4)};
-    render(posPlayer,playerSprites[0][0]);
+    Position2D posPlayer = {VIEW_WIDTH/2 -32,GAME_HEIGHT-300};
+    renderGameInfos(posPlayer,playerSprites[0][0]);
 
-    //Background
+    //draw BackgroundPixel
     for(BackgroundPixel* ele: model->pixelarr[(count/30)]) {
         renderStars(ele->pos, ((BackgroundPixel::colors + ele->color)));
     }
@@ -872,24 +870,21 @@ void View::updateMainwindow() {
     }
     count++;
     count = count % 119;
-    if(backgroundmove){
+    if(backgroundmove)
         backgroundmove=false;
-    }
-    else{
+    else
         backgroundmove=true;
-    }
-
-    render(enemyPos, enemyShipSprites[0][15]);
+    //draw Ship flying through viewport
+    renderGameInfos(enemyPos, enemyShipSprites[0][15]);
     enemyPos.x+=2;
     enemyPos.y+=2;
-    if(enemyPos.y >=730) enemyPos = {-300,100};
+    if(enemyPos.y >= 1000) enemyPos = {0,600};
 }
 
 void View::loadSprites() {
 
 //    Lives
     loadSprite(lives,"../App_Data/lives_final/lives.bmp");
-
 
 //    Player
     loadSprite(playerSprites[SpriteDirection::up][0],"../App_Data/ship_final/ship_up_light_off.bmp");

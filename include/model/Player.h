@@ -32,6 +32,7 @@ public:
     int spriteLight;
     int lifes;
     int score;
+    int firecd;
     void resetPosition();
 };
 

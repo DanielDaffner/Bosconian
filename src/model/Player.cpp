@@ -16,6 +16,7 @@ Player::Player() : GameObject() {
     playerspeed = 4;
     lifes = 4;
     score = 0;
+    firecd = 0;
 }
 
 void Player::resetPosition() {

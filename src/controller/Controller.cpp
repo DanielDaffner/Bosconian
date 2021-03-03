@@ -2,9 +2,7 @@
 // Created by basti on 11.12.2020.
 //
 #include "../../include/controller/Controller.h"
-#include "../../include/model/Formation.h"
-//#include <AL/al.h>
-//#include <AL/alc.h>
+
 #include <iostream>
 #include <cmath>
 #include <string>
@@ -61,9 +59,6 @@ void Controller::run() {
         }
     }
 }
-
-int count = 0;
-int firecd = 0;
 
 void Controller::updateMainWindow() {
     int space = glfwGetKey(view->window, GLFW_KEY_SPACE);
@@ -174,16 +169,16 @@ void Controller::updateGameWindow() {
         model->player->spriteDirection = SpriteDirection::downright;
     }
 
-    firecd--;
+    model->player->firecd--;
     if (space == GLFW_PRESS) {
-        if(firecd <= 0) {
+        if(model->player->firecd <= 0) {
             model->projectilesPlayer.push_back(
                     new ProjectilePlayer((int)model->player->pos.x, (int)model->player->pos.y, model->player->direction[0],
                                          model->player->direction[1], model->player->spriteDirection));
             model->projectilesPlayer.push_back(
                     new ProjectilePlayer((int)model->player->pos.x, (int)model->player->pos.y, model->player->direction[0]*-1,
                                          model->player->direction[1]*-1, model->player->spriteDirection));
-            firecd = 10;
+            model->player->firecd = 10;
         }
     }
     if (escape == GLFW_PRESS) {
