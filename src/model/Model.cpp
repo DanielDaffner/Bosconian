@@ -13,9 +13,3 @@ Model::Model() {
         }
     }
 }
-
-GLubyte* Model::alphabetWhite[29];
-GLubyte* Model::alphabetBlack[29];
-GLubyte* Model::numbers[10];
-GLubyte* Model::map;
-GLubyte* Model::lifes;

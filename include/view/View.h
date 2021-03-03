@@ -47,6 +47,7 @@ public:
     GLubyte* spyshipSprites[24];
     GLubyte* alphabetWhite[29];
     GLubyte* alphabetBlack[29];
+    //GLubyte* alphabetBlackNoBorder[29];
     GLubyte* numbers[10];
     GLubyte* map;
     GLubyte* lives;

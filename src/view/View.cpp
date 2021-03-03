@@ -149,187 +149,187 @@ void View::drawString(Position2D pos,char *input) {
        switch(*input){
            case 'A':
 
-               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[0]+2);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,alphabetWhite[0]+2);
                x +=32;
                break;
            case 'B':
 
-               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[1]+2);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,alphabetWhite[1]+2);
                x +=32;
                break;
            case 'C':
 
-               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[2]+2);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,alphabetWhite[2]+2);
                x +=32;
                break;
            case 'D':
 
-               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[3]+2);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,alphabetWhite[3]+2);
                x +=32;
                break;
            case 'E':
 
-               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[4]+2);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,alphabetWhite[4]+2);
                x +=32;
                break;
            case 'F':
 
-               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[5]+2);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,alphabetWhite[5]+2);
                x +=32;
                break;
            case 'G':
 
-               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[6]+2);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,alphabetWhite[6]+2);
                x +=32;
                break;
            case 'H':
 
-               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[7]+2);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,alphabetWhite[7]+2);
                x +=32;
                break;
            case 'I':
 
-               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[8]+2);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,alphabetWhite[8]+2);
                x +=32;
                break;
            case 'J':
 
-               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[9]+2);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,alphabetWhite[9]+2);
                x +=32;
                break;
            case 'K':
 
-               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[10]+2);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,alphabetWhite[10]+2);
                x +=32;
                break;
            case 'L':
 
-               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[11]+2);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,alphabetWhite[11]+2);
                x +=32;
                break;
            case 'M':
 
-               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[12]+2);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,alphabetWhite[12]+2);
                x +=32;
                break;
            case 'N':
 
-               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[13]+2);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,alphabetWhite[13]+2);
                x +=32;
                break;
            case 'O':
 
-               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[14]+2);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,alphabetWhite[14]+2);
                x +=32;
                break;
            case 'P':
 
-               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[15]+2);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,alphabetWhite[15]+2);
                x +=32;
                break;
            case 'Q':
 
-               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[16]+2);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,alphabetWhite[16]+2);
                x +=32;
                break;
            case 'R':
 
-               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[17]+2);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,alphabetWhite[17]+2);
                x +=32;
                break;
            case 'S':
 
-               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[18]+2);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,alphabetWhite[18]+2);
                x +=32;
                break;
            case 'T':
 
-               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[19]+2);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,alphabetWhite[19]+2);
                x +=32;
                break;
            case 'U':
 
-               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[20]+2);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,alphabetWhite[20]+2);
                x +=32;
                break;
            case 'V':
 
-               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[21]+2);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,alphabetWhite[21]+2);
                x +=32;
                break;
            case 'W':
 
-               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[22]+2);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,alphabetWhite[22]+2);
                x +=32;
                break;
            case 'X':
 
-               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[23]+2);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,alphabetWhite[23]+2);
                x +=32;
                break;
            case 'Y':
 
-               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[24]+2);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,alphabetWhite[24]+2);
                x +=32;
                break;
            case 'Z':
 
-               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[25]+2);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,alphabetWhite[25]+2);
                x +=32;
                break;
            case '-':
 
-               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetWhite[28]+2);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,alphabetWhite[28]+2);
                x +=32;
                break;
            case '0':
 
-               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::numbers[0]+2);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,numbers[0]+2);
                x +=32;
                break;
            case '1':
 
-               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::numbers[1]+2);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,numbers[1]+2);
                x +=32;
                break;
            case '2':
 
-               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::numbers[2]+2);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,numbers[2]+2);
                x +=32;
                break;
            case '3':
 
-               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::numbers[3]+2);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,numbers[3]+2);
                x +=32;
                break;
            case '4':
 
-               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::numbers[4]+2);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,numbers[4]+2);
                x +=32;
                break;
            case '5':
 
-               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::numbers[5]+2);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,numbers[5]+2);
                x +=32;
                break;
            case '6':
 
-               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::numbers[6]+2);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,numbers[6]+2);
                x +=32;
                break;
            case '7':
 
-               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::numbers[7]+2);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,numbers[7]+2);
                x +=32;
                break;
            case '8':
 
-               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::numbers[8]+2);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,numbers[8]+2);
                x +=32;
                break;
            case '9':
 
-               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::numbers[0]+2);
+               glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,numbers[0]+2);
                x +=32;
                break;
            default :
@@ -349,187 +349,187 @@ void View::drawString(Position2D pos,char *input) {
 //        switch(*input){
 //            case 'A':
 //
-//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetBlackNoBorder[0]+2);
+//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,alphabetBlackNoBorder[0]+2);
 //                x +=32;
 //                break;
 //            case 'B':
 //
-//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetBlackNoBorder[1]+2);
+//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,alphabetBlackNoBorder[1]+2);
 //                x +=32;
 //                break;
 //            case 'C':
 //
-//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetBlackNoBorder[2]+2);
+//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,alphabetBlackNoBorder[2]+2);
 //                x +=32;
 //                break;
 //            case 'D':
 //
-//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetBlackNoBorder[3]+2);
+//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,alphabetBlackNoBorder[3]+2);
 //                x +=32;
 //                break;
 //            case 'E':
 //
-//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetBlackNoBorder[4]+2);
+//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,alphabetBlackNoBorder[4]+2);
 //                x +=32;
 //                break;
 //            case 'F':
 //
-//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetBlackNoBorder[5]+2);
+//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,alphabetBlackNoBorder[5]+2);
 //                x +=32;
 //                break;
 //            case 'G':
 //
-//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetBlackNoBorder[6]+2);
+//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,alphabetBlackNoBorder[6]+2);
 //                x +=32;
 //                break;
 //            case 'H':
 //
-//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetBlackNoBorder[7]+2);
+//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,alphabetBlackNoBorder[7]+2);
 //                x +=32;
 //                break;
 //            case 'I':
 //
-//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetBlackNoBorder[8]+2);
+//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,alphabetBlackNoBorder[8]+2);
 //                x +=32;
 //                break;
 //            case 'J':
 //
-//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetBlackNoBorder[9]+2);
+//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,alphabetBlackNoBorder[9]+2);
 //                x +=32;
 //                break;
 //            case 'K':
 //
-//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetBlackNoBorder[10]+2);
+//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,alphabetBlackNoBorder[10]+2);
 //                x +=32;
 //                break;
 //            case 'L':
 //
-//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetBlackNoBorder[11]+2);
+//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,alphabetBlackNoBorder[11]+2);
 //                x +=32;
 //                break;
 //            case 'M':
 //
-//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetBlackNoBorder[12]+2);
+//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,alphabetBlackNoBorder[12]+2);
 //                x +=32;
 //                break;
 //            case 'N':
 //
-//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetBlackNoBorder[13]+2);
+//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,alphabetBlackNoBorder[13]+2);
 //                x +=32;
 //                break;
 //            case 'O':
 //
-//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetBlackNoBorder[14]+2);
+//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,alphabetBlackNoBorder[14]+2);
 //                x +=32;
 //                break;
 //            case 'P':
 //
-//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetBlackNoBorder[15]+2);
+//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,alphabetBlackNoBorder[15]+2);
 //                x +=32;
 //                break;
 //            case 'Q':
 //
-//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetBlackNoBorder[16]+2);
+//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,alphabetBlackNoBorder[16]+2);
 //                x +=32;
 //                break;
 //            case 'R':
 //
-//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetBlackNoBorder[17]+2);
+//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,alphabetBlackNoBorder[17]+2);
 //                x +=32;
 //                break;
 //            case 'S':
 //
-//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetBlackNoBorder[18]+2);
+//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,alphabetBlackNoBorder[18]+2);
 //                x +=32;
 //                break;
 //            case 'T':
 //
-//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetBlackNoBorder[19]+2);
+//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,alphabetBlackNoBorder[19]+2);
 //                x +=32;
 //                break;
 //            case 'U':
 //
-//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetBlackNoBorder[20]+2);
+//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,alphabetBlackNoBorder[20]+2);
 //                x +=32;
 //                break;
 //            case 'V':
 //
-//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetBlackNoBorder[21]+2);
+//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,alphabetBlackNoBorder[21]+2);
 //                x +=32;
 //                break;
 //            case 'W':
 //
-//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetBlackNoBorder[22]+2);
+//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,alphabetBlackNoBorder[22]+2);
 //                x +=32;
 //                break;
 //            case 'X':
 //
-//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetBlackNoBorder[23]+2);
+//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,alphabetBlackNoBorder[23]+2);
 //                x +=32;
 //                break;
 //            case 'Y':
 //
-//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetBlackNoBorder[24]+2);
+//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,alphabetBlackNoBorder[24]+2);
 //                x +=32;
 //                break;
 //            case 'Z':
 //
-//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetBlackNoBorder[25]+2);
+//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,alphabetBlackNoBorder[25]+2);
 //                x +=32;
 //                break;
 //            case '-':
 //
-//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetBlackNoBorder[28]+2);
+//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,alphabetBlackNoBorder[28]+2);
 //                x +=32;
 //                break;
 //            case '0':
 //
-//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetBlackNoBorder[0]+2);
+//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,alphabetBlackNoBorder[0]+2);
 //                x +=32;
 //                break;
 //            case '1':
 //
-//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetBlackNoBorder[1]+2);
+//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,alphabetBlackNoBorder[1]+2);
 //                x +=32;
 //                break;
 //            case '2':
 //
-//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetBlackNoBorder[2]+2);
+//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,alphabetBlackNoBorder[2]+2);
 //                x +=32;
 //                break;
 //            case '3':
 //
-//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetBlackNoBorder[3]+2);
+//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,alphabetBlackNoBorder[3]+2);
 //                x +=32;
 //                break;
 //            case '4':
 //
-//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetBlackNoBorder[4]+2);
+//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,alphabetBlackNoBorder[4]+2);
 //                x +=32;
 //                break;
 //            case '5':
 //
-//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetBlackNoBorder[5]+2);
+//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,alphabetBlackNoBorder[5]+2);
 //                x +=32;
 //                break;
 //            case '6':
 //
-//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetBlackNoBorder[6]+2);
+//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,alphabetBlackNoBorder[6]+2);
 //                x +=32;
 //                break;
 //            case '7':
 //
-//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetBlackNoBorder[7]+2);
+//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,alphabetBlackNoBorder[7]+2);
 //                x +=32;
 //                break;
 //            case '8':
 //
-//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetBlackNoBorder[8]+2);
+//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,alphabetBlackNoBorder[8]+2);
 //                x +=32;
 //                break;
 //            case '9':
 //
-//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::alphabetBlackNoBorder[0]+2);
+//                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,alphabetBlackNoBorder[0]+2);
 //                x +=32;
 //                break;
 //            default :
@@ -550,52 +550,52 @@ void View::drawNumber(Position2D pos,int number) {
         switch(*input){
             case '0':
                 glRasterPos2d(x, y);
-                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::numbers[0]+2);
+                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,numbers[0]+2);
                 x +=32;
                 break;
             case '1':
                 glRasterPos2d(x, y);
-                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::numbers[1]+2);
+                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,numbers[1]+2);
                 x +=32;
                 break;
             case '2':
                 glRasterPos2d(x, y);
-                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::numbers[2]+2);
+                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,numbers[2]+2);
                 x +=32;
                 break;
             case '3':
                 glRasterPos2d(x, y);
-                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::numbers[3]+2);
+                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,numbers[3]+2);
                 x +=32;
                 break;
             case '4':
                 glRasterPos2d(x, y);
-                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::numbers[4]+2);
+                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,numbers[4]+2);
                 x +=32;
                 break;
             case '5':
                 glRasterPos2d(x, y);
-                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::numbers[5]+2);
+                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,numbers[5]+2);
                 x +=32;
                 break;
             case '6':
                 glRasterPos2d(x, y);
-                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::numbers[6]+2);
+                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,numbers[6]+2);
                 x +=32;
                 break;
             case '7':
                 glRasterPos2d(x, y);
-                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::numbers[7]+2);
+                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,numbers[7]+2);
                 x +=32;
                 break;
             case '8':
                 glRasterPos2d(x, y);
-                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::numbers[8]+2);
+                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,numbers[8]+2);
                 x +=32;
                 break;
             case '9':
                 glRasterPos2d(x, y);
-                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,Model::numbers[9]+2);
+                glDrawPixels(32,32,GL_RGBA,GL_UNSIGNED_BYTE,numbers[9]+2);
                 x +=32;
                 break;
             default :
@@ -758,7 +758,7 @@ void View::update(bool &inGame)  {
     glRectd(VIEW_WIDTH-8*32,0,VIEW_WIDTH,VIEW_HEIGHT);
 
     //    draw map
-//    view->renderGameInfos(Position2D{1280-300,300},Model::map);
+//    view->renderGameInfos(Position2D{1280-300,300},map);
     glRasterPos2d(MAP_POS_X,MAP_POS_Y);
     glDrawPixels(256,400,GL_RGBA,GL_UNSIGNED_BYTE,map);
     double x = model->player->pos.x /10;
@@ -859,18 +859,17 @@ void View::updateMainwindow() {
     posString1.y=500;
     //scam, should have own var
     if((count/60)%2==1)
-
         drawString(posString1,"PRESS SPACE BAR");
 
-    Position2D posPlayer = {640,360};
-    render(posPlayer,Player::sprites[0][0]);
+    Position2D posPlayer = {MAP_WIDTH/2,3*(MAP_WIDTH/4)};
+    render(posPlayer,playerSprites[0][0]);
 
     //Background
     for(BackgroundPixel* ele: model->pixelarr[(count/30)]) {
-        renderStars(ele->pos, ((BackgroundPixel::colors+ele->color)));
+        renderStars(ele->pos, ((BackgroundPixel::colors + ele->color)));
     }
     for(BackgroundPixel* ele: model->pixelarr[((count/30)+1)%3]) {
-        renderStars(ele->pos, ((BackgroundPixel::colors+ele->color)));
+        renderStars(ele->pos, ((BackgroundPixel::colors + ele->color)));
     }
     count++;
     count = count % 119;
@@ -1169,35 +1168,35 @@ void View::loadSprites() {
     loadSprite(alphabetWhite[28],"../App_Data/alphabet_white_final/alphabet_white-29.bmp" );
 
     //    alphabet white
-//    loadSprite(Model::alphabetBlackNoBorder[0],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-1.bmp" );
-//    loadSprite(Model::alphabetBlackNoBorder[1],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-2.bmp" );
-//    loadSprite(Model::alphabetBlackNoBorder[2],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-3.bmp" );
-//    loadSprite(Model::alphabetBlackNoBorder[3],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-4.bmp" );
-//    loadSprite(Model::alphabetBlackNoBorder[4],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-5.bmp" );
-//    loadSprite(Model::alphabetBlackNoBorder[5],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-6.bmp" );
-//    loadSprite(Model::alphabetBlackNoBorder[6],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-7.bmp" );
-//    loadSprite(Model::alphabetBlackNoBorder[7],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-8.bmp" );
-//    loadSprite(Model::alphabetBlackNoBorder[8],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-9.bmp" );
-//    loadSprite(Model::alphabetBlackNoBorder[9],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-10.bmp" );
-//    loadSprite(Model::alphabetBlackNoBorder[10],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-11.bmp" );
-//    loadSprite(Model::alphabetBlackNoBorder[11],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-12.bmp" );
-//    loadSprite(Model::alphabetBlackNoBorder[12],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-13.bmp" );
-//    loadSprite(Model::alphabetBlackNoBorder[13],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-14.bmp" );
-//    loadSprite(Model::alphabetBlackNoBorder[14],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-15.bmp" );
-//    loadSprite(Model::alphabetBlackNoBorder[15],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-16.bmp" );
-//    loadSprite(Model::alphabetBlackNoBorder[16],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-17.bmp" );
-//    loadSprite(Model::alphabetBlackNoBorder[17],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-18.bmp" );
-//    loadSprite(Model::alphabetBlackNoBorder[18],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-19.bmp" );
-//    loadSprite(Model::alphabetBlackNoBorder[19],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-20.bmp" );
-//    loadSprite(Model::alphabetBlackNoBorder[20],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-21.bmp" );
-//    loadSprite(Model::alphabetBlackNoBorder[21],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-22.bmp" );
-//    loadSprite(Model::alphabetBlackNoBorder[22],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-23.bmp" );
-//    loadSprite(Model::alphabetBlackNoBorder[23],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-24.bmp" );
-//    loadSprite(Model::alphabetBlackNoBorder[24],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-25.bmp" );
-//    loadSprite(Model::alphabetBlackNoBorder[25],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-26.bmp" );
-//    loadSprite(Model::alphabetBlackNoBorder[26],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-27.bmp" );
-//    loadSprite(Model::alphabetBlackNoBorder[27],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-28.bmp" );
-//    loadSprite(Model::alphabetBlackNoBorder[28],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-29.bmp" );
+//    loadSprite(alphabetBlackNoBorder[0],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-1.bmp" );
+//    loadSprite(alphabetBlackNoBorder[1],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-2.bmp" );
+//    loadSprite(alphabetBlackNoBorder[2],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-3.bmp" );
+//    loadSprite(alphabetBlackNoBorder[3],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-4.bmp" );
+//    loadSprite(alphabetBlackNoBorder[4],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-5.bmp" );
+//    loadSprite(alphabetBlackNoBorder[5],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-6.bmp" );
+//    loadSprite(alphabetBlackNoBorder[6],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-7.bmp" );
+//    loadSprite(alphabetBlackNoBorder[7],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-8.bmp" );
+//    loadSprite(alphabetBlackNoBorder[8],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-9.bmp" );
+//    loadSprite(alphabetBlackNoBorder[9],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-10.bmp" );
+//    loadSprite(alphabetBlackNoBorder[10],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-11.bmp" );
+//    loadSprite(alphabetBlackNoBorder[11],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-12.bmp" );
+//    loadSprite(alphabetBlackNoBorder[12],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-13.bmp" );
+//    loadSprite(alphabetBlackNoBorder[13],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-14.bmp" );
+//    loadSprite(alphabetBlackNoBorder[14],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-15.bmp" );
+//    loadSprite(alphabetBlackNoBorder[15],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-16.bmp" );
+//    loadSprite(alphabetBlackNoBorder[16],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-17.bmp" );
+//    loadSprite(alphabetBlackNoBorder[17],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-18.bmp" );
+//    loadSprite(alphabetBlackNoBorder[18],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-19.bmp" );
+//    loadSprite(alphabetBlackNoBorder[19],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-20.bmp" );
+//    loadSprite(alphabetBlackNoBorder[20],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-21.bmp" );
+//    loadSprite(alphabetBlackNoBorder[21],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-22.bmp" );
+//    loadSprite(alphabetBlackNoBorder[22],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-23.bmp" );
+//    loadSprite(alphabetBlackNoBorder[23],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-24.bmp" );
+//    loadSprite(alphabetBlackNoBorder[24],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-25.bmp" );
+//    loadSprite(alphabetBlackNoBorder[25],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-26.bmp" );
+//    loadSprite(alphabetBlackNoBorder[26],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-27.bmp" );
+//    loadSprite(alphabetBlackNoBorder[27],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-28.bmp" );
+//    loadSprite(alphabetBlackNoBorder[28],"../App_Data/alphabet_black_no_border_final/alphabet_black_no_border-29.bmp" );
 
 //    alphabet black
     loadSprite(alphabetBlack[0],"../App_Data/alphabet_black_final/alphabet_black-1.bmp" );
@@ -1254,5 +1253,4 @@ void View::loadSprite(GLubyte* &dst, char* filepath) {
         dst[i+2] = swap;
     }
     fclose(file);
-    printf("%d\n",dst);
 }

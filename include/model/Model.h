@@ -20,12 +20,6 @@
 class Model {
 public:
     Model();
-    static GLubyte* alphabetWhite[29];
-    static GLubyte* alphabetBlack[29];
-//    static GLubyte* alphabetBlackNoBorder[29];
-    static GLubyte* numbers[10];
-    static GLubyte* map;
-    static GLubyte* lifes;
     Player* player;
     std::list<Mine*> mines;
     std::list<Mine*> minesExploding;
