@@ -34,7 +34,7 @@ public:
 
     GLubyte* asteroidsSprites[3];
     GLubyte* asteroidsSpritesExplosion[3];
-    GLubyte* enemyBaseSprites[16];
+    GLubyte* enemyBaseSprites[14];
     GLubyte* enemyBaseSpritesExplosion[3];
     GLubyte* enemyShipSpritesExplosion[3];
     GLubyte* enemyShipSprites[3][24];

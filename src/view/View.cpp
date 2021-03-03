@@ -716,17 +716,10 @@ void View::update(bool &inGame)  {
 
 //    render Base
     for(EnemyBase* ele: model->enemyBases) {
-//        glDrawPixels(*EnemyBase::sprites[0],*(EnemyBase::sprites[0]+4),GL_RGBA,GL_UNSIGNED_BYTE,EnemyBase::sprites[0]+8);
-//        glDrawPixels(*((uint32_t *)(EnemyBase::sprites[0])),*((uint32_t *)(EnemyBase::sprites[0]+4)),GL_RGBA,GL_UNSIGNED_BYTE,EnemyBase::sprites[0]+8);
-        if(ele->isOpen) {
-//            view->render(ele->pos + EnemyBase::drawOffset, EnemyBase::sprites[0]);
+        render(ele->pos + EnemyBase::drawOffset, enemyBaseSprites[0]);
+        //printf("timer: %d\n", ele->timer/10);
+        render(ele->pos + EnemyBase::drawOffsetMiddle, enemyBaseSprites[4+(ele->timer/20)]);
 
-        } else {
-//            view->render(ele->pos + EnemyBase::drawOffset, EnemyBase::sprites[0]);
-        }
-        for(EnemyBasePart* ele2: ele->parts) {
-//            view->render(ele2->pos+Player::drawOffset,EnemyBase::sprites[0]);
-        }
     }
 
 //    move Formation
@@ -976,16 +969,18 @@ void View::loadSprites() {
     loadSprite(enemyBaseSprites[1], "../App_Data/base_final/base-2.bmp");
     loadSprite(enemyBaseSprites[2], "../App_Data/base_final/base-3.bmp");
     loadSprite(enemyBaseSprites[3], "../App_Data/base_final/base-4.bmp");
-    loadSprite(enemyBaseSprites[4], "../App_Data/base_final/baseDoor-1.bmp");
-    loadSprite(enemyBaseSprites[5], "../App_Data/base_final/baseDoor-2.bmp");
-    loadSprite(enemyBaseSprites[6], "../App_Data/base_final/baseDoor-3.bmp");
-    loadSprite(enemyBaseSprites[7], "../App_Data/base_final/baseDoor-4.bmp");
-    loadSprite(enemyBaseSprites[8], "../App_Data/base_final/baseDoor-5.bmp");
-    loadSprite(enemyBaseSprites[10], "../App_Data/base_final/baseDoor-1.bmp");
-    loadSprite(enemyBaseSprites[11], "../App_Data/base_final/baseDoor-2.bmp");
-    loadSprite(enemyBaseSprites[12], "../App_Data/base_final/baseDoor-3.bmp");
-    loadSprite(enemyBaseSprites[13], "../App_Data/base_final/baseDoor-4.bmp");
-    loadSprite(enemyBaseSprites[14], "../App_Data/base_final/baseDoor-5.bmp");
+    loadSprite(enemyBaseSprites[4], "../App_Data/base_final/baseDoor-4.bmp");
+    loadSprite(enemyBaseSprites[5], "../App_Data/base_final/baseDoor-5.bmp");
+    loadSprite(enemyBaseSprites[6], "../App_Data/base_final/baseDoor-1.bmp");
+    //another for open ?
+    loadSprite(enemyBaseSprites[7], "../App_Data/base_final/baseDoor-2.bmp");
+    loadSprite(enemyBaseSprites[8], "../App_Data/base_final/baseDoor-3.bmp");
+
+    loadSprite(enemyBaseSprites[9], "../App_Data/base_final/baseDoor-8.bmp");
+    loadSprite(enemyBaseSprites[10], "../App_Data/base_final/baseDoor-7.bmp");
+    loadSprite(enemyBaseSprites[11], "../App_Data/base_final/baseDoor-6.bmp");
+    loadSprite(enemyBaseSprites[12], "../App_Data/base_final/baseDoor-10.bmp");
+    loadSprite(enemyBaseSprites[13], "../App_Data/base_final/baseDoor-9.bmp");
 
 //    base explo
     loadSprite(enemyBaseSpritesExplosion[0], "../App_Data/base_explosion_final/base-explosion-1.bmp");

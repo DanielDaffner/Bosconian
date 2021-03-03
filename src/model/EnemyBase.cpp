@@ -5,6 +5,7 @@
 #include "../../include/model/EnemyBase.h"
 
 Position2D EnemyBase::drawOffset{-144,144};
+Position2D EnemyBase::drawOffsetMiddle{-32,32};;
 int EnemyBase::score = 1500;
 
 EnemyBase::EnemyBase(int x, int y) : GameObject() {

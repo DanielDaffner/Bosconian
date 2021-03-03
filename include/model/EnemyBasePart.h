@@ -10,8 +10,6 @@
 class EnemyBasePart : public GameObject {
 public:
     EnemyBasePart(double x, double y);
-    static GLubyte* sprites;
-    static Position2D drawOffset;
     static int score;
 
 };

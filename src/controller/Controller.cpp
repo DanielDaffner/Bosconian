@@ -436,16 +436,17 @@ void Controller::updateGameWindow() {
 //  base open close
     for(EnemyBase* ele: model->enemyBases) {
         if(ele->isOpen) {
-            if(ele->timer++ >= 59) {
+            if(ele->timer++ >= 99) {
                 ele->isOpen = false;
                 ele->timer = 0;
             }
         } else {
-            if(ele->timer++ >= 59) {
+            if(ele->timer++ >= 99) {
                 ele->isOpen = true;
                 ele->timer = 0;
             }
         }
+        //printf("timer: %d\n", ele->timer);
     }
 
 //  move Frame
