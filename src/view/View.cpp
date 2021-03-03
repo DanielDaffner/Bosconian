@@ -730,26 +730,26 @@ void View::update(bool &inGame)  {
     }
 
 //    move Formation
-    for(Formation* ele: model->formations) {
-        ele->pos = ele->pos + Position2D{5,0};
-        if(ele->pos.x < 0) ele->pos.x += MAP_WIDTH;
-        if(ele->pos.x >= MAP_WIDTH)ele->pos.x -= MAP_WIDTH;
-        if(ele->pos.y < 0)ele->pos.y += MAP_HEIGHT;
-        if(ele->pos.y >= MAP_HEIGHT)ele->pos.y -= MAP_HEIGHT;
-        int i = 0;
-        for(GameObject* ele2: ele->follower) {
-            ele2->pos = ele->pos + (Formation::formationOffset[ele->formationType][i++] * 64);
-            if(ele2->pos.x < 0) ele2->pos.x += MAP_WIDTH;
-            if(ele2->pos.x >= MAP_WIDTH)ele2->pos.x -= MAP_WIDTH;
-            if(ele2->pos.y < 0)ele2->pos.y += MAP_HEIGHT;
-            if(ele2->pos.y >= MAP_HEIGHT)ele2->pos.y -= MAP_HEIGHT;
-        }
-    }
+//    for(Formation* ele: model->formations) {
+//        ele->pos = ele->pos + Position2D{5,0};
+//        if(ele->pos.x < 0) ele->pos.x += MAP_WIDTH;
+//        if(ele->pos.x >= MAP_WIDTH)ele->pos.x -= MAP_WIDTH;
+//        if(ele->pos.y < 0)ele->pos.y += MAP_HEIGHT;
+//        if(ele->pos.y >= MAP_HEIGHT)ele->pos.y -= MAP_HEIGHT;
+//        int i = 0;
+//        for(GameObject* ele2: ele->follower) {
+//            ele2->pos = ele->pos + (Formation::formationOffset[ele->formationType][i++] * 64);
+//            if(ele2->pos.x < 0) ele2->pos.x += MAP_WIDTH;
+//            if(ele2->pos.x >= MAP_WIDTH)ele2->pos.x -= MAP_WIDTH;
+//            if(ele2->pos.y < 0)ele2->pos.y += MAP_HEIGHT;
+//            if(ele2->pos.y >= MAP_HEIGHT)ele2->pos.y -= MAP_HEIGHT;
+//        }
+//    }
 //  render Formation
     for(Formation* ele: model->formations) {
-        render(ele->pos,enemyShipLeaderSprites[ele->formationMissile][ele->dir]);
+        render(ele->leader->pos,enemyShipLeaderSprites[ele->formationMissile][ele->leader->direction]);
         for(GameObject* ele2: ele->follower) {
-            render(ele2->pos,enemyShipSprites[ele->formationMissile][ele->dir]);
+            render(ele2->pos,enemyShipSprites[ele->formationMissile][ele->leader->direction]);
         }
     }
 
@@ -780,9 +780,14 @@ void View::update(bool &inGame)  {
 //    bases in map
     GLubyte* greenpix = new GLubyte(4);
     greenpix[0] = 0;
-    greenpix[0] = 255;
-    greenpix[0] = 0;
-    greenpix[0] = 0;
+    greenpix[1] = 255;
+    greenpix[2] = 0;
+    greenpix[3] = 255;
+    GLubyte* redpix = new GLubyte(4);
+    redpix[0] = 255;
+    redpix[1] = 0;
+    redpix[2] = 0;
+    redpix[3] = 255;
     for(EnemyBase* ele: model->enemyBases) {
         x = ele->pos.x /10;
         y = ele->pos.y /12.8;
@@ -796,16 +801,16 @@ void View::update(bool &inGame)  {
         glDrawPixels(1,1,GL_RGBA,GL_UNSIGNED_BYTE,greenpix);
     }
     for(Formation* ele: model->formations) {
-        x = ele->pos.x /10;
-        y = ele->pos.y /12.8;
+        x = ele->leader->pos.x /10;
+        y = ele->leader->pos.y /12.8;
         glRasterPos2d(MAP_POS_X+x,MAP_POS_Y-400+y);
-        glDrawPixels(1,1,GL_RGBA,GL_UNSIGNED_BYTE,greenpix);
+        glDrawPixels(1,1,GL_RGBA,GL_UNSIGNED_BYTE,redpix);
         glRasterPos2d(MAP_POS_X+x+1,MAP_POS_Y-400+y);
-        glDrawPixels(1,1,GL_RGBA,GL_UNSIGNED_BYTE,greenpix);
+        glDrawPixels(1,1,GL_RGBA,GL_UNSIGNED_BYTE,redpix);
         glRasterPos2d(MAP_POS_X+x,MAP_POS_Y-400+y+1);
-        glDrawPixels(1,1,GL_RGBA,GL_UNSIGNED_BYTE,greenpix);
+        glDrawPixels(1,1,GL_RGBA,GL_UNSIGNED_BYTE,redpix);
         glRasterPos2d(MAP_POS_X+x+1,MAP_POS_Y-400+y+1);
-        glDrawPixels(1,1,GL_RGBA,GL_UNSIGNED_BYTE,greenpix);
+        glDrawPixels(1,1,GL_RGBA,GL_UNSIGNED_BYTE,redpix);
     }
 
 //    testviewpos

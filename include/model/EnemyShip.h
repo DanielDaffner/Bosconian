@@ -13,7 +13,6 @@ public:
     static Position2D drawOffset;
     static const int speed = 3;
     static double directions[24][2];
-
     int direction;
     int turned = 3;
 };

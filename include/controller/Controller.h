@@ -22,5 +22,6 @@ public:
     void updateGameWindow();
     int loadLevel();
     void spawnEnemys();
+    void calcdirection(EnemyShip* ele, int playerQuadrant);
 };
 #endif //BOSCONIAN_CONTROLLER_H

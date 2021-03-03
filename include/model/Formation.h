@@ -7,15 +7,15 @@
 
 #include <list>
 #include "GameObject.h"
+#include "EnemyShip.h"
 
 class Formation : public GameObject {
 public:
-    Formation(int x, int y);
-    static Position2D drawOffset;
+    Formation(int x, int y, int dir);
     std::list<GameObject*> follower;
+    EnemyShip* leader;
     int formationType;
     int formationMissile;
-    int dir;
     static Position2D formationOffset[4][4];
     static int score;
 
