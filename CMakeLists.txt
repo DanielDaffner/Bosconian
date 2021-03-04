@@ -1,10 +1,13 @@
 cmake_minimum_required(VERSION 3.17)
 project(Bosconian)
 
+set(default_build_type "Release")
+set(CMAKE_BUILD_TYPE "${default_build_type}")
+
 set(CMAKE_CXX_STANDARD 14)
 
 add_subdirectory(${PROJECT_SOURCE_DIR}/libs/glfw-3.3.2)
-add_subdirectory(${PROJECT_SOURCE_DIR}/openal-soft)
+add_subdirectory(${PROJECT_SOURCE_DIR}/libs/openal-soft)
 find_package(OpenGL REQUIRED)
 
 
