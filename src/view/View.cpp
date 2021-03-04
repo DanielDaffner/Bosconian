@@ -723,7 +723,7 @@ void View::update(bool &inGame)  {
         //printf("timer: %d\n", ele->timer/10);
         //render(ele->pos + EnemyBase::drawOffsetMiddle, enemyBaseSprites[14+(ele->timer/20)]);
         for(EnemyBasePart* part: ele->parts) {
-            render(ele->pos + EnemyBase::drawOffset, enemyBaseSprites[2+part->dir]);
+            render(ele->pos + EnemyBase::drawOffset + EnemyBasePart::drawOffset[part->dir], enemyBaseSprites[2+part->dir]);
         }
         render(ele->pos + EnemyBase::drawOffsetMiddle, enemyBaseSprites[14+(ele->timer/20)]);
     }
@@ -973,18 +973,18 @@ void View::loadSprites() {
 //    base
     loadSprite(enemyBaseSprites[0], "../App_Data/base_final/basedmged.bmp");
     loadSprite(enemyBaseSprites[1], "../App_Data/base_final/basedmged2.bmp");
-    loadSprite(enemyBaseSprites[2], "../App_Data/base_final/base-1.bmp");
-    loadSprite(enemyBaseSprites[3], "../App_Data/base_final/base-2.bmp");
-    loadSprite(enemyBaseSprites[4], "../App_Data/base_final/base-3.bmp");
-    loadSprite(enemyBaseSprites[5], "../App_Data/base_final/base-4.bmp");
-    loadSprite(enemyBaseSprites[6], "../App_Data/base_final/base-5.bmp");
-    loadSprite(enemyBaseSprites[7], "../App_Data/base_final/base-6.bmp");
-    loadSprite(enemyBaseSprites[8], "../App_Data/base_final/base2-1.bmp");
-    loadSprite(enemyBaseSprites[9], "../App_Data/base_final/base2-2.bmp");
-    loadSprite(enemyBaseSprites[10], "../App_Data/base_final/base2-3.bmp");
-    loadSprite(enemyBaseSprites[11], "../App_Data/base_final/base2-4.bmp");
-    loadSprite(enemyBaseSprites[12], "../App_Data/base_final/base2-5.bmp");
-    loadSprite(enemyBaseSprites[13], "../App_Data/base_final/base2-6.bmp");
+    loadSprite(enemyBaseSprites[2], "../App_Data/base_final/base-inner-1.bmp");
+    loadSprite(enemyBaseSprites[3], "../App_Data/base_final/base-outer-1.bmp");
+    loadSprite(enemyBaseSprites[4], "../App_Data/base_final/base-outer-2.bmp");
+    loadSprite(enemyBaseSprites[5], "../App_Data/base_final/base-inner-2.bmp");
+    loadSprite(enemyBaseSprites[6], "../App_Data/base_final/base-outer-3.bmp");
+    loadSprite(enemyBaseSprites[7], "../App_Data/base_final/base-outer-4.bmp");
+    loadSprite(enemyBaseSprites[8], "../App_Data/base_final/base2-inner-1.bmp");
+    loadSprite(enemyBaseSprites[9], "../App_Data/base_final/base2-outer-1.bmp");
+    loadSprite(enemyBaseSprites[10], "../App_Data/base_final/base2-outer-2.bmp");
+    loadSprite(enemyBaseSprites[11], "../App_Data/base_final/base2-inner-2.bmp");
+    loadSprite(enemyBaseSprites[12], "../App_Data/base_final/base2-outer-3.bmp");
+    loadSprite(enemyBaseSprites[13], "../App_Data/base_final/base2-outer-4.bmp");
     loadSprite(enemyBaseSprites[14], "../App_Data/base_final/baseDoor-4.bmp");
     loadSprite(enemyBaseSprites[15], "../App_Data/base_final/baseDoor-5.bmp");
     loadSprite(enemyBaseSprites[16], "../App_Data/base_final/baseDoor-1.bmp");
