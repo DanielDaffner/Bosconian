@@ -52,6 +52,7 @@ void Controller::run() {
             std::chrono::duration<double> elapsed_seconds = end - start;
             sleeptime = 8 - (int) (elapsed_seconds.count() * 1000);
             if (sleeptime < 0) {
+                printf("%d",sleeptime);
                 sleeptime = 0;
                 printf("givememoretime\n");
             }
@@ -437,12 +438,12 @@ void Controller::updateGameWindow() {
 //  base open close
     for(EnemyBase* ele: model->enemyBases) {
         if(ele->isOpen) {
-            if(ele->timer++ >= 99) {
+            if(ele->timer++ >= 119) {
                 ele->isOpen = false;
                 ele->timer = 0;
             }
         } else {
-            if(ele->timer++ >= 99) {
+            if(ele->timer++ >= 119) {
                 ele->isOpen = true;
                 ele->timer = 0;
             }

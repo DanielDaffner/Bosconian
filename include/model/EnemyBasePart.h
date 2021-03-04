@@ -9,8 +9,9 @@
 
 class EnemyBasePart : public GameObject {
 public:
-    EnemyBasePart(double x, double y);
+    EnemyBasePart(double x, double y, int dir);
     static int score;
+    int dir;
 
 };
 

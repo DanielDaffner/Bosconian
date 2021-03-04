@@ -6,7 +6,8 @@
 
 int EnemyBasePart::score = 200;
 
-EnemyBasePart::EnemyBasePart(double x, double y) : GameObject() {
+EnemyBasePart::EnemyBasePart(double x, double y, int direct) : GameObject() {
+    dir = direct;
     pos.x = x;
     pos.y = y;
 }

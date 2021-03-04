@@ -718,8 +718,11 @@ void View::update(bool &inGame)  {
     for(EnemyBase* ele: model->enemyBases) {
         render(ele->pos + EnemyBase::drawOffset, enemyBaseSprites[0]);
         //printf("timer: %d\n", ele->timer/10);
-        render(ele->pos + EnemyBase::drawOffsetMiddle, enemyBaseSprites[4+(ele->timer/20)]);
-
+        //render(ele->pos + EnemyBase::drawOffsetMiddle, enemyBaseSprites[14+(ele->timer/20)]);
+        for(EnemyBasePart* part: ele->parts) {
+            render(ele->pos + EnemyBase::drawOffset, enemyBaseSprites[2+part->dir]);
+        }
+        render(ele->pos + EnemyBase::drawOffsetMiddle, enemyBaseSprites[14+(ele->timer/20)]);
     }
 
 //    move Formation
@@ -965,22 +968,32 @@ void View::loadSprites() {
     loadSprite(enemyShipSprites[0][23], "../App_Data/enemy_pink_final/enemy-pink-24.bmp");
 
 //    base
-    loadSprite(enemyBaseSprites[0], "../App_Data/base_final/base-1.bmp");
-    loadSprite(enemyBaseSprites[1], "../App_Data/base_final/base-2.bmp");
-    loadSprite(enemyBaseSprites[2], "../App_Data/base_final/base-3.bmp");
-    loadSprite(enemyBaseSprites[3], "../App_Data/base_final/base-4.bmp");
-    loadSprite(enemyBaseSprites[4], "../App_Data/base_final/baseDoor-4.bmp");
-    loadSprite(enemyBaseSprites[5], "../App_Data/base_final/baseDoor-5.bmp");
-    loadSprite(enemyBaseSprites[6], "../App_Data/base_final/baseDoor-1.bmp");
-    //another for open ?
-    loadSprite(enemyBaseSprites[7], "../App_Data/base_final/baseDoor-2.bmp");
-    loadSprite(enemyBaseSprites[8], "../App_Data/base_final/baseDoor-3.bmp");
-
-    loadSprite(enemyBaseSprites[9], "../App_Data/base_final/baseDoor-8.bmp");
-    loadSprite(enemyBaseSprites[10], "../App_Data/base_final/baseDoor-7.bmp");
-    loadSprite(enemyBaseSprites[11], "../App_Data/base_final/baseDoor-6.bmp");
-    loadSprite(enemyBaseSprites[12], "../App_Data/base_final/baseDoor-10.bmp");
-    loadSprite(enemyBaseSprites[13], "../App_Data/base_final/baseDoor-9.bmp");
+    loadSprite(enemyBaseSprites[0], "../App_Data/base_final/basedmged.bmp");
+    loadSprite(enemyBaseSprites[1], "../App_Data/base_final/basedmged2.bmp");
+    loadSprite(enemyBaseSprites[2], "../App_Data/base_final/base-1.bmp");
+    loadSprite(enemyBaseSprites[3], "../App_Data/base_final/base-2.bmp");
+    loadSprite(enemyBaseSprites[4], "../App_Data/base_final/base-3.bmp");
+    loadSprite(enemyBaseSprites[5], "../App_Data/base_final/base-4.bmp");
+    loadSprite(enemyBaseSprites[6], "../App_Data/base_final/base-5.bmp");
+    loadSprite(enemyBaseSprites[7], "../App_Data/base_final/base-6.bmp");
+    loadSprite(enemyBaseSprites[8], "../App_Data/base_final/base2-1.bmp");
+    loadSprite(enemyBaseSprites[9], "../App_Data/base_final/base2-2.bmp");
+    loadSprite(enemyBaseSprites[10], "../App_Data/base_final/base2-3.bmp");
+    loadSprite(enemyBaseSprites[11], "../App_Data/base_final/base2-4.bmp");
+    loadSprite(enemyBaseSprites[12], "../App_Data/base_final/base2-5.bmp");
+    loadSprite(enemyBaseSprites[13], "../App_Data/base_final/base2-6.bmp");
+    loadSprite(enemyBaseSprites[14], "../App_Data/base_final/baseDoor-4.bmp");
+    loadSprite(enemyBaseSprites[15], "../App_Data/base_final/baseDoor-5.bmp");
+    loadSprite(enemyBaseSprites[16], "../App_Data/base_final/baseDoor-1.bmp");
+    loadSprite(enemyBaseSprites[17], "../App_Data/base_final/baseDoor-6.bmp");
+    loadSprite(enemyBaseSprites[18], "../App_Data/base_final/baseDoor-2.bmp");
+    loadSprite(enemyBaseSprites[19], "../App_Data/base_final/baseDoor-3.bmp");
+    loadSprite(enemyBaseSprites[20], "../App_Data/base_final/baseDoor-9.bmp");
+    loadSprite(enemyBaseSprites[21], "../App_Data/base_final/baseDoor-8.bmp");
+    loadSprite(enemyBaseSprites[22], "../App_Data/base_final/baseDoor-7.bmp");
+    loadSprite(enemyBaseSprites[23], "../App_Data/base_final/baseDoor-12.bmp");
+    loadSprite(enemyBaseSprites[24], "../App_Data/base_final/baseDoor-11.bmp");
+    loadSprite(enemyBaseSprites[25], "../App_Data/base_final/baseDoor-10.bmp");
 
 //    base explo
     loadSprite(enemyBaseSpritesExplosion[0], "../App_Data/base_explosion_final/base-explosion-1.bmp");

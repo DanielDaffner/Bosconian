@@ -11,12 +11,12 @@ int EnemyBase::score = 1500;
 EnemyBase::EnemyBase(int x, int y) : GameObject() {
     pos.x = x;
     pos.y = y;
-    parts.push_back(new EnemyBasePart(pos.x-100, pos.y));
-    parts.push_back(new EnemyBasePart(pos.x+100, pos.y));
-    parts.push_back(new EnemyBasePart(pos.x-40, pos.y-100));
-    parts.push_back(new EnemyBasePart(pos.x-40, pos.y+100));
-    parts.push_back(new EnemyBasePart(pos.x+40, pos.y-100));
-    parts.push_back(new EnemyBasePart(pos.x+40, pos.y+100));
+    parts.push_back(new EnemyBasePart(pos.x-100, pos.y,0));
+    parts.push_back(new EnemyBasePart(pos.x+100, pos.y,1));
+    parts.push_back(new EnemyBasePart(pos.x-40, pos.y-100,2));
+    parts.push_back(new EnemyBasePart(pos.x-40, pos.y+100,3));
+    parts.push_back(new EnemyBasePart(pos.x+40, pos.y-100,4));
+    parts.push_back(new EnemyBasePart(pos.x+40, pos.y+100,5));
     isOpen = false;
     timer = 0;
 }
