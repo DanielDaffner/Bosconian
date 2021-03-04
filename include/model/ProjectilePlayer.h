@@ -9,12 +9,11 @@
 
 class ProjectilePlayer : public GameObject{
 public:
-    static GLubyte* sprites[4];
     static int projectileSpeed;
     static Position2D drawOffset;
     ProjectilePlayer(int posx, int posy, int dirx, int diry, int spritedir);
     Position2D direction{};
-    GLubyte* sprite;
+    int spritedirection;
     int traveled;
 };
 #endif //BOSCONIAN_PROJECTILEPLAYER_H

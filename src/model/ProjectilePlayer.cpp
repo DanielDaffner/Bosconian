@@ -5,7 +5,6 @@
 #include "../../include/model/ProjectilePlayer.h"
 
 int ProjectilePlayer::projectileSpeed = 24;
-GLubyte* ProjectilePlayer::sprites[4];
 Position2D ProjectilePlayer::drawOffset = {-4,4};
 
 ProjectilePlayer::ProjectilePlayer(int posx, int posy, int dirx, int diry, int spritedir) : GameObject() {
@@ -13,7 +12,7 @@ ProjectilePlayer::ProjectilePlayer(int posx, int posy, int dirx, int diry, int s
     pos.y = posy;
     direction.x = dirx;
     direction.y = diry;
-    sprite = ProjectilePlayer::sprites[spritedir%4];
+    spritedirection = spritedir%4;
     traveled = 0;
 }
 

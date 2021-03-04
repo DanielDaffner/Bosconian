@@ -3,8 +3,6 @@
 //
 #include "../../include/model/Mine.h"
 
-GLubyte* Mine::sprites;
-GLubyte* Mine::spritesExplosion[3];
 Position2D Mine::drawOffset = {-32,32};
 int Mine::score = 20;
 

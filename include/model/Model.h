@@ -11,6 +11,7 @@
 #include "PTypeMissile.h"
 #include "EnemyBase.h"
 #include "Asteroid.h"
+#include "Formation.h"
 #include <list>
 
 #ifndef BOSCONIAN_MODEL_H
@@ -19,12 +20,6 @@
 class Model {
 public:
     Model();
-    static GLubyte* alphabetWhite[29];
-    static GLubyte* alphabetBlack[29];
-//    static GLubyte* alphabetBlackNoBorder[29];
-    static GLubyte* numbers[10];
-    static GLubyte* map;
-    static GLubyte* lifes;
     Player* player;
     std::list<Mine*> mines;
     std::list<Mine*> minesExploding;
@@ -40,6 +35,7 @@ public:
     std::list<ProjectilePlayer*> projectilesPlayer;
     std::list<EnemyBase*> enemyBases;
     std::list<ProjectilePlayer*> projectileEnemyBases;
+    std::list<Formation*> formations;
     //evt später als array aus datei geladen
     int highScore=0;
 };

@@ -16,14 +16,12 @@ public:
     int level;
     Model* model;
     View *view;
-    int init();
+    void run();
     void updateMainWindow();
     void onStart();
     void updateGameWindow();
-    void loadSprites();
-    int getSprite(GLubyte* &dst, char* filepath);
     int loadLevel();
-    void calcCollision(GameObject* ele, std::list<GameObject*> list, bool *isHit);
     void spawnEnemys();
+    void calcdirection(EnemyShip* ele, int playerQuadrant);
 };
 #endif //BOSCONIAN_CONTROLLER_H

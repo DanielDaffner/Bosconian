@@ -10,8 +10,6 @@
 class Asteroid : public GameObject {
 public:
     Asteroid(int x, int y);
-    static GLubyte* sprites[3];
-    static GLubyte* spritesExplosion[3];
     static Position2D drawOffset;
     static int score;
 };

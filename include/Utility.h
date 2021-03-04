@@ -33,6 +33,10 @@ struct Position2D{
     {
         return Position2D{x+a.x, y+a.y};
     }
+    Position2D operator*(const int a) const
+    {
+        return Position2D{x*a, y*a};
+    }
 //    Position2D operator/(double a) const
 //    {
 //        return Position2D{x/a, y/a};
