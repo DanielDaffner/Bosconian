@@ -719,13 +719,13 @@ void View::update(bool &inGame)  {
 
 //    render Base
     for(EnemyBase* ele: model->enemyBases) {
-        render(ele->pos + EnemyBase::drawOffset, enemyBaseSprites[0]);
+        render(ele->pos + EnemyBase::drawOffset, enemyBaseSprites[0+ele->rot]);
         //printf("timer: %d\n", ele->timer/10);
         //render(ele->pos + EnemyBase::drawOffsetMiddle, enemyBaseSprites[14+(ele->timer/20)]);
         for(EnemyBasePart* part: ele->parts) {
             render(ele->pos + EnemyBase::drawOffset + EnemyBasePart::drawOffset[part->dir], enemyBaseSprites[2+part->dir]);
         }
-        render(ele->pos + EnemyBase::drawOffsetMiddle, enemyBaseSprites[14+(ele->timer/20)]);
+        render(ele->pos + EnemyBase::drawOffsetMiddle, enemyBaseSprites[14+(ele->rot*6)+(ele->timer/20)]);
     }
 
 //    move Formation
