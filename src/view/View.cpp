@@ -85,40 +85,42 @@ void View::resetFrame() {
 void View::render(Position2D pos, GLubyte *bitmap) {
     int x;
     int y;
+    int width = *((uint32_t*)(bitmap));
+    int height = *((uint32_t*)(bitmap+4));
     if(viewportpos[0] > viewportpos[2] || viewportpos[1] > viewportpos[3]) {
         if(viewportpos[0] > viewportpos[2] && viewportpos[1] > viewportpos[3]) {
             //4 teile
-            if(viewportpos[0] <= pos.x && viewportpos[1] <= pos.y) {
+            if(viewportpos[0] <= pos.x+width && viewportpos[1] <= pos.y+height) {
                 x = pos.x - viewportpos[0];
                 y = pos.y - viewportpos[1];
             } else
-            if(viewportpos[0] <= pos.x && viewportpos[3] >= pos.y) {
+            if(viewportpos[0] <= pos.x+width && viewportpos[3] >= pos.y+height) {
                 x = pos.x - viewportpos[0];
                 y = pos.y - viewportpos[3] + GAME_HEIGHT;
             } else
-            if(viewportpos[2] >= pos.x && viewportpos[1] <= pos.y) {
+            if(viewportpos[2] >= pos.x-width && viewportpos[1] <= pos.y-height) {
                 x = pos.x - viewportpos[2] + GAME_WIDTH;
                 y = pos.y - viewportpos[1];
             } else
-            if(viewportpos[2] >= pos.x && viewportpos[3] >= pos.y) {
+            if(viewportpos[2] >= pos.x-width && viewportpos[3] >= pos.y-height) {
                 x = pos.x - viewportpos[2] + GAME_WIDTH;
                 y = pos.y - viewportpos[3] + GAME_HEIGHT;
             } else return;
         } else if(viewportpos[0] > viewportpos[2]) {
             //2 teile links rechts
-            if(viewportpos[0] <= pos.x) {
+            if(viewportpos[0] <= pos.x+width) {
                 x = pos.x - viewportpos[0];
                 y = pos.y - viewportpos[1];
-            } else if(viewportpos[2] >= pos.x ) {
+            } else if(viewportpos[2] >= pos.x-width) {
                 x = pos.x - viewportpos[2] + GAME_WIDTH;
                 y = pos.y - viewportpos[1];
             } else return;
         } else {
             //2 teile oben unten
-            if(viewportpos[1] <= pos.y) {
+            if(viewportpos[1] <= pos.y+height) {
                 x = pos.x - viewportpos[0];
                 y = pos.y - viewportpos[1];
-            } else if(viewportpos[3] >= pos.y) {
+            } else if(viewportpos[3] >= pos.y-height) {
                 x = pos.x - viewportpos[0];
                 y = pos.y - viewportpos[3] + GAME_HEIGHT;
             } else return;
@@ -127,7 +129,8 @@ void View::render(Position2D pos, GLubyte *bitmap) {
         x = pos.x - viewportpos[0];
         y = pos.y - viewportpos[1];
     }
-    glRasterPos2i(x,y);
+    glRasterPos2i(0,0);
+    glBitmap(0, 0, 0, 0, x, -y, NULL);
     glDrawPixels(*((uint32_t*)(bitmap)),*((uint32_t*)(bitmap+4)), GL_RGBA, GL_UNSIGNED_BYTE,
                  bitmap + 8);
 }
