@@ -1149,7 +1149,7 @@ endif()
 
 
 if(ALSOFT_UTILS AND NOT ALSOFT_NO_CONFIG_UTIL)
-    find_package(Qt5Widgets)
+#    find_package(Qt5Widgets)
 endif()
 if(ALSOFT_EXAMPLES)
     find_package(SndFile)
