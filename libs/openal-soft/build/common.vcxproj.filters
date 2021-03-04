@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\Daniel\Documents\GitHub\Bosconian\libs\openal-soft\common\alcomplex.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Daniel\Documents\GitHub\Bosconian\libs\openal-soft\common\alfstream.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Daniel\Documents\GitHub\Bosconian\libs\openal-soft\common\almalloc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Daniel\Documents\GitHub\Bosconian\libs\openal-soft\common\alstring.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Daniel\Documents\GitHub\Bosconian\libs\openal-soft\common\dynload.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Daniel\Documents\GitHub\Bosconian\libs\openal-soft\common\polyphase_resampler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Daniel\Documents\GitHub\Bosconian\libs\openal-soft\common\ringbuffer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Daniel\Documents\GitHub\Bosconian\libs\openal-soft\common\strutils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Daniel\Documents\GitHub\Bosconian\libs\openal-soft\common\threads.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\Daniel\Documents\GitHub\Bosconian\libs\openal-soft\common\albit.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Daniel\Documents\GitHub\Bosconian\libs\openal-soft\common\albyte.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Daniel\Documents\GitHub\Bosconian\libs\openal-soft\common\alcomplex.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Daniel\Documents\GitHub\Bosconian\libs\openal-soft\common\aldeque.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Daniel\Documents\GitHub\Bosconian\libs\openal-soft\common\alfstream.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Daniel\Documents\GitHub\Bosconian\libs\openal-soft\common\almalloc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Daniel\Documents\GitHub\Bosconian\libs\openal-soft\common\alnumeric.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Daniel\Documents\GitHub\Bosconian\libs\openal-soft\common\aloptional.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Daniel\Documents\GitHub\Bosconian\libs\openal-soft\common\alspan.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Daniel\Documents\GitHub\Bosconian\libs\openal-soft\common\alstring.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Daniel\Documents\GitHub\Bosconian\libs\openal-soft\common\atomic.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Daniel\Documents\GitHub\Bosconian\libs\openal-soft\common\dynload.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Daniel\Documents\GitHub\Bosconian\libs\openal-soft\common\intrusive_ptr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Daniel\Documents\GitHub\Bosconian\libs\openal-soft\common\math_defs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Daniel\Documents\GitHub\Bosconian\libs\openal-soft\common\opthelpers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Daniel\Documents\GitHub\Bosconian\libs\openal-soft\common\polyphase_resampler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Daniel\Documents\GitHub\Bosconian\libs\openal-soft\common\pragmadefs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Daniel\Documents\GitHub\Bosconian\libs\openal-soft\common\ringbuffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Daniel\Documents\GitHub\Bosconian\libs\openal-soft\common\strutils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Daniel\Documents\GitHub\Bosconian\libs\openal-soft\common\threads.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Daniel\Documents\GitHub\Bosconian\libs\openal-soft\common\vecmat.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Daniel\Documents\GitHub\Bosconian\libs\openal-soft\common\vector.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Daniel\Documents\GitHub\Bosconian\libs\openal-soft\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{9B8A0F7F-B433-3995-ABE3-7F998B723B92}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{C922E39E-6341-3420-A473-173D6A51F365}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

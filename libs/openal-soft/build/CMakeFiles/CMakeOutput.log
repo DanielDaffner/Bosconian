@@ -1,0 +1,340 @@
+The system is: Windows - 10.0.19041 - AMD64
+Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+Compiler:  
+Build flags: 
+Id flags:  
+
+The output was:
+0
+Microsoft (R)-Build-Engine, Version 16.8.2+25e4d540b für .NET Framework
+Copyright (C) Microsoft Corporation. Alle Rechte vorbehalten.
+
+Der Buildvorgang wurde am 02.03.2021 16:55:34 gestartet.
+Projekt "C:\Users\Daniel\Documents\GitHub\Bosconian\libs\openal-soft\build\CMakeFiles\3.19.0\CompilerIdC\CompilerIdC.vcxproj" auf Knoten "1" (Standardziele).
+PrepareForBuild:
+  Das Verzeichnis "Debug\" wird erstellt.
+  Das Verzeichnis "Debug\CompilerIdC.tlog\" wird erstellt.
+InitializeBuildStatus:
+  "Debug\CompilerIdC.tlog\unsuccessfulbuild" wird erstellt, da "AlwaysCreate" angegeben wurde.
+ClCompile:
+  C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29333\bin\HostX64\x64\CL.exe /c /nologo /W0 /WX- /diagnostics:column /Od /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc142.pdb" /Gd /TC /FC /errorReport:queue CMakeCCompilerId.c
+  CMakeCCompilerId.c
+Link:
+  C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29333\bin\HostX64\x64\link.exe /ERRORREPORT:QUEUE /OUT:".\CompilerIdC.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\CompilerIdC.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\CompilerIdC.lib" /MACHINE:X64 Debug\CMakeCCompilerId.obj
+  CompilerIdC.vcxproj -> C:\Users\Daniel\Documents\GitHub\Bosconian\libs\openal-soft\build\CMakeFiles\3.19.0\CompilerIdC\CompilerIdC.exe
+PostBuildEvent:
+  for %%i in (cl.exe) do @echo CMAKE_C_COMPILER=%%~$PATH:i
+  :VCEnd
+  CMAKE_C_COMPILER=C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29333\bin\Hostx64\x64\cl.exe
+FinalizeBuildStatus:
+  Die Datei "Debug\CompilerIdC.tlog\unsuccessfulbuild" wird gelöscht.
+  Aktualisieren des Timestamps von "Debug\CompilerIdC.tlog\CompilerIdC.lastbuildstate".
+Die Erstellung von Projekt "C:\Users\Daniel\Documents\GitHub\Bosconian\libs\openal-soft\build\CMakeFiles\3.19.0\CompilerIdC\CompilerIdC.vcxproj" ist abgeschlossen (Standardziele).
+
+Der Buildvorgang wurde erfolgreich ausgeführt.
+    0 Warnung(en)
+    0 Fehler
+
+Verstrichene Zeit 00:00:00.53
+
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.exe"
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.vcxproj"
+
+The C compiler identification is MSVC, found in "C:/Users/Daniel/Documents/GitHub/Bosconian/libs/openal-soft/build/CMakeFiles/3.19.0/CompilerIdC/CompilerIdC.exe"
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+Compiler:  
+Build flags: 
+Id flags:  
+
+The output was:
+0
+Microsoft (R)-Build-Engine, Version 16.8.2+25e4d540b für .NET Framework
+Copyright (C) Microsoft Corporation. Alle Rechte vorbehalten.
+
+Der Buildvorgang wurde am 02.03.2021 16:55:35 gestartet.
+Projekt "C:\Users\Daniel\Documents\GitHub\Bosconian\libs\openal-soft\build\CMakeFiles\3.19.0\CompilerIdCXX\CompilerIdCXX.vcxproj" auf Knoten "1" (Standardziele).
+PrepareForBuild:
+  Das Verzeichnis "Debug\" wird erstellt.
+  Das Verzeichnis "Debug\CompilerIdCXX.tlog\" wird erstellt.
+InitializeBuildStatus:
+  "Debug\CompilerIdCXX.tlog\unsuccessfulbuild" wird erstellt, da "AlwaysCreate" angegeben wurde.
+ClCompile:
+  C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29333\bin\HostX64\x64\CL.exe /c /nologo /W0 /WX- /diagnostics:column /Od /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc142.pdb" /Gd /TP /FC /errorReport:queue CMakeCXXCompilerId.cpp
+  CMakeCXXCompilerId.cpp
+Link:
+  C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29333\bin\HostX64\x64\link.exe /ERRORREPORT:QUEUE /OUT:".\CompilerIdCXX.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\CompilerIdCXX.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\CompilerIdCXX.lib" /MACHINE:X64 Debug\CMakeCXXCompilerId.obj
+  CompilerIdCXX.vcxproj -> C:\Users\Daniel\Documents\GitHub\Bosconian\libs\openal-soft\build\CMakeFiles\3.19.0\CompilerIdCXX\CompilerIdCXX.exe
+PostBuildEvent:
+  for %%i in (cl.exe) do @echo CMAKE_CXX_COMPILER=%%~$PATH:i
+  :VCEnd
+  CMAKE_CXX_COMPILER=C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29333\bin\Hostx64\x64\cl.exe
+FinalizeBuildStatus:
+  Die Datei "Debug\CompilerIdCXX.tlog\unsuccessfulbuild" wird gelöscht.
+  Aktualisieren des Timestamps von "Debug\CompilerIdCXX.tlog\CompilerIdCXX.lastbuildstate".
+Die Erstellung von Projekt "C:\Users\Daniel\Documents\GitHub\Bosconian\libs\openal-soft\build\CMakeFiles\3.19.0\CompilerIdCXX\CompilerIdCXX.vcxproj" ist abgeschlossen (Standardziele).
+
+Der Buildvorgang wurde erfolgreich ausgeführt.
+    0 Warnung(en)
+    0 Fehler
+
+Verstrichene Zeit 00:00:00.42
+
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.exe"
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.vcxproj"
+
+The CXX compiler identification is MSVC, found in "C:/Users/Daniel/Documents/GitHub/Bosconian/libs/openal-soft/build/CMakeFiles/3.19.0/CompilerIdCXX/CompilerIdCXX.exe"
+
+Detecting C compiler ABI info compiled with the following output:
+Change Dir: C:/Users/Daniel/Documents/GitHub/Bosconian/libs/openal-soft/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/MSBuild/Current/Bin/MSBuild.exe cmTC_dc62a.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && Microsoft (R)-Build-Engine, Version 16.8.2+25e4d540b für .NET Framework
+Copyright (C) Microsoft Corporation. Alle Rechte vorbehalten.
+
+  Microsoft (R) C/C++ Optimizing Compiler Version 19.28.29334 for x64
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+  CMakeCCompilerABI.c
+  cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_dc62a.dir\Debug\\" /Fd"cmTC_dc62a.dir\Debug\vc142.pdb" /Gd /TC /errorReport:queue "C:\Program Files\CMake\share\cmake-3.19\Modules\CMakeCCompilerABI.c"
+  cmTC_dc62a.vcxproj -> C:\Users\Daniel\Documents\GitHub\Bosconian\libs\openal-soft\build\CMakeFiles\CMakeTmp\Debug\cmTC_dc62a.exe
+
+
+
+Detecting CXX compiler ABI info compiled with the following output:
+Change Dir: C:/Users/Daniel/Documents/GitHub/Bosconian/libs/openal-soft/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/MSBuild/Current/Bin/MSBuild.exe cmTC_f8c48.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && Microsoft (R)-Build-Engine, Version 16.8.2+25e4d540b für .NET Framework
+Copyright (C) Microsoft Corporation. Alle Rechte vorbehalten.
+
+  Microsoft (R) C/C++ Optimizing Compiler Version 19.28.29334 for x64
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+  CMakeCXXCompilerABI.cpp
+  cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_f8c48.dir\Debug\\" /Fd"cmTC_f8c48.dir\Debug\vc142.pdb" /Gd /TP /errorReport:queue "C:\Program Files\CMake\share\cmake-3.19\Modules\CMakeCXXCompilerABI.cpp"
+  cmTC_f8c48.vcxproj -> C:\Users\Daniel\Documents\GitHub\Bosconian\libs\openal-soft\build\CMakeFiles\CMakeTmp\Debug\cmTC_f8c48.exe
+
+
+
+Performing C++ SOURCE FILE Test HAVE___RESTRICT succeeded with the following output:
+Change Dir: C:/Users/Daniel/Documents/GitHub/Bosconian/libs/openal-soft/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/MSBuild/Current/Bin/MSBuild.exe cmTC_05321.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && Microsoft (R)-Build-Engine, Version 16.8.2+25e4d540b für .NET Framework
+Copyright (C) Microsoft Corporation. Alle Rechte vorbehalten.
+
+  Microsoft (R) C/C++ Optimizing Compiler Version 19.28.29334 for x64
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+  src.cxx
+  cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D WIN32 /D _WINDOWS /D HAVE___RESTRICT /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_05321.dir\Debug\\" /Fd"cmTC_05321.dir\Debug\vc142.pdb" /Gd /TP /errorReport:queue "C:\Users\Daniel\Documents\GitHub\Bosconian\libs\openal-soft\build\CMakeFiles\CMakeTmp\src.cxx"
+  cmTC_05321.vcxproj -> C:\Users\Daniel\Documents\GitHub\Bosconian\libs\openal-soft\build\CMakeFiles\CMakeTmp\Debug\cmTC_05321.exe
+
+
+Source file was:
+int *__restrict foo;
+int main() { return 0; }
+Performing C++ SOURCE FILE Test HAVE_PERMISSIVE_SWITCH succeeded with the following output:
+Change Dir: C:/Users/Daniel/Documents/GitHub/Bosconian/libs/openal-soft/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/MSBuild/Current/Bin/MSBuild.exe cmTC_193b9.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && Microsoft (R)-Build-Engine, Version 16.8.2+25e4d540b für .NET Framework
+Copyright (C) Microsoft Corporation. Alle Rechte vorbehalten.
+
+  Microsoft (R) C/C++ Optimizing Compiler Version 19.28.29334 for x64
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+  src.cxx
+  cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D WIN32 /D _WINDOWS /D HAVE_PERMISSIVE_SWITCH /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /permissive- /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_193b9.dir\Debug\\" /Fd"cmTC_193b9.dir\Debug\vc142.pdb" /Gd /TP /errorReport:queue "C:\Users\Daniel\Documents\GitHub\Bosconian\libs\openal-soft\build\CMakeFiles\CMakeTmp\src.cxx"
+  cmTC_193b9.vcxproj -> C:\Users\Daniel\Documents\GitHub\Bosconian\libs\openal-soft\build\CMakeFiles\CMakeTmp\Debug\cmTC_193b9.exe
+
+
+Source file was:
+int main() { return 0; }
+Determining if the include file xmmintrin.h exists passed with the following output:
+Change Dir: C:/Users/Daniel/Documents/GitHub/Bosconian/libs/openal-soft/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/MSBuild/Current/Bin/MSBuild.exe cmTC_3b828.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && Microsoft (R)-Build-Engine, Version 16.8.2+25e4d540b für .NET Framework
+Copyright (C) Microsoft Corporation. Alle Rechte vorbehalten.
+
+  Microsoft (R) C/C++ Optimizing Compiler Version 19.28.29334 for x64
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+  CheckIncludeFile.c
+  cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_3b828.dir\Debug\\" /Fd"cmTC_3b828.dir\Debug\vc142.pdb" /Gd /TC /errorReport:queue "C:\Users\Daniel\Documents\GitHub\Bosconian\libs\openal-soft\build\CMakeFiles\CMakeTmp\CheckIncludeFile.c"
+  cmTC_3b828.vcxproj -> C:\Users\Daniel\Documents\GitHub\Bosconian\libs\openal-soft\build\CMakeFiles\CMakeTmp\Debug\cmTC_3b828.exe
+
+
+
+Determining if the include file emmintrin.h exists passed with the following output:
+Change Dir: C:/Users/Daniel/Documents/GitHub/Bosconian/libs/openal-soft/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/MSBuild/Current/Bin/MSBuild.exe cmTC_07d57.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && Microsoft (R)-Build-Engine, Version 16.8.2+25e4d540b für .NET Framework
+Copyright (C) Microsoft Corporation. Alle Rechte vorbehalten.
+
+  Microsoft (R) C/C++ Optimizing Compiler Version 19.28.29334 for x64
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+  CheckIncludeFile.c
+  cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_07d57.dir\Debug\\" /Fd"cmTC_07d57.dir\Debug\vc142.pdb" /Gd /TC /errorReport:queue "C:\Users\Daniel\Documents\GitHub\Bosconian\libs\openal-soft\build\CMakeFiles\CMakeTmp\CheckIncludeFile.c"
+  cmTC_07d57.vcxproj -> C:\Users\Daniel\Documents\GitHub\Bosconian\libs\openal-soft\build\CMakeFiles\CMakeTmp\Debug\cmTC_07d57.exe
+
+
+
+Determining if the include file pmmintrin.h exists passed with the following output:
+Change Dir: C:/Users/Daniel/Documents/GitHub/Bosconian/libs/openal-soft/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/MSBuild/Current/Bin/MSBuild.exe cmTC_6c1c0.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && Microsoft (R)-Build-Engine, Version 16.8.2+25e4d540b für .NET Framework
+Copyright (C) Microsoft Corporation. Alle Rechte vorbehalten.
+
+  Microsoft (R) C/C++ Optimizing Compiler Version 19.28.29334 for x64
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+  CheckIncludeFile.c
+  cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_6c1c0.dir\Debug\\" /Fd"cmTC_6c1c0.dir\Debug\vc142.pdb" /Gd /TC /errorReport:queue "C:\Users\Daniel\Documents\GitHub\Bosconian\libs\openal-soft\build\CMakeFiles\CMakeTmp\CheckIncludeFile.c"
+  cmTC_6c1c0.vcxproj -> C:\Users\Daniel\Documents\GitHub\Bosconian\libs\openal-soft\build\CMakeFiles\CMakeTmp\Debug\cmTC_6c1c0.exe
+
+
+
+Determining if the include file smmintrin.h exists passed with the following output:
+Change Dir: C:/Users/Daniel/Documents/GitHub/Bosconian/libs/openal-soft/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/MSBuild/Current/Bin/MSBuild.exe cmTC_599dc.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && Microsoft (R)-Build-Engine, Version 16.8.2+25e4d540b für .NET Framework
+Copyright (C) Microsoft Corporation. Alle Rechte vorbehalten.
+
+  Microsoft (R) C/C++ Optimizing Compiler Version 19.28.29334 for x64
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+  CheckIncludeFile.c
+  cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_599dc.dir\Debug\\" /Fd"cmTC_599dc.dir\Debug\vc142.pdb" /Gd /TC /errorReport:queue "C:\Users\Daniel\Documents\GitHub\Bosconian\libs\openal-soft\build\CMakeFiles\CMakeTmp\CheckIncludeFile.c"
+  cmTC_599dc.vcxproj -> C:\Users\Daniel\Documents\GitHub\Bosconian\libs\openal-soft\build\CMakeFiles\CMakeTmp\Debug\cmTC_599dc.exe
+
+
+
+Performing C SOURCE FILE Test HAVE_SSE_INTRINSICS succeeded with the following output:
+Change Dir: C:/Users/Daniel/Documents/GitHub/Bosconian/libs/openal-soft/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/MSBuild/Current/Bin/MSBuild.exe cmTC_8d336.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && Microsoft (R)-Build-Engine, Version 16.8.2+25e4d540b für .NET Framework
+Copyright (C) Microsoft Corporation. Alle Rechte vorbehalten.
+
+  Microsoft (R) C/C++ Optimizing Compiler Version 19.28.29334 for x64
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+  src.c
+  cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D WIN32 /D _WINDOWS /D HAVE_SSE_INTRINSICS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_8d336.dir\Debug\\" /Fd"cmTC_8d336.dir\Debug\vc142.pdb" /Gd /TC /errorReport:queue "C:\Users\Daniel\Documents\GitHub\Bosconian\libs\openal-soft\build\CMakeFiles\CMakeTmp\src.c"
+  cmTC_8d336.vcxproj -> C:\Users\Daniel\Documents\GitHub\Bosconian\libs\openal-soft\build\CMakeFiles\CMakeTmp\Debug\cmTC_8d336.exe
+
+
+Source file was:
+#include <emmintrin.h>
+        int main() {_mm_pause(); return 0;}
+Determining if the include file malloc.h exists passed with the following output:
+Change Dir: C:/Users/Daniel/Documents/GitHub/Bosconian/libs/openal-soft/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/MSBuild/Current/Bin/MSBuild.exe cmTC_3964c.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && Microsoft (R)-Build-Engine, Version 16.8.2+25e4d540b für .NET Framework
+Copyright (C) Microsoft Corporation. Alle Rechte vorbehalten.
+
+  Microsoft (R) C/C++ Optimizing Compiler Version 19.28.29334 for x64
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+  CheckIncludeFile.c
+  cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_3964c.dir\Debug\\" /Fd"cmTC_3964c.dir\Debug\vc142.pdb" /Gd /TC /errorReport:queue "C:\Users\Daniel\Documents\GitHub\Bosconian\libs\openal-soft\build\CMakeFiles\CMakeTmp\CheckIncludeFile.c"
+  cmTC_3964c.vcxproj -> C:\Users\Daniel\Documents\GitHub\Bosconian\libs\openal-soft\build\CMakeFiles\CMakeTmp\Debug\cmTC_3964c.exe
+
+
+
+Determining if the include file intrin.h exists passed with the following output:
+Change Dir: C:/Users/Daniel/Documents/GitHub/Bosconian/libs/openal-soft/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/MSBuild/Current/Bin/MSBuild.exe cmTC_398a6.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && Microsoft (R)-Build-Engine, Version 16.8.2+25e4d540b für .NET Framework
+Copyright (C) Microsoft Corporation. Alle Rechte vorbehalten.
+
+  Microsoft (R) C/C++ Optimizing Compiler Version 19.28.29334 for x64
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+  CheckIncludeFile.c
+  cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_398a6.dir\Debug\\" /Fd"cmTC_398a6.dir\Debug\vc142.pdb" /Gd /TC /errorReport:queue "C:\Users\Daniel\Documents\GitHub\Bosconian\libs\openal-soft\build\CMakeFiles\CMakeTmp\CheckIncludeFile.c"
+  cmTC_398a6.vcxproj -> C:\Users\Daniel\Documents\GitHub\Bosconian\libs\openal-soft\build\CMakeFiles\CMakeTmp\Debug\cmTC_398a6.exe
+
+
+
+Determining if the include file guiddef.h exists passed with the following output:
+Change Dir: C:/Users/Daniel/Documents/GitHub/Bosconian/libs/openal-soft/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/MSBuild/Current/Bin/MSBuild.exe cmTC_961c3.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && Microsoft (R)-Build-Engine, Version 16.8.2+25e4d540b für .NET Framework
+Copyright (C) Microsoft Corporation. Alle Rechte vorbehalten.
+
+  Microsoft (R) C/C++ Optimizing Compiler Version 19.28.29334 for x64
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+  CheckIncludeFile.c
+  cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_961c3.dir\Debug\\" /Fd"cmTC_961c3.dir\Debug\vc142.pdb" /Gd /TC /errorReport:queue "C:\Users\Daniel\Documents\GitHub\Bosconian\libs\openal-soft\build\CMakeFiles\CMakeTmp\CheckIncludeFile.c"
+  cmTC_961c3.vcxproj -> C:\Users\Daniel\Documents\GitHub\Bosconian\libs\openal-soft\build\CMakeFiles\CMakeTmp\Debug\cmTC_961c3.exe
+
+
+
+Performing C SOURCE FILE Test HAVE_CPUID_INTRINSIC succeeded with the following output:
+Change Dir: C:/Users/Daniel/Documents/GitHub/Bosconian/libs/openal-soft/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/MSBuild/Current/Bin/MSBuild.exe cmTC_358bd.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && Microsoft (R)-Build-Engine, Version 16.8.2+25e4d540b für .NET Framework
+Copyright (C) Microsoft Corporation. Alle Rechte vorbehalten.
+
+  Microsoft (R) C/C++ Optimizing Compiler Version 19.28.29334 for x64
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+  src.c
+  cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D WIN32 /D _WINDOWS /D HAVE_CPUID_INTRINSIC /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_358bd.dir\Debug\\" /Fd"cmTC_358bd.dir\Debug\vc142.pdb" /Gd /TC /errorReport:queue "C:\Users\Daniel\Documents\GitHub\Bosconian\libs\openal-soft\build\CMakeFiles\CMakeTmp\src.c"
+  cmTC_358bd.vcxproj -> C:\Users\Daniel\Documents\GitHub\Bosconian\libs\openal-soft\build\CMakeFiles\CMakeTmp\Debug\cmTC_358bd.exe
+
+
+Source file was:
+#include <intrin.h>
+        int main()
+        {
+            int regs[4];
+            __cpuid(regs, 0);
+            return regs[0];
+        }
+Determining if the _aligned_malloc exist passed with the following output:
+Change Dir: C:/Users/Daniel/Documents/GitHub/Bosconian/libs/openal-soft/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/MSBuild/Current/Bin/MSBuild.exe cmTC_6160f.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && Microsoft (R)-Build-Engine, Version 16.8.2+25e4d540b für .NET Framework
+Copyright (C) Microsoft Corporation. Alle Rechte vorbehalten.
+
+  Microsoft (R) C/C++ Optimizing Compiler Version 19.28.29334 for x64
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+  CheckSymbolExists.c
+  cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_6160f.dir\Debug\\" /Fd"cmTC_6160f.dir\Debug\vc142.pdb" /Gd /TC /errorReport:queue "C:\Users\Daniel\Documents\GitHub\Bosconian\libs\openal-soft\build\CMakeFiles\CMakeTmp\CheckSymbolExists.c"
+  cmTC_6160f.vcxproj -> C:\Users\Daniel\Documents\GitHub\Bosconian\libs\openal-soft\build\CMakeFiles\CMakeTmp\Debug\cmTC_6160f.exe
+
+
+File C:/Users/Daniel/Documents/GitHub/Bosconian/libs/openal-soft/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <malloc.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef _aligned_malloc
+  return ((int*)(&_aligned_malloc))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the include file dsound.h exists passed with the following output:
+Change Dir: C:/Users/Daniel/Documents/GitHub/Bosconian/libs/openal-soft/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/MSBuild/Current/Bin/MSBuild.exe cmTC_22cda.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && Microsoft (R)-Build-Engine, Version 16.8.2+25e4d540b für .NET Framework
+Copyright (C) Microsoft Corporation. Alle Rechte vorbehalten.
+
+  Microsoft (R) C/C++ Optimizing Compiler Version 19.28.29334 for x64
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+  CheckIncludeFile.c
+  cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_22cda.dir\Debug\\" /Fd"cmTC_22cda.dir\Debug\vc142.pdb" /Gd /TC /errorReport:queue "C:\Users\Daniel\Documents\GitHub\Bosconian\libs\openal-soft\build\CMakeFiles\CMakeTmp\CheckIncludeFile.c"
+  cmTC_22cda.vcxproj -> C:\Users\Daniel\Documents\GitHub\Bosconian\libs\openal-soft\build\CMakeFiles\CMakeTmp\Debug\cmTC_22cda.exe
+
+
+
+Determining if the include file mmdeviceapi.h exists passed with the following output:
+Change Dir: C:/Users/Daniel/Documents/GitHub/Bosconian/libs/openal-soft/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/MSBuild/Current/Bin/MSBuild.exe cmTC_aaec1.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && Microsoft (R)-Build-Engine, Version 16.8.2+25e4d540b für .NET Framework
+Copyright (C) Microsoft Corporation. Alle Rechte vorbehalten.
+
+  Microsoft (R) C/C++ Optimizing Compiler Version 19.28.29334 for x64
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+  CheckIncludeFile.c
+  cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_aaec1.dir\Debug\\" /Fd"cmTC_aaec1.dir\Debug\vc142.pdb" /Gd /TC /errorReport:queue "C:\Users\Daniel\Documents\GitHub\Bosconian\libs\openal-soft\build\CMakeFiles\CMakeTmp\CheckIncludeFile.c"
+  cmTC_aaec1.vcxproj -> C:\Users\Daniel\Documents\GitHub\Bosconian\libs\openal-soft\build\CMakeFiles\CMakeTmp\Debug\cmTC_aaec1.exe
+
+
+

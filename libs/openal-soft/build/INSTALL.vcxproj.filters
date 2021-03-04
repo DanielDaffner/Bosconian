@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Daniel\Documents\GitHub\Bosconian\libs\openal-soft\build\CMakeFiles\be41c54c50b0807046fab2d261d25a5e\INSTALL_force.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{2DE9B3AD-3304-32EE-A50A-4656F7E28565}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

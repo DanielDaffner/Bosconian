@@ -4,7 +4,7 @@ project(Bosconian)
 set(CMAKE_CXX_STANDARD 14)
 
 add_subdirectory(${PROJECT_SOURCE_DIR}/libs/glfw-3.3.2)
-add_subdirectory(${PROJECT_SOURCE_DIR}/libs/openal-1.21.1)
+add_subdirectory(${PROJECT_SOURCE_DIR}/libs/openal-soft)
 
 find_package(OpenGL REQUIRED)
 
