@@ -516,7 +516,7 @@ void Controller::updateGameWindow() {
     bool hit = false;
     for(auto iterator = model->projectilesPlayer.begin(); iterator!= model->projectilesPlayer.end();) {
         if(iterator._Ptr->_Myval->traveled <= 22) {
-
+            //check mines
             for (auto iterator2 = model->mines.begin(); iterator2 != model->mines.end();) {
                 distance = sqrt(pow(iterator._Ptr->_Myval->pos.x - iterator2._Ptr->_Myval->pos.x, 2) +
                                 pow(iterator._Ptr->_Myval->pos.y - iterator2._Ptr->_Myval->pos.y, 2));
@@ -526,15 +526,41 @@ void Controller::updateGameWindow() {
                     iterator2._Ptr->_Myval->pos.x += -32;
                     iterator2._Ptr->_Myval->pos.y += 32;
                     iterator2 = model->mines.erase(iterator2);
-                    delete (iterator._Ptr->_Myval);
-                    iterator = model->projectilesPlayer.erase(iterator);
                     hit = true;
 
                     break;
                 } else
                     iterator2++;
             }
-
+            //check enemy bases
+            if(!hit) {
+                for (auto iterator2 = model->enemyBases.begin(); iterator2 != model->enemyBases.end();) {
+                    for (auto iterator3 = iterator2._Ptr->_Myval->parts.begin(); iterator3 != iterator2._Ptr->_Myval->parts.end();) {
+                        distance = sqrt(pow(iterator._Ptr->_Myval->pos.x - iterator3._Ptr->_Myval->pos.x, 2) +
+                                        pow(iterator._Ptr->_Myval->pos.y - iterator3._Ptr->_Myval->pos.y, 2));
+                        if (distance <= 32) {
+                            iterator3._Ptr->_Myval->collision = true;
+                            model->enemyBasePartsExploding.push_back(iterator3._Ptr->_Myval);
+//                            iterator2._Ptr->_Myval->pos.x += -32;
+//                            iterator2._Ptr->_Myval->pos.y += 32;
+                            iterator3 = iterator2._Ptr->_Myval->parts.erase(iterator3);
+                            hit = true;
+//
+                            break;
+                        } else
+                            iterator3++;
+                    }
+                    if(hit){
+                        if(iterator2._Ptr->_Myval->parts.empty()) {
+                            model->enemyBasesExploding.push_back(iterator2._Ptr->_Myval);
+                            model->enemyBases.erase(iterator2);
+                        }
+                        break;
+                    }
+                    else iterator2++;
+                }
+            }
+            // check iType Missiles
             if(!hit) {
                 for (auto iterator2 = model->iTypeMissiles.begin(); iterator2 != model->iTypeMissiles.end();) {
                     distance = sqrt(pow(iterator._Ptr->_Myval->pos.x - iterator2._Ptr->_Myval->pos.x, 2) +
@@ -543,8 +569,6 @@ void Controller::updateGameWindow() {
                         iterator2._Ptr->_Myval->collision = true;
                         model->iTypeMissilesExploding.push_back(iterator2._Ptr->_Myval);
                         iterator2 = model->iTypeMissiles.erase(iterator2);
-                        delete (iterator._Ptr->_Myval);
-                        iterator = model->projectilesPlayer.erase(iterator);
                         hit = true;
 
                         break;
@@ -554,6 +578,8 @@ void Controller::updateGameWindow() {
             }
             if (hit) {
                 hit = false;
+                delete (iterator._Ptr->_Myval);
+                iterator = model->projectilesPlayer.erase(iterator);
             } else
                 iterator++;
         } else {

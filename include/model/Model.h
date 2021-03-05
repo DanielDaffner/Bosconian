@@ -34,6 +34,8 @@ public:
     std::list<BackgroundPixel*> pixelarr[4];
     std::list<ProjectilePlayer*> projectilesPlayer;
     std::list<EnemyBase*> enemyBases;
+    std::list<EnemyBase*> enemyBasesExploding;
+    std::list<EnemyBasePart*> enemyBasePartsExploding;
     std::list<ProjectilePlayer*> projectileEnemyBases;
     std::list<Formation*> formations;
     //evt später als array aus datei geladen

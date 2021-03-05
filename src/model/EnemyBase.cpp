@@ -13,19 +13,19 @@ EnemyBase::EnemyBase(int x, int y) : GameObject() {
     pos.y = y;
     rot = rand() % 2;
     if(rot == 0) {
-        parts.push_back(new EnemyBasePart(pos.x - 100, pos.y, 0));
-        parts.push_back(new EnemyBasePart(pos.x + 100, pos.y, 1));
-        parts.push_back(new EnemyBasePart(pos.x - 40, pos.y - 100, 2));
-        parts.push_back(new EnemyBasePart(pos.x - 40, pos.y + 100, 3));
-        parts.push_back(new EnemyBasePart(pos.x + 40, pos.y - 100, 4));
-        parts.push_back(new EnemyBasePart(pos.x + 40, pos.y + 100, 5));
+        parts.push_back(new EnemyBasePart(pos.x, pos.y - 120, 0));
+        parts.push_back(new EnemyBasePart(pos.x - 100, pos.y - 50, 1));
+        parts.push_back(new EnemyBasePart(pos.x - 100, pos.y + 50, 2));
+        parts.push_back(new EnemyBasePart(pos.x, pos.y + 120, 3));
+        parts.push_back(new EnemyBasePart(pos.x + 100, pos.y + 50, 4));
+        parts.push_back(new EnemyBasePart(pos.x + 100, pos.y - 50, 5));
     } else {
-        parts.push_back(new EnemyBasePart(pos.x - 100, pos.y, 6));
-        parts.push_back(new EnemyBasePart(pos.x + 100, pos.y, 7));
-        parts.push_back(new EnemyBasePart(pos.x - 40, pos.y - 100, 8));
-        parts.push_back(new EnemyBasePart(pos.x - 40, pos.y + 100, 9));
-        parts.push_back(new EnemyBasePart(pos.x + 40, pos.y - 100, 10));
-        parts.push_back(new EnemyBasePart(pos.x + 40, pos.y + 100, 11));
+        parts.push_back(new EnemyBasePart(pos.x - 120, pos.y, 6));
+        parts.push_back(new EnemyBasePart(pos.x - 50, pos.y + 100, 7));
+        parts.push_back(new EnemyBasePart(pos.x + 50, pos.y + 100, 8));
+        parts.push_back(new EnemyBasePart(pos.x + 120, pos.y + 100, 9));
+        parts.push_back(new EnemyBasePart(pos.x + 50, pos.y -100, 10));
+        parts.push_back(new EnemyBasePart(pos.x - 50, pos.y -100, 11));
     }
     isOpen = false;
     timer = 0;
