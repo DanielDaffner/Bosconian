@@ -73,7 +73,7 @@ int test(){
     // start
     int channel,sampleRate,bps,size;
 
-    char* data=loadWAV("test.wav", channel, sampleRate,bps,size);
+    char* data=loadWAV("../App_Data/audio/Blast.wav", channel, sampleRate,bps,size);
     ALCdevice* device=alcOpenDevice(NULL);
     if(device==NULL)
     {
@@ -130,6 +130,7 @@ int test(){
 
 
 int main() {
+    test();
     Controller *controller = new Controller();
 
     return 0;
