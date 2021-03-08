@@ -8,8 +8,10 @@
 #include <string>
 #include <chrono>
 
+
 Controller::Controller() {
     model = new Model();
+    soundControl = new SoundControl();
     inGame = false;
     view = new View(model);
     level = 1;
@@ -174,6 +176,7 @@ void Controller::updateGameWindow() {
     model->player->firecd--;
     if (space == GLFW_PRESS) {
         if(model->player->firecd <= 0) {
+            soundControl->play(SoundControl::BLAST);
             model->projectilesPlayer.push_back(
                     new ProjectilePlayer((int)model->player->pos.x, (int)model->player->pos.y, model->player->direction[0],
                                          model->player->direction[1], model->player->spriteDirection));

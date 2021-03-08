@@ -8,6 +8,7 @@
 #include "../../include/model/Mine.h"
 #ifndef BOSCONIAN_CONTROLLER_H
 #define BOSCONIAN_CONTROLLER_H
+#include "../../include/audio/SoundControl.h"
 
 class Controller{
 public:
@@ -16,6 +17,7 @@ public:
     int level;
     Model* model;
     View *view;
+    SoundControl* soundControl;
     void run();
     void updateMainWindow();
     void onStart();

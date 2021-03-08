@@ -37,10 +37,16 @@ struct Position2D{
     {
         return Position2D{x*a, y*a};
     }
+
+
+
+
 //    Position2D operator/(double a) const
 //    {
 //        return Position2D{x/a, y/a};
 //    }
 };
+
+
 
 #endif //BOSCONIAN_UTILITY_H
