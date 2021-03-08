@@ -60,7 +60,31 @@ Sound* WAVLoader::loadWAV(char *url) {
     unsigned char* buf = new unsigned char[dataSize];
     fread(buf, sizeof(char),dataSize,fp);
 
-    Sound* result = new Sound(buf,dataSize,sampleRate,formatType,bitsPerSample,channels);
+    ALuint source;
+    ALuint buffer;
+
+    alGenBuffers(1,&buffer);
+    alGenSources(1, &source);
+
+    if(bitsPerSample==8){
+        if(channels==1)
+            formatType = AL_FORMAT_MONO8;
+        else if ( channels==2)
+            formatType = AL_FORMAT_STEREO8;
+    }
+    else if (bitsPerSample == 16)
+    {
+        if(channels==1)
+            formatType = AL_FORMAT_MONO16;
+        else if (channels==2)
+            formatType = AL_FORMAT_STEREO16;
+    }
+
+    alBufferData(buffer, formatType, buf, size, sampleRate);
+    alSourcei(source, AL_BUFFER, buffer);
+    //alSourcei(source, AL_LOOPING, AL_TRUE);
+    alSourcef(source,AL_GAIN,0.3f);
+    Sound* result = new Sound(source);
 
     return result;
 

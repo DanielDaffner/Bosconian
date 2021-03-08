@@ -4,11 +4,9 @@
 
 #include "../../include/audio/Sound.h"
 
-Sound::Sound(unsigned char* data,int size, ALuint freq, ALenum form,short bps, short chan) {
+Sound::Sound(ALuint s) {
 
-     frequency=freq;
-     format=form;
-     bitsPerSample=bps;
-     channels=chan;
+
+    source=s;
 
 }

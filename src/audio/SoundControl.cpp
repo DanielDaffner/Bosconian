@@ -52,41 +52,20 @@ void SoundControl::initDeviceAndContext() {
 }
 
 void playInThread(Sound sound){
-
-    ALuint source;
-    ALuint buffer;
-
-    alGenBuffers(1,&buffer);
-    alGenSources(1, &source);
-
-    if(sound.bitsPerSample==8){
-        if(sound.channels==1)
-            sound.format = AL_FORMAT_MONO8;
-        else if ( sound.channels==2)
-            sound.format = AL_FORMAT_STEREO8;
-    }
-    else if (sound.bitsPerSample == 16)
-    {
-        if(sound.channels==1)
-            sound.format = AL_FORMAT_MONO16;
-        else if (sound.channels==2)
-            sound.format = AL_FORMAT_STEREO16;
-    }
-
-    alBufferData(buffer, sound.format, sound.data, sound.size, sound.frequency);
-    alSourcei(source, AL_BUFFER, buffer);
-    std::cout << "PLAY" << std::endl;
-    alSourcePlay(source);
-    _sleep(5000);
-    std::cout << "END" << std::endl;
-
+    //play
 
 }
 
 void SoundControl::playSound(Sound sound) {
     //play
     //std::thread worker (playInThread, sound);
-    playInThread(sound);
+    //playInThread(sound);
+
+
+    std::cout << "PLAY" << std::endl;
+    alSourcePlay(sound.source);
+    std::cout << "END" << std::endl;
+    //alSourcei(sound.source, AL_LOOPING, AL_FALSE);
 }
 
 void SoundControl::play(SoundNames name) {

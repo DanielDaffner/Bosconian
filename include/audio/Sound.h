@@ -20,7 +20,7 @@ public:
     short bitsPerSample;
     short channels;
 
-    Sound(unsigned char* data,int size, ALuint freq, ALenum form,short bitsPerSample, short chan);
+    Sound(ALuint s);
 };
 
 
