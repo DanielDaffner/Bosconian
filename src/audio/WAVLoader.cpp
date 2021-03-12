@@ -51,7 +51,9 @@ Sound* WAVLoader::loadWAV(char *url) {
     //sound data
     fread (type, sizeof (char),4,fp);
     if(type[0]!='d' || type[1]!='a' || type[2]!='t' || type[3]!='a'){
-        errorLog("Missing DATA");
+        std::cout << url << std::endl;
+        errorLog("Missing DATA ");
+
         return NULL;}
 
     fread(&dataSize, sizeof(uint32_t),1,fp);
@@ -83,7 +85,7 @@ Sound* WAVLoader::loadWAV(char *url) {
     alBufferData(buffer, formatType, buf, size, sampleRate);
     alSourcei(source, AL_BUFFER, buffer);
     //alSourcei(source, AL_LOOPING, AL_TRUE);
-    alSourcef(source,AL_GAIN,0.3f);
+    alSourcei(source, AL_GAIN,0.1f);
     Sound* result = new Sound(source);
 
     return result;

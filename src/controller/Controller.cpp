@@ -529,6 +529,7 @@ void Controller::updateGameWindow() {
                     iterator2._Ptr->_Myval->pos.x += -32;
                     iterator2._Ptr->_Myval->pos.y += 32;
                     iterator2 = model->mines.erase(iterator2);
+                    soundControl->play(SoundControl::MINEEXPLOSION);
                     hit = true;
 
                     break;
@@ -548,7 +549,7 @@ void Controller::updateGameWindow() {
 //                            iterator2._Ptr->_Myval->pos.y += 32;
                             iterator3 = iterator2._Ptr->_Myval->parts.erase(iterator3);
                             hit = true;
-//
+                            soundControl->play(SoundControl::BASEARMHIT);
                             break;
                         } else
                             iterator3++;
@@ -557,6 +558,7 @@ void Controller::updateGameWindow() {
                         if(iterator2._Ptr->_Myval->parts.empty()) {
                             model->enemyBasesExploding.push_back(iterator2._Ptr->_Myval);
                             model->enemyBases.erase(iterator2);
+                            soundControl->play(SoundControl::BASEEXPLOSION);
                         }
                         break;
                     }

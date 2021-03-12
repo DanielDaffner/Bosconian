@@ -28,7 +28,9 @@ public:
     Sound* formationAttack;
     Sound* extendingSound;
     Sound* nextLevel;
-
+    Sound* mineExplosion;
+    Sound* baseExplosion;
+    Sound* baseArmHit;
     //Speech
     Sound* alive;
     Sound* battleStation;
@@ -50,7 +52,10 @@ public:
         BATTLESTATION = 10,
         BLASTOFF = 11,
         CONTOTIONRED = 12,
-        SPYSHIPSIGHTED = 13
+        SPYSHIPSIGHTED = 13,
+        MINEEXPLOSION = 14,
+        BASEEXPLOSION = 15,
+        BASEARMHIT = 16
     };
 
     //methods
@@ -60,9 +65,9 @@ public:
     void initDeviceAndContext();
     void loadAudioFiles();
     void play(SoundNames name);
-
-
-
+    void stop(SoundNames name);
+    void stopSound(Sound sound);
+    void normalizeVolume();
 };
 
 
