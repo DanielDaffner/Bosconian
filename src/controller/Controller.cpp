@@ -76,6 +76,7 @@ void Controller::run() {
                 }
                 break;
             case LevelComplete:
+                level++;
                 printf("");
                 break;
             case GameOver:
