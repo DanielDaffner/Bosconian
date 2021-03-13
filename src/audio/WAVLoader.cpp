@@ -85,7 +85,7 @@ Sound* WAVLoader::loadWAV(char *url) {
     alBufferData(buffer, formatType, buf, size, sampleRate);
     alSourcei(source, AL_BUFFER, buffer);
     //alSourcei(source, AL_LOOPING, AL_TRUE);
-    alSourcei(source, AL_GAIN,0.1f);
+
     Sound* result = new Sound(source);
 
     return result;
