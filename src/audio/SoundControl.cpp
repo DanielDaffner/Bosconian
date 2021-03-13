@@ -38,6 +38,7 @@ void SoundControl::loadAudioFiles(){
     blastOff = wavLoader.loadWAV("../App_Data/audio/blastOff.wav");
     conditionRed = wavLoader.loadWAV("../App_Data/audio/conditionRed.wav");
     spyShipSighted = wavLoader.loadWAV("../App_Data/audio/spyShipSighted.wav");
+    background = wavLoader.loadWAV("../App_Data/audio/background.wav");
 }
 
 void SoundControl::initDeviceAndContext() {
@@ -134,6 +135,10 @@ void SoundControl::play(SoundNames name) {
             playSound(*baseArmHit);
             std::cout << "baseArmHit" << std::endl;
             break;
+        case BACKGROUND:
+            playSound(*background);
+            std::cout << "background" << std::endl;
+            break;
         default:
             break;
     }
@@ -189,7 +194,10 @@ void SoundControl::stop(SoundNames name) {
         case SPYSHIPSIGHTED:
             stopSound(*spyShipSighted);
             break;
-
+        case BACKGROUND:
+            stopSound(*background);
+            std::cout << "background" << std::endl;
+            break;
         default:
             break;
     }
@@ -203,34 +211,36 @@ void SoundControl::normalizeVolume(){
 
     alSourcef(blast->source, AL_GAIN,0.05f);
 
-//    alSourcei(cannonHit->source, AL_GAIN,0.1f);
+//    alSourcef(cannonHit->source, AL_GAIN,0.1f);
 //
-//    alSourcei(blast->source, AL_GAIN,0.1f);
+//    alSourcef(blast->source, AL_GAIN,0.1f);
 //
-//    alSourcei(asteroidHit->source, AL_GAIN,0.1f);
+//    alSourcef(asteroidHit->source, AL_GAIN,0.1f);
 //
-//    alSourcei(enemyShipHit->source, AL_GAIN,0.1f);
+//    alSourcef(enemyShipHit->source, AL_GAIN,0.1f);
 //
-//    alSourcei(formationAttack->source, AL_GAIN,0.1f);
+//    alSourcef(formationAttack->source, AL_GAIN,0.1f);
 //
-//    alSourcei(extendingSound->source, AL_GAIN,0.1f);
+//    alSourcef(extendingSound->source, AL_GAIN,0.1f);
 //
-//    alSourcei(nextLevel->source, AL_GAIN,0.1f);
+//    alSourcef(nextLevel->source, AL_GAIN,0.1f);
 //
     alSourcef(mineExplosion->source, AL_GAIN,1.0f);
 //
-//    alSourcei(baseExplosion->source, AL_GAIN,0.1f);
+    alSourcef(baseExplosion->source, AL_GAIN,1.0f);
 //
-    alSourcei(baseArmHit->source, AL_GAIN,0.1f);
+    alSourcef(baseArmHit->source, AL_GAIN,0.1f);
+
+    alSourcef(background->source, AL_GAIN,0.1f);
 //
-//    alSourcei(alive->source, AL_GAIN,0.1f);
+//    alSourcef(alive->source, AL_GAIN,0.1f);
 //
-//    alSourcei(battleStation->source, AL_GAIN,0.1f);
+//    alSourcef(battleStation->source, AL_GAIN,0.1f);
 //
-//    alSourcei(blastOff->source, AL_GAIN,0.1f);
+//    alSourcef(blastOff->source, AL_GAIN,0.1f);
 //
-//    alSourcei(conditionRed->source, AL_GAIN,0.1f);
+//    alSourcef(conditionRed->source, AL_GAIN,0.1f);
 //
-//    alSourcei(spyShipSighted->source, AL_GAIN,0.1f);
+//    alSourcef(spyShipSighted->source, AL_GAIN,0.1f);
 
 }

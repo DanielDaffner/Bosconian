@@ -676,6 +676,7 @@ void View::update(bool &inGame)  {
                 resetFrame();
                 _sleep(2000);
                 glClear(GL_COLOR_BUFFER_BIT);
+
                 return;
             }
             model->player->collision = false;

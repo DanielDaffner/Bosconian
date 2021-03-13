@@ -31,6 +31,13 @@ void Controller::run() {
         }
 
         if (!inGame) {
+            //Dev Sound
+            ALenum state;
+            alGetSourcei(soundControl->background->source, AL_SOURCE_STATE, &state);
+            if (state == AL_PLAYING){
+                soundControl->stop(SoundControl::BACKGROUND);
+            }
+
             /* Render here */
             updateMainWindow();
             /* Swap front and back buffers */
@@ -42,6 +49,12 @@ void Controller::run() {
         }
 
         if (inGame) {
+            //Dev Sound
+            ALenum state;
+            alGetSourcei(soundControl->background->source, AL_SOURCE_STATE, &state);
+            if (state != AL_PLAYING){
+                soundControl->play(SoundControl::BACKGROUND);
+            }
             start = std::chrono::system_clock::now();
 
             updateGameWindow();

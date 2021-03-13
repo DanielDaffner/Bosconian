@@ -82,7 +82,7 @@ Sound* WAVLoader::loadWAV(char *url) {
             formatType = AL_FORMAT_STEREO16;
     }
 
-    alBufferData(buffer, formatType, buf, size, sampleRate);
+    alBufferData(buffer, formatType, buf, dataSize, sampleRate);
     alSourcei(source, AL_BUFFER, buffer);
     //alSourcei(source, AL_LOOPING, AL_TRUE);
 
