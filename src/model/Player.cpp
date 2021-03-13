@@ -12,7 +12,7 @@ Player::Player() : GameObject() {
     spriteDirection = SpriteDirection::up;
     spriteLight = SpriteLights::on;
     playerspeed = 4;
-    lifes = 4;
+    lifes = 2;
     score = 0;
     firecd = 10;
     colliderSize = 32;

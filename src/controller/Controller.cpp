@@ -12,67 +12,75 @@
 Controller::Controller() {
     model = new Model();
     soundControl = new SoundControl();
-    inGame = false;
     view = new View(model);
     level = 1;
     view->createMainWindow();
+    state = MainWindow;
     run();
 }
 void Controller::run() {
     auto start = std::chrono::system_clock::now();
     auto end = std::chrono::system_clock::now();
     int sleeptime = 0;
-
+    ALenum alState;
     while (!glfwWindowShouldClose(view->window )) {
         /* Loop until the user closes the window */
         if(glfwWindowShouldClose(view->window)) {
             glfwTerminate();
             return;
         }
+        switch (state) {
+            case MainWindow:
+                //Dev Sound
+                alGetSourcei(soundControl->background->source, AL_SOURCE_STATE, &alState);
+                if (alState == AL_PLAYING){
+                    soundControl->stop(SoundControl::BACKGROUND);
+                }
 
-        if (!inGame) {
-            //Dev Sound
-            ALenum state;
-            alGetSourcei(soundControl->background->source, AL_SOURCE_STATE, &state);
-            if (state == AL_PLAYING){
-                soundControl->stop(SoundControl::BACKGROUND);
-            }
+                /* Render here */
+                updateMainWindow();
+                /* Swap front and back buffers */
+                glfwSwapBuffers(view->window);
 
-            /* Render here */
-            updateMainWindow();
-            /* Swap front and back buffers */
-            glfwSwapBuffers(view->window);
+                /* Poll for and process events */
+                glfwPollEvents();
+                std::this_thread::sleep_for(std::chrono::milliseconds(17));
+                break;
+            case InGame:
+                //Dev Sound
+                alGetSourcei(soundControl->background->source, AL_SOURCE_STATE, &alState);
+                if (alState != AL_PLAYING){
+                    soundControl->play(SoundControl::BACKGROUND);
+                }
+                start = std::chrono::system_clock::now();
 
-            /* Poll for and process events */
-            glfwPollEvents();
-            std::this_thread::sleep_for(std::chrono::milliseconds(17));
-        }
+                updateGameWindow();
 
-        if (inGame) {
-            //Dev Sound
-            ALenum state;
-            alGetSourcei(soundControl->background->source, AL_SOURCE_STATE, &state);
-            if (state != AL_PLAYING){
-                soundControl->play(SoundControl::BACKGROUND);
-            }
-            start = std::chrono::system_clock::now();
+                glfwSwapBuffers(view->window);
 
-            updateGameWindow();
+                glfwPollEvents();
 
-            glfwSwapBuffers(view->window);
-
-            glfwPollEvents();
-
-            end = std::chrono::system_clock::now();
-            std::chrono::duration<double> elapsed_seconds = end - start;
-            sleeptime = 8 - (int) (elapsed_seconds.count() * 1000);
-            if (sleeptime < 0) {
-                printf("%d",sleeptime);
-                sleeptime = 0;
-                printf("givememoretime\n");
-            }
-            std::this_thread::sleep_for(std::chrono::milliseconds(sleeptime));
-            printf("%d \n",sleeptime);
+                end = std::chrono::system_clock::now();
+                std::chrono::duration<double> elapsed_seconds = end - start;
+                sleeptime = 8 - (int) (elapsed_seconds.count() * 1000);
+                if (sleeptime < 0) {
+                    printf("%d",sleeptime);
+                    sleeptime = 0;
+                    printf("givememoretime\n");
+                }
+                std::this_thread::sleep_for(std::chrono::milliseconds(sleeptime));
+                printf("%d \n",sleeptime);
+                if(inGame == false) {
+                    inGame = true;
+                    state = MainWindow;
+                }
+                break;
+            case LevelComplete:
+                printf("");
+                break;
+            case GameOver:
+                printf("");
+                break;
         }
     }
 }
@@ -80,7 +88,7 @@ void Controller::run() {
 void Controller::updateMainWindow() {
     int space = glfwGetKey(view->window, GLFW_KEY_SPACE);
     if (space == GLFW_PRESS) {
-        inGame = true;
+        state = InGame;
         onStart();
     }
     view->updateMainwindow();
@@ -95,20 +103,28 @@ void Controller::onStart() {
     model->iTypeMissilesExploding.clear();
     model->formations.clear();
     model->enemyBases.clear();
-    model->player->lifes=4;
+    model->player->lifes=2;
     model->player->score=0;
     model->player->resetPosition();
     view->resetFrame();
     int x;
     int y;
     int distance;
-    for(int i = 0; i < 120;i++) {
+    for(int i = 0; i < 60;i++) {
         x = (rand() % (MAP_WIDTH));
         y = (rand() % (MAP_HEIGHT));
         distance = sqrt(pow(x - model->player->pos.x,2)+pow(y - model->player->pos.y,2));
 
         if(distance > 255 )
-        model->mines.push_back(new Mine(x,y));
+            model->mines.push_back(new Mine(x,y));
+    }
+    for(int i = 0; i < 60;i++) {
+        x = (rand() % (MAP_WIDTH));
+        y = (rand() % (MAP_HEIGHT));
+        distance = sqrt(pow(x - model->player->pos.x,2)+pow(y - model->player->pos.y,2));
+
+        if(distance > 255 )
+            model->asteroids.push_back(new Asteroid(x,y));
     }
     for(int i = 0; i < 5;i++) {
         x = (rand() % (MAP_WIDTH));
@@ -202,7 +218,7 @@ void Controller::updateGameWindow() {
         }
     }
     if (escape == GLFW_PRESS) {
-        inGame=false;
+        state = MainWindow;
         view->resetFrame();
         model->player->resetPosition();
         onStart();
@@ -544,6 +560,22 @@ void Controller::updateGameWindow() {
                     break;
                 } else
                     iterator2++;
+            }
+            if(!hit) {
+                for (auto iterator2 = model->asteroids.begin(); iterator2 != model->asteroids.end();) {
+                    distance = sqrt(pow(iterator._Ptr->_Myval->pos.x - iterator2._Ptr->_Myval->pos.x, 2) +
+                                    pow(iterator._Ptr->_Myval->pos.y - iterator2._Ptr->_Myval->pos.y, 2));
+                    if (distance <= 32) {
+                        iterator2._Ptr->_Myval->collision = true;
+                        model->asteroidsExplosion.push_back(iterator2._Ptr->_Myval);
+                        iterator2 = model->asteroids.erase(iterator2);
+                        soundControl->play(SoundControl::MINEEXPLOSION);
+                        hit = true;
+
+                        break;
+                    } else
+                        iterator2++;
+                }
             }
             //check enemy bases
             if(!hit) {

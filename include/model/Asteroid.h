@@ -10,6 +10,7 @@
 class Asteroid : public GameObject {
 public:
     Asteroid(int x, int y);
+    int type;
 };
 
 #endif //BOSCONIAN_ASTEROID_H

@@ -618,7 +618,18 @@ void View::update(bool &inGame)  {
         if(iterator._Ptr->_Myval->explosionPhase >= 30) {
             delete (iterator._Ptr->_Myval);
             iterator = model->minesExploding.erase(iterator);
-        }else
+        } else
+            iterator++;
+    }
+
+    //    render exploding asteroids
+    for(auto iterator = model->asteroidsExplosion.begin(); iterator!= model->asteroidsExplosion.end();) {
+        render(iterator._Ptr->_Myval->pos + asteroidsSpritesExplosionOffset,asteroidsSpritesExplosion[iterator._Ptr->_Myval->explosionPhase/10]);
+        iterator._Ptr->_Myval->explosionPhase++;
+        if(iterator._Ptr->_Myval->explosionPhase >= 30) {
+            delete (iterator._Ptr->_Myval);
+            iterator = model->asteroidsExplosion.erase(iterator);
+        } else
             iterator++;
     }
 
@@ -646,6 +657,11 @@ void View::update(bool &inGame)  {
 //    render mines
     for(Mine* ele: model->mines) {
         render(ele->pos + minesSpriteOffset, minesSprite);
+    }
+
+    //    render asteroids
+    for(Asteroid* ele: model->asteroids) {
+        render(ele->pos + asteroidsSpritesOffset, asteroidsSprites[ele->type]);
     }
 
 //    render projectiles from player

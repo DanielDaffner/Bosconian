@@ -6,17 +6,25 @@
 #include "../model/Model.h"
 #include "../../include/model/Player.h"
 #include "../../include/model/Mine.h"
+#include "../../include/audio/SoundControl.h"
 #ifndef BOSCONIAN_CONTROLLER_H
 #define BOSCONIAN_CONTROLLER_H
-#include "../../include/audio/SoundControl.h"
+
+enum State{
+    MainWindow = 0,
+    InGame = 1,
+    LevelComplete = 2,
+    GameOver = 3
+};
 
 class Controller{
 public:
     Controller();
-    bool inGame;
     int level;
+    State state;
     Model* model;
     View *view;
+    bool inGame;
     SoundControl* soundControl;
     void run();
     void updateMainWindow();
