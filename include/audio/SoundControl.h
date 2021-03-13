@@ -32,6 +32,7 @@ public:
     Sound* baseExplosion;
     Sound* baseArmHit;
     Sound* background;
+    Sound* background2;
     //Speech
     Sound* alive;
     Sound* battleStation;
@@ -57,7 +58,8 @@ public:
         MINEEXPLOSION = 14,
         BASEEXPLOSION = 15,
         BASEARMHIT = 16,
-        BACKGROUND = 17
+        BACKGROUND = 17,
+        BACKGROUND2 = 18
     };
 
     //methods

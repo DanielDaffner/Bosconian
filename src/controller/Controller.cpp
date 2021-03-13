@@ -33,9 +33,9 @@ void Controller::run() {
         if (!inGame) {
             //Dev Sound
             ALenum state;
-            alGetSourcei(soundControl->background->source, AL_SOURCE_STATE, &state);
+            alGetSourcei(soundControl->background2->source, AL_SOURCE_STATE, &state);
             if (state == AL_PLAYING){
-                soundControl->stop(SoundControl::BACKGROUND);
+                soundControl->stop(SoundControl::BACKGROUND2);
             }
 
             /* Render here */
@@ -51,9 +51,9 @@ void Controller::run() {
         if (inGame) {
             //Dev Sound
             ALenum state;
-            alGetSourcei(soundControl->background->source, AL_SOURCE_STATE, &state);
+            alGetSourcei(soundControl->background2->source, AL_SOURCE_STATE, &state);
             if (state != AL_PLAYING){
-                soundControl->play(SoundControl::BACKGROUND);
+                soundControl->loop(SoundControl::BACKGROUND2);
             }
             start = std::chrono::system_clock::now();
 
@@ -622,7 +622,7 @@ void Controller::calcdirection(EnemyShip* ele, int playerQuadrant) {
     double ux = 0;
     double uy = 0;
     double vx = 0;
-    double vy = 0;
+    double vy = 0;  
     double minDistance = 0;
     double testDistance = 0;
 
