@@ -51,5 +51,19 @@ public:
     GLubyte* numbers[10];
     GLubyte* map;
     GLubyte* lives;
+
+    Position2D asteroidsSpritesOffset{};
+    Position2D asteroidsSpritesExplosionOffset{};
+    Position2D enemyBaseSpritesOffset{-144,144};
+    Position2D enemyBasePartExplosionOffset{-32,32};
+    Position2D enemyBaseSpritesExplosionOffset{-144,144};
+    Position2D enemyShipSpritesExplosionOffset{-32,32};
+    Position2D enemyShipSpritesOffset{-32,32};
+    Position2D enemyShipLeaderSpritesOffset{};
+    Position2D minesSpriteOffset{-32,32};
+    Position2D mineSpritesExplosionOffset{-64,64};
+    Position2D playerSpritesOffset{-32,32};
+    Position2D playerSpritesExplosionOffset{};
+    Position2D playerProjectileSpritesOffset{-4,4};
 };
 #endif //BOSCONIAN_VIEW_H

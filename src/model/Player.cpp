@@ -4,8 +4,6 @@
 
 #include "../../include/model/Player.h"
 
-Position2D Player::drawOffset = {-32,32};
-
 Player::Player() : GameObject() {
     direction[0] = 0;
     direction[1] = -1;
@@ -16,7 +14,8 @@ Player::Player() : GameObject() {
     playerspeed = 4;
     lifes = 4;
     score = 0;
-    firecd = 0;
+    firecd = 10;
+    colliderSize = 32;
 }
 
 void Player::resetPosition() {

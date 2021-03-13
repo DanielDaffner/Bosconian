@@ -9,7 +9,5 @@
 class Mine : public GameObject {
 public:
     Mine(int x, int y);
-    static Position2D drawOffset;
-    static int score;
 };
 #endif //BOSCONIAN_MINE_H

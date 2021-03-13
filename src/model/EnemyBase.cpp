@@ -4,9 +4,7 @@
 
 #include "../../include/model/EnemyBase.h"
 
-Position2D EnemyBase::drawOffset{-144,144};
 Position2D EnemyBase::drawOffsetMiddle{-32,32};;
-int EnemyBase::score = 1500;
 
 EnemyBase::EnemyBase(int x, int y) : GameObject() {
     pos.x = x;
@@ -27,6 +25,7 @@ EnemyBase::EnemyBase(int x, int y) : GameObject() {
         parts.push_back(new EnemyBasePart(pos.x + 50, pos.y -100, 10));
         parts.push_back(new EnemyBasePart(pos.x - 50, pos.y -100, 11));
     }
+    score = 1500;
     isOpen = false;
     timer = 0;
 }

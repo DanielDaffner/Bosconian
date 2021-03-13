@@ -4,7 +4,6 @@
 
 #include "../../include/model/EnemyShip.h"
 
-Position2D EnemyShip::drawOffset = {-32,32};
 double EnemyShip::directions[24][2] = {{0,-1 },{-1,-3},{-2,-3},
                                    {-1,-1},{-3,-2},{-3,-1},
                                    {-1,0},{-3,1},{-3,2},
@@ -18,5 +17,5 @@ EnemyShip::EnemyShip(int posX, int posY, int dir) : GameObject() {
     pos.x = posX;
     pos.y = posY;
     direction = dir;
-
+    colliderSize = 32;
 }

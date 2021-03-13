@@ -4,8 +4,7 @@
 
 #include "../../include/model/SpyShip.h"
 
-int SpyShip::score = 500;
-
 SpyShip::SpyShip(int posX, int posY, int dir) : EnemyShip(posX, posY, dir) {
-
+    type = 3;
+    score = 500;
 }

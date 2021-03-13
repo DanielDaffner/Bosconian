@@ -3,10 +3,9 @@
 //
 #include "../../include/model/Mine.h"
 
-Position2D Mine::drawOffset = {-32,32};
-int Mine::score = 20;
-
 Mine::Mine(int x, int y) : GameObject() {
     pos.x = x;
     pos.y = y;
+    score = 20;
+    colliderSize = 32;
 }

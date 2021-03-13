@@ -10,7 +10,6 @@
 class ETypeMissile : public EnemyShip {
 public:
     ETypeMissile(int posX, int posY, int dir);
-    static int score;
 };
 
 #endif //BOSCONIAN_ETYPEMISSILE_H

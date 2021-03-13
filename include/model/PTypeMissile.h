@@ -10,7 +10,6 @@
 class PTypeMissile : public EnemyShip {
 public:
     PTypeMissile(int posX, int posY, int dir);
-    static int score;
 };
 
 #endif //BOSCONIAN_PTYPEMISSILE_H

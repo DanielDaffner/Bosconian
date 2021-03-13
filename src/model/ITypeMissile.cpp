@@ -4,9 +4,8 @@
 
 #include "../../include/model/ITypeMissile.h"
 
-int ITypeMissile::score = 50;
-
 ITypeMissile::ITypeMissile(int posX, int posY, int dir) : EnemyShip(posX, posY, dir) {
-
+    type = 0;
+    score = 50;
 }
 

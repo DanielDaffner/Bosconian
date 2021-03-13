@@ -4,9 +4,8 @@
 
 #include "../../include/model/PTypeMissile.h"
 
-int PTypeMissile::score = 60;
-
 PTypeMissile::PTypeMissile(int posX, int posY, int dir) : EnemyShip(posX, posY, dir) {
-
+    type = 2;
+    score = 60;
 }
 

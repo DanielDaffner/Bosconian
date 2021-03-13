@@ -10,7 +10,6 @@
 class SpyShip : public EnemyShip {
 public:
     SpyShip(int posX, int posY, int dir);
-    static int score;
 };
 
 #endif //BOSCONIAN_SPYSHIP_H

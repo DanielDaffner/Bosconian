@@ -14,6 +14,8 @@ public:
     Position2D pos;
     bool collision;
     int explosionPhase;
+    int colliderSize;
+    int score;
 
 };
 #endif //BOSCONIAN_GAMEOBJECT_H

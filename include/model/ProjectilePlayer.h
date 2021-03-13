@@ -10,7 +10,6 @@
 class ProjectilePlayer : public GameObject{
 public:
     static int projectileSpeed;
-    static Position2D drawOffset;
     ProjectilePlayer(int posx, int posy, int dirx, int diry, int spritedir);
     Position2D direction{};
     int spritedirection;

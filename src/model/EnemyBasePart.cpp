@@ -4,7 +4,6 @@
 
 #include "../../include/model/EnemyBasePart.h"
 
-int EnemyBasePart::score = 200;
 Position2D EnemyBasePart::drawOffset[] = {Position2D{112,-144},
                                           Position2D{16,-160},
                                           Position2D{16,-34},
@@ -23,4 +22,5 @@ EnemyBasePart::EnemyBasePart(double x, double y, int direct) : GameObject() {
     dir = direct;
     pos.x = x;
     pos.y = y;
+    score = 200;
 }

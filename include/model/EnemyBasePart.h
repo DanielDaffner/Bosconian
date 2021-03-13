@@ -10,7 +10,6 @@
 class EnemyBasePart : public GameObject {
 public:
     EnemyBasePart(double x, double y, int dir);
-    static int score;
     static Position2D drawOffset[12];
     int dir;
 

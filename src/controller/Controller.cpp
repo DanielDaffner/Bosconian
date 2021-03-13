@@ -86,7 +86,8 @@ void Controller::updateMainWindow() {
 }
 
 void Controller::onStart() {
-
+//    std::list<EnemyShip*> test;
+//    test.push_back(new ITypeMissile(1,1,1));
     model->mines.clear();
     model->iTypeMissiles.clear();
     model->minesExploding.clear();
@@ -497,8 +498,6 @@ void Controller::updateGameWindow() {
                 iterator._Ptr->_Myval->collision = true;
                 model->minesExploding.push_back(iterator._Ptr->_Myval);
                 model->iTypeMissilesExploding.push_back(iteratoriTypeMissiles._Ptr->_Myval);
-                iterator._Ptr->_Myval->pos.x += -32;
-                iterator._Ptr->_Myval->pos.y += 32;
                 iterator = model->mines.erase(iterator);
             break;
             } else {
@@ -520,8 +519,6 @@ void Controller::updateGameWindow() {
             model->player->collision = true;
             iterator._Ptr->_Myval->collision = true;
             model->iTypeMissilesExploding.push_back(iterator._Ptr->_Myval);
-            iterator._Ptr->_Myval->pos.x += -32;
-            iterator._Ptr->_Myval->pos.y += 32;
             iterator = model->iTypeMissiles.erase(iterator);
         } else {
             iterator++;
@@ -539,8 +536,6 @@ void Controller::updateGameWindow() {
                 if (distance <= 32) {
                     iterator2._Ptr->_Myval->collision = true;
                     model->minesExploding.push_back(iterator2._Ptr->_Myval);
-                    iterator2._Ptr->_Myval->pos.x += -32;
-                    iterator2._Ptr->_Myval->pos.y += 32;
                     iterator2 = model->mines.erase(iterator2);
                     soundControl->play(SoundControl::MINEEXPLOSION);
                     hit = true;
@@ -558,8 +553,6 @@ void Controller::updateGameWindow() {
                         if (distance <= 32) {
                             iterator3._Ptr->_Myval->collision = true;
                             model->enemyBasePartsExploding.push_back(iterator3._Ptr->_Myval);
-//                            iterator2._Ptr->_Myval->pos.x += -32;
-//                            iterator2._Ptr->_Myval->pos.y += 32;
                             iterator3 = iterator2._Ptr->_Myval->parts.erase(iterator3);
                             hit = true;
                             soundControl->play(SoundControl::BASEARMHIT);

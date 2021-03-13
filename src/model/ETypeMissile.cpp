@@ -4,9 +4,8 @@
 
 #include "../../include/model/ETypeMissile.h"
 
-int ETypeMissile::score = 70;
-
 ETypeMissile::ETypeMissile(int posX, int posY, int dir) : EnemyShip(posX, posY, dir) {
-
+    type = 1;
+    score = 70;
 }
 

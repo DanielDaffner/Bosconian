@@ -17,8 +17,6 @@ public:
     int formationType;
     int formationMissile;
     static Position2D formationOffset[4][4];
-    static int score;
-
 };
 
 #endif //BOSCONIAN_FORMATION_H

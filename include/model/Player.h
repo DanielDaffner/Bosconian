@@ -24,14 +24,12 @@ enum SpriteLights{
 class Player : public GameObject {
 public:
     Player();
-    static Position2D drawOffset;
     bool hasLost;
     int direction[2]{};
     int playerspeed;
     int spriteDirection;
     int spriteLight;
     int lifes;
-    int score;
     int firecd;
     void resetPosition();
 };

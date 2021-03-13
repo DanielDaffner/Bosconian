@@ -613,20 +613,19 @@ void View::update(bool &inGame)  {
 
     //    render exploding mines
     for(auto iterator = model->minesExploding.begin(); iterator!= model->minesExploding.end();) {
-        render(iterator._Ptr->_Myval->pos + Mine::drawOffset,mineSpritesExplosion[iterator._Ptr->_Myval->explosionPhase/10]);
+        render(iterator._Ptr->_Myval->pos + mineSpritesExplosionOffset,mineSpritesExplosion[iterator._Ptr->_Myval->explosionPhase/10]);
         iterator._Ptr->_Myval->explosionPhase++;
         if(iterator._Ptr->_Myval->explosionPhase >= 30) {
             delete (iterator._Ptr->_Myval);
             iterator = model->minesExploding.erase(iterator);
-            model->player->score += Mine::score;
         }else
             iterator++;
     }
 
     //render exploding iTypeMissile
     double normalize = 0;
-    for(auto iterator = model->iTypeMissilesExploding.begin(); iterator!= model->iTypeMissilesExploding.end();) {
-        if( iterator._Ptr->_Myval->explosionPhase++!=0){
+    for(auto iterator = model->iTypeMissilesExploding.begin(); iterator != model->iTypeMissilesExploding.end();) {
+        if( iterator._Ptr->_Myval->explosionPhase++ != 0){
             normalize = sqrt((pow(ITypeMissile::directions[iterator._Ptr->_Myval->direction][0],2)+pow(ITypeMissile::directions[iterator._Ptr->_Myval->direction][1],2)));
             iterator._Ptr->_Myval->pos.x += (ITypeMissile::directions[iterator._Ptr->_Myval->direction][0] / normalize) * ITypeMissile::speed;
             iterator._Ptr->_Myval->pos.y += (ITypeMissile::directions[iterator._Ptr->_Myval->direction][1] / normalize) * ITypeMissile::speed;
@@ -635,36 +634,34 @@ void View::update(bool &inGame)  {
             if(iterator._Ptr->_Myval->pos.y < 0)iterator._Ptr->_Myval->pos.y += MAP_HEIGHT;
             if(iterator._Ptr->_Myval->pos.y >= MAP_HEIGHT)iterator._Ptr->_Myval->pos.y -= MAP_HEIGHT;
         }
-        render(iterator._Ptr->_Myval->pos + EnemyShip::drawOffset,enemyShipSpritesExplosion[iterator._Ptr->_Myval->explosionPhase/10]);
+        render(iterator._Ptr->_Myval->pos + enemyShipSpritesExplosionOffset,enemyShipSpritesExplosion[iterator._Ptr->_Myval->explosionPhase/10]);
         iterator._Ptr->_Myval->explosionPhase++;
         if(iterator._Ptr->_Myval->explosionPhase >= 30) {
             delete (iterator._Ptr->_Myval);
             iterator = model->iTypeMissilesExploding.erase(iterator);
-            model->player->score+=ITypeMissile::score;
         }else
             iterator++;
     }
 
-
 //    render mines
     for(Mine* ele: model->mines) {
-        render(ele->pos + Mine::drawOffset, minesSprite);
+        render(ele->pos + minesSpriteOffset, minesSprite);
     }
 
 //    render projectiles from player
     for(ProjectilePlayer* ele: model->projectilesPlayer) {
-        render(ele->pos + ProjectilePlayer::drawOffset, playerProjectileSprites[ele->spritedirection]);
+        render(ele->pos + playerProjectileSpritesOffset, playerProjectileSprites[ele->spritedirection]);
     }
 
     //render enemy
     for(ITypeMissile* ele: model->iTypeMissiles) {
-        render(ele->pos + EnemyShip::drawOffset, enemyShipSprites[0][ele->direction]);
+        render(ele->pos + enemyShipSpritesOffset, enemyShipSprites[0][ele->direction]);
     }
 
 
 //    render player
     if(model->player->collision) {
-        render(model->player->pos + Player::drawOffset,
+        render(model->player->pos + playerSpritesOffset,
                      playerSpritesExplosion[model->player->spriteLight/10]);
         if(model->player->spriteLight++ == 29) {
             if(model->player->lifes == 0) {
@@ -686,7 +683,7 @@ void View::update(bool &inGame)  {
             resetFrame();
         }
     } else {
-        render(model->player->pos + Player::drawOffset,playerSprites[model->player->spriteDirection][model->player->spriteLight]);
+        render(model->player->pos + playerSpritesOffset,playerSprites[model->player->spriteDirection][model->player->spriteLight]);
         if(count%30 == 0) {
             model->player->spriteLight = (model->player->spriteLight + 1) % 2;
         }
@@ -720,11 +717,11 @@ void View::update(bool &inGame)  {
 
 //    render Base
     for(EnemyBase* ele: model->enemyBases) {
-        render(ele->pos + EnemyBase::drawOffset, enemyBaseSprites[0+ele->rot]);
+        render(ele->pos + enemyBaseSpritesOffset, enemyBaseSprites[0+ele->rot]);
         //printf("timer: %d\n", ele->timer/10);
         //render(ele->pos + EnemyBase::drawOffsetMiddle, enemyBaseSprites[14+(ele->timer/20)]);
         for(EnemyBasePart* part: ele->parts) {
-            render(ele->pos + EnemyBase::drawOffset + EnemyBasePart::drawOffset[part->dir], enemyBaseSprites[2+part->dir]);
+            render(ele->pos + enemyBaseSpritesOffset + EnemyBasePart::drawOffset[part->dir], enemyBaseSprites[2+part->dir]);
         }
         render(ele->pos + EnemyBase::drawOffsetMiddle, enemyBaseSprites[14+(ele->rot*6)+(ele->timer/20)]);
     }
