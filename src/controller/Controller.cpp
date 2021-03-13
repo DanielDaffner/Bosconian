@@ -99,6 +99,7 @@ void Controller::onStart() {
 //    std::list<EnemyShip*> test;
 //    test.push_back(new ITypeMissile(1,1,1));
     model->mines.clear();
+    model->asteroids.clear();
     model->iTypeMissiles.clear();
     model->minesExploding.clear();
     model->iTypeMissilesExploding.clear();
