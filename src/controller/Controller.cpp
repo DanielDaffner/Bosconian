@@ -7,7 +7,7 @@
 #include <cmath>
 #include <string>
 #include <chrono>
-
+#include <thread>
 
 Controller::Controller() {
     model = new Model();
@@ -45,7 +45,7 @@ void Controller::run() {
 
             /* Poll for and process events */
             glfwPollEvents();
-            _sleep(17);
+            std::this_thread::sleep_for(std::chrono::milliseconds(17));
         }
 
         if (inGame) {
@@ -71,7 +71,8 @@ void Controller::run() {
                 sleeptime = 0;
                 printf("givememoretime\n");
             }
-            _sleep(sleeptime);
+            std::this_thread::sleep_for(std::chrono::milliseconds(sleeptime));
+            printf("%d \n",sleeptime);
         }
     }
 }
