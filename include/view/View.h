@@ -52,8 +52,8 @@ public:
     GLubyte* map;
     GLubyte* lives;
 
-    Position2D asteroidsSpritesOffset{};
-    Position2D asteroidsSpritesExplosionOffset{-16,16};
+    Position2D asteroidsSpritesOffset{-32,32};
+    Position2D asteroidsSpritesExplosionOffset{-32,32};
     Position2D enemyBaseSpritesOffset{-144,144};
     Position2D enemyBasePartExplosionOffset{-32,32};
     Position2D enemyBaseSpritesExplosionOffset{-144,144};
