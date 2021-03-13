@@ -69,7 +69,6 @@ void Controller::run() {
                     printf("givememoretime\n");
                 }
                 std::this_thread::sleep_for(std::chrono::milliseconds(sleeptime));
-                printf("%d \n",sleeptime);
                 if(inGame == false) {
                     inGame = true;
                     state = MainWindow;
