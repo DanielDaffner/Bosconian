@@ -27,7 +27,7 @@ void SoundControl::loadAudioFiles(){
     blast = wavLoader.loadWAV("../App_Data/audio/blast.wav");
 //    asteroidHit = wavLoader.loadWAV("../../App_Data/audio/asteroidHit.wav");
 //    enemyShipHit = wavLoader.loadWAV("../../App_Data/audio/enemyShipHit.wav");
-//    formationAttack = wavLoader.loadWAV("../../App_Data/audio/formationAttack.wav");
+    formationAttack = wavLoader.loadWAV("../App_Data/audio/formationAttack.wav");
 //    extendingSound = wavLoader.loadWAV("../../App_Data/audio/extendingSound.wav");
 //    nextLevel = wavLoader.loadWAV("../../App_Data/audio/nextLevel.wav");
     mineExplosion = wavLoader.loadWAV("../App_Data/audio/mineExplosion.wav");
@@ -64,6 +64,12 @@ void SoundControl::playSound(Sound sound) {
     alSourcePlay(sound.source);
 
     //alSourcei(sound.source, AL_LOOPING, AL_FALSE);
+}
+
+void SoundControl::loopSound(Sound sound) {
+    std::cout << "LOOP" << std::endl;
+    alSourcei(sound.source, AL_LOOPING, AL_TRUE);
+    alSourcePlay(sound.source);
 }
 
 void SoundControl::play(SoundNames name) {
@@ -137,6 +143,85 @@ void SoundControl::play(SoundNames name) {
             break;
         case BACKGROUND:
             playSound(*background);
+            std::cout << "background" << std::endl;
+            break;
+        default:
+            break;
+    }
+}
+
+
+void SoundControl::loop(SoundNames name) {
+
+    //play
+    switch (name) {
+
+        case SHOOT:
+            loopSound(*shoot);
+            std::cout << "shoot" << std::endl;
+            break;
+        case CANNONHIT:
+            loopSound(*cannonHit);
+            std::cout << "cannonHit" << std::endl;
+            break;
+        case BLAST:
+            loopSound(*blast);
+            std::cout << "blast" << std::endl;
+            break;
+        case ASTEROIDHIT:
+            loopSound(*asteroidHit);
+            std::cout << "asteroidHit" << std::endl;
+            break;
+        case ENEMYSHIPHIT:
+            loopSound(*enemyShipHit);
+            std::cout << "enemyShipHit" << std::endl;
+            break;
+        case FORMATIONATTACK:
+            loopSound(*formationAttack);
+            std::cout << "formationAttack" << std::endl;
+            break;
+        case EXTENDINGSOUND:
+            loopSound(*extendingSound);
+            std::cout << "extendingSound" << std::endl;
+            break;
+        case NEXTLEVEL:
+            loopSound(*nextLevel);
+            std::cout << "nextLevel" << std::endl;
+            break;
+        case ALIVE:
+            loopSound(*alive);
+            std::cout << "alive" << std::endl;
+            break;
+        case BATTLESTATION:
+            loopSound(*battleStation);
+            std::cout << "battleStation" << std::endl;
+            break;
+        case BLASTOFF:
+            loopSound(*blastOff);
+            std::cout << "blastOff" << std::endl;
+            break;
+        case CONTOTIONRED:
+            loopSound(*conditionRed);
+            std::cout << "conditionRed" << std::endl;
+            break;
+        case SPYSHIPSIGHTED:
+            loopSound(*spyShipSighted);
+            std::cout << "spyShipSighted" << std::endl;
+            break;
+        case MINEEXPLOSION:
+            loopSound(*mineExplosion);
+            std::cout << "mineExplosion" << std::endl;
+            break;
+        case BASEEXPLOSION:
+            loopSound(*baseExplosion);
+            std::cout << "baseExplosion" << std::endl;
+            break;
+        case BASEARMHIT:
+            loopSound(*baseArmHit);
+            std::cout << "baseArmHit" << std::endl;
+            break;
+        case BACKGROUND:
+            loopSound(*background);
             std::cout << "background" << std::endl;
             break;
         default:
@@ -219,7 +304,7 @@ void SoundControl::normalizeVolume(){
 //
 //    alSourcef(enemyShipHit->source, AL_GAIN,0.1f);
 //
-//    alSourcef(formationAttack->source, AL_GAIN,0.1f);
+    alSourcef(formationAttack->source, AL_GAIN,0.1f);
 //
 //    alSourcef(extendingSound->source, AL_GAIN,0.1f);
 //

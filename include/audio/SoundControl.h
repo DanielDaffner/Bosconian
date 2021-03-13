@@ -70,6 +70,8 @@ public:
     void stop(SoundNames name);
     void stopSound(Sound sound);
     void normalizeVolume();
+    void loopSound(Sound sound);
+    void loop(SoundNames name);
 };
 
 

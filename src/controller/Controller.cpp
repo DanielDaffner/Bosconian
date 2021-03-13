@@ -139,6 +139,8 @@ void Controller::spawnEnemys(){
 
 void Controller::updateGameWindow() {
     // input
+    int soundTestSart = glfwGetKey(view->window, GLFW_KEY_G);
+    int soundTestEnd = glfwGetKey(view->window, GLFW_KEY_H);
     int up = glfwGetKey(view->window, GLFW_KEY_W);
     int left = glfwGetKey(view->window, GLFW_KEY_A);
     int right = glfwGetKey(view->window, GLFW_KEY_D);
@@ -184,6 +186,12 @@ void Controller::updateGameWindow() {
         model->player->direction[0] = 1;
         model->player->direction[1] = 1;
         model->player->spriteDirection = SpriteDirection::downright;
+    }
+    if (soundTestSart == GLFW_PRESS) {
+       soundControl->loop(SoundControl::FORMATIONATTACK);
+    }
+    if (soundTestEnd == GLFW_PRESS) {
+        soundControl->stop(SoundControl::FORMATIONATTACK);
     }
 
     model->player->firecd--;
