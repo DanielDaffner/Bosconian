@@ -201,7 +201,7 @@ void SoundControl::normalizeVolume(){
     //sounds
     //change to float * (100/Volume)
 
-    alSourcef(blast->source, AL_GAIN,0.1f);
+    alSourcef(blast->source, AL_GAIN,0.05f);
 
 //    alSourcei(cannonHit->source, AL_GAIN,0.1f);
 //
