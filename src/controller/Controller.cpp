@@ -37,22 +37,32 @@ void Controller::run() {
                     soundControl->stop(SoundControl::BACKGROUND);
                 }
 
-                /* Render here */
-                updateMainWindow();
-                /* Swap front and back buffers */
-                glfwSwapBuffers(view->window);
+        if (!inGame) {
+            //Dev Sound
+            ALenum state;
+            alGetSourcei(soundControl->background2->source, AL_SOURCE_STATE, &state);
+            if (state == AL_PLAYING){
+                soundControl->stop(SoundControl::BACKGROUND2);
+            }
 
-                /* Poll for and process events */
-                glfwPollEvents();
-                std::this_thread::sleep_for(std::chrono::milliseconds(17));
-                break;
-            case InGame:
-                //Dev Sound
-                alGetSourcei(soundControl->background->source, AL_SOURCE_STATE, &alState);
-                if (alState != AL_PLAYING){
-                    soundControl->play(SoundControl::BACKGROUND);
-                }
-                start = std::chrono::system_clock::now();
+            /* Render here */
+            updateMainWindow();
+            /* Swap front and back buffers */
+            glfwSwapBuffers(view->window);
+
+            /* Poll for and process events */
+            glfwPollEvents();
+            _sleep(17);
+        }
+
+        if (inGame) {
+            //Dev Sound
+            ALenum state;
+            alGetSourcei(soundControl->background2->source, AL_SOURCE_STATE, &state);
+            if (state != AL_PLAYING){
+                soundControl->loop(SoundControl::BACKGROUND2);
+            }
+            start = std::chrono::system_clock::now();
 
                 updateGameWindow();
 
@@ -158,6 +168,8 @@ void Controller::spawnEnemys(){
 
 void Controller::updateGameWindow() {
     // input
+    int soundTestSart = glfwGetKey(view->window, GLFW_KEY_G);
+    int soundTestEnd = glfwGetKey(view->window, GLFW_KEY_H);
     int up = glfwGetKey(view->window, GLFW_KEY_W);
     int left = glfwGetKey(view->window, GLFW_KEY_A);
     int right = glfwGetKey(view->window, GLFW_KEY_D);
@@ -203,6 +215,12 @@ void Controller::updateGameWindow() {
         model->player->direction[0] = 1;
         model->player->direction[1] = 1;
         model->player->spriteDirection = SpriteDirection::downright;
+    }
+    if (soundTestSart == GLFW_PRESS) {
+       soundControl->loop(SoundControl::FORMATIONATTACK);
+    }
+    if (soundTestEnd == GLFW_PRESS) {
+        soundControl->stop(SoundControl::FORMATIONATTACK);
     }
 
     model->player->firecd--;
